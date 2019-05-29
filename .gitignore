@@ -1,0 +1,28 @@
+# Gradle
+.gradle/
+build/
+
+# LaTeX
+*.aux
+dissertation.*
+!dissertation.tex
+!dissertation.bib
+
+# backups
+*.sav
+*.bak
+
+# OSX
+.DS_Store
+
+# IDEA
+.idea/
+*.iml
+*.orig
+
+# R
+.Rhistory
+.RData
+
+# internal/temp data
+data_tmp/
