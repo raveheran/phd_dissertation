@@ -1,0 +1,72 @@
+\documentclass[11pt, openright, titlepage, table, twoside]{book}
+
+\input{chapters/preamble}
+
+% ==========================================
+% 				   CONTENT
+% ==========================================
+   
+%\includeonly{chapters/eexperiments/eexperiments}
+
+\begin{document}
+
+\pagenumbering{Roman} % use roman page numbering for preface
+
+\maketitle
+
+\include{chapters/preface}
+
+\addtocounter{page}{1} % reset page counter after preface
+\pagenumbering{arabic} % back to normal page numbering
+
+% Parts and Chapters
+% ------------------
+
+\part{Introduction}
+\label{part:introduction}
+
+\include{chapters/hci/hci}
+\include{chapters/convergence/phonetic_convergence}
+\include{chapters/sds/sds}
+
+\part{Modeling}
+\label{part:modeling}
+
+\include{chapters/eexperiments/eexperiments}
+\include{chapters/comp-model/compmodel}
+\include{chapters/stat-model/statmodel}
+
+\part{Applications}
+\label{part:applications}
+
+\include{chapters/module/asp}
+\include{chapters/system/web-based_system}
+\include{chapters/conv_analysis/conv_analysis}
+
+% Bibliography
+% ------------
+
+\printbibliography[heading=bibintoc, title={Bibliography}]
+%\bibliographystyle{APAlike}
+%\bibliography{dissertation}
+%\patchcmd{\thebibliography}{\section*{\refname}}{}{}{} % remove ``references'' title
+
+% Appendices
+% ----------
+
+\appendix
+
+% re-configure title style for appendices
+\titleformat{\section}{\large\bfseries}{\appendixname~\thesection .}{0.5em}{}
+\renewcommand{\thesection}{\arabic{section}}
+
+\part{Appendices}
+\label{part:appendices}
+
+\include{chapters/appendices/appendixA}
+
+% To-Do list
+% ----------
+\listoftodos[TODO List]
+
+\end{document}
