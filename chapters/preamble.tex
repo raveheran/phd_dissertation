@@ -1,0 +1,308 @@
+% ==========================================
+% 				PACKAGES
+% ==========================================
+
+% *** text packages ***
+% =====================
+\usepackage[utf8]{inputenc} % for direct UTF-8 text
+\usepackage[T1]{fontenc} % font encoding
+\usepackage[hidelinks, pdfusetitle, hyperfootnotes=false]{hyperref} % for hyper references
+\usepackage{fullpage}
+\usepackage{fontspec} % control over fonts
+\usepackage{multicol} % enable multi-columns text
+\usepackage{multirow} % enable multi-rows text
+%\usepackage[style=numeric,backend=biber]{biblatex}
+\usepackage{lettrine} % for using drop-down letters
+%\usepackage{draftwatermark} % put ``draft'' water mark on all pages
+\usepackage[inline, shortlabels]{enumitem}
+%\usepackage{enumerate} % for using enumerations
+\usepackage{acro} % for acronyms
+\usepackage[detect-all]{siunitx} % SI units, numbers
+\sisetup{list-final-separator={, and }}
+\usepackage{tipa} % enable usage of IPA symbols
+%\usepackage{cite}
+%\usepackage{algorithm} % for writing algorithm blocks
+\usepackage[ruled, linesnumbered]{algorithm2e} % for algorithms
+\usepackage{algpseudocode} % enable usage of psudo-code blocks
+\usepackage{pifont} % for more symbols
+\usepackage{amsmath} % for extended mathematical expressions
+\usepackage{amssymb} % for more math symbols
+\usepackage{lingmacros} % for ``linguistic'' listing
+\usepackage{fancyhdr} % for more control over header/footer desiging
+\usepackage{sectsty} % more options for sections
+\usepackage{etoolbox} % more control over the bibliography
+\usepackage{xcolor} % extended colors set (table is for colors in tables)
+\usepackage[capitalise, nameinlink, noabbrev]{cleveref} % cross-referencing
+\usepackage{fancyvrb} % fancy verbatim
+
+% *** L10n ***
+% ------------
+\usepackage[ngerman, english]{babel} % for better handling of text (e.g. line breaks)
+\usepackage[autostyle]{csquotes} % quoating style
+
+% *** graphic, layouts and visualization packages ***
+% --------------------------------------------------
+\usepackage[subfigure]{tocloft} % for more control over table of contents
+\usepackage{listings} % for code highlighting
+\usepackage{setspace} % for more control over spacing configurations
+\usepackage{graphicx} % extended graphic capabilities
+\usepackage{eso-pic} % for some special images layouts (e.g., for cover page)
+\usepackage[cc]{titlepic} % for putting picture in cover page
+\usepackage{subfigure} % subfigures
+%\usepackage[singlelinecheck=off, justification=raggedright]{subcaption} % multiple captions
+%\captionsetup{compatibility=false}
+\usepackage{adjustbox}
+\usepackage[graphicx]{realboxes}
+\usepackage{rotating}
+\usepackage{pdflscape} % for rotating pages (also in the pdf itself)
+\usepackage[headsep=1cm,headheight=2cm]{geometry} % for changing page margins
+\usepackage{hhline} % for more evolved designing of tables
+\usepackage{wrapfig} % for wrapped figures and tables
+\usepackage{qtree} % for syntactic trees
+\usepackage{caption}
+% \usepackage{tikz}
+% \usetikzlibrary{decorations.pathmorphing}
+% \usetikzlibrary{decorations.markings}
+% \usetikzlibrary{arrows}
+
+% *** table layout ***
+% --------------------
+\usepackage{tabularx}
+\usepackage{tabulary}
+\usepackage{booktabs} % more control over tables design
+\usepackage{longtable} % for making multi-page tables
+\usepackage{makecell}
+
+
+% *** additional packages ***
+% --------------------------------------------------
+\usepackage{titlesec} % for controlling title formatting
+\usepackage{lmodern} % for avoiding font-shape and letter-size warnings
+\usepackage[colorinlistoftodos]{todonotes} % for todo notes on PDF
+%\usepackage[round]{natbib} % references design
+%\usepackage{apacite} % APA-style citation, automatically sorted alphabetically
+
+% ==========================================
+% 				CONFIGURATIONS
+% ==========================================
+
+% font definitions
+% ----------------
+% (font information and examples on http://www.tug.dk/FontCatalogue/allfonts.html)
+\usepackage{calligra} % caligraphy font (to apply, use \calligra)
+\input AnnSton.fd
+\newcommand*\stonefont{\usefont{U}{AnnSton}{xl}{n}} % use \stonefone for stone-like capital blocks
+\usepackage{emerald}
+\renewcommand\theadfont{\bfseries}
+
+%\DeclareMathSizes{30}{20}{10}{8} % set font sizes of math environments
+
+% \SetWatermarkScale{5.5} % scale the size of the ``draft'' watermark
+
+\linespread{1.3} % line spreading in file
+
+\urlstyle{same} % text style of url links
+
+\crefformat{footnote}{#2\footnotemark[#1]#3} % format of footnote references
+
+\graphicspath{{figures/}} % global path for figures
+
+% configuring list of equations for table of contents
+\newcommand{\listequationsname}{List of Formulae and Algorithms}
+\newlistof{myequations}{equ}{\listequationsname}
+\newcommand{\eqname}[1]{\addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}\par} % add equation to ToC
+\setlength{\cftmyequationsnumwidth}{2.5em} % width of equation number in List of Equations
+
+
+% rotation configurations for tables
+% ---------------------------------------
+%\newcommand*\rot{\rotatebox{90}}
+%\newcommand{\mcrot}[4]{\multicolumn{#1}{#2}{\rlap{\rotatebox{#3}{#4}~}}}
+
+\numberwithin{equation}{section} % include section in equation numbering
+\setcounter{secnumdepth}{5} % setting level of numbering
+\setcounter{tocdepth}{2} % setting level of numbering for table of contents
+
+% PDF file settings
+% -----------------
+\hypersetup {
+    pdftitle={Eran Raveh - Ph.D. Dissertation},
+    pdfauthor={Eran Raveh},
+    pdfsubject={Ph.D. Dissertation},
+    pdfkeywords={PhD dissertation, human-computer interaction, speech synthesis, spoken dialog systems, phonetic convergence},
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=1,
+    colorlinks=false, % ** change to false for hardcopy printing **
+    citecolor=blue, % the color of cite links
+    urlcolor=blue, % color of url links
+    linkcolor=blue, % color of other links
+    pdfpagemode=UseOutlines, % in case we want the bookmarks pane to be opened
+    %pdfpagemode=UseNone % in case we want no panes to be opened
+    pdfpagelayout=TwoPageRight % 2-pages view
+    %pdfstartview=FitH,  % fit page width
+}
+
+% define additional colors
+% ------------------------
+\definecolor{maroon}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+
+% configurations of algorithm blocks
+% ----------------------------------
+\lstset {
+	basicstyle=\ttfamily,
+	numberstyle=\footnotesize,
+	numbers=left,
+	stepnumber=10,
+	xleftmargin=1.5em,
+	xrightmargin=1.5em,
+	%	backgroundcolor=\color{gray!10},
+	tabsize=2,
+	rulecolor=\color{black!30},
+	breaklines=true,
+	breakatwhitespace=true,
+	framextopmargin=2pt,
+	framexbottommargin=2pt,
+	inputencoding=utf8,
+	literate={ä}{{\"a}}1 {ü}{{\"u}}1
+}
+
+% configurations of XML blocks
+% ----------------------------
+\lstdefinelanguage{XML} {
+    basicstyle=\ttfamily,
+    morestring=[s]{"}{"},
+    morecomment=[s]{?}{?},
+    morecomment=[s]{!--}{--},
+    commentstyle=\color{maroon},
+    moredelim=[s][\color{black}]{>}{<},
+    moredelim=[s][\color{blue}]{\ }{=},
+    stringstyle=\color{red},
+    identifierstyle=\color{darkgreen}
+}
+
+% set pages header and footers
+%-----------------------------
+\pagestyle{fancy}
+%\renewcommand{\sectionmark}[1]{\markright{#1}{}}
+%\fancyhf{}
+%\lhead{\fancyplain{}{\rightmark}} % 1. sectionname, 1.1 subsection name etc
+\fancyhead{}
+\fancyhead[LO]{\leftmark}
+\fancyhead[RE]{\rightmark}
+
+%\fancyfoot{}
+%\fancyhead[RO,LE]{\thepage}
+%\fancyhead[LO]{\leftmark}
+%\fancyhead[RE]{\rightmark}
+%\fancyhead[RE]{\section}
+%\fancyfoot[CE,CO]{\leftmark}
+%\fancyfoot[LE,RO]{\thepage}
+
+% todo items commands
+% -------------------
+%\renewcommand{\todo}[1]{\todo[fancyline]##1}
+\newcommand{\review}[1]{\todo[color=green]{#1}}
+\newcommand{\fixme}[1]{\todo[color=red, fancyline]{#1}}
+\newcommand{\putref}[1]{\todo[color=blue!40]{#1}}
+
+% acronym managment
+% -----------------
+\acsetup{only-used=false, list-name=List of Acronyms, page-style=plain, pages=all, list-style=description, list-heading=none} % list-heading=section*
+\DeclareAcronym{ae}		{short=AE,		long=account executive,								long-plural=s, short-plural=s}
+\DeclareAcronym{ar}		{short=AR,		long=articulation rate,								long-plural=s, short-plural=s}
+\DeclareAcronym{asp}	{short=ASP,		long=additional speech processing,  				long-plural=, short-plural=}
+\DeclareAcronym{asr}	{short=ASR, 	long=automatic speech recognition, 					long-plural=, short-plural=}
+\DeclareAcronym{b2b}	{short=B2B, 	long=business-to-business,							long-plural=, short-plural=}
+\DeclareAcronym{cat}	{short=CAT, 	long=communication accommodation theory, 			long-plural=, short-plural=}
+\DeclareAcronym{call}	{short=CALL, 	long=computer-assisted language learning, 			long-plural=, short-plural=}
+\DeclareAcronym{capt}	{short=CAPT, 	long=computer-assisted pronunciation training, 		long-plural=, short-plural=}
+\DeclareAcronym{ci}		{short=CI, 		long=conversation intelligence, 					long-plural=, short-plural=, alt=C-IQ, extra=a.k.a.\ conversation IQ}
+\DeclareAcronym{cmc}	{short=CMC, 	long=computer-mediated communication, 				long-plural=s, short-plural=s}
+\DeclareAcronym{cnc}	{short=C\&C, 	long=command and control, 							long-plural=, short-plural=}
+\DeclareAcronym{cc}		{short=CC, 		long=cross-correlation,								long-plural=s, short-plural=s}
+\DeclareAcronym{crm}	{short=CRM, 	long=customer relations management,					long-plural=, short-plural=s}
+\DeclareAcronym{crqa}	{short=CRQA, 	long=cross-recurrence quantification analysis,		long-plural-form=cross-recurrence quantification analyses, short-plural=s}
+\DeclareAcronym{dds}	{short=DDS, 	long=device-directed speech, 						long-plural=es, short-plural=es}
+\DeclareAcronym{dl}		{short=DL,		long=deep learning,									long-plural=, short-plural=}
+\DeclareAcronym{dm}		{short=DM,		long=dialogue manager,								long-plural=s, short-plural=s}
+\DeclareAcronym{e2e}	{short=E2E,		long=end-to-end,									long-plural=, short-plural=}
+\DeclareAcronym{f0}		{short=f$_0$,	long=fundamental frequency, 						long-plural=, short-plural=}
+\DeclareAcronym{gp}		{short=GP,		long=Gaussian process,								long-plural=es, short-plural=es}
+\DeclareAcronym{gui}	{short=GUI, 	long=graphical user interface, 						long-plural=s, short-plural=s}
+\DeclareAcronym{hds}	{short=HDS, 	long=human-directed speech, 						long-plural=es, short-plural=es}
+\DeclareAcronym{hci}	{short=HCI, 	long=human-computer interaction,					long-plural=s, short-plural=s}
+\DeclareAcronym{hhi}	{short=HHI, 	long=human-human interaction,						long-plural=s, short-plural=s}
+\DeclareAcronym{hmm}	{short=HMM, 	long=hidden markov model, 							long-plural=s, short-plural=s}
+\DeclareAcronym{ipa}	{short=IPA,		long=international phonetic alphabet, 				long-plural=, short-plural=}
+\DeclareAcronym{its}	{short=ITS, 	long=intelligent tutoring system, 					long-plural=s, short-plural=s}
+\DeclareAcronym{iqr}	{short=IQR, 	long=interquartile range,							long-plural=s, short-plural=s}
+\DeclareAcronym{iva}	{short=IVA,		long=intelligent virtual agent, 					long-plural=s, short-plural=s}
+\DeclareAcronym{loess}	{short=LOESS, 	long=locally estimated scatterplot smoothing, 		long-plural=, short-plural=}
+\DeclareAcronym{los}	{short=LoS, 	long=line of synchrony,								long-plural-form=line of synchrony, short-plural=s}
+\DeclareAcronym{ltas}	{short=LTAS, 	long=long-term average spectrum,					long-plural=s, short-plural=es}
+\DeclareAcronym{mfcc}	{short=MFCC, 	long=mel-frequency cepstral coefficient,			long-plural=s, short-plural=s}
+\DeclareAcronym{ml}		{short=ML, 		long=machine learning, 								long-plural=, short-plural=}
+\DeclareAcronym{ngs}	{short=NGS, 	long=non-goal system, 								long-plural=s, short-plural=s}
+\DeclareAcronym{nlg}	{short=NLG, 	long=natural language generation, 					long-plural=, short-plural=}
+\DeclareAcronym{nlp}	{short=NLP, 	long=natural language processing, 					long-plural=, short-plural=}
+\DeclareAcronym{nlu}	{short=NLU, 	long=natural language understanding, 				long-plural=, short-plural=}
+\DeclareAcronym{pa}		{short=PA, 		long=personal assistant, 							long-plural=s, short-plural=s}
+\DeclareAcronym{rmse}	{short=RMSE, 	long=root-mean-square error,						long-plural=s, short-plural=s}
+\DeclareAcronym{roi}	{short=ROI, 	long=return on investment,							long-plural-form=return on investments, short-plural=s}
+\DeclareAcronym{rr}		{short=RR,	 	long=recurrency rate,								long-plural=s, short-plural=s}
+\DeclareAcronym{sd}		{short=sd, 		long=standard deviation, 							long-plural=s, short-plural=s}
+\DeclareAcronym{sdr}	{short=SDR, 	long=sales development representative,				long-plural=s, short-plural=s}
+\DeclareAcronym{sampa}	{short=SAMPA, 	long=speech assessment methods phonetic alphabet, 	long-plural=, short-plural=}
+\DeclareAcronym{sds}	{short=SDS, 	long=spoken dialogue system, 						long-plural=s, short-plural=s}
+\DeclareAcronym{smo}	{short=SMO, 	long=sequential minimization optimization, 			long-plural=, short-plural=}
+\DeclareAcronym{svm}	{short=SVM, 	long=support vector machine, 						long-plural=s, short-plural=s}
+\DeclareAcronym{tds}	{short=TDS, 	long=task-driven system,							long-plural=s, short-plural=s}
+\DeclareAcronym{tts}	{short=TTS, 	long=text-to-speech,								long-plural=, short-plural=}
+\DeclareAcronym{va}		{short=VA, 		long=voice assistant, 								long-plural=s, short-plural=s}
+\DeclareAcronym{vacc}	{short=VACC, 	long=Voice Assistant Conversation Corpus, 			long-plural=, short-plural=}
+\DeclareAcronym{vh}		{short=VH, 		long=virtual human, 								long-plural=s, short-plural=s}
+
+\usepackage[	
+	natbib=true,
+	style=authoryear-comp,
+	hyperref=true,
+	backend=biber,
+	maxbibnames=99,
+	giveninits=true,
+	uniquename=false, % init
+	uniquelist=false,
+	maxcitenames=2,
+	mincitenames=1,
+	parentracker=true,
+	url=true,
+	doi=true,
+	isbn=true,
+	eprint=true,
+	backref=true,]
+	{biblatex}
+\addbibresource{dissertation.bib}
+
+% add a background picture on the cover page
+% --------------------------------------------
+\newcommand \AlCentroPagina [1]{
+    \AddToShipoutPicture *{\AtPageCenter {
+            \makebox (0,0){\includegraphics
+                [width=0.95\paperwidth]{#1}}}}}
+
+% Cover Page
+% ----------
+\title{\vspace{-3.2cm} \texttt{Ph.D. Dissertation}\\ \rule{\linewidth}{0.5mm}\\
+    \textsc{\Huge Integrating Phonetic Convergence Capabilities into Spoken Dialogue Systems
+        \\\rule{\linewidth}{0.5mm}\\[0.5cm]}} \author{\LARGE
+    \textbf{Eran Raveh}\\[1cm]
+    \Large Universit\"at des Saarlandes\\
+    \\[1cm] \Large \textit{Submitted in partial fulfillment}\\
+    \Large \textit{of the requirements for the degree of}\\[0.5cm]
+    \Large \textit{\textbf{Doctor of Philosophy in}}\\
+    \Large \textit{\textbf{Computational Linguistics}}\\
+    [1cm] \Large Supervisor: Dr.\ Ingmar Steiner\\[2cm]}
+\date{\today}
+%\titlepic{\includegraphics[scale=0.7]{Figures/logo_ekut.png}}
+\AlCentroPagina{uds_logo_trans.png}

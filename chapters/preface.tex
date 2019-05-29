@@ -1,0 +1,118 @@
+% *** Dedication ***
+% ==============
+\vspace*{9cm}
+\begin{center}
+%        \textit{dedication text here}
+\end{center}
+\newpage
+
+% *** Acknowledgments ***
+% ==============
+\vspace*{3cm}
+\begin{center}
+    {\textbf{\huge Acknowledgments}}\\[0.3cm]
+    \Large
+    % Acknowledgments and thanks here (names in bold)
+\end{center}
+\newpage
+
+% *** Forword ***
+% ==================
+{\calligra \Huge \textit{Forword}}
+\clearpage        
+
+% *** Disclaimer ***
+% ==================
+\begin{multicols}{2}
+    \vspace*{\textheight}
+    \columnbreak
+    \vspace*{3cm}
+    \Large{\textit{Hiermit versichere ich, dass ich die vorgelegte Arbeit selbstst{\"a}ndig und nur mit den angegebenen Quellen und Hilfsmitteln einschließlich des WWW und anderer elektronischer Quellen angefertigt habe.
+            Alle Stellen der Arbeit, die ich anderen Werken dem Wortlaut oder dem Sinne nach entnommen habe, sind kenntlich gemacht.}}
+    \vspace{0.55cm}
+    \begin{flushright}
+%       {\stonefont Eran Raveh}
+		{Eran Raveh}
+    \end{flushright}
+\end{multicols}
+\cleardoublepage
+
+% *** Abstract ***
+% ================
+\begin{center}
+    \vspace*{3.3cm}
+    \textit{\textbf{\huge Abstract}}\\[0.3cm]
+    \Large
+    % abstract text here
+\end{center}
+\clearpage
+
+ % *** Abstrakt (Deutsch) ***
+ % ================
+ \begin{center}
+     \vspace*{3.3cm}
+     \textit{\textbf{\huge Zusammenfassung (Deutsch)}}\\[0.3cm]
+     \Large
+     % abstract text (German) here
+\end{center}
+\cleardoublepage
+
+% *** Tables of Contents ***
+% =========================
+
+% table of contents layout changes
+%---------------------------------
+\renewcommand{\contentsname}{\hfill\bfseries\huge Table of Contents\hfill}
+\renewcommand{\cftaftertoctitle}{\hfill}
+\setlength\cftaftertoctitleskip{60pt} % space between TOC and its title
+\setlength{\footnotesep}{0.5cm} % space between footnotes
+\setlength{\skip\footins}{1cm} % space between text and footnotes
+\thispagestyle{empty}
+% put the word ``page'' above page number column
+{\addtocontents{toc}{~\hfill\textbf{Page}\par}
+    {\large{} \tableofcontents \normalsize{}}}
+
+% list of figures
+\newpage
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+
+% list of tables
+\newpage
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+
+% list of formulae
+\newpage
+\addcontentsline{toc}{chapter}{List of Formulae}
+\listofmyequations
+
+% list of acronyms
+\newpage
+\section*{List of Acronyms}
+\addcontentsline{toc}{chapter}{List of Acronyms}
+\vspace*{0.2cm}
+\begin{multicols}{2}
+	\printacronyms
+\end{multicols}
+\clearpage
+
+% notation
+\section*{Notation}
+\addcontentsline{toc}{chapter}{Notation}
+\begin{tabularx}{\linewidth}{l@{\quad}X}
+	$\vec{r}$ & vector $r$ \\
+	$\mathcal{A}^{m \times n}$ & Matrix $A$ with dimension m over n \\
+	$\mathcal{A}^{\mathbb{R} \times \mathbb{R}}$ & Matrix $A$ describing a 2-dimensional space of real numbers \\
+	$\mathcal{N}$ 	&	Normal (Gaussian) distribution \\
+	$X \sim \mathcal{N}(\mu,\,\sigma^{2})$	&	Random variable $X$ has a normal distribution with mean $\mu$ and variance $\sigma^{2}$ \\
+	$k\left( \theta, x, x' \right)$ & Covariance function (kernel) $k$ between all possible input pairs using hyperparameter vector $\theta$. Can be shorted-noted as $\mathcal{K}$. $x$ and $x'$ are two data vectors. \\
+	$\Sigma(\vec{x})$	&	Covariance matrix (e.g., of a Gaussian process). Given by $\Sigma_{i,j} = k(x_i, x_j)$, where k is a positive definite kernel function \\
+	$p\left( f \left( \vec{x} \right) \right) \sim \mathcal{GP}\left( m(\vec{x}), \Sigma(\vec{x}) \right)$	&	Probability of values of function $f$ over vector $x$ is specified by a Gaussian process with mean function $m$ and covariance function $K$ \\
+	$f(X)$	&	A vector of function values, whose $i$th element is given by $f(x_i)$ \\
+	$x_*$	&	A not-yet-observed outcome value. Similarly, $f_*$ collectively denotes all non-observed outcome values of a function, and $\Sigma_*$ the covariance values of non-observed values \\
+\end{tabularx}
+  	
+% outline
+\newpage
+\section*{Outline}
