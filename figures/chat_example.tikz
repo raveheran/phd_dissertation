@@ -1,0 +1,56 @@
+\begin{tikzpicture}
+\matrix (m) [%
+  matrix of nodes,
+  inner sep=1ex,
+  row sep=-1.5ex,
+  column sep=1ex,
+  every node/.style={%
+    text width=18em,
+    text depth=0.5ex,
+    rectangle callout,
+    callout pointer width=5,
+    rounded corners,
+    fill,
+    text=white
+  },
+  column 1/.style={%
+    callout relative pointer={(-1,0)},
+    fill=orange,
+    align=left
+  },
+  column 2/.style={%
+    callout relative pointer={(1,0)},
+    fill=blue,
+    align=right
+  }
+]{%
+  Hallo! Bist du bereit? & \\
+  & ja \\
+  Die Bestätigung ist für Tanja & \\
+  & die bestätigung ist für tanja \\
+  War das Gerät sehr teuer? & \\
+  & war das gerät sehr teuer \\
+  Ich mag die Qualität deiner Tasche &\\
+  & ich mag die qualität deiner tasche \\
+  Der Schädling sieht aber komisch aus & \\
+  & der schädling sieht aber komisch aus \\
+  Wie viel Verspätung hat der Zug? & \\
+  & wie viel verspätung hat der zug \\
+  Vielen Dank, das war alles & \\
+};
+\begin{scope}[%
+  every node/.style={%
+    rounded corners,
+    fill=gray,
+    text=white,
+    outer sep=1ex
+  }
+]
+\foreach \y in {1,3,...,13} {%
+  \node [anchor=east] at (m-\y-1.east) {\y};
+}
+\foreach \y in {2,4,...,12} {%
+  \node [anchor=west] at (m-\y-2.west) {\y};
+}
+\end{scope}
+\end{tikzpicture}
