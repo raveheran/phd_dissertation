@@ -6,7 +6,9 @@
 % =====================
 \usepackage[utf8]{inputenc} % for direct UTF-8 text
 \usepackage[T1]{fontenc} % font encoding
+\usepackage[hyphens]{url} % URL handling (must be before hyperref)
 \usepackage[hidelinks, pdfusetitle, hyperfootnotes=false]{hyperref} % for hyper references
+%\usepackage[anythingbreaks]{breakurl} % for line-wrapping URLs
 \usepackage{fullpage}
 \usepackage{fontspec} % control over fonts
 \usepackage{multicol} % enable multi-columns text
@@ -73,7 +75,6 @@
 \usepackage{longtable} % for making multi-page tables
 \usepackage{makecell}
 
-
 % *** additional packages ***
 % --------------------------------------------------
 \usepackage{titlesec} % for controlling title formatting
@@ -126,21 +127,22 @@
 % PDF file settings
 % -----------------
 \hypersetup {
-    pdftitle={Eran Raveh - Ph.D. Dissertation},
+    pdftitle={Eran Raveh -- Ph.D. Dissertation},
     pdfauthor={Eran Raveh},
     pdfsubject={Ph.D. Dissertation},
     pdfkeywords={PhD dissertation, human-computer interaction, speech synthesis, spoken dialog systems, phonetic convergence},
     bookmarksnumbered=true,
     bookmarksopen=true,
     bookmarksopenlevel=1,
+%    breaklinks=true,
     colorlinks=false, % ** change to false for hardcopy printing **
     citecolor=blue, % the color of cite links
     urlcolor=blue, % color of url links
     linkcolor=blue, % color of other links
-    pdfpagemode=UseOutlines, % in case we want the bookmarks pane to be opened
-    %pdfpagemode=UseNone % in case we want no panes to be opened
+    pdfpagemode=UseOutlines, % open with no panes
+    pdfpagemode=UseNone % in case we want no panes to be opened
     pdfpagelayout=TwoPageRight % 2-pages view
-    %pdfstartview=FitH,  % fit page width
+    pdfstartview=FitH,  % fit page width
 }
 
 % define additional colors
@@ -240,7 +242,7 @@
 \DeclareAcronym{iqr}	{short=IQR, 	long=interquartile range,							long-plural=s, short-plural=s}
 \DeclareAcronym{iva}	{short=IVA,		long=intelligent virtual agent, 					long-plural=s, short-plural=s}
 \DeclareAcronym{loess}	{short=LOESS, 	long=locally estimated scatterplot smoothing, 		long-plural=, short-plural=}
-\DeclareAcronym{los}	{short=LoS, 	long=line of synchrony,								long-plural-form=line of synchrony, short-plural=s}
+\DeclareAcronym{los}	{short=LoS, 	long=line of synchrony,								long-plural-form=lines of synchrony, short-plural=s}
 \DeclareAcronym{ltas}	{short=LTAS, 	long=long-term average spectrum,					long-plural=s, short-plural=es}
 \DeclareAcronym{mfcc}	{short=MFCC, 	long=mel-frequency cepstral coefficient,			long-plural=s, short-plural=s}
 \DeclareAcronym{ml}		{short=ML, 		long=machine learning, 								long-plural=, short-plural=}
