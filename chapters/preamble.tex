@@ -101,7 +101,8 @@
 % \SetWatermarkScale{5.5} % scale the size of the ``draft'' watermark
 
 \linespread{1.3} % line spreading in file
-
+\setlength{\footnotesep}{0.5cm} % space between footnotes
+\setlength{\skip\footins}{1cm} % space between text and footnotes
 \urlstyle{same} % text style of url links
 
 \crefformat{footnote}{#2\footnotemark[#1]#3} % format of footnote references
@@ -114,7 +115,6 @@
 \newlistof{myequations}{equ}{\listequationsname}
 \newcommand{\eqname}[1]{\addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}\par} % add equation to ToC
 \setlength{\cftmyequationsnumwidth}{2.5em} % width of equation number in List of Equations
-
 
 % rotation configurations for tables
 % ---------------------------------------

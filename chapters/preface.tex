@@ -60,13 +60,12 @@
 % *** Tables of Contents ***
 % =========================
 
+\fixme{have the table of contents title only once, at the beginning (and not at the top of every following page)}
 % table of contents layout changes
 %---------------------------------
-\renewcommand{\contentsname}{\hfill\bfseries\huge Table of Contents\hfill}
+\renewcommand{\contentsname}{\hfill\bfseries\Huge Table of Contents\hfill}
 \renewcommand{\cftaftertoctitle}{\hfill}
 \setlength\cftaftertoctitleskip{60pt} % space between TOC and its title
-\setlength{\footnotesep}{0.5cm} % space between footnotes
-\setlength{\skip\footins}{1cm} % space between text and footnotes
 \thispagestyle{empty}
 % put the word ``page'' above page number column
 {\addtocontents{toc}{~\hfill\textbf{Page}\par}
@@ -84,7 +83,7 @@
 
 % list of formulae
 \newpage
-\addcontentsline{toc}{chapter}{List of Formulae}
+\addcontentsline{toc}{chapter}{List of Formulae and Algorithms}
 \listofmyequations
 
 % list of acronyms
