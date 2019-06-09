@@ -23,7 +23,6 @@
 \sisetup{list-final-separator={, and }}
 \usepackage{tipa} % enable usage of IPA symbols
 %\usepackage{cite}
-%\usepackage{algorithm} % for writing algorithm blocks
 \usepackage[ruled, linesnumbered]{algorithm2e} % for algorithms
 \usepackage{algpseudocode} % enable usage of psudo-code blocks
 \usepackage{pifont} % for more symbols
@@ -48,6 +47,7 @@
 \usepackage{listings} % for code highlighting
 \usepackage{setspace} % for more control over spacing configurations
 \usepackage{graphicx} % extended graphic capabilities
+\usepackage{float} % more control over floats
 \usepackage{eso-pic} % for some special images layouts (e.g., for cover page)
 \usepackage[cc]{titlepic} % for putting picture in cover page
 \usepackage{subfigure} % subfigures
@@ -116,6 +116,9 @@
 \newcommand{\eqname}[1]{\addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}\par} % add equation to ToC
 \setlength{\cftmyequationsnumwidth}{2.5em} % width of equation number in List of Equations
 
+\DeclareMathOperator*{\argmin}{\mathit{argmin}}
+\DeclareMathOperator*{\argmax}{\mathit{argmax}}
+
 % rotation configurations for tables
 % ---------------------------------------
 %\newcommand*\rot{\rotatebox{90}}
@@ -153,6 +156,8 @@
 
 % configurations of algorithm blocks
 % ----------------------------------
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{gray}{#1}}
+\SetCommentSty{mycommfont}
 \lstset {
 	basicstyle=\ttfamily,
 	numberstyle=\footnotesize,
@@ -170,6 +175,16 @@
 	inputencoding=utf8,
 	literate={ä}{{\"a}}1 {ü}{{\"u}}1
 }
+\makeatletter
+\newcommand{\algorithmcaption}[2][\footnotesize]{%
+	\let\old@algocf@finish\@algocf@finish% Store algorithm finish macro
+	\def\@algocf@finish{\old@algocf@finish% Update finish macro to insert "footnote"
+		\leavevmode\rlap{\begin{minipage}{\linewidth}
+				#1#2
+		\end{minipage}}%
+	}%
+}
+\makeatother
 
 % configurations of XML blocks
 % ----------------------------
@@ -254,7 +269,8 @@
 \DeclareAcronym{pa}		{short=PA, 		long=personal assistant, 							long-plural=s, short-plural=s}
 \DeclareAcronym{rmse}	{short=RMSE, 	long=root-mean-square error,						long-plural=s, short-plural=s}
 \DeclareAcronym{roi}	{short=ROI, 	long=return on investment,							long-plural-form=return on investments, short-plural=s}
-\DeclareAcronym{rr}		{short=RR,	 	long=recurrency rate,								long-plural=s, short-plural=s}
+\DeclareAcronym{rr}		{short=RR,	 	long=recurrenc rate,								long-plural=s, short-plural=s}
+\DeclareAcronym{rqa}	{short=RQA,	 	long=recurrence quantification analysis,			long-plural-form=recurrence quantification analyses, short-plural=s}
 \DeclareAcronym{sd}		{short=sd, 		long=standard deviation, 							long-plural=s, short-plural=s}
 \DeclareAcronym{sdr}	{short=SDR, 	long=sales development representative,				long-plural=s, short-plural=s}
 \DeclareAcronym{sampa}	{short=SAMPA, 	long=speech assessment methods phonetic alphabet, 	long-plural=, short-plural=}

@@ -645,10 +645,243 @@ The higher number of convergence instances by females may be ascribed to the \ac
 \section{Speaker roles and influences in sales calls}
 \label{sec:speaker_roles_and_influences_in_sales_calls}
 
-\subsection{\Acl{crqa}}
+\subsection[\Acl{crqa} for measuring accommodation]{\Acl{crqa}}
 \label{subsec:crqa}
 
-\Acf{crqa}\ldots
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\linewidth]{crqa_plot_115993376241473405}
+	\caption
+	[\acs{crqa} analysis of pitch in a sales call]
+	{A recurrence plot generated for one of the analyzed conversations.
+		The y-axis marks the conversation timeline, in time stamp, of the \ac{ae}, and the x-axis of the prospect.
+		Each blue dot represents a co-visitation of a similar state.
+		Blue dots forming an horizontal line indicate sustained recurrence between the two speakers (see \cref{sec:results} for details).
+		Note that the time stamps on the axes are not the slices, but the embedded call time. 
+		For example, the horizontal structures between time stamps 100 and 200 of the x-axis show such lasting recurrence.
+		Horizontal lines above the \acl{los} (\acs{los}; the central horizontal line) indicate that the speaker on the y-axis leads the x-axis, and vice versa for lines below the \ac{los}.
+		The blank area between time stamps 220 and 330 of the x-axis point to a portion of the call where the speakers were more distant from each other.}
+	\label{fig:crqa_plot}
+	\todo[inline]{make the plot square, to make it clearer that the times have the same length}
+\end{figure}
+
+\todo[inline]{in addition to the sentence comment-wrapped below, add a few more sentences that motivates using CRQA for accommodation and connect how it reflects this process}
+% *** put this entences somewhere ***
+As the measured value sequences of the extracted features from the speakers can be treated as two non-seasonal, non-stationary time series, \acf{crqa} can be applied to quantify accommodation between them.
+% *** put this entences somewhere ***
+
+\Ac{rqa} is a method of nonlinear data analysis that quantifies the number and duration of recurrences of a dynamical system presented by its state space trajectory, which is typically the realization of a sampled time series
+It was developed by \citet{Zbilut1992embeddings} and was extended by \citet{Webber2005recurrence,Marwan2002cross}.
+A \emph{recurrence} (also, \emph{re-visitation}) is a time in which the trajectory returns to a state (or a similar-enough state) it has visited before.
+Recurrence can therefore be defined as the binary function
+
+\begin{equation}
+	\label{eq:recurrence}
+	R_{i,j} =
+	\begin{cases}
+		1,	&	\text{if} \quad \lVert \vec{x}(i)-\vec{x}(j) \rVert \leq \varepsilon \\
+		0,	&	\text{otherwise} \\
+	\end{cases},
+\end{equation}
+%
+where $i$ and $j$ are x-axis and y-axis coordinates in the plot, respectively, and $\varepsilon$ defines the threshold distance between cross-trajectory points pair to consider them similar (see explanation about the \emph{radius} parameter below).
+In a plot, $R_{i,j}$ points are colored equal if their value is 1 or stay white otherwise.
+
+\Acf{crqa} is an extension of \ac{rqa} with recurrence quantification of two different time series rather than a single one.
+As such, \ac{crqa} is a quantification technique for non-linear dynamical systems that describes when and to what extent recurrences (or \emph{co-visitations}) can be found in two time series.
+These quantification techniques are based on \emph{recurrence plots} that for each moment $i$ in time show the times at which a phase space trajectory visits roughly the same area in the phase space as at time $i$.
+Ultimately, a recurrence plot is a graph of $\vec{x}(i) \approx \vec{x}(j)$, showing $i$ on the x-axis and $j$ on the y-axis, where $\vec{x}$ is a phase space trajectory (see example in \cref{fig:crqa_plot})
+\todo[inline]{take one of the RPs from the website and add the LoS (and other diagonals) to it to provide more detailed visualization}.
+Each colored point in the plot represents a time where the time series were close to each other based on the definition in \cref{eq:recurrence}.
+The main diagonal of the plot is called the \acf{los}.
+A high number of recurrences along this line indicates synchrony between the time series (many points in time with similar values).
+However, diagonal recurrence lines can be formed above and below the \ac{los}.
+Such diagonals, especially longer ones, represent delayed (lagged) synchrony between the time series and can be used as an assessment of similarity between the processes.
+In the context of accommodation, these diagonals imply an accommodative change led by one of the interlocutors.
+If the diagonal stretches above the \ac{los}, the speaker plotted on the x-axis leads the accommodation, and vice versa.
+The closer the diagonal is from the \ac{los}, the quicker the process occurred, i.e., the led speaker matched his behavior to the leading speaker in a shorter time.
+Due to its ability to detect these similarities non-linearly, \ac{crqa} can be utilized to measure accommodation in the scope of entire conversations rather than taking only neighboring turns into account \citep[cf.][]{Levitan2013entrainment}.
+For example, it has already been used to describe behavior in conversations \citep{Duran2017conversing} and to measure conversational entrainment for assessing speech pathology \citep{Borrie2019syncing}.
+
+\subsubsection{output values}
+\label{subsubsec:output_values}
+
+As detailed in \citet{Marwan2007recurrence}\footnote{and see summary with additional measures in \url{http://www.recurrence-plot.tk/rqa.php}}, several measures can be computed based on a recurrence plot.
+Some measurements deal with the \ac{los} and other diagonals and others with vertical/horizontal lines.
+Below are the definitions of some \ac{crqa} measurements used in this work.
+For simplicity, in the descriptions it is assumed that the time series lengths are equal, so that $N_i=N_j=N$.
+
+\begin{description}
+	\item[\Acf{rr}] The percentage of recurrent points in the plot, i.e., the percentage of similar values between the two time series out of all the values.
+	This corresponds to the correlation sum and defined as
+	
+	\begin{equation}
+		\label{eq:rr}
+		RR = \frac{1}{N^2} \sum_{i=1}^{N_i} \sum_{j=1}^{N_j} R_{i,j}.
+	\end{equation}
+	\eqname{CRQA measure definitions: RR, DET, L, maxL, ENTR, and rENTR}
+	%
+	Note that the lengths of the time series ($N_i$ and $N_j$) are often equal.
+		
+	\item[Determinism (DET)] The percentage of recurrences forming diagonal lines in the recurrence plot given a minimal length threshold $l_{\min}$.
+	\begin{equation}
+		\label{eq:det}
+		DET = \frac{\sum_{l=l_{\min}}^{N} l P(l)}{\sum_{l=1}^N l P(l)},
+	\end{equation}
+	%
+	where $l$ is the length of a line and $P(l)$ is the histogram of the lengths $l$ of the diagonal lines.
+	Note that $l=1$ refers to lines of length 1, i.e., a single recurrence dot.	
+	Similarly, $l=2$ are lines spanning over two time stamps (shortest length possible).
+	This length is very forgiving in the context of accommodation, for such short lines can be formed arbitrarily and do not necessarily point to a meaningful accommodation process.
+	Therefore, in the experiments presented in this chapter $l_{\min}$ was set to \SI{1}{\percent} of $N$.
+	
+	Another measure, Laminarity (LAM), can be calculated the same way, but for the vertical lines in the plot.
+	In that case, a $v_{\min}$ would be defined and $P(v)$ would provide the histogram of vertical line lengths.
+	
+	\item[Number of lines (NRLINE)] The total number of lines formed in the recurrence plot $N_l$.
+	This is the number of accommodation instances between the two speakers lasting at least $l_{\min}$ time stamps.
+	Also referred to as \emph{sustained recurrence} by \citet{Borrie2019syncing}, defined as the amount of alignment between conversational partners, where higher sustained recurrence values indicate higher amounts of sustained accommodation.
+	As explained in the description of the measure \emph{DET}, only lines of length $\frac{N}{100}$ and longer were taken into account in the studies presented in this chapter to exclude \enquote{arbitrarily formed} diagonals.
+	
+	\item[Maximal length (maxL)] The longest diagonal line in the plot, excluding the main diagonal.	
+	This is the longest, uninterrupted time span accommodation between the speakers lasted.
+	Higher value indicates a longer time span.
+	The unit of this measure is the same as the axes of the plot (here, a representation of the conversation's turns).
+	It is determined by
+
+	\begin{equation}
+		\label{eq:maxl}
+		L_{max} = \max_{l} (\{l_i; \ i=1, \ldots, N_l\}).
+	\end{equation}
+	%
+	The longest vertical line can be determined by traversing the vertical lines.
+	
+	\item[Average length (L)] the average length of the diagonal lines, i.e., the average total accommodation time between the speakers.
+	Higher value indicates longer average individual accommodation periods during the interaction.
+	This is calculated by
+	
+	\begin{equation}
+		\label{eq:l}
+		L = \frac{\sum_{l=l_{\min}}^N l P(l)}{\sum_{l=l_{\min}}^N  P(l)}.
+	\end{equation}
+	%
+	The average length of vertical lines, the trapping time (TT), is achieved in a similar way when using the same formula for the vertical line length and vertical line lengths histogram.
+
+	
+	\item[Entropy (ENTR)]The Shannon entropy of the probability distribution of the diagonal line lengths longer than the minimum length $l_{\min}$.
+	Describes the variability of the amount of accommodation between the two speakers across the whole interaction.
+	Higher value indicates more varied length of accommodation periods across the interaction.
+	Shannon's entropy formula provides the value:
+	
+	\begin{equation}
+		\label{eq:entr}
+		ENTR = -\sum_{l=l_{min}}^{N} p(l) \ln p(l),
+	\end{equation}
+	%
+	where $p(l)$ is the probability of length $l$ from the lengths probability distribution.
+	\item[Normalized entropy (rENTR)] the entropy value normalized by the number of lines formed in the recurrent plot.
+	This measure gives an idea how the speakers vary across multiple calls with different characteristics.
+	
+\end{description}
+
+\subsubsection{parameters}
+\label{subsubsec:parameters_crqa}
+
+\Ac{crqa} requires three parameters to run:
+
+\begin{enumerate}
+	\item \textbf{Delay} -- estimates the temporal shift required to make the two time series maximally aligned.
+	It is measured by the same time unit as the time series, in the presented studies, a slice (see \cref{subsec:feature_extraction}).
+	
+	\item \textbf{Embedding dimensions} -- are the number of dimensions into which the data points are embedded.
+	These dimensions are delayed copies of the original time series $S(t)$ created by adding a lag $k$ to them.
+	Typically, multiple lags are considered, which create the dimensions of embedding $S(t + nk)$.
+	
+	\item \textbf{Radius} -- determines the margin within which two data points are considered a recurrent instance.
+	Distances between the data points are measured in the embedded space defined by embedding dimensions, using the same unit used for measuring the values of the time series.
+\end{enumerate}
+%
+These parameters are a key aspect in \ac{crqa} and how they are set is crucial for its outcome.
+However, there is no standard way for optimizing these parameters, especially due to the fact that they depend on the nature and characteristics of the data, although some best-practice guidelines are suggested by \citet{Coco2014crqa-r},
+
+A method similar to the one presented by \citet{Marwan2007recurrence} was utilized for the studies presented in this chapter.
+The delay parameter was determined by finding the lag that minimizes the mutual information between the two time series.
+This provides a delay that is not too short to miss the different distributions, but also not too long to lose the dependency between the time series.
+The lag with the \emph{lowest} mutual information was selected, regardless of when the values started to level off.
+Subsequently, the number of embedding dimensions was obtained using false nearest neighbors \citep{Kennel1992determining}.
+This algorithm determines the minimum embedding dimension necessary to reconstruct the state space of a dynamical system with time delay embedding \citep{Abarbanel1993local}.
+We used a neighborhood diameter equal to the standard deviation of the time series and set a limit of 20 embedding dimensions (which was never reached).
+\crefrange{fig:ami}{fig:false_nn} show examples of mutual information and false nearest neighbours optimizations.
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{.45\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{ami}
+		\caption
+		[Average mutual information of time series as function of lag]
+		{The average mutual information of the time series values as a function of the lags considered.
+		The x-axis shows the considered lags and the y-axis the mutual information index (AMI) in bits.}
+		\label{fig:ami}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}{.45\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{false_NN}
+		\caption
+		[Embedded dimensions optimization]
+		{False nearest neighbours percentage as a function of the number of embedded dimensions.
+		The x-axis show the considered numbers of embedded dimensions and the y-axis the percentage of false nearest neighbours.}
+		\label{fig:false_nn}
+	\end{minipage}	
+\end{figure}
+
+Then, the radius was calculated in two steps.
+First, the goal \ac{rr} and a list of potential radii were set.
+We set the goal \ac{rr} to \SI{10}{\percent}, which is relatively high (e.g., compared to \SIrange{2}{5}{\percent} in \citet{Coco2014crqa-r}).
+Setting the goal \ac{rr} to a higher value results in a stricter optimization that will reward closer recurrences in the analysis.
+The potential radii were generated by evenly spreading 20 candidates from 0 to the maximum value that occurs in the time series.
+After that, each radius, along with the already optimized delay and embedding dimensions, was used to perform a \ac{crqa}.
+This step also introduced a stricter policy, as only lines longer than \SI{1}{\percent} of the length of the time series were counted, as opposed to the typical setup that considers lines of any length.
+With an average length of \SI{37.5}{minutes}, this means that lines longer than 11 time units, compared to the a typical setup with the minimal length of two time units (e.g., as done by \citet{Borrie2019syncing}).
+This ensured that only long-term recurrences were taken into account, and filtered out shorter, possibly more random effects.
+% note: calculated by multiplying 37.5 minutes * 60 to get seconds. then divide by 2 since each time unit is 2 seconds and again divide by 100 to get one percent of it.
+Finally, the candidate radius that results in the smallest absolute distance from the goal \ac{rr} was taken as the optimized radius to use for the \ac{crqa}.
+The entire optimization process was done for each interaction separately.
+
+\begin{algorithm}[t]
+	\caption{\Acl{rr} optimization}
+	\label{alg:rr_opt}
+	\algorithmcaption{\emph{The higher $n$ is (\cref{line:num_cand}), the higher the chance of a \ac{rr} close to the defined \emph{desired RR}.
+	Also note that since \ac{rr} represents percentage of values in the recurrence plot, 100 is its highest possible value.
+	Therefore, and since the radii in $R$ are traversed in increasing order, the search stops if this value is achieved (\cref{line:break_at_rr_100}).
+	As explained in the text, in the presented studies $n = 20$ and $desiredRR = 10$ (cf.\ \citet{Coco2014crqa-r}).}}
+	\DontPrintSemicolon
+	\SetKwInOut{Input}{Inputs}
+	\SetKwInOut{Output}{Output}
+	
+	\Input{\underline{$desiredRR$} -- the desired approximated \ac{rr} value\newline
+		   \underline{$optDelay$} -- the optimized delay\newline
+	       \underline{$optEmbedim$} -- the optimized embedded dimensions\newline
+       	   \underline{$TS$} -- all values from both time series}
+	\Output{\ac{rr} value closest to the defined desired \ac{rr} value\newline}
+	
+	$n \gets$ number of radius candidates \label{line:num_cand}\;
+	$R \gets \{r_i, \ldots, r_n\} : r_1 = 0, r_n = \max(TS)$\;
+	$\forall r \in R : \lvert r_i - r_{i-1} \rvert = \lvert r_{i+1} - r_i \rvert$ \tcp*{evenly spread candidates}
+
+	$candR \gets \varnothing$\;
+	\ForEach{$r \in R$}{
+		$currRR = crqa(ts_1, ts_2, optDelay, optEmbedim, \ldots\footnotemark).RR$ \tcp*{RR with candidate}
+		$candR = candR \cup currRR$\;
+		\uIf{$currRR = 100$}
+			{\emph{break} \label{line:break_at_rr_100} \tcp*{\ac{rr} cannot be higher than 100}
+		}
+	}
+	$optRadius = \displaystyle\argmin_{r \in R}(\lvert candR_r - desiredRR \rvert)$\;
+\end{algorithm}	
+\eqname{\Acl{rr} optimization algorithm}
+\footnotetext{As calculated by the \ac{crqa} package for R \citep{Coco2014crqa-r} with the additional arguments (unlisted in the algorithm itself) \emph{rescale=0, normalize=0, minvertline=length(ts1) / 100, mindiagline=length(ts1) / 100,} and \emph{tw=0}.}
 
 \section{abstract}
 
@@ -658,7 +891,7 @@ The higher number of convergence instances by females may be ascribed to the \ac
 Sales leaders have always aimed to reason why some of their representatives -- henceforth \emph{reps} or \emph{\acp{ae}} -- consistently attain or exceed their goals and others do not \citep{Kovac2017its}.
 Yet, sales executives rely on data that is inherently flawed, as it is based on reports from sources such as \ac{crm} systems, leaving executives in the dark about the happenings at the front lines.
 As a result, the reasons for losing or winning a deal often remain a riddle, making sales an art based on anecdotes rather than science \citep{Yohn2016best, Martin2017six}.
-In his seminal book, \citet{Gladwell2006tipping} writes, \textquote[pp.\ 83]{Part of what it means to have a persuasive personality is that you can draw others into your own rhythms and dictate the terms of the interaction}.
+In his seminal book, \citet{Gladwell2006tipping} writes that \textquote[p.\ 83]{Part of what it means to have a persuasive personality is that you can draw others into your own rhythms and dictate the terms of the interaction}.
 Supporting that, \citet{Orlob2018nine} found that star reps can make the prospect increase their speaking rate to match theirs, bringing the two sides closer with respect to this phonetic feature.
 
 In this study, we focus on another phonetic feature, \ac{f0}.
@@ -761,66 +994,6 @@ When a speaker is not speaking (e.g., during the turn of the other interlocutor)
 This way, no discontinuities are created and the same number of data points is extracted for both speakers, which creates a better temporal representation of the conversation.
 
 Feature extraction was done sequentially for all the conversations using Praat\footnote{version 6.0.35} \citep{Boersma2001praat} scripts that first extracted the \ac{f0} value from the middle of each slice and then post-processed the output to acquire cleaner measures.
-
-\subsection{\Acl{crqa}}
-\label{subsec:crqa}
-
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=\linewidth]{crqa_plot_115993376241473405}
-	\caption
-		[\acs{crqa} analysis of pitch in a sales call]
-		{A recurrence plot generated for one of the analyzed conversations.
-		The y-axis marks the conversation timeline, in time stamp, of the \ac{ae}, and the x-axis of the prospect.
-		Each blue dot represents a co-visitation of a similar state.
-		Blue dots forming an horizontal line indicate sustained recurrence between the two speakers (see \cref{sec:results} for details).
-		Note that the time stamps on the axes are not the slices, but the embedded call time. 
-		For example, the horizontal structures between time stamps 100 and 200 of the x-axis show such lasting recurrence.
-		Horizontal lines above the \acl{los} (\acs{los}; the central horizontal line) indicate that the speaker on the y-axis leads the x-axis, and vice versa for lines below the \ac{los}.
-		The blank area between time stamps 220 and 330 of the x-axis point to a portion of the call where the speakers were more distant from each other.}
-	\label{fig:crqa_plot}
-	\todo[inline]{make the plot square, to make it clearer that the times have the same length}
-\end{figure}
-
-We treat the measured value sequences of the extracted features from the speakers as two non-seasonal time series and use \acf{crqa} to detect convergence between them.
-\Ac{crqa} is an extension of recurrence quantification analysis \citep{Webber2005recurrence}, but with recurrence quantification of two different time series rather than a single one.
-As such, \ac{crqa} is a quantification technique for non-linear dynamical systems that describes when and to what extent two time series visit similar states, or \emph{recurrences} (also called co-visitations) over the course of an interaction.
-Due to its ability to detect these similarities non-linearly, \ac{crqa} can be utilized to measure accommodation in the scope of entire conversations rather than taking only neighboring turns into account \citep{Levitan2013entrainment}.
-For example, it has already been used to describe behavior in conversations \citep{Duran2017conversing} and to measure conversational entrainment for assessing speech pathology \citep{Borrie2019syncing}.
-A recurrence plot can be generated to visualize the relationships of the co-visitations.
-\cref{fig:crqa_plot} shows such a plot.
-See \cref{sec:results} for details regarding the output values of \ac{crqa}.
-
-\Ac{crqa} requires three parameters to run: \emph{delay}, \emph{embedding dimensions}, and \emph{radius}.
-\emph{Delay} estimates the temporal shift required to make the two time series maximally aligned.
-It is measured by the same time unit as the time series, in this study, a slice (see \cref{subsec:feature_extraction}).
-\emph{Embedding dimensions} are the number of dimensions into which the data points are embedded.
-These dimensions are delayed copies of the original time series $S(t)$ created by adding a lag $k$ to them.
-Typically, multiple lags are considered, which create the dimensions of embedding $S(t + nk)$.
-\emph{Radius} determines the margin within which two data points are considered a recurrent instance.
-Distances between the data points are measured in the embedded space defined by embedding dimensions, using the same unit used for measuring the values of the time series.
-These parameters are a key aspect in \ac{crqa} and how they are set is crucial for its outcome.
-Although some best-practice guidelines are suggested by \citet{Coco2014crqa-r}, there is no standard way for optimizing these parameters, especially due to the fact that they depend on the nature and characteristics of the data.
-
-We therefore utilized a method similar to the one presented by \citet{Marwan2007recurrence}.
-The delay parameter was determined by finding the lag that minimizes the mutual information between the two time series.
-This provides a delay that is not too short to miss the different distributions, but also not too long to lose the dependency between the time series.
-The lag with the \emph{minimal} mutual information was selected, regardless of where it started to level off.
-Then, the number of embedding dimensions was obtained using false nearest neighbors \citep{Kennel1992determining}.
-This algorithm determines the minimum embedding dimension necessary to reconstruct the state space of a dynamical system with time delay embedding \citep{Abarbanel1993local}.
-We used a neighborhood diameter equal to the standard deviation of the time series and set a limit of 20 embedding dimensions (which was never reached).
-Finally, the radius was calculated in two steps.
-First, the goal \ac{rr} and a list of potential radii were set.
-We set the goal \ac{rr} to \SI{10}{\percent}, which is relatively high (e.g., compared to the \SIrange{2}{5}{\percent} of \citet{Coco2014crqa-r}).
-Setting the goal \ac{rr} to a higher value results in a stricter optimization that will reward closer recurrences in the analysis.
-The potential radii were generated by evenly spreading 20 candidates from 0 to the maximum value that occurs in the times series.
-After that, each radius, along withe already optimized delay and embedding dimensions, was used to perform a \ac{crqa}.
-This step also introduced a stricter policy, as only horizontal lines longer than \SI{1}{\percent} of the length of the time series were counted, as opposed to the typical setup that considers all horizontal lines.
-With an average length of \SI{37.5}{minutes}, this means that lines longer than 11 time units, compared to the a typical setup with the minimal length of two time units (e.g., as done by \citet{Borrie2019syncing}).
-This ensured that only long-term recurrences were taken into account, and filtered out shorter, possibly more random effects.
-% note: calculated by multiplying 37.5 minutes * 60 to get seconds. then divide by 2 since each time unit is 2 seconds and again divide by 100 to get one percent of it.
-Finally, the radius that results in the smallest absolute distance from the goal \ac{rr} was taken as the optimized radius to use for the \ac{crqa}.
-The entire optimization process was done for each call separately.
 
 \section{Results}
 \label{sec:results}
