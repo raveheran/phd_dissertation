@@ -665,10 +665,22 @@ The higher number of convergence instances by females may be ascribed to the \ac
 	\todo[inline]{make the plot square, to make it clearer that the times have the same length}
 \end{figure}
 
-\todo[inline]{in addition to the sentence comment-wrapped below, add a few more sentences that motivates using CRQA for accommodation and connect how it reflects this process}
-% *** put this entences somewhere ***
-As the measured value sequences of the extracted features from the speakers can be treated as two non-seasonal, non-stationary time series, \acf{crqa} can be applied to quantify accommodation between them.
-% *** put this entences somewhere ***
+In the studies present here, the target features are either evaluated when detected or sampled in defined intervals (see \cref{chap:web-based_system_with_phonetic_convergence_capabilities}).
+\todo{change this reference to two specific ones once there is also an explanation about the offline path of the system}
+Furthermore, these values are extracted in chronological order, and thus produce sequences of discrete-time data.
+This qualifies them to be treated as \emph{time series}.
+Due to the nature of these features (and perhaps any spontaneous, interactive linguistic feature), the resulted time series can be assumed to be non-seasonal and non-stationary.
+This recognition as time series opens new methodological possibilities for examining the evolution of these features and their realizations by different speakers in an interaction over time.
+Such methods include, among others, autocorrelation for examining serial dependency and forecasting for transferring information about the time series across time.
+These methods can extend upon others in analyzing accommodation, with the advantage of offering more dynamic approach rather than the sequential methods usually used.
+One such analysis method is \acf{crqa}, which provides insights on the time series across an entire time span.
+This allows finding more general patterns in the time series characteristics and how they interact.
+It is especially suitable for studying accommodation and related phenomena, as it detect times in which the time series are more similar and can mathematically show which of this time series led the changes or whether the changes were done in synchrony.
+Therefore, \ac{crqa} can be use to objectively quantify and describe accommodation between speakers.
+\crefrange{subsubsec:detecting_recurrence}{subsubsec:parameters_crqa} explain how \ac{crqa} works, how its output can be interpreted, and how it is used in the studies presented in this chapter.
+
+\subsubsection{Detecting recurrence}
+\label{subsubsec:detecting_recurrence}
 
 \Ac{rqa} is a method of nonlinear data analysis that quantifies the number and duration of recurrences of a dynamical system presented by its state space trajectory, which is typically the realization of a sampled time series
 It was developed by \citet{Zbilut1992embeddings} and was extended by \citet{Webber2005recurrence,Marwan2002cross}.
@@ -684,14 +696,14 @@ Recurrence can therefore be defined as the binary function
 	\end{cases},
 \end{equation}
 %
-where $i$ and $j$ are x-axis and y-axis coordinates in the plot, respectively, and $\varepsilon$ defines the threshold distance between cross-trajectory points pair to consider them similar (see explanation about the \emph{radius} parameter below).
+where $i$ and $j$ are x-axis and y-axis coordinates in the plot, respectively, and $\varepsilon$ defines some threshold distance between cross-trajectory points pairs to consider them similar (see explanation about the \emph{radius} parameter below).
 In a plot, $R_{i,j}$ points are colored equal if their value is 1 or stay white otherwise.
 
 \Acf{crqa} is an extension of \ac{rqa} with recurrence quantification of two different time series rather than a single one.
 As such, \ac{crqa} is a quantification technique for non-linear dynamical systems that describes when and to what extent recurrences (or \emph{co-visitations}) can be found in two time series.
 These quantification techniques are based on \emph{recurrence plots} that for each moment $i$ in time show the times at which a phase space trajectory visits roughly the same area in the phase space as at time $i$.
-Ultimately, a recurrence plot is a graph of $\vec{x}(i) \approx \vec{x}(j)$, showing $i$ on the x-axis and $j$ on the y-axis, where $\vec{x}$ is a phase space trajectory (see example in \cref{fig:crqa_plot})
-\todo[inline]{take one of the RPs from the website and add the LoS (and other diagonals) to it to provide more detailed visualization}.
+Ultimately, a recurrence plot is a graph of $\vec{x}(i) \approx \vec{x}(j)$, showing $i$ on the x-axis and $j$ on the y-axis, where $\vec{x}$ is a phase space trajectory (see example in \cref{fig:crqa_plot}).
+\todo[inline]{take one of the RPs from the website and add the LoS (and other diagonals) to it to provide more detailed visualization}
 Each colored point in the plot represents a time where the time series were close to each other based on the definition in \cref{eq:recurrence}.
 The main diagonal of the plot is called the \acf{los}.
 A high number of recurrences along this line indicates synchrony between the time series (many points in time with similar values).
@@ -721,7 +733,7 @@ For simplicity, in the descriptions it is assumed that the time series lengths a
 	\end{equation}
 	\eqname{CRQA measure definitions: RR, DET, L, maxL, ENTR, and rENTR}
 	%
-	Note that the lengths of the time series ($N_i$ and $N_j$) are often equal.
+	Note that the lengths of the time series ($N_i$ and $N_j$) are often -- but not necessarily -- equal
 		
 	\item[Determinism (DET)] The percentage of recurrences forming diagonal lines in the recurrence plot given a minimal length threshold $l_{\min}$.
 	\begin{equation}
@@ -836,22 +848,24 @@ We used a neighborhood diameter equal to the standard deviation of the time seri
 	\end{minipage}	
 \end{figure}
 
-Then, the radius was calculated in two steps.
+Then, the radius was calculated in two steps (se \cref{alg:radius_opt}).
 First, the goal \ac{rr} and a list of potential radii were set.
-We set the goal \ac{rr} to \SI{10}{\percent}, which is relatively high (e.g., compared to \SIrange{2}{5}{\percent} in \citet{Coco2014crqa-r}).
+Here, the goal \ac{rr} was set to \SI{10}{\percent}, which is relatively high (e.g., compared to \SIrange{2}{5}{\percent} in \citet{Coco2014crqa-r}).
 Setting the goal \ac{rr} to a higher value results in a stricter optimization that will reward closer recurrences in the analysis.
 The potential radii were generated by evenly spreading 20 candidates from 0 to the maximum value that occurs in the time series.
 After that, each radius, along with the already optimized delay and embedding dimensions, was used to perform a \ac{crqa}.
 This step also introduced a stricter policy, as only lines longer than \SI{1}{\percent} of the length of the time series were counted, as opposed to the typical setup that considers lines of any length.
 With an average length of \SI{37.5}{minutes}, this means that lines longer than 11 time units, compared to the a typical setup with the minimal length of two time units (e.g., as done by \citet{Borrie2019syncing}).
 This ensured that only long-term recurrences were taken into account, and filtered out shorter, possibly more random effects.
-% note: calculated by multiplying 37.5 minutes * 60 to get seconds. then divide by 2 since each time unit is 2 seconds and again divide by 100 to get one percent of it.
-Finally, the candidate radius that results in the smallest absolute distance from the goal \ac{rr} was taken as the optimized radius to use for the \ac{crqa}.
-The entire optimization process was done for each interaction separately.
+% note: calculated by multiplying 37.5 minutes * 60 to get seconds. then divide by 2 since each time unit (slice) was 2 seconds and again divide by 100 to get one percent of it.
+Finally, the candidate radius that results in the smallest absolute distance from the goal \ac{rr} was taken as the optimized radius to perform \ac{crqa}.
+The radius optimization is described in \cref{alg:radius_opt}
+The optimization processes of all three parameters were done for each interaction separately.
 
 \begin{algorithm}[t]
-	\caption{\Acl{rr} optimization}
-	\label{alg:rr_opt}
+	\caption{\acs{crqa} radius optimization}
+	\label{alg:radius_opt}
+	\eqname{\acs{crqa} radius optimization algorithm}
 	\algorithmcaption{\emph{The higher $n$ is (\cref{line:num_cand}), the higher the chance of a \ac{rr} close to the defined \emph{desired RR}.
 	Also note that since \ac{rr} represents percentage of values in the recurrence plot, 100 is its highest possible value.
 	Therefore, and since the radii in $R$ are traversed in increasing order, the search stops if this value is achieved (\cref{line:break_at_rr_100}).
@@ -864,7 +878,7 @@ The entire optimization process was done for each interaction separately.
 		   \underline{$optDelay$} -- the optimized delay\newline
 	       \underline{$optEmbedim$} -- the optimized embedded dimensions\newline
        	   \underline{$TS$} -- all values from both time series}
-	\Output{\ac{rr} value closest to the defined desired \ac{rr} value\newline}
+	\Output{radius producing \ac{rr} value closest to the defined desired \ac{rr}\newline}
 	
 	$n \gets$ number of radius candidates \label{line:num_cand}\;
 	$R \gets \{r_i, \ldots, r_n\} : r_1 = 0, r_n = \max(TS)$\;
@@ -879,8 +893,7 @@ The entire optimization process was done for each interaction separately.
 		}
 	}
 	$optRadius = \displaystyle\argmin_{r \in R}(\lvert candR_r - desiredRR \rvert)$\;
-\end{algorithm}	
-\eqname{\Acl{rr} optimization algorithm}
+\end{algorithm}
 \footnotetext{As calculated by the \ac{crqa} package for R \citep{Coco2014crqa-r} with the additional arguments (unlisted in the algorithm itself) \emph{rescale=0, normalize=0, minvertline=length(ts1) / 100, mindiagline=length(ts1) / 100,} and \emph{tw=0}.}
 
 \section{abstract}

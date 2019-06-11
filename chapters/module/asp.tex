@@ -244,19 +244,27 @@ The entire computational model is described in \cref{alg:comp_model}.
 Further details about the model and all the steps can be found in \citet{Raveh2017Interspeech}.
 
 \begin{algorithm}[t]
-	\caption{Phonetic Responsiveness}
+	\caption{Phonetic responsiveness}
 	\label{alg:comp_model}
+	\eqname{Phonetic responsiveness algorithm}
+	\algorithmcaption{Note that \emph{ASRInput} (\cref{line:asrinput}) must not only contain the $n$-best hypotheses, but also their phoneme lists (in chronological order).
+	For improving performance, using a single hypothesis is recommended for a small language model and/or when very short sentences are expected.
+	Since only the target phonemes are treated (and suprasegmental features where the specific phonemes do not matter), it might not be crucial to get a completely correct \ac{asr} hypothesis if not required for continuing the interaction.
+	For example, a \ac{capt} system might rely solely on the realization of specific phonemes, regardless of what the user said or should have said.}
 	\DontPrintSemicolon
-	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Input}{Inputs}
 	\SetKwInOut{Output}{Output}
-	\Input{\underline{$ASRInput$} -- recognized user speech\newline \underline{$targetPhonemes$} -- convergence features\newline}
+	
+	\Input{\underline{$ASRInput$} -- recognized user speech\newline
+		   \underline{$targetPhonemes$} -- convergence features\newline}
 	\Output{list of feature vectors with converged values\newline}
-	\ForEach {(phoneme \textbf{\em in} ASRInput) $\in$ targetPhonemes}{
+	
+	\ForEach {(phoneme $\in$ ASRInput) $\in$ targetPhonemes}{ \label{line:asrinput}
 		$feature \gets$ $phoneme$.associatedFeature\;
 		$context \gets feature$.phoneticContext\;
-		\uIf {\textbf{not} matches(phoneme, context)}{
+		\uIf {\textbf{not} matches(phoneme, context)}{ \tcp*{filter based on context}
 			break\;}
-		\uIf {inRange($phoneme$, $allowedRange$)}{
+		\uIf {inRange($phoneme$, $allowedRange$)}{ \tcp*{filter based on value range}
 			\uIf {poolSize=maxPoolSize}{
 				deleteOldestExemplar()\;}
 			feature.addExemplar($phoneme$)\;}
@@ -267,14 +275,13 @@ Further details about the model and all the steps can be found in \citet{Raveh20
 			$poolValue \gets method$.calculate(pool)\;
 			$newValue \gets rate\cdot poolValue + (1-rate)\cdot feature.$value\;
 			$threshold \gets convergenceLimit \cdot poolValue$\;
-			\uIf {$newValue > threshold$}{
+			\uIf {$newValue > threshold$}{ \tcp*{limit convergence}
 				$newValue \gets threshold$\;}
 			$feature$.value $\gets newValue$\;
 			{\em toUpdate $\gets$ updatefrequency}\;}
 		\uElse{
 			{\em toUpdate $\gets$ toUpdate - 1}\;}}
 \end{algorithm}
-\eqname{Phonetic responsiveness algorithm}
 \todo[inline]{make algorithm more readable, change, variable/method names, etc.}
 
 \section{Integration}
