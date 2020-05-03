@@ -48,6 +48,7 @@
 \usepackage{setspace} % for more control over spacing configurations
 \usepackage{graphicx} % extended graphic capabilities
 \usepackage{float} % more control over floats
+\usepackage{musicography} % music symbo
 \usepackage{eso-pic} % for some special images layouts (e.g., for cover page)
 \usepackage[cc]{titlepic} % for putting picture in cover page
 \usepackage{subfigure} % subfigures
@@ -118,6 +119,17 @@
 
 \DeclareMathOperator*{\argmin}{\mathit{argmin}}
 \DeclareMathOperator*{\argmax}{\mathit{argmax}}
+
+% define snippet environments for music sheet samples
+\usepackage{newfloat}
+\DeclareFloatingEnvironment[
+	fileext=snp,
+	listname={List of Snippets},
+	name=Snippet,
+	placement=tbhp,
+	within=none,
+]{snippet}
+\crefname{snippet}{\snippetname}{\snippetname s}
 
 % rotation configurations for tables
 % ---------------------------------------
@@ -234,6 +246,7 @@
 \DeclareAcronym{asp}	{short=ASP,		long=additional speech processing,  				long-plural=, short-plural=}
 \DeclareAcronym{asr}	{short=ASR, 	long=automatic speech recognition, 					long-plural=, short-plural=}
 \DeclareAcronym{b2b}	{short=B2B, 	long=business-to-business,							long-plural=, short-plural=}
+\DeclareAcronym{bpm}	{short=BPM, 	long=beats per minute, long-plural=, short-plural=}
 \DeclareAcronym{cat}	{short=CAT, 	long=communication accommodation theory, 			long-plural=, short-plural=}
 \DeclareAcronym{call}	{short=CALL, 	long=computer-assisted language learning, 			long-plural=, short-plural=}
 \DeclareAcronym{capt}	{short=CAPT, 	long=computer-assisted pronunciation training, 		long-plural=, short-plural=}
@@ -271,6 +284,7 @@
 \DeclareAcronym{nlp}	{short=NLP, 	long=natural language processing, 					long-plural=, short-plural=}
 \DeclareAcronym{nlu}	{short=NLU, 	long=natural language understanding, 				long-plural=, short-plural=}
 \DeclareAcronym{pa}		{short=PA, 		long=personal assistant, 							long-plural=s, short-plural=s}
+\DeclareAcronym{qt}		{short=QT,	 	long=quarter tone, long-plural=s, short-plural=s}
 \DeclareAcronym{rmse}	{short=RMSE, 	long=root-mean-square error,						long-plural=s, short-plural=s}
 \DeclareAcronym{roi}	{short=ROI, 	long=return on investment,							long-plural-form=return on investments, short-plural=s}
 \DeclareAcronym{rr}		{short=RR,	 	long=recurrence rate,								long-plural=s, short-plural=s}

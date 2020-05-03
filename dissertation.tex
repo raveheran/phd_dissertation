@@ -55,13 +55,15 @@
 \appendix
 
 % re-configure title style for appendices
-\titleformat{\section}{\large\bfseries}{\appendixname~\thesection .}{0.5em}{}
-\renewcommand{\thesection}{\arabic{section}}
+%\titleformat{\section}{\large\bfseries}{\appendixname~\thesection .}{0.5em}{}
+\renewcommand{\thesection}{\Roman{section}} 
+\renewcommand{\thesubsection}{\thesection.\Roman{subsection}}
 
 \part{Appendices}
 \label{part:appendices}
 
 \include{chapters/appendices/appendixA}
+\include{chapters/appendices/appendixB}
 
 % To-Do list
 % ----------
