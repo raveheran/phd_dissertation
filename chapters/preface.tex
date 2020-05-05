@@ -47,9 +47,9 @@
 \end{center}
 \clearpage
 
- % *** Abstrakt (Deutsch) ***
- % ================
- \begin{center}
+% *** Abstrakt (Deutsch) ***
+% ================
+\begin{center}
      \vspace*{3.3cm}
      \textit{\textbf{\huge Zusammenfassung (Deutsch)}}\\[0.3cm]
      \Large
@@ -102,7 +102,7 @@
 \addcontentsline{toc}{chapter}{Notation}
 \begin{tabularx}{\linewidth}{l@{\quad}X}
 	$\vec{r}$ & Vector $r$ \\
-	$\mathcal{A}^{m \times n}$ & Matrix $A$ with dimension m over n \\
+	$\mathcal{A}^{m \times n}$ & Matrix $A$ with dimension $m$ over $n$ \\
 	$\mathcal{A}^{\mathbb{R} \times \mathbb{R}}$ & Matrix $A$ describing a 2-dimensional space of real numbers \\
 	$\mathcal{N}$ 	&	Normal (Gaussian) distribution \\
 	$X \sim \mathcal{N}(\mu,\,\sigma^{2})$	&	Random variable $X$ has a normal distribution with mean $\mu$ and variance $\sigma^{2}$ \\
@@ -119,3 +119,32 @@
 % outline
 \newpage
 \section*{Outline}
+\addcontentsline{toc}{chapter}{Outline}
+%
+This work deals with the intersection between the social phenomenon \emph{phonetic accommodation} and \acl{hci}.
+Both of these topics play a role when talking with any kind of a \acl{sds}.
+\Cref{part:introduction} introduces the background for this intertwinement.
+\Cref{chap:phonetic_convergence} provides an overview of the theoretical, social, and linguistic aspects of accommodation in spoken language.
+this includes types of mutual variation within a conversation and examples of long-term changes.
+A survey of the ways humans interact with machines is presented in \cref{chap:human-computer_interaction}.
+The properties and challenges of verbal interaction with computers are discussed as well.
+\Cref{chap:spoken_dialogue_systems} gives an introduction to aclp{sds}, along with explanations about systems in use nowadays and the differences between them.
+The typical architecture of such systems and common ways to evaluate them are described as well.
+
+The contributions are divided into three parts: Experiment, speech manipulation, and application.
+A series of empirical convergence experiments are summarized in \cref{part:experiments}, each with a different constellation of interlocutors.
+\Cref{chap:conv_analysis} shows vocal accommodation effects and their utilization in real-world \acl{hhi}.
+Examining these effect in such conversations  allows determining the gaps between conversation \enquote{in the wild} and in labs.
+Due to the length of these conversations, analyses of both dynamic changes over time and more general classification of speaker type are possible.
+\Cref{chap:shadowing experiment with_natural_and_synthetic_voices} presents shadowing tasks combining both \acl{hhi} and \acl{hci} contexts.
+These tasks were carried out in closely controlled experimental settings for direct comparison between the two contexts.
+A multiparty, \acl{hhci} experiment outlined in \cref{chap:speech_variations_in_hhci}.
+This more evolve mix of speakers sheds light on accommodation effects that can be influenced by the addressee of the specific utterance or by the presence of another human interlocutor.
+\Cref{part:speech_manipulation} comprises techniques for on-demand, real-time manipulation of speech, which would enable the required control over a system's output in order to support accommodation capabilities.
+\todo[inline]{here details about the chapters in this part once they exist}
+\noindent\Cref{part:application} contains a technical implementations steps in the way of achieving a responsive \acl{sds}.
+First, approaches for accommodation modeling are presenting in \cref{chap:computational_model,chap:statistical_model}.
+Then, a module linking between the speech input and output of a system is introduced in \cref{chap:convergence_module_for_sdss}.
+Together with the modeling information and the techniques from \cref{part:speech_manipulation}, it grants the accommodation capabilities to its \acl{sds}.
+Finally, an web-based end-to-end system is presented in \cref{chap:web-based_responsive_spoken_dialogue_system}.
+The extended architecture, usage options, and  graphical visualizations are described, and a showcase is provided as well.
