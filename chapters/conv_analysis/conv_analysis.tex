@@ -24,10 +24,10 @@ Furthermore, it can be easily controlled by speakers, making it a tangible tool 
 We use a large-scale corpus of real-world conversation, which takes the examination of phonetic accommodation out of the controlled, supervised experimental environment.
 The conversations in the corpus are therefore more free-structured and flexible, as there are no instructions or defined tasks to perform, and presumably more authentic, since the interlocutors are driven solely by their own motivation to succeed and do not fill a temporary role as part of an experiment.
 
-\Ac{crqa} \citep{Zbilut1998detecting}, a bivariate correlation technique, is used for the analysis (see \cref{subsec:crqa}).
+\Ac{crqa} \citep{Zbilut1998detecting}, a bivariate correlation technique, is used for the analysis (see \cref{sec:crqa}).
 This method finds instances where coordinates of two time series occur close to each other in some phase-space within a given radius.
 Since \ac{crqa} can evaluate the degree to which the similarity of two time series changes over time, and can also determine the leading relationship between them, we find it suitable and informative for analyzing phonetic accommodation between two speakers.
-A comprehensive overview of this method is presented by \citet{Wallot2018analyzing}, and the way it is used here is explained in \cref{subsec:crqa}.
+A comprehensive overview of this method is presented by \citet{Wallot2018analyzing}, and the way it is used here is explained in \cref{sec:crqa}.
 
 The contribution of this work is therefore both in the methodology of measuring accommodation, and applying it in a practical situation.
 
@@ -392,19 +392,19 @@ For simplicity, in the descriptions it is assumed that the time series lengths a
 %However, the differences between successful and failed calls within the leading speakers are not significant.
 %It is also evident that when the reps lead, they do so consistently at the very beginning of the conversation, all the more so in successful calls, whereas the prospects' lead varies much more and generally happens at a much later time.
 
-% -------- duplicated part end -------------
+%\begin{figure}[t]
+%	\centering
+%	\includegraphics[width=\linewidth]{boxplot_ccf}
+%	\caption{Comparison between the time of the call in which the maximal \acl{cc} occurs.
+%		The x-axis groups the calls based on the speaker, and the fill color further separates the calls to successful and failed ones.
+%		The y-axis shows the normalized time (in percent) of the call, in which the maximal correlation was detected.
+%		The horizontal lines within the boxes represent the median,
+%		the notches stand for the \SI{95}{\percent} confident level of the median, the area inside the boxes include the \acf{iqr} of values, the vertical lines outside the boxes show the value within the third quartile + 1.5~$\protect\cdot$~\ac{iqr}, and the isolated dots are the outliers.
+%		The significance level based on a Wilcoxon test comparing the two groups and their subgroups is given above the boxes.}
+%	\label{fig:barplot_conv_leaders}
+%\end{figure}
 
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=\linewidth]{boxplot_ccf}
-	\caption{Comparison between the time of the call in which the maximal \acl{cc} occurs.
-		The x-axis groups the calls based on the speaker, and the fill color further separates the calls to successful and failed ones.
-		The y-axis shows the normalized time (in percent) of the call, in which the maximal correlation was detected.
-		The horizontal lines within the boxes represent the median,
-		the notches stand for the \SI{95}{\percent} confident level of the median, the area inside the boxes include the \acf{iqr} of values, the vertical lines outside the boxes show the value within the third quartile + 1.5~$\protect\cdot$~\ac{iqr}, and the isolated dots are the outliers.
-		The significance level based on a Wilcoxon test comparing the two groups and their subgroups is given above the boxes.}
-	\label{fig:barplot_conv_leaders}
-\end{figure}
+% -------- duplicated part end -------------
 
 \section{Dataset}
 \label{sec:dataset}
@@ -456,7 +456,7 @@ This encourages the use of \ac{crqa} to quantify the accommodation over the cour
 \label{subsec:feature_extraction}
 
 To increase temporal resolution, the audio signals were split into two-second slices.
-Such fine-grained extraction makes the use of \ac{crqa} more elaborate, as it has more data points to consider (see \cref{subsec:crqa}).
+Such fine-grained extraction makes the use of \ac{crqa} more elaborate, as it has more data points to consider (see \cref{sec:crqa}).
 Splitting the turns also creates equal, consecutive, and more comparable time units for an interaction without introducing artificial boundaries by dividing it into a predefined number of parts.
 The slicing was done per turn, so that a slice contains only the speech of a single speaker.
 Any remainder of a turn got a slice of its own.
@@ -488,7 +488,7 @@ Since we compare multiple variables, Bonferroni correction was applied, so that 
 Therefore, for a single comparison to be significant, it must be lower than $\alpha = 0.007$.
 The non-parametric two-sample Wilcoxon test \citep{Wilcoxon1945individual} was used to determine the significance levels.
 \cref{tab:crqa_results} shows a summary of means and p-values of these outputs between failed and successful calls.
-The \ac{rr} mean value is about 10 in all groups, which proves to be a suitable goal for optimizing the parameters (see \cref{subsec:crqa}).
+The \ac{rr} mean value is about 10 in all groups, which proves to be a suitable goal for optimizing the parameters (see \cref{sec:crqa}).
 Significant differences between failed and successful calls were found for the values DET, NRLINE, and rENTR.
 The first two, along with their higher means for the failed calls, indicate more time-synchronized convergence in the failed calls.
 The latter is harder to interpret, especially due to the similar means for successful and failed calls.
@@ -575,13 +575,12 @@ These findings encourage further investigations, like looking for other predicto
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=\linewidth]{boxplot_ccf}
-	\caption
-		[Comparison between sales reps' and prospects' maximal \acl{cc} point in conversation for successful and failed calls.]
+	\caption[Comparison between sales reps' and prospects' maximal \acl{cc} point in conversation for successful and failed calls.]
 		{Comparison between the time of the call in which the maximal \acl{cc} occurs.
 		The x-axis groups the calls based on the speaker, and the fill color further separates the calls to successful and failed ones.
 		The y-axis points to the time in the call, in which the maximal correlation was detected.
 		The horizontal lines within the boxes represent the median,
-		%		the notches stand for the \SI{95}{\percent} confident level of the median, the area inside the boxes include the \acf{iqr} of values, the vertical lines outside the boxes show the value within the third quartile + 1.5~$\protect\cdot$~\ac{iqr}, and the isolated dots are the outliers.
+		the notches stand for the \SI{95}{\percent} confident level of the median, the area inside the boxes include the \acf{iqr} of values, the vertical lines outside the boxes show the value within the third quartile + 1.5~$\protect\cdot$~\ac{iqr}, and the isolated dots are the outliers.
 		The significance level based on a Wilcoxon test comparing the two groups and their subgroups is given above the boxes.}
 	\label{fig:barplot_conv_leaders}
 	%	\todo[inline]{use logarithmic y-scale?}
