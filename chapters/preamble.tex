@@ -214,6 +214,10 @@
 
 % set pages header and footers (moved to end of preface)
 %-----------------------------
+\titleformat{\part}[display] % define display format for Part title pages (also required to gain control over those, e.g., page numbers)
+{\normalfont\huge\bfseries\filcenter}{\partname\ \thepart}{22pt}{\Huge}
+\assignpagestyle{\part}{empty} % hide page number on part title pages
+\assignpagestyle{\chapter}{empty} % hide page number on chapter title pages
 
 % todo items commands
 % -------------------
