@@ -1,4 +1,3 @@
-%\chapter{Vocal Accommodation for Conversation Intelligence}
 \chapter{Vocal Accommodation in Real-World Sales Calls}
 \label{chap:conv_analysis}
 
@@ -7,19 +6,70 @@ This chapter includes examples of vocal accommodation used as a mean for analyzi
 
 \pagebreak
 
-\section{Conversation intelligence}
+\section{Speech alignment for conversation intelligence}
 \label{sec:conversation_intelligence}
 
-%\Acf{ci}, also known as \textit{conversation IQ} (\aca{ci}), is\ldots
+\todo[inline]{here give medium-length introduction how sales reps are taught to becoming more similar to the prospect AND making them more similar to them is a desired behavior. however, they don't learn how exactly to do it and not how to measure it. in c-iq analysis these only recently have started to be measurable characteristics that prove to contribute to conversation success.}
+
+Sales leaders have always aimed to reason why some of their representatives -- henceforth \emph{reps} or \emph{\acp{ae}} -- consistently attain or exceed their goals and others do not \citep{Kovac2017its}.
+Yet, sales executives rely on data that is inherently flawed, as it is based on reports from sources such as \ac{crm} systems, leaving executives in the dark about the happenings at the front lines.
+As a result, the reasons for losing or winning a deal often remain a riddle, making sales an art based on anecdotes rather than science \citep{Yohn2016best, Martin2017six}.
+In his seminal book, \citet{Gladwell2006tipping} writes that \textquote[p.\ 83]{Part of what it means to have a persuasive personality is that you can draw others into your own rhythms and dictate the terms of the interaction}.
+Supporting that, \citet{Orlob2018nine} found that star reps can make the prospect increase their speaking rate to match theirs, bringing the two sides closer with respect to this phonetic feature.
+
+In this study, we focus on another phonetic feature, \ac{f0}.
+This feature can also be interpreted and explained by people with little or no phonetic training, like \acp{ae}.
+Furthermore, it can be easily controlled by speakers, making it a tangible tool for the \acp{ae} to exploit and improve their performance, as opposed to, e.g., more complex, acoustic features like \acp{mfcc} or changes in the \ac{ltas} that are often used in phonetic accommodation studies \citep{Levitan2011measuring,Borrie2019syncing}.
+
+We use a large-scale corpus of real-world conversation, which takes the examination of phonetic accommodation out of the controlled, supervised experimental environment.
+The conversations in the corpus are therefore more free-structured and flexible, as there are no instructions or defined tasks to perform, and presumably more authentic, since the interlocutors are driven solely by their own motivation to succeed and do not fill a temporary role as part of an experiment.
+
+\Ac{crqa} \citep{Zbilut1998detecting}, a bivariate correlation technique, is used for the analysis (see \cref{subsec:crqa}).
+This method finds instances where coordinates of two time series occur close to each other in some phase-space within a given radius.
+Since \ac{crqa} can evaluate the degree to which the similarity of two time series changes over time, and can also determine the leading relationship between them, we find it suitable and informative for analyzing phonetic accommodation between two speakers.
+A comprehensive overview of this method is presented by \citet{Wallot2018analyzing}, and the way it is used here is explained in \cref{subsec:crqa}.
+
+The contribution of this work is therefore both in the methodology of measuring accommodation, and applying it in a practical situation.
+
+\Acf{c-iq}\ldots
+
+\subsection{Inside sales}
+\label{subsec:inside_sales}
+
+In recent years, many companies have adopted the concept of \emph{inside sales}, where \ac{b2b} sales are done using web-based conferencing solutions, as opposed to face-to-face meetings with the clients.
+Recent technological advancements allow automatic recording and transcription of inside sales calls, aggregating large-scale datasets.
+These datasets include the audio of the calls and sometimes annotations such as the call success or the rating of the \ac{ae}.
+
+Inside sales deals have a typical process:
+first, a \ac{sdr} reaches out to a potential client (the \emph{prospect}) who has expressed interest in the company's product, which creates a \emph{lead}.
+Subsequently, the \ac{sdr} shares basic details about the product and how it can help the prospect.
+Finally, if the \ac{sdr} has managed to elicit initial interest, the lead turns into an \emph{opportunity}, and a demo call with a sales representative is scheduled.
+Such demo calls are typically done using a web conferencing tool, such as Zoom\footnote{\url{https://zoom.us}} or GoToMeeting\footnote{\url{https://www.gotomeeting.com}}, which allows both sides to share their webcam and screen.
+
+A relatively small dataset of such calls is analyzed in this work.
+Since these calls were made as a first step after the prospect expressed interest in the company's product, it can be assumed that the behavior and verbal skills of the \ac{ae} will have a  larger weight in the success of the call than in calls that may fail solely because the product is of no interest to the prospect.
+
+\todo[inline]{can expand this more if have something else to say...}
+
+\subsection{Speaker roles and influences in sales calls}
+\label{subsec:speaker_roles_and_influences_in_sales_calls}
+
+\todo[inline]{here provide concrete examples of behavior change and role detection/division in sales calls}
 
 \citet{Glaser2016conversational}
 \citet{SilberVarod2018human}
 
-\section{Speaker roles and influences in sales calls}
-\label{sec:speaker_roles_and_influences_in_sales_calls}
+\section[\Acl{crqa}]{\Acl{crqa} for measuring accommodation}
+\label{sec:crqa}
 
-\section{Capturing different behaviors with \acs{crqa}}
-\label{sec:capturing_behaviors}
+\todo[inline]{the low level technical/mathematical details will probably move to the chapter about statistical modeling}
+
+\todo[inline]{somewhere refer to the place where the green-orange plot is shown and the limitation of DiD are explained as a motivation for using this method}
+
+Depending on the situation, \ac{hhi} involves different levels of communication modality, such as facial expression, hand gestures, eye gaze, etc.
+In this study, we concentrate on the phonetic level, as it is the main modality used in the sales calls dataset we analyze (see \cref{sec:dataset}).
+It has been shown in various studies based on \ac{cat} \citep{Giles1991CAT,Gallois2015CAT} that humans naturally tend to change their speech behavior within a conversation based on the speech they hear from another human speaker \citep{Bailly2010speech,Babel2014novelty}.
+Such mutual adjustment in \ac{hhi} also increases the success of the conversation \citep{Pickering2004behavioral} and affects the social distance between speakers \citep{Schweitzer2017social}.
 
 Linear methods for measuring accommodation rely on the chronological, turn-by-turn order of the interaction.
 These methods are limited to detection of local phenomena evolving gradually across adjacent turns.
@@ -32,8 +82,8 @@ We utilize here another method that uses phase-space embedding, which describes 
 
 \todo[inline]{find 1-2 more examples of non-linear methods, and say that here we present CRQA}
 
-\subsection[\Acl{crqa} for measuring accommodation]{\Acl{crqa}}
-\label{subsec:crqa}
+\subsection{Capturing different behaviors with \acs{crqa}}
+\label{subsec:capturing_behaviors}
 
 \begin{figure}[t]
 	\centering
@@ -172,11 +222,8 @@ The optimization processes of all three parameters were done for each interactio
 \begin{algorithm}[t]
 	\caption{\acs{crqa} radius optimization}
 	\label{alg:radius_opt}
-	%	\eqname{\acs{crqa} radius optimization algorithm}
-	\algorithmcaption{\emph{The higher $n$ is (\cref{line:num_cand}), the higher the chance of a \ac{rr} close to the defined \emph{desired RR}.
-			Also note that since \ac{rr} represents percentage of values in the recurrence plot, 100 is its highest possible value.
-			Therefore, and since the radii in $R$ are traversed in increasing order, the search stops if this value is achieved (\cref{line:break_at_rr_100}).
-			As explained in the text, in the presented studies $n = 20$ and $desiredRR = 10$ (see \citet{Coco2014crqa-r}).}}
+	\algorithmcaption
+		{\emph{The higher $n$ is (\cref{line:num_cand}), the higher the chance of a \ac{rr} close to the defined \emph{desired RR}.Also note that since \ac{rr} represents percentage of values in the recurrence plot, 100 is its highest possible value.			Therefore, and since the radii in $R$ are traversed in increasing order, the search stops if this value is achieved(\cref{line:break_at_rr_100}). As explained in the text, in the presented studies $n = 20$ and $desiredRR = 10$ (see \citet{Coco2014crqa-r}).}}
 	\DontPrintSemicolon
 	\SetKwInOut{Input}{Inputs}
 	\SetKwInOut{Output}{Output}
@@ -201,6 +248,7 @@ The optimization processes of all three parameters were done for each interactio
 	}
 	$optRadius = \displaystyle\argmin_{r \in R}(\lvert candR_r - desiredRR \rvert)$\;
 \end{algorithm}
+\eqname{Radius optimization algorithm for \acs{crqa}}
 \footnotetext{As calculated by the \ac{crqa} package for R \citep{Coco2014crqa-r} with the additional arguments (unlisted in the algorithm itself) \emph{rescale=0, normalize=0, minvertline=length(ts1) / 100, mindiagline=length(ts1) / 100,} and \emph{tw=0}.}
 \todo{make sure algorithm block is on same page with its footnote}
 
@@ -287,60 +335,64 @@ For simplicity, in the descriptions it is assumed that the time series lengths a
 
 \todo[inline]{introduction to results}
 
-Since multiple values are compared here, Bonferroni correction was applied, so that the overall error rate is \SI{0.05}{\percent}.
-Therefore, for a single comparison to be significant, it must be lower than $\alpha = 0.007$.
-The non-parametric two-sample Wilcoxon test \citep{Wilcoxon1945individual} was used to determine the significance levels.
-\cref{tab:crqa_results} shows a summary of means and p-values of these outputs between failed and successful calls.
-The \ac{rr} mean value is about 10 in all groups, which proves to be a suitable goal for optimizing the parameters (see \cref{subsec:crqa}).
-Significant differences between failed and successful calls were found for the values DET, NRLINE, and rENTR.
-The first two, along with their higher means for the failed calls, indicate more time-synchronized convergence in the failed calls.
-The latter is harder to interpret, especially due to the similar means for successful and failed calls.
-It therefore seems that the behavior in both cases is evenly predicted, but differently across calls.
-One possible factor influencing these behaviors is related to the interlocutor leading the convergence, rather than the fact that it occurs at all.
+% -------- duplicated part start -------------
 
-\begin{table}[t]
-	\caption{P-values of the two-sample Wilcoxon test comparing the \ac{crqa} output values between calls with success/fail outcome and their respective mean values.
-		Significant values based on the adjusted p-value are set in bold.}
-	\label{tab:crqa_results}
-	\begin{tabularx}{\linewidth}{XSSSS}
-		\toprule
-		& {\thead{\acs{rr}}} & {\thead{DET}} & {\thead{NRLINE}}	& {\thead{maxL}} \\
-		\midrule
-		p 				& 0.9		& \bfseries $\ll$ 0.001	& \bfseries $\ll$ 0.001	& 0.7	\\
-		mean success	& 10.1		& 2.2					& 84.0					& 31.3	\\
-		mean fail		& 10.0		& 5.9					& 174.0					& 32.9	\\
-		
-		%			p (leaders)		& 0.7		& 0.1						& 0.05						& 0.18\\
-		%			mean \acsp{ae}	& 10.0		& 6.1						& 186.7						& 35.2\\
-		%			mean prospect	& 10.1		& 5.4						& 154.4						& 31.2\\
-		\midrule
-		& {\thead{L}} & {\thead{ENTR}} & {\thead{rENTR}} & \\
-		\midrule
-		p 				& 0.07		& 0.1		& \bfseries 0.0058	& \\
-		mean success	& 17.8		& 1.4		& 0.8				& \\
-		mean fail		& 15.3		& 1.5		& 0.8				& \\
-		
-		%			p (leaders)		& 0.9		& 0.07		& 0.55					& {\qquad\qquad}\\
-		%			mean \acsp{ae}	& 15.2		& 1.5		& 0.8					& {\qquad\qquad}\\
-		%			mean prospect	& 15.7		& 1.4		& 0.8					& {\qquad\qquad}\\
-		\bottomrule	
-	\end{tabularx}
-\end{table}
+%Since multiple values are compared here, Bonferroni correction was applied, so that the overall error rate is \SI{0.05}{\percent}.
+%Therefore, for a single comparison to be significant, it must be lower than $\alpha = 0.007$.
+%The non-parametric two-sample Wilcoxon test \citep{Wilcoxon1945individual} was used to determine the significance levels.
+%\cref{tab:crqa_results} shows a summary of means and p-values of these outputs between failed and successful calls.
+%The \ac{rr} mean value is about 10 in all groups, which proves to be a suitable goal for optimizing the parameters (see \cref{subsec:crqa}).
+%Significant differences between failed and successful calls were found for the values DET, NRLINE, and rENTR.
+%The first two, along with their higher means for the failed calls, indicate more time-synchronized convergence in the failed calls.
+%The latter is harder to interpret, especially due to the similar means for successful and failed calls.
+%It therefore seems that the behavior in both cases is evenly predicted, but differently across calls.
+%One possible factor influencing these behaviors is related to the interlocutor leading the convergence, rather than the fact that it occurs at all.
+%
+%\begin{table}[t]
+%	\caption{P-values of the two-sample Wilcoxon test comparing the \ac{crqa} output values between calls with success/fail outcome and their respective mean values.
+%		Significant values based on the adjusted p-value are set in bold.}
+%	\label{tab:crqa_results}
+%	\begin{tabularx}{\linewidth}{XSSSS}
+%		\toprule
+%		& {\thead{\acs{rr}}} & {\thead{DET}} & {\thead{NRLINE}}	& {\thead{maxL}} \\
+%		\midrule
+%		p 				& 0.9		& \bfseries $\ll$ 0.001	& \bfseries $\ll$ 0.001	& 0.7	\\
+%		mean success	& 10.1		& 2.2					& 84.0					& 31.3	\\
+%		mean fail		& 10.0		& 5.9					& 174.0					& 32.9	\\
+%		
+%		%			p (leaders)		& 0.7		& 0.1						& 0.05						& 0.18\\
+%		%			mean \acsp{ae}	& 10.0		& 6.1						& 186.7						& 35.2\\
+%		%			mean prospect	& 10.1		& 5.4						& 154.4						& 31.2\\
+%		\midrule
+%		& {\thead{L}} & {\thead{ENTR}} & {\thead{rENTR}} & \\
+%		\midrule
+%		p 				& 0.07		& 0.1		& \bfseries 0.0058	& \\
+%		mean success	& 17.8		& 1.4		& 0.8				& \\
+%		mean fail		& 15.3		& 1.5		& 0.8				& \\
+%		
+%		%			p (leaders)		& 0.9		& 0.07		& 0.55					& {\qquad\qquad}\\
+%		%			mean \acsp{ae}	& 15.2		& 1.5		& 0.8					& {\qquad\qquad}\\
+%		%			mean prospect	& 15.7		& 1.4		& 0.8					& {\qquad\qquad}\\
+%		\bottomrule	
+%	\end{tabularx}
+%\end{table}
+%
+%To shed more light on the role of a leading partner, we used \acl{cc} to determine which interlocutor leads the change in behavior.
+%As shown in \cref{fig:crqa_plot}, \ac{crqa} reports at which points in time the speakers were more inclined to be closer to each other.
+%As an extension, \acl{cc} finds the degree to which two time series are synchronized at different points in time.
+%For each such point, called \emph{lag}, the \acl{cc} function evaluates the correlation between the time series.
+%By iterating over a set of time points, the shift needed to make the time series maximally correlated can be found.
+%If this lag is positive, the first time series needs to be shifted forward to achieve maximal correlation, and vice versa.
+%In the context of convergence, \ac{cc} calculates the direction of the shift, which indicates which speaker leads the change.
+%The \acl{cc} function was not limited to a specific range of shifts, so that all possible lags were examined.
+%The lag associated with the maximal correlation -- and only it -- was used to determine the leader.
+%Since these calls have a typical structure, it is also interesting to see at which point of the conversation the maximal correlation occurs.
+%\cref{fig:barplot_conv_leaders} shows the time, in percent, in which the maximal correlation occurred for \acp{ae} and prospects in successful and failed calls.
+%The difference between the lag position distribution of reps and prospects is significant, with a p-value of \num{0.0065} at $\alpha = 0.05$.
+%However, the differences between successful and failed calls within the leading speakers are not significant.
+%It is also evident that when the reps lead, they do so consistently at the very beginning of the conversation, all the more so in successful calls, whereas the prospects' lead varies much more and generally happens at a much later time.
 
-To shed more light on the role of a leading partner, we used \acl{cc} to determine which interlocutor leads the change in behavior.
-As shown in \cref{fig:crqa_plot}, \ac{crqa} reports at which points in time the speakers were more inclined to be closer to each other.
-As an extension, \acl{cc} finds the degree to which two time series are synchronized at different points in time.
-For each such point, called \emph{lag}, the \acl{cc} function evaluates the correlation between the time series.
-By iterating over a set of time points, the shift needed to make the time series maximally correlated can be found.
-If this lag is positive, the first time series needs to be shifted forward to achieve maximal correlation, and vice versa.
-In the context of convergence, \ac{cc} calculates the direction of the shift, which indicates which speaker leads the change.
-The \acl{cc} function was not limited to a specific range of shifts, so that all possible lags were examined.
-The lag associated with the maximal correlation -- and only it -- was used to determine the leader.
-Since these calls have a typical structure, it is also interesting to see at which point of the conversation the maximal correlation occurs.
-\cref{fig:barplot_conv_leaders} shows the time, in percent, in which the maximal correlation occurred for \acp{ae} and prospects in successful and failed calls.
-The difference between the lag position distribution of reps and prospects is significant, with a p-value of \num{0.0065} at $\alpha = 0.05$.
-However, the differences between successful and failed calls within the leading speakers are not significant.
-It is also evident that when the reps lead, they do so consistently at the very beginning of the conversation, all the more so in successful calls, whereas the prospects' lead varies much more and generally happens at a much later time.
+% -------- duplicated part end -------------
 
 \begin{figure}[t]
 	\centering
@@ -353,64 +405,6 @@ It is also evident that when the reps lead, they do so consistently at the very 
 		The significance level based on a Wilcoxon test comparing the two groups and their subgroups is given above the boxes.}
 	\label{fig:barplot_conv_leaders}
 \end{figure}
-
-\section{abstract}
-
-\section{Introduction}
-\label{sec:introduction}
-
-Sales leaders have always aimed to reason why some of their representatives -- henceforth \emph{reps} or \emph{\acp{ae}} -- consistently attain or exceed their goals and others do not \citep{Kovac2017its}.
-Yet, sales executives rely on data that is inherently flawed, as it is based on reports from sources such as \ac{crm} systems, leaving executives in the dark about the happenings at the front lines.
-As a result, the reasons for losing or winning a deal often remain a riddle, making sales an art based on anecdotes rather than science \citep{Yohn2016best, Martin2017six}.
-In his seminal book, \citet{Gladwell2006tipping} writes that \textquote[p.\ 83]{Part of what it means to have a persuasive personality is that you can draw others into your own rhythms and dictate the terms of the interaction}.
-Supporting that, \citet{Orlob2018nine} found that star reps can make the prospect increase their speaking rate to match theirs, bringing the two sides closer with respect to this phonetic feature.
-
-In this study, we focus on another phonetic feature, \ac{f0}.
-This feature can also be interpreted and explained by people with little or no phonetic training, like \acp{ae}.
-Furthermore, it can be easily controlled by speakers, making it a tangible tool for the \acp{ae} to exploit and improve their performance, as opposed to, e.g., more complex, acoustic features like \acp{mfcc} or changes in the \ac{ltas} that are often used in phonetic accommodation studies \citep{Levitan2011measuring,Borrie2019syncing}.
-
-We use a large-scale corpus of real-world conversation, which takes the examination of phonetic accommodation out of the controlled, supervised experimental environment.
-The conversations in the corpus are therefore more free-structured and flexible, as there are no instructions or defined tasks to perform, and presumably more authentic, since the interlocutors are driven solely by their own motivation to succeed and do not fill a temporary role as part of an experiment.
-
-\Ac{crqa} \citep{Zbilut1998detecting}, a bivariate correlation technique, is used for the analysis (see \cref{subsec:crqa}).
-This method finds instances where coordinates of two time series occur close to each other in some phase-space within a given radius.
-Since \ac{crqa} can evaluate the degree to which the similarity of two time series changes over time, and can also determine the leading relationship between them, we find it suitable and informative for analyzing phonetic accommodation between two speakers.
-A comprehensive overview of this method is presented by \citet{Wallot2018analyzing}, and the way it is used here is explained in \cref{subsec:crqa}.
-
-The contribution of this work is therefore both in the methodology of measuring accommodation, and applying it in a practical situation.
-
-%We hypothesize that since the prospect has agreed to meet for a demo and, in most cases, already heard about the proposed solution, the outcome of the call depends less on the prospect external condition and more on the personality of the sales person and her ability to build trust in the prospect.
-%\todo{refer to where explain about dataset to justify the hypothesis.}
-
-\subsection{Phonetic accommodation}
-\label{subsec:phonetic_accommodation}
-
-Depending on the situation, \ac{hhi} involves different levels of communication modality, such as facial expression, hand gestures, eye gaze, etc.
-In this study, we concentrate on the phonetic level, as it is the main modality used in the sales calls dataset we analyze (see \cref{sec:dataset}).
-It has been shown in various studies based on \ac{cat} \citep{Giles1991CAT,Gallois2015CAT} that humans naturally tend to change their speech behavior within a conversation based on the speech they hear from another human speaker \citep{Bailly2010speech,Babel2014novelty}.
-Such mutual adjustment in \ac{hhi} also increases the success of the conversation \citep{Pickering2004behavioral} and affects the social distance between speakers \citep{Schweitzer2017social}.
-
-The conversations in the large-scale corpus used here have an inherent structure and are longer than in typical experimental setups.
-This encourages the use of \ac{crqa} to quantify the accommodation over the course of whole conversations to detect long-term relations and accommodation structures, instead of comparing two halves of the conversation or neighboring turns, as often done \citep{Levitan2013entrainment,Rahimi2018weighting}.
-
-%Following that, we hypothesized that successful sales calls would show more distinct speech patterns and vocal accommodation behaviors than unsuccessful calls.
-
-\subsection{Inside sales}
-\label{subsec:inside_sales}
-
-In recent years, many companies have adopted the concept of \emph{inside sales}, where \ac{b2b} sales are
-done using web-based conferencing solutions, as opposed to face-to-face meetings with the clients.
-Recent technological advancements allow automatic recording and transcription of inside sales calls, aggregating large-scale datasets.
-These datasets include the audio of the calls and sometimes annotations such as the call success or the rating of the \ac{ae}.
-
-Inside sales deals have a typical process:
-first, a \ac{sdr} reaches out to a potential client (the \emph{prospect}) who has expressed interest in the company's product, which creates a \emph{lead}.
-Subsequently, the \ac{sdr} shares basic details about the product and how it can help the prospect.
-Finally, if the \ac{sdr} has managed to elicit initial interest, the lead turns into an \emph{opportunity}, and a demo call with a sales representative is scheduled.
-Such demo calls are typically done using a web conferencing tool, such as Zoom\footnote{\url{https://zoom.us}} or GoToMeeting\footnote{\url{https://www.gotomeeting.com}}, which allows both sides to share their webcam and screen.
-
-A relatively small dataset of such calls is analyzed in this work.
-Since these calls were made as a first step after the prospect expressed interest in the company's product, it can be assumed that the behavior and verbal skills of the \ac{ae} will have a  larger weight in the success of the call than in calls that may fail solely because the product is of no interest to the prospect.
 
 \section{Dataset}
 \label{sec:dataset}
@@ -449,6 +443,11 @@ A two-sample Wilcoxon test \cite{Wilcoxon1945individual} between failed and succ
 %We hypothesized that successful calls would show distinct patterns of phonetic convergence relative to unsuccessful calls.
 %We measured the success of a call using two methods: (1) Based on the final outcome of the sales opportunity, being either won or lost.
 %We call this method the "marriage" criterion, since it's similar to assessing a romantic date between two individuals as successful if it led to marriage and unsuccessful otherwise.
+
+The conversations in the large-scale corpus used here have an inherent structure and are longer than in typical experimental setups.
+This encourages the use of \ac{crqa} to quantify the accommodation over the course of whole conversations to detect long-term relations and accommodation structures, instead of comparing two halves of the conversation or neighboring turns, as often done \citep{Levitan2013entrainment,Rahimi2018weighting}.
+
+%Following that, we hypothesized that successful sales calls would show more distinct speech patterns and vocal accommodation behaviors than unsuccessful calls.
 
 \section{Method}
 \label{sec:method}
@@ -535,7 +534,7 @@ In the context of convergence, \ac{cc} calculates the direction of the shift, wh
 The \acl{cc} function was not limited to a specific range of shifts, so that all possible lags were examined.
 The lag associated with the maximal correlation -- and only it -- was used to determine the leader.
 Since these calls have a typical structure, it is also interesting to see at which point of the conversation the maximal correlation occurs.
-\cref{fig:barplot_conv_leaders} shows the time, in percentage, in which the maximal correlation occurred for \acp{ae} and prospects in successful and failed calls.
+\cref{fig:barplot_conv_leaders} shows the time, in percent, in which the maximal correlation occurred for \acp{ae} and prospects in successful and failed calls.
 The difference between the lag position distribution of reps and prospects is significant, with a p-value of \num{0.0065} at $\alpha = 0.05$.
 However, the differences between successful and failed calls within the leading speakers are not significant.
 It is also evident that when the reps lead, they do so consistently at the very beginning of the conversation, all the more so in successful calls, whereas the prospects' lead varies much more and generally happens at a much later time.
@@ -564,6 +563,15 @@ Lastly, different methods could be applied to predict the success of a call.
 Specifically, machine learning methods that are good at capturing serial changes, such as recurrent neural networks, can be used to train such prediction models.
 All of these direction can also be combined with more features to measure and more calls to analyze to reveal more consistent accommodation patterns.
 
+%Conclusion
+
+We have presented a study that examines phonetic accommodation in real-world sales calls.
+The focus was on mutual proximity of \acl{f0} between sales persons and prospects to find both how close they are to each other in general across the call, and how quickly changes in proximity occur and by whom they are initiated.
+This was done by \acf{crqa} and \aclp{cc}, which together provide various measures regarding recurrence between the speakers and who leads the other in terms of \acl{f0} changes.
+A corpus of 708 calls was used for the analyses, which makes it possible to find more global, consistent effects that are not influenced by the design of a specific experimental setting.
+The results show significant differences in some of the values between successful and failed calls, and significant differences between the leading behavior of sales persons and prospects.
+These findings encourage further investigations, like looking for other predictors of successful calls and examining the influence of additional features and factors on the success of calls.
+
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=\linewidth]{boxplot_ccf}
@@ -578,15 +586,3 @@ All of these direction can also be combined with more features to measure and mo
 	\label{fig:barplot_conv_leaders}
 	%	\todo[inline]{use logarithmic y-scale?}
 \end{figure}
-
-
-\section{Conclusion}
-\label{sec:conclusion}
-
-We have presented a study that examines phonetic accommodation in real-world sales calls.
-The focus was on mutual proximity of \acl{f0} between sales persons and prospects to find both how close they are to each other in general across the call, and how quickly changes in proximity occur and by whom they are initiated.
-This was done by \acf{crqa} and \aclp{cc}, which together provide various measures regarding recurrence between the speakers and who leads the other in terms of \acl{f0} changes.
-A corpus of 708 calls was used for the analyses, which makes it possible to find more global, consistent effects that are not influenced by the design of a specific experimental setting.
-The results show significant differences in some of the values between successful and failed calls, and significant differences between the leading behavior of sales persons and prospects.
-These findings encourage further investigations, like looking for other predictors of successful calls and examining the influence of additional features and factors on the success of calls.
-
