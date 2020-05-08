@@ -11,25 +11,25 @@ This chapter includes examples of vocal accommodation used as a mean for analyzi
 
 \todo[inline]{here give medium-length introduction how sales reps are taught to becoming more similar to the prospect AND making them more similar to them is a desired behavior. however, they don't learn how exactly to do it and not how to measure it. in c-iq analysis these only recently have started to be measurable characteristics that prove to contribute to conversation success.}
 
-Sales leaders have always aimed to reason why some of their representatives -- henceforth \emph{reps} or \emph{\acp{ae}} -- consistently attain or exceed their goals and others do not \citep{Kovac2017its}.
-Yet, sales executives rely on data that is inherently flawed, as it is based on reports from sources such as \ac{crm} systems, leaving executives in the dark about the happenings at the front lines.
-As a result, the reasons for losing or winning a deal often remain a riddle, making sales an art based on anecdotes rather than science \citep{Yohn2016best, Martin2017six}.
+Sales leaders have always been impelled to be able to reason why some of their representatives -- henceforth \emph{reps} or \emph{\acp{ae}} -- consistently attain, or even exceed, their goals while others do not \citep[see explanations and general overview in][]{Kovac2017its}.
+Yet, sales executives rely on data that is inherently flawed, as it is based on reports from sources like \ac{crm} systems.
+Such systems only contain \enquote{dry} details regarding the stage the deals are in along with high-level numeric data and some, often subjective, estimations regarding the next steps.
+That leaves the executives in the dark about the happenings at the front lines and the small-scale, day-to-day conducts and modi operandi that are decisive for the success of the \acp{ae}.
+As a result, the reasons for losing or winning a deal often remain a riddle, making sales seem like an art based on anecdotes rather than a scientifically explainable practice \citep{Yohn2016best, Martin2017six}.
 In his seminal book, \citet{Gladwell2006tipping} writes that \textquote[p.\ 83]{Part of what it means to have a persuasive personality is that you can draw others into your own rhythms and dictate the terms of the interaction}.
-Supporting that, \citet{Orlob2018nine} found that star reps can make the prospect increase their speaking rate to match theirs, bringing the two sides closer with respect to this phonetic feature.
+Supporting that, \citet{Orlob2018nine} found that star reps\footnote{Sales representative whose performances (and specifically their closed-deals rate) are often refer to as \emph{star reps}.The specific criteria are typically include a wide range of behavioral and business metrics, but those are decided internally per company and do not have an absolute definition.} are able to make prospects increase their speaking rate to match theirs, bringing the two sides closer with respect to this phonetic feature.
 
-In this study, we focus on another phonetic feature, \ac{f0}.
-This feature can also be interpreted and explained by people with little or no phonetic training, like \acp{ae}.
-Furthermore, it can be easily controlled by speakers, making it a tangible tool for the \acp{ae} to exploit and improve their performance, as opposed to, e.g., more complex, acoustic features like \acp{mfcc} or changes in the \ac{ltas} that are often used in phonetic accommodation studies \citep{Levitan2011measuring,Borrie2019syncing}.
-
-We use a large-scale corpus of real-world conversation, which takes the examination of phonetic accommodation out of the controlled, supervised experimental environment.
-The conversations in the corpus are therefore more free-structured and flexible, as there are no instructions or defined tasks to perform, and presumably more authentic, since the interlocutors are driven solely by their own motivation to succeed and do not fill a temporary role as part of an experiment.
-
+Here, the focus is on another phonetic feature, namely \ac{f0}.
+This feature can be interpreted and explained by people with little or no phonetic training, like \acp{ae}.
+Furthermore, it can be easily controlled by speakers, making it a tangible tool for the \acp{ae} to exploit to improve their performance, as opposed to, e.g., more complex, acoustic features like \acp{mfcc} or changes in the \ac{ltas} that are often used in phonetic accommodation studies \citep{Levitan2011measuring, Borrie2019syncing}.
+For this, a large-scale corpus of real-world conversations was used, which takes the examination of phonetic accommodation out of the controlled, supervised experimental laboratory environment.
+The conversations in this corpus are therefore mostly flexible and structured-free than experiments in laboratory setting (like those in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices}), as there are no instructions or defined tasks to perform.
+By extension, they are also more authentic and spontaneous, since the interlocutors are driven solely by their own behavior and motivation to succeed and do not fill a given temporary role as part of an experiment.
 \Ac{crqa} \citep{Zbilut1998detecting}, a bivariate correlation technique, is used for the analysis (see \cref{sec:crqa}).
-This method finds instances where coordinates of two time series occur close to each other in some phase-space within a given radius.
-Since \ac{crqa} can evaluate the degree to which the similarity of two time series changes over time, and can also determine the leading relationship between them, we find it suitable and informative for analyzing phonetic accommodation between two speakers.
+This method finds instances where coordinates of two time series occur close to each other within a certain radius in some phase-space continuum.
+Since \ac{crqa} can evaluate the degree to which the similarity of two time series changes over time, and can also determine the leading relationship between them, it is highly suitable and informative for analyzing phonetic accommodation between two speakers.
 A comprehensive overview of this method is presented by \citet{Wallot2018analyzing}, and the way it is used here is explained in \cref{sec:crqa}.
-
-The contribution of this work is therefore both in the methodology of measuring accommodation, and applying it in a practical situation.
+The contribution of this study is therefore both in the methodology of measuring accommodation, and its application in practice for a real-world purpose.
 
 \Acf{c-iq}\ldots
 
@@ -39,15 +39,14 @@ The contribution of this work is therefore both in the methodology of measuring 
 In recent years, many companies have adopted the concept of \emph{inside sales}, where \ac{b2b} sales are done using web-based conferencing solutions, as opposed to face-to-face meetings with the clients.
 Recent technological advancements allow automatic recording and transcription of inside sales calls, aggregating large-scale datasets.
 These datasets include the audio of the calls and sometimes annotations such as the call success or the rating of the \ac{ae}.
-
 Inside sales deals have a typical process:
-first, a \ac{sdr} reaches out to a potential client (the \emph{prospect}) who has expressed interest in the company's product, which creates a \emph{lead}.
+First, a \ac{sdr} reaches out to a potential client (the \emph{prospect}) who has expressed interest in the company's product.
+This creates a \emph{lead}.
 Subsequently, the \ac{sdr} shares basic details about the product and how it can help the prospect.
 Finally, if the \ac{sdr} has managed to elicit initial interest, the lead turns into an \emph{opportunity}, and a demo call with a sales representative is scheduled.
-Such demo calls are typically done using a web conferencing tool, such as Zoom\footnote{\url{https://zoom.us}} or GoToMeeting\footnote{\url{https://www.gotomeeting.com}}, which allows both sides to share their webcam and screen.
-
-A relatively small dataset of such calls is analyzed in this work.
-Since these calls were made as a first step after the prospect expressed interest in the company's product, it can be assumed that the behavior and verbal skills of the \ac{ae} will have a  larger weight in the success of the call than in calls that may fail solely because the product is of no interest to the prospect.
+Such demo calls are often done using a web conferencing tool, such as Zoom\footnote{\url{https://zoom.us}} or GoToMeeting\footnote{\url{https://www.gotomeeting.com}}, which allows both sides to share their webcams and screens.
+Such a dataset is analyzed in this work (see \cref{sec:dataset_calls}).
+Since these calls were made as a first step after the prospect expressed interest in the company's product, it can be assumed that the behavior and verbal skills of the \ac{ae} will have a larger weight in the success of the call than in calls that may fail due to lack of interesting in the product from the prospect's side.
 
 \todo[inline]{can expand this more if have something else to say...}
 
@@ -62,30 +61,49 @@ Since these calls were made as a first step after the prospect expressed interes
 \section[\Acl{crqa}]{\Acl{crqa} for measuring accommodation}
 \label{sec:crqa}
 
-\todo[inline]{the low level technical/mathematical details will probably move to the chapter about statistical modeling}
-
-\todo[inline]{somewhere refer to the place where the green-orange plot is shown and the limitation of DiD are explained as a motivation for using this method}
-
-Depending on the situation, \ac{hhi} involves different levels of communication modality, such as facial expression, hand gestures, eye gaze, etc.
-In this study, we concentrate on the phonetic level, as it is the main modality used in the sales calls dataset we analyze (see \cref{sec:dataset}).
-It has been shown in various studies based on \ac{cat} \citep{Giles1991CAT,Gallois2015CAT} that humans naturally tend to change their speech behavior within a conversation based on the speech they hear from another human speaker \citep{Bailly2010speech,Babel2014novelty}.
+Depending on the circumstances, \ac{hhi} may involve different communication modalities, such as facial expression, hand gestures, eye gaze, and more.
+The analyses here concentrate on the phonetic level, as it is the primary modality used for conveying information in sales calls, even if video or screen sharing are available as well.
+It has been shown in various studies based on \ac{cat} \citep[][and cf.\ \cref{sec:communication_accommodation_theory}]{Giles1991CAT, Gallois2015CAT} that humans naturally tend to change their speech behavior within a conversation based on the speech they hear from another human speaker \citep[see, e.g.][]{Bailly2010speech, Babel2014novelty}.
 Such mutual adjustment in \ac{hhi} also increases the success of the conversation \citep{Pickering2004behavioral} and affects the social distance between speakers \citep{Schweitzer2017social}.
+Accordingly, effects of the same nature have been found in sales calls as well, as presented in \cref{subsec:speaker_roles_and_influences_in_sales_calls}. 
 
 Linear methods for measuring accommodation rely on the chronological, turn-by-turn order of the interaction.
 These methods are limited to detection of local phenomena evolving gradually across adjacent turns.
-Non-linear methods, contrarily, are not dependent on the chronological order of the interaction's turn and can therefore find long-term, more distant relations between the speakers with respect to the target feature.
+See \texttt{cref} for more details about the limitations of \ac{did} measures.
+\todo{refer to the place where the green-orange plot is shown and the limitation of DiD are explained as a motivation for using this method}
+Non-linear methods, on the other hand, are not dependent on the chronological order of the interaction's turn and can therefore find long-term, more distant relations between the speakers with respect to a defined target feature.
 For instance, that an accommodation process (or generally closer values) occurred at some point in the beginning and continued at a later time, or that there was a periodic pattern of convergence and divergence throughout the interaction.
-Such phenomena point to more general, conversation-level properties that do not rely on the unfolding chronological order of the turns.
-This is especially useful for long interaction, where a more general view may be insightful.
-Non-linear analysis methods for time series include, for example, noise reduction and non-linear prediction.
-We utilize here another method that uses phase-space embedding, which describes temporal evolution of trajectories of a dynamic system by projecting their embedding onto some common space.
+Such phenomena point to more general, conversation-level properties that do not rely on the chronological unfolding order of the turns.
+This is especially useful for long interaction, like sales calls tend to be, where a more general view may be insightful.
+The conversations in the large-scale corpus used here (see \cref{sec:dataset_calls}) have an inherent structure and are considerably longer than in typical experimental setups.
+This encourages the use of \ac{crqa} to quantify the accommodation over the course of whole conversations to detect long-term relations and accommodation structures, instead of comparing two halves of the conversation or neighboring turns, as often done \citep{Levitan2013entrainment,Rahimi2018weighting}.
+\todo[inline]{1-2 sentences connecting to time series}
+Non-linear analysis methods for time series include, among others, noise reduction and non-linear prediction.
+The method utilized here uses phase-space embedding, which describes temporal evolution of trajectories of a dynamic system by projecting their embedding onto some common space.
 
 \todo[inline]{find 1-2 more examples of non-linear methods, and say that here we present CRQA}
 
 \subsection{Capturing different behaviors with \acs{crqa}}
 \label{subsec:capturing_behaviors}
 
-\begin{figure}[t]
+In this study, the target features are either evaluated when detected or sampled in defined intervals using a dedicated system for accommodation analysis \citep{Raveh2018Specom}.
+\todo{make sure there is more explanation about how this is done where the experiments are described}
+Furthermore, these values are extracted in chronological order, and thus produce sequences of discrete-time data, which makes them suitable for time series-based analysis.
+Due to the nature of these features (and perhaps any spontaneous, interactive linguistic feature), the resulted time series can be assumed to be non-seasonal and non-stationary.
+\todo{make sure that saying that doesn't invalidates the use of CRQA}
+This recognition as time series opens new methodological possibilities for examining the evolution of these features and their realizations by different speakers in an interaction over time.
+Such methods include, for example, autocorrelation for examining serial dependency and forecasting for transferring information about the time series across time.
+These methods can extend upon others in analyzing accommodation, with the advantage of offering more dynamic approach rather than the sequential methods usually used.
+
+One such analysis method is \acf{crqa}, which provides insights on the time series across an entire time span (here, a conversation).
+This is done by comparing delayed instances of the phase-space trajectories of time series.
+This allows finding more general patterns in the time series characteristics and how they interact.
+It is especially suitable for studying accommodation and related phenomena, as it detect times in which the time series (i.e., the speakers' productions) are more similar.
+Moreover, it can mathematically show which of the time series led the alignment or whether the changes were done in synchrony (see overview of these processes in \cref{subsec:variation_types}).
+In sum, \ac{crqa} can be used to objectively quantify and describe accommodation between speakers dynamically across entire conversations.
+\Cref{subsubsec:detecting_recurrence,subsubsec:parameters_crqa} explain the technicalities of \ac{crqa}, how its output can be interpreted, and how it is used in the studies presented here.
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{crqa_plot_115993376241473405}
 	\caption
@@ -93,7 +111,7 @@ We utilize here another method that uses phase-space embedding, which describes 
 	{A recurrence plot generated for one of the analyzed conversations.
 		The y-axis marks the conversation timeline, in time stamp, of the \ac{ae}, and the x-axis of the prospect.
 		Each blue dot represents a co-visitation of a similar state.
-		Blue dots forming an diagonal line indicate sustained recurrence between the two speakers (see description of NRLINE in \cref{subsubsec:output_values} for details).
+		Blue dots forming an diagonal line indicate sustained recurrence between the two speakers (see description of NRLINE in \cref{subsec:output_values} for details).
 		Note that the time stamps on the axes are not the slices, but the embedded call time. 
 		For example, the diagonal structures between time stamps 100 and 200 of the x-axis show such lasting recurrence.
 		Diagonal lines above the \acl{los} (\acs{los}; the central diagonal line) indicate that the speaker on the y-axis leads the x-axis, and vice versa for lines below the \ac{los}.
@@ -102,61 +120,47 @@ We utilize here another method that uses phase-space embedding, which describes 
 	\todo[inline]{make the plot square, to make it clearer that the times have the same length}
 \end{figure}
 
-In the studies present here, the target features are either evaluated when detected or sampled in defined intervals using a dedicated system for accommodation analysis \citep{Raveh2018Specom}.
-\todo{make sure there is more explanation about how this is done where the experiments are described}
-Furthermore, these values are extracted in chronological order, and thus produce sequences of discrete-time data.
-Based on these characteristics, they can be treated as \emph{time series}.
-Due to the nature of these features (and perhaps any spontaneous, interactive linguistic feature), the resulted time series can be assumed to be non-seasonal and non-stationary.
-This recognition as time series opens new methodological possibilities for examining the evolution of these features and their realizations by different speakers in an interaction over time.
-Such methods include, among others, autocorrelation for examining serial dependency and forecasting for transferring information about the time series across time.
-These methods can extend upon others in analyzing accommodation, with the advantage of offering more dynamic approach rather than the sequential methods usually used.
-One such analysis method is \acf{crqa}, which provides insights on the time series across an entire time span.
-This is done by comparing delayed instances of the phase-space trajectories of time series.
-This allows finding more general patterns in the time series characteristics and how they interact.
-It is especially suitable for studying accommodation and related phenomena, as it detect times in which the time series are more similar and can mathematically show which of this time series led the changes or whether the changes were done in synchrony.
-Therefore, \ac{crqa} can be use to objectively quantify and describe accommodation between speakers.
-\crefrange{subsubsec:detecting_recurrence}{subsubsec:parameters_crqa} explain how \ac{crqa} works, how its output can be interpreted, and how it is used in the studies presented here.
-
 \subsubsection{Detecting recurrence}
 \label{subsubsec:detecting_recurrence}
 
-\Ac{rqa} is a method of non-linear data analysis that quantifies the number and duration of recurrences of a dynamical system presented by its state space trajectory, which is typically the realization of a sampled time series
-It was developed by \citet{Zbilut1992embeddings} and was extended by \citet{Webber2005recurrence,Marwan2002cross}.
-A \emph{recurrence} (also, \emph{re-visitation}) is a time in which the trajectory returns to a state (or a similar-enough state) it has visited before.
+\Ac{rqa} is a non-linear analysis method that quantifies the number and duration of recurrences withing a dynamical system presented by its state-space trajectory, which is typically the realization of a sampled time series.
+It was introduced by \citet{Zbilut1992embeddings} and later extended by \citet{Webber2005recurrence, Marwan2002cross}.
+A \emph{recurrence} (also, \emph{re-visitation}) is a time in which the trajectory returns to a state (or a similar-enough state, as explained below) it has visited before.
 Recurrence can therefore be defined as the binary function
 
 \begin{equation}
-\label{eq:recurrence}
-R_{i,j} =
-\begin{cases}
-1,	&	\text{if} \quad \lVert \vec{x}(i)-\vec{x}(j) \rVert \leq \varepsilon \\
-0,	&	\text{otherwise} \\
-\end{cases},
+	\label{eq:recurrence}
+	R_{i,j} =
+	\begin{cases}
+		1,	&	\text{if} \quad \lVert \vec{x}(i)-\vec{x}(j) \rVert_d \leq \varepsilon \\
+		0,	&	\text{otherwise} \\
+	\end{cases},
 \end{equation}
 %
-where $i$ and $j$ are x-axis and y-axis coordinates in the plot, respectively, and $\varepsilon$ defines some threshold distance between cross-trajectory point pairs to consider them similar (see explanation about the \emph{radius} parameter below).
-In a plot, $R_{i,j}$ points are colored equal if their value is 1 or stay white otherwise.
-
-\Ac{crqa} is an extension of \ac{rqa} with recurrence quantification of two different time series rather than a single one.
-As such, \ac{crqa} is a quantification technique for non-linear dynamical systems that describes when and to what extent recurrences (or \emph{co-visitations}) can be found in two time series.
+where $i$ and $j$ are x-axis and y-axis coordinates in a recurrence plot (see \cref{fig:crqa_plot}), respectively, $d$ are the embedding dimensions, and $\varepsilon$ defines the threshold distance below which two cross-trajectory points are considered similar (see explanation about the \emph{radius} parameter in \cref{subsubsec:parameters_crqa}).
+In a recurrence plot, the points $R_{i,j}$ are colored equal if their value is 1 or stay white otherwise.
+\Ac{crqa} is an extension of \ac{rqa} analyzing recurrence quantification between two different time series rather than a single one time series with itself.
+As such, \ac{crqa} is a quantification technique for non-linear dynamical systems that describes when and to what extent concurrences (or \emph{co-visitations}) can be found in a system consists of two time series.
 These quantification techniques are based on \emph{recurrence plots} that for each moment $i$ in time show the times at which a phase space trajectory visits roughly the same area in the phase space as at time $i$.
 Ultimately, a recurrence plot is a graph of $\vec{x}(i) \approx \vec{x}(j)$, showing $i$ on the x-axis and $j$ on the y-axis, where $\vec{x}$ is a phase space trajectory (see example in \cref{fig:crqa_plot}).
 \todo[inline]{take one of the RPs from the website and add the LoS (and other diagonals) to it to provide more detailed visualization}
 Each colored point in the plot represents a time where the time series were close to each other based on the definition in \cref{eq:recurrence}.
 The main diagonal of the plot is called the \acf{los}.
-A high number of recurrences along this line indicates synchrony between the time series (many points in time with similar values).
+A high number of recurrences along this line indicates synchrony between the time series.
 However, diagonal recurrence lines can be formed above and below the \ac{los}.
 Such diagonals, especially longer ones, represent delayed (lagged) synchrony between the time series and can be used as an assessment of similarity between the processes.
 In the context of accommodation, these diagonals imply an accommodative change led by one of the interlocutors.
 If the diagonal stretches above the \ac{los}, the speaker plotted on the x-axis leads the accommodation, and vice versa.
-The closer the diagonal is from the \ac{los}, the quicker the process occurred, i.e., the led speaker matched his behavior to the leading speaker in a shorter time.
+The closer the diagonal is from the \ac{los}, the quicker the process occurred, i.e., the led speaker aligned his behavior to the leading speaker after a shorter time.
 Due to its ability to detect these similarities non-linearly, \ac{crqa} can be utilized to measure accommodation in the scope of entire conversations rather than taking only neighboring turns into account \citep[cf.][]{Levitan2013entrainment}.
+
 For instance, it has already been used to describe behavior in conversations \citep{Duran2017conversing} and to measure conversational entrainment for assessing speech pathology \citep{Borrie2019syncing}.
+\todo[inline]{2-3 more sentences about each of those examples to show that CRQA is a valid technique}
 
 \subsubsection{Parameter tuning}
 \label{subsubsec:parameters_crqa}
 
-\Ac{crqa} requires three parameters to run:
+\Ac{crqa} uses three parameters:
 
 \begin{enumerate}
 	\item \textbf{Delay} -- estimates the temporal shift required to make the two time series maximally aligned.
@@ -170,18 +174,25 @@ For instance, it has already been used to describe behavior in conversations \ci
 	Distances between the data points are measured in the embedded space defined by embedding dimensions, using the same unit used for measuring the values of the time series.
 \end{enumerate}
 %
-These parameters are a key aspect in \ac{crqa} and how they are set is crucial for its outcome.
-However, there is no standard way for optimizing these parameters, especially due to the fact that they depend on the nature and characteristics of the data, although some best-practice guidelines are suggested by \citet{Coco2014crqa-r},
-
-A method similar to the one presented by \citet{Marwan2007recurrence} was utilized for the studies presented here.
-The delay parameter was determined by finding the lag that minimizes the mutual information between the two time series.
+These parameters are a crucial key aspect in \ac{crqa} and how they are set is decisive for its outcome.
+However, although some best-practice guidelines, like those suggested by \citet{Coco2014crqa-r}, exist, there is nevertheless no standard way for optimizing these parameters, especially due to the fact that they depend on the nature and characteristics of the data.
+A method similar to the one presented by \citet{Marwan2007recurrence} was utilized in the analysis presented here.
+The delay parameter was determined by finding the lag that minimizes the average mutual information between the two time series, which is determined by
+%
+% from https://www.frontiersin.org/articles/10.3389/fpsyg.2018.01679/full
+\begin{equation}
+	\label{eq:average_mutual_information}
+	I\left( x(t), x(t + \tau) \right) = \sum_{i,j} p_{ij} (\tau) \log \left( \frac{p_{ij} \left( \tau \right)}{p_i p_j} \right).
+\end{equation}
+\eqname{Average mutual information (AMI)}
+%
 This provides a delay that is not too short to miss the different distributions, but also not too long to lose the dependency between the time series.
-The lag with the \emph{lowest} mutual information was selected, regardless of when the values started to level off.
+The lag with the \emph{lowest} average mutual information was selected, regardless of when the values started to level off.
 Subsequently, the number of embedding dimensions was obtained using false nearest neighbors \citep{Kennel1992determining}.
 This algorithm determines the minimum embedding dimension necessary to reconstruct the state space of a dynamical system with time delay embedding \citep{Abarbanel1993local}.
-We used a neighborhood diameter equal to the standard deviation of the time series and set a limit of 20 embedding dimensions (which was never reached).
-\crefrange{fig:ami}{fig:false_nn} show examples of mutual information and false nearest neighbours optimizations.
-
+A neighborhood diameter equal to the standard deviation of the time series was used, and a limit of 20 embedding dimensions (which was never reached) was set.
+\Cref{fig:ami,fig:false_nn} show examples of mutual information and false nearest neighbors optimizations.
+%
 \begin{figure}[H]
 	\centering
 	\begin{minipage}{.45\linewidth}
@@ -204,21 +215,21 @@ We used a neighborhood diameter equal to the standard deviation of the time seri
 		\label{fig:false_nn}
 	\end{minipage}	
 \end{figure}
-
-Then, the radius was calculated in two steps (see \cref{alg:radius_opt}).
-First, the goal \ac{rr} and a list of potential radii were set.
+%
+Following that, the radius was calculated in two steps (see \cref{alg:radius_opt}).
+First, the goal \ac{rr} and a list of potential radii were initialized.
 Here, the goal \ac{rr} was set to \SI{10}{\percent}, which is relatively high (e.g., compared to \SIrange{2}{5}{\percent} in \citet{Coco2014crqa-r}).
-Setting the goal \ac{rr} to a higher value results in a stricter optimization that will reward closer recurrences in the analysis.
+Setting the goal \ac{rr} to a higher value results in a stricter optimization that will reward closer recurrences.
 The potential radii were generated by evenly spreading 20 candidates from 0 to the maximum value that occurs in the time series.
-After that, each radius, along with the already optimized delay and embedding dimensions, was used to perform a \ac{crqa}.
-This step also introduced a stricter policy, as only lines longer than \SI{1}{\percent} of the length of the time series were counted, as opposed to the typical setup that considers lines of any length.
+Then, each radius, along with the already optimized delay and embedding dimensions, was used to perform a \ac{crqa}.
+A stricter policy was introduced in this step as well, as only lines longer than \SI{1}{\percent} of the time series' entire length were counted, as opposed to the typical setup that considers lines of any length.
 With an average length of \SI{37.5}{minutes}, this means that lines longer than 11 time units, compared to the a typical setup with the minimal length of two time units (e.g., as done by \citet{Borrie2019syncing}).
-This ensured that only long-term recurrences were taken into account, and filtered out shorter, possibly more random effects.
+This ensured that only long-term recurrences were taken into account, and shorter, possibly more random effects, were filtered out.
 % note: calculated by multiplying 37.5 minutes * 60 to get seconds. then divide by 2 since each time unit (slice) was 2 seconds and again divide by 100 to get one percent of it.
-Finally, the candidate radius that results in the smallest absolute distance from the goal \ac{rr} was taken as the optimized radius to perform \ac{crqa}.
-The radius optimization is described in \cref{alg:radius_opt}
-The optimization processes of all three parameters were done for each interaction separately.
-
+Finally, the candidate radius that results in the smallest absolute distance from the goal \ac{rr} was chosen to perform the \ac{crqa}.
+The radius optimization is described in \cref{alg:radius_opt}.
+The optimization processes of all three parameters were done separately for each interaction.
+%
 \begin{algorithm}[t]
 	\caption{\acs{crqa} radius optimization}
 	\label{alg:radius_opt}
@@ -252,102 +263,152 @@ The optimization processes of all three parameters were done for each interactio
 \footnotetext{As calculated by the \ac{crqa} package for R \citep{Coco2014crqa-r} with the additional arguments (unlisted in the algorithm itself) \emph{rescale=0, normalize=0, minvertline=length(ts1) / 100, mindiagline=length(ts1) / 100,} and \emph{tw=0}.}
 \todo{make sure algorithm block is on same page with its footnote}
 
-\subsubsection{Output values}
-\label{subsubsec:output_values}
+\section{Dataset and feature extraction}
+\label{sec:dataset_calls}
 
-As detailed in \citet{Marwan2007recurrence}\footnote{and see summary with additional measures in \url{http://www.recurrence-plot.tk/rqa.php}}, several measures can be computed based on a recurrence plot.
-Some measurements deal with the \ac{los} and other diagonals and others with vertical/horizontal lines.
+A collection of calls with similar characteristics to those described in \cref{subsec:inside_sales} was used in this study.
+To obtain a somewhat more homogeneous collection of conversations, calls of a single sales company (but multiple customer companies, see below) were selected.
+Another constraint is that the collection comprises only calls from an early stage of the sales opportunity that is also the first encounter between the participating \ac{ae} and the prospect.
+Therefore, behavior patterns that are not related to the history between the two interlocutors or the content of previous conversations between them can be identified.
+Thus, these calls typically include a description by the prospect of her business' history, challenges and plans, followed by a demo by the sales person.
+It is important to note that although every \ac{ae} prepares for such calls as part of the daily work, they are still spontaneous and in no way scripted.
+%In some cases the prospect have already talked to an \ac{sdr} and/or communicated by email with the sales person.
+%However, to the best of our knowledge, this is the first voice call with the prospect.
+The calls in this collection were conducted using the Zoom platform, and were recorded automatically -- without any intervention from either side -- by Gong.io's system, which provides conversation intelligence services to said company.
+Participants were notified of the recording, in compliance with all relevant laws and rights.
+The calls were transcribed and diarized using an internal \ac{asr} system.
+
+A single \ac{ae} and a single prospect participated in each call.
+In total, 708 calls were used for analyses, each with a different customer company, with a total length of \SI{442}{hours} (mean 37.5 $\pm$15 minutes).
+Furthermore, only calls longer than 15 minutes were selected, as shorter calls are often unsuccessful connection attempts or brief updates that are not representative for the desired conversation structure.
+Call recording started immediately following the first greet from the prospect's side, and stopped when the meeting owner terminated it.
+This eliminates segments during which one party is waiting for the other to join, and keeps only segments where both parties are present.
+The 26 \acp{ae} (12 female) who participated in the calls formed 87 unique interlocutor pairs with different prospects.
+Each prospect only ever spoke with one \ac{ae}.
+The speakers on both sides were native speakers of American English.
+For the purpose of this study, a call is defined as successful when a follow-up call under a more advanced stage is initiated or when an advancement in the opportunity is marked within one month.
+These criteria follow common conventions of measuring call success\footnote{The benchmarks for successful deals are much more elaborate in practice and usually consider an entire selling process that comprises a series of calls. However, many of those criteria are not relevant or cannot be enforced in the scope of this study.}.
+This results in 51 calls (\SI{7.2}{\percent}) being defined as successful, which is within the industry standard ratio for this kind of calls.
+Failed calls lasted on average 37 $\pm$15 minutes and successful calls 42 $\pm$16.5 minutes.
+A two-sample Wilcoxon test \citep{Wilcoxon1945individual} between failed and successful call durations yielded a p-value of 0.04 with confidence level of \SI{95}{\percent}, confirming their differentiable distributions.
+It goes without saying that the labels of both criteria are noisy, as sales opportunities might be lost because of parameters more related to the fit between the offered product and the prospect's needs, the available budget of the prospect, the presence of competitors, legal issues that tamper the deal etc.
+To minimize such cases, calls done by personnel that are not sales people in the customer companies were filtered out.
+%Following that, we hypothesized that successful sales calls would show more distinct speech patterns and vocal accommodation behaviors than unsuccessful calls.
+
+\todo[inline]{1-2 sentence lead into feature extraction}
+Feature extraction was\ldots\\
+To increase temporal resolution, the audio signals were split into two-second slices.
+Such fine-grained extraction makes the use of \ac{crqa} more elaborate, as it has more data points to consider (see \cref{sec:crqa}).
+Splitting the turns also creates equal, consecutive, and more comparable time units for an interaction without introducing artificial boundaries by dividing it into a predefined number of parts.
+The slicing was done per turn, so that a slice contains only the speech of a single speaker.
+Any remainder of a turn got a slice of its own.
+When a speaker is not speaking (e.g., during the turn of the other interlocutor), it is assumed that the last produced value is maintained until the speech is renewed and a new value can be measured.
+This way, no discontinuities are created and the same number of data points is extracted for both speakers, which creates a better temporal representation of the conversation.
+Feature extraction was done sequentially for all the conversations using Praat \citep{Boersma2001praat} scripts that first extracted the \ac{f0} value from the middle of each slice and then post-processed the output to acquire cleaner measures.
+\todo[inline]{a few more sentences about how the values were transformed/shaped as time series, padded (look at R scripts, etc.)}
+
+\section{Analysis}
+\label{sec:analysis}
+
+\todo[inline]{introduction to results}
+
+\subsection{\Acs{crqa} output values}
+\label{subsec:output_values}
+
+Various measures can be computed based on a recurrence plot\footnote{See \citet{Marwan2007recurrence} and summary with additional measures in \url{http://www.recurrence-plot.tk/rqa.php}.}.
+Some measurements deal with the \ac{los} and other diagonals across the plot while others consider vertical and horizontal lines.
 Below are the definitions of some \ac{crqa} measurements used in this work.
-For simplicity, in the descriptions it is assumed that the time series lengths are equal, so that $N_i=N_j=N$.
+For simplicity, it is assumed that the time series lengths are equal, so that $N_i=N_j=N$.
 
 \begin{description}
-	\item[\Acf{rr}] The percentage of recurrent points in the plot, i.e., the percentage of similar values between the two time series out of all the values.
+	\item[\Acf{rr}] -- The percentage of recurrent points in the plot, i.e., the percentage of similar values between the two time series out of all the values.
 	This corresponds to the correlation sum and defined as
-	
-	\begin{equation}
-	\label{eq:rr}
-	RR = \frac{1}{N^2} \sum_{i=1}^{N_i} \sum_{j=1}^{N_j} R_{i,j}.
-	\end{equation}
-	%	\eqname{CRQA measure definitions: RR, DET, L, maxL, ENTR, and rENTR}
 	%
-	Note that the lengths of the time series ($N_i$ and $N_j$) are often -- but not necessarily -- equal
-	
-	\item[Determinism (DET)] The percentage of recurrences forming diagonal lines in the recurrence plot given a minimal length threshold $l_{\min}$.
 	\begin{equation}
-	\label{eq:det}
-	DET = \frac{\sum_{l=l_{\min}}^{N} l P(l)}{\sum_{l=1}^N l P(l)},
+		\label{eq:rr}
+		RR = \frac{1}{N^2} \sum_{i=1}^{N_i} \sum_{j=1}^{N_j} R_{i,j}.
+	\end{equation}
+	\eqname{CRQA-based measures: RR, DET, NRLINE, L, maxL, ENTR, and rENTR}
+	%
+	This number generally corresponds to the overall colored area in the recurrence plot.
+	The lengths of the time series ($N_i$ and $N_j$) are often -- but not necessarily -- equal
+	
+	\item[Determinism (DET)] -- The percentage of recurrences forming diagonal lines in the recurrence plot given a minimal length threshold $l_{\min}$.
+	%
+	\begin{equation}
+		\label{eq:det}
+		DET = \frac{\sum_{l=l_{\min}}^{N} l P(l)}{\sum_{l=1}^N l P(l)},
 	\end{equation}
 	%
 	where $l$ is the length of a line and $P(l)$ is the histogram of the lengths $l$ of the diagonal lines.
-	Note that $l=1$ refers to lines of length 1, i.e., a single recurrence dot.	
+	Note that $l=1$ refers to lines of length 1, i.e., a single recurrence point.	
 	Similarly, $l=2$ are lines spanning over two time stamps (shortest length possible).
 	This length is very forgiving in the context of accommodation, for such short lines can be formed arbitrarily and do not necessarily point to a meaningful accommodation process.
-	Therefore, in the experiments presented here $l_{\min}$ was set to \SI{1}{\percent} of $N$.
+	Therefore, in the experiments presented here $l_{\min}$ was set to $\frac{N}{100}$, as in \cref{subsubsec:parameters_crqa}.
 	
 	Another measure, Laminarity (LAM), can be calculated the same way, but for the vertical lines in the plot.
 	In that case, a $v_{\min}$ would be defined and $P(v)$ would provide the histogram of vertical line lengths.
 	
-	\item[Number of lines (NRLINE)] The total number of lines formed in the recurrence plot $N_l$.
-	This is the number of accommodation instances between the two speakers lasting at least $l_{\min}$ time stamps.
+	\item[Number of lines (NRLINE)] -- The total number of lines $N_l$ formed in the recurrence plot.
+	In the context of accommodation, this is the number of accommodation \enquote{instances} between the two speakers lasting at least $l_{\min}$ time units.
 	Also referred to as \emph{sustained recurrence} by \citet{Borrie2019syncing}, defined as the amount of alignment between conversational partners, where higher sustained recurrence values indicate higher amounts of sustained accommodation.
 	As explained in the description of the measure \emph{DET}, only lines of length $\frac{N}{100}$ and longer were taken into account in the studies presented here to exclude \enquote{arbitrarily formed} diagonals.
 	
-	\item[Maximal length (maxL)] The longest diagonal line in the plot, excluding the main diagonal.	
-	This is the longest, uninterrupted time span accommodation between the speakers lasted.
+	\item[Average length (L)] -- the average length of the diagonal lines, i.e., the average total accommodation time between the speakers.
+	Higher value indicates longer average individual accommodation periods during the interaction.
+	This is calculated by
+	%
+	\begin{equation}
+		\label{eq:l}
+		L = \frac{\sum_{l=l_{\min}}^N l P(l)}{\sum_{l=l_{\min}}^N P(l)}.
+	\end{equation}
+	%
+	The average length of vertical lines, called trapping time (TT), is achieved in a similar way when using the same formula for the vertical line length and the histogram of vertical line lengths.
+	
+	\item[Maximal length (maxL)] -- The longest diagonal line in the plot, excluding the main diagonal.	
+	This is the longest, uninterrupted time span over which accommodation between the speakers lasted.
 	Higher value indicates a longer time span.
 	The unit of this measure is the same as the axes of the plot (here, a representation of the conversation's turns).
 	It is determined by
-	
+	%
 	\begin{equation}
-	\label{eq:maxl}
-	L_{max} = \max_{l} (\{l_i; \ i=1, \ldots, N_l\}).
+		\label{eq:maxl}
+		L_{max} = \max_{l} (\{l_i; \ i=1, \ldots, N_l\}).
 	\end{equation}
 	%
-	The longest vertical line can be determined by traversing the vertical lines.
+	In a similar manner, the longest vertical line can be determined by traversing the vertical lines.
 	
-	\item[Average length (L)] the average length of the diagonal lines, i.e., the average total accommodation time between the speakers.
-	Higher value indicates longer average individual accommodation periods during the interaction.
-	This is calculated by
-	
-	\begin{equation}
-	\label{eq:l}
-	L = \frac{\sum_{l=l_{\min}}^N l P(l)}{\sum_{l=l_{\min}}^N P(l)}.
-	\end{equation}
-	%
-	The average length of vertical lines, the trapping time (TT), is achieved in a similar way when using the same formula for the vertical line length and vertical line lengths histogram.
-	
-	
-	\item[Entropy (ENTR)]The Shannon entropy of the probability distribution of the diagonal line lengths longer than the minimum length $l_{\min}$.
+	\item[Entropy (ENTR)] -- The Shannon entropy of the probability distribution of the diagonal line lengths longer than the minimum length $l_{\min}$.
 	Describes the variability of the amount of accommodation between the two speakers across the whole interaction.
 	Higher value indicates more varied length of accommodation periods across the interaction.
 	Shannon's entropy formula provides the value:
-	
+	%
 	\begin{equation}
-	\label{eq:entr}
-	ENTR = -\sum_{l=l_{min}}^{N} p(l) \ln p(l),
+		\label{eq:entr}
+		ENTR = -\sum_{l=l_{min}}^{N} p(l) \ln p(l),
 	\end{equation}
 	%
 	where $p(l)$ is the probability of length $l$ from the lengths probability distribution.
-	\item[Normalized entropy (rENTR)] the entropy value normalized by the number of lines formed in the recurrent plot.
-	This measure gives an idea how the speakers vary across multiple calls with different characteristics.
-	
+	\item[Normalized entropy (rENTR)] -- The entropy value normalized by the number of lines formed in the recurrent plot.
+	This measure helps understanding how the speakers vary across multiple calls with different characteristics.
 \end{description}
-
-\todo[inline]{introduction to results}
-
-% -------- duplicated part start -------------
-
-%Since multiple values are compared here, Bonferroni correction was applied, so that the overall error rate is \SI{0.05}{\percent}.
-%Therefore, for a single comparison to be significant, it must be lower than $\alpha = 0.007$.
-%The non-parametric two-sample Wilcoxon test \citep{Wilcoxon1945individual} was used to determine the significance levels.
-%\cref{tab:crqa_results} shows a summary of means and p-values of these outputs between failed and successful calls.
-%The \ac{rr} mean value is about 10 in all groups, which proves to be a suitable goal for optimizing the parameters (see \cref{subsec:crqa}).
-%Significant differences between failed and successful calls were found for the values DET, NRLINE, and rENTR.
-%The first two, along with their higher means for the failed calls, indicate more time-synchronized convergence in the failed calls.
-%The latter is harder to interpret, especially due to the similar means for successful and failed calls.
-%It therefore seems that the behavior in both cases is evenly predicted, but differently across calls.
-%One possible factor influencing these behaviors is related to the interlocutor leading the convergence, rather than the fact that it occurs at all.
 %
+
+\subsection{Results}
+\label{subsec:results}
+
+Since multiple variables are compared here, the Bonferroni correction \citep{Bonferroni1936teoria} was applied, so that the overall error rate across all variables is \num{0.05}.
+Therefore, for a single comparison to be significant, it must be lower than $\alpha = 0.007$.
+The non-parametric two-sample Wilcoxon test \citep{Wilcoxon1945individual} was used to determine the significance levels.
+\cref{tab:crqa_results} shows a summary of means and p-values of the CRQA outputs for failed and successful calls.
+The \ac{rr} mean value is about 10 in both groups, which proves to be a suitable goal for optimizing the parameters (see \cref{subsubsec:parameters_crqa}).
+Significant differences between failed and successful calls were found for the values DET, NRLINE, and rENTR.
+The first two, along with their higher means for the failed calls, indicate more time-synchronized convergence in the failed calls.
+The latter is harder to interpret, especially due to the similar means for successful and failed calls.
+It therefore seems that the behavior in both cases is evenly predicted -- but differently -- across calls.
+One possible factor influencing these behaviors is related to the interlocutor leading the convergence effect, rather than the fact that it occurs at all.
+The significant difference in the NRLINE measure stands in line with the findings in \citet{Borrie2019syncing}, supporting it as evidence for sustaining convergence in this study as well.
+
 %\begin{table}[t]
 %	\caption{P-values of the two-sample Wilcoxon test comparing the \ac{crqa} output values between calls with success/fail outcome and their respective mean values.
 %		Significant values based on the adjusted p-value are set in bold.}
@@ -356,19 +417,19 @@ For simplicity, in the descriptions it is assumed that the time series lengths a
 %		\toprule
 %		& {\thead{\acs{rr}}} & {\thead{DET}} & {\thead{NRLINE}}	& {\thead{maxL}} \\
 %		\midrule
-%		p 				& 0.9		& \bfseries $\ll$ 0.001	& \bfseries $\ll$ 0.001	& 0.7	\\
-%		mean success	& 10.1		& 2.2					& 84.0					& 31.3	\\
-%		mean fail		& 10.0		& 5.9					& 174.0					& 32.9	\\
+%		p 				& 0.9		& \bfseries $\ll$ 0.001	& \bfseries $\ll$ 0.001	& 0.7  \\
+%		mean success	& 10.1		& 2.2					& 84.0					& 31.3 \\
+%		mean fail		& 10.0		& 5.9					& 174.0					& 32.9 \\
 %		
 %		%			p (leaders)		& 0.7		& 0.1						& 0.05						& 0.18\\
 %		%			mean \acsp{ae}	& 10.0		& 6.1						& 186.7						& 35.2\\
 %		%			mean prospect	& 10.1		& 5.4						& 154.4						& 31.2\\
 %		\midrule
-%		& {\thead{L}} & {\thead{ENTR}} & {\thead{rENTR}} & \\
+%		& {\thead{L}} 	& {\thead{ENTR}} 	& {\thead{rENTR}} 	& 						\\
 %		\midrule
-%		p 				& 0.07		& 0.1		& \bfseries 0.0058	& \\
-%		mean success	& 17.8		& 1.4		& 0.8				& \\
-%		mean fail		& 15.3		& 1.5		& 0.8				& \\
+%		p 				& 0.07				& 0.1				& \bfseries 0.0058	& 	\\
+%		mean success	& 17.8				& 1.4				& 0.8				& 	\\
+%		mean fail		& 15.3				& 1.5				& 0.8				& 	\\
 %		
 %		%			p (leaders)		& 0.9		& 0.07		& 0.55					& {\qquad\qquad}\\
 %		%			mean \acsp{ae}	& 15.2		& 1.5		& 0.8					& {\qquad\qquad}\\
@@ -376,203 +437,50 @@ For simplicity, in the descriptions it is assumed that the time series lengths a
 %		\bottomrule	
 %	\end{tabularx}
 %\end{table}
-%
-%To shed more light on the role of a leading partner, we used \acl{cc} to determine which interlocutor leads the change in behavior.
-%As shown in \cref{fig:crqa_plot}, \ac{crqa} reports at which points in time the speakers were more inclined to be closer to each other.
-%As an extension, \acl{cc} finds the degree to which two time series are synchronized at different points in time.
-%For each such point, called \emph{lag}, the \acl{cc} function evaluates the correlation between the time series.
-%By iterating over a set of time points, the shift needed to make the time series maximally correlated can be found.
-%If this lag is positive, the first time series needs to be shifted forward to achieve maximal correlation, and vice versa.
-%In the context of convergence, \ac{cc} calculates the direction of the shift, which indicates which speaker leads the change.
-%The \acl{cc} function was not limited to a specific range of shifts, so that all possible lags were examined.
-%The lag associated with the maximal correlation -- and only it -- was used to determine the leader.
-%Since these calls have a typical structure, it is also interesting to see at which point of the conversation the maximal correlation occurs.
-%\cref{fig:barplot_conv_leaders} shows the time, in percent, in which the maximal correlation occurred for \acp{ae} and prospects in successful and failed calls.
-%The difference between the lag position distribution of reps and prospects is significant, with a p-value of \num{0.0065} at $\alpha = 0.05$.
-%However, the differences between successful and failed calls within the leading speakers are not significant.
-%It is also evident that when the reps lead, they do so consistently at the very beginning of the conversation, all the more so in successful calls, whereas the prospects' lead varies much more and generally happens at a much later time.
-
-%\begin{figure}[t]
-%	\centering
-%	\includegraphics[width=\linewidth]{boxplot_ccf}
-%	\caption{Comparison between the time of the call in which the maximal \acl{cc} occurs.
-%		The x-axis groups the calls based on the speaker, and the fill color further separates the calls to successful and failed ones.
-%		The y-axis shows the normalized time (in percent) of the call, in which the maximal correlation was detected.
-%		The horizontal lines within the boxes represent the median,
-%		the notches stand for the \SI{95}{\percent} confident level of the median, the area inside the boxes include the \acf{iqr} of values, the vertical lines outside the boxes show the value within the third quartile + 1.5~$\protect\cdot$~\ac{iqr}, and the isolated dots are the outliers.
-%		The significance level based on a Wilcoxon test comparing the two groups and their subgroups is given above the boxes.}
-%	\label{fig:barplot_conv_leaders}
-%\end{figure}
-
-% -------- duplicated part end -------------
-
-\section{Dataset}
-\label{sec:dataset}
-
-In this study we focus on calls of a single company.
-The corpus for this study comprises only calls from an early stage of the sales opportunity that is also the first encounter between the participating \ac{ae} and the prospect.
-Thus, these calls often include a description by the prospect of her business' history, challenges and plans, followed by a demo by the sales person that attempts to relate to those topics.
-It is also important to note that although the \acp{ae} prepare for such calls, they are still spontaneous and in no way scripted.
-With such set of calls, we can identify behavior patterns that are not related to the history between the two interlocutors or the content of previous conversations between them.
-In some cases the prospect have already talked to an \ac{sdr} and/or communicated by email with the sales person.
-However, to the best of our knowledge, this is the first voice call with the prospect.
-
-The calls in this dataset were conducted using the Zoom platform, and were recorded automatically -- without any intervention from either side -- by Gong.io's system, which provides conversation intelligence services to said company.
-Participants were notified of the recording, in compliance with relevant laws.
-%The calls were then transcribed and diarized using an internal \ac{asr} system.
-
-A single \ac{ae} and a single prospect participated in each call.
-In total, 708 calls were used for analyses, each with a different customer company, with a total length of \SI{442}{\hour} (mean \SI{37.5}{\minute}, \ac{sd} \SI{15}{\minute}).
-All of the calls are longer than 15 minutes, as many of the shorter calls were unsuccessful connection attempts.
-Call recording started immediately following the first utterance by the prospect, and stopped when the meeting owner terminated it.
-%This eliminates most issues related to one party waiting for the other party to join, and keeps only segments where both parties are present.
-26 \acp{ae} (12 female) participated in the calls.
-The vast majority of speakers on both sides were native speakers of American English.
-
-We define a call as successful when a follow-up call under a more advanced stage is initiated or when an advancement in the opportunity is marked within one month.
-Based on this criterion, 51 calls (\SI{7.2}{\percent}) were defined as successful, which is within the industry standard ratio for this kind of calls.
-The average length of a failed call is \SI{37}{\minute} (\ac{sd} 15) and of a successful call, \SI{42}{\minute} (\ac{sd} 16.5).
-A two-sample Wilcoxon test \cite{Wilcoxon1945individual} between failed and successful call duration yields a p-value of 0.04 with confidence level of \SI{95}{\percent}.
-%Obviously, the labels of both criteria are noisy, as sales opportunities might be lost because of parameters more related to the fit between the offered product and the prospect's needs, the available budget of the prospect, the presence of competitors, legal issues that tamper the deal etc.
-
-%We filtered out calls done by company personnel that are not sales people (for example, calls with \acp{sdr} that attempt to schedule demo meetings, or with Customer Success Managers who are often in charge of accompanying accounts after purchase).
-%Sales people talked for X-X\% of the call (mean X\%, \ac{sd} X\%).
-%The average duration of a monologue was X minutes and X seconds (\ac{sd} X minutes and X seconds) for sales people and prospect, respectively.
-%The longest monologue of each participant in each call had a mean of X minutes and X seconds (\ac{sd} X and X seconds) for sales people and prospect, respectively.
-%Automatic detection of questions based on the transcribed text showed that on average, the sales person asked X questions per minute (\ac{sd} X) compared with X (\ac{sd} X) for the prospect.
-%We hypothesized that successful calls would show distinct patterns of phonetic convergence relative to unsuccessful calls.
-%We measured the success of a call using two methods: (1) Based on the final outcome of the sales opportunity, being either won or lost.
-%We call this method the "marriage" criterion, since it's similar to assessing a romantic date between two individuals as successful if it led to marriage and unsuccessful otherwise.
-
-The conversations in the large-scale corpus used here have an inherent structure and are longer than in typical experimental setups.
-This encourages the use of \ac{crqa} to quantify the accommodation over the course of whole conversations to detect long-term relations and accommodation structures, instead of comparing two halves of the conversation or neighboring turns, as often done \citep{Levitan2013entrainment,Rahimi2018weighting}.
-
-%Following that, we hypothesized that successful sales calls would show more distinct speech patterns and vocal accommodation behaviors than unsuccessful calls.
-
-\section{Method}
-\label{sec:method}
-
-\subsection{Feature extraction}
-\label{subsec:feature_extraction}
-
-To increase temporal resolution, the audio signals were split into two-second slices.
-Such fine-grained extraction makes the use of \ac{crqa} more elaborate, as it has more data points to consider (see \cref{sec:crqa}).
-Splitting the turns also creates equal, consecutive, and more comparable time units for an interaction without introducing artificial boundaries by dividing it into a predefined number of parts.
-The slicing was done per turn, so that a slice contains only the speech of a single speaker.
-Any remainder of a turn got a slice of its own.
-When a speaker is not speaking (e.g., during the turn of the other interlocutor), it is assumed that the last produced value is maintained until the speech is renewed and a new value can be measured.
-This way, no discontinuities are created and the same number of data points is extracted for both speakers, which creates a better temporal representation of the conversation.
-
-Feature extraction was done sequentially for all the conversations using Praat\footnote{version 6.0.35} \citep{Boersma2001praat} scripts that first extracted the \ac{f0} value from the middle of each slice and then post-processed the output to acquire cleaner measures.
-
-\section{Results}
-\label{sec:results}
-
-%In total, 708 calls were analyzed, from which 51 (\SI{7.2}{\percent}) were marked as successful as per the definition explained in \cref{sec:dataset}, which is an expected ratio in this kind of calls.
-The \ac{crqa} yields 7 output values for each conversation:
-
-\begin{description}[wide, nosep]
-	\item[\Acf{rr}] the percentage of recurrent values between the two time series out of all the values.
-	\item[Percentage determinism (DET)] the percentage of recurrences forming diagonal lines (with the minimum length being \SI{1}{\percent} of the series length).
-	\item[number of lines (NRLINE)] The total number of lines formed by the recurrent values, i.e., the amount of accommodation between the two speakers that lasts longer than \SI{1}{\percent} of the time.
-	Also referred to as \emph{sustained recurrence} by \citet{Borrie2019syncing}.
-	\item[Maximal length (maxL)] the longest time period of recurrence, i.e., the longest time the speakers' speech remained close.
-	\item[Average length (L)] the average time of recurrence.
-	\item[Entropy (ENTR)] Shannon information entropy of diagonal line lengths longer than the minimum length.
-	Describes the variability of the amount of accommodation between the two speakers across the whole call.
-	\item[Normalized entropy (rENTR)] the entropy normalized by the number of lines formed by the recurrent values.
-	This measure gives an idea how the speakers vary across multiple calls with different properties.
-\end{description}
-
-Since we compare multiple variables, Bonferroni correction was applied, so that the overall error rate across all variables is \num{0.05}.
-Therefore, for a single comparison to be significant, it must be lower than $\alpha = 0.007$.
-The non-parametric two-sample Wilcoxon test \citep{Wilcoxon1945individual} was used to determine the significance levels.
-\cref{tab:crqa_results} shows a summary of means and p-values of these outputs between failed and successful calls.
-The \ac{rr} mean value is about 10 in all groups, which proves to be a suitable goal for optimizing the parameters (see \cref{sec:crqa}).
-Significant differences between failed and successful calls were found for the values DET, NRLINE, and rENTR.
-The first two, along with their higher means for the failed calls, indicate more time-synchronized convergence in the failed calls.
-The latter is harder to interpret, especially due to the similar means for successful and failed calls.
-It therefore seems that the behavior in both cases is evenly predicted, but differently across calls.
-One possible factor influencing these behaviors is related to the interlocutor leading the convergence, rather than the fact that it occurs at all.
 
 \begin{table}[t]
 	\caption{P-values of the two-sample Wilcoxon test comparing the \ac{crqa} output values between calls with success/fail outcome and their respective mean values.
 		Significant values based on the adjusted p-value are set in bold.}
 	\label{tab:crqa_results}
-	\begin{tabularx}{\linewidth}{XSSSS}
+	\begin{tabularx}{\linewidth}{X
+								 S
+								 S[table-comparator=true, table-space-text-pre={$\ll$}]
+								 S[table-comparator=true, table-space-text-pre={$\ll$}]
+								 S
+								 S
+								 S
+								 S}
 		\toprule
-		& {\thead{\acs{rr}}} & {\thead{DET}} & {\thead{NRLINE}}	& {\thead{maxL}} \\
+						& {\thead{\acs{rr}}}	& {\thead{DET}} 		& {\thead{NRLINE}}		& {\thead{maxL}} 	& {\thead{L}} 	& {\thead{ENTR}} 	& {\thead{rENTR}} 	\\
 		\midrule
-		p 				& 0.9		& \bfseries $\ll$ 0.001	& \bfseries $\ll$ 0.001	& 0.7  \\
-		mean success	& 10.1		& 2.2					& 84.0					& 31.3 \\
-		mean fail		& 10.0		& 5.9					& 174.0					& 32.9 \\
-		
-		%			p (leaders)		& 0.7		& 0.1						& 0.05						& 0.18\\
-		%			mean \acsp{ae}	& 10.0		& 6.1						& 186.7						& 35.2\\
-		%			mean prospect	& 10.1		& 5.4						& 154.4						& 31.2\\
-		\midrule
-		& {\thead{L}} 	& {\thead{ENTR}} 	& {\thead{rENTR}} 	& 						\\
-		\midrule
-		p 				& 0.07				& 0.1				& \bfseries 0.0058	& 	\\
-		mean success	& 17.8				& 1.4				& 0.8				& 	\\
-		mean fail		& 15.3				& 1.5				& 0.8				& 	\\
-		
-		%			p (leaders)		& 0.9		& 0.07		& 0.55					& {\qquad\qquad}\\
-		%			mean \acsp{ae}	& 15.2		& 1.5		& 0.8					& {\qquad\qquad}\\
-		%			mean prospect	& 15.7		& 1.4		& 0.8					& {\qquad\qquad}\\
+		p (deal)		& 0.9					& \bfseries $\ll$0.001	& \bfseries $\ll$0.001	& 0.7 				& 0.07			& 0.1				& \bfseries 0.0058 	\\
+		mean success	& 10.1					& 2.2					& 84.0					& 31.3 				& 17.8			& 1.4				& 0.8				\\
+		mean fail		& 10.0					& 5.9					& 174.0					& 32.9 				& 15.3			& 1.5				& 0.8				\\
+		\rule{0pt}{4ex}\\
+		p (lead)		& 0.7					& 0.1					& 0.05					& 0.18				& 0.9			& 0.07				& 0.55				\\
+		mean \acsp{ae}	& 10.0					& 6.1					& 186.7					& 35.2				& 15.2			& 1.5				& 0.8				\\
+		mean prospects	& 10.1					& 5.4					& 154.4					& 31.2				& 15.7			& 1.4				& 0.8				\\
 		\bottomrule	
 	\end{tabularx}
 \end{table}
 
-To shed more light on the role of a leading partner, we used \acl{cc} to determine which interlocutor leads the change in behavior.
+To shed more light on the lead role in a conversation, \acl{cc} was used to determine which interlocutor leads the change in behavior.
 As shown in \cref{fig:crqa_plot}, \ac{crqa} reports at which points in time the speakers were more inclined to be closer to each other.
 As an extension, \acl{cc} finds the degree to which two time series are synchronized at different points in time.
 For each such point, called \emph{lag}, the \acl{cc} function evaluates the correlation between the time series.
 By iterating over a set of time points, the shift needed to make the time series maximally correlated can be found.
 If this lag is positive, the first time series needs to be shifted forward to achieve maximal correlation, and vice versa.
-In the context of convergence, \ac{cc} calculates the direction of the shift, which indicates which speaker leads the change.
+In the context of convergence, \acl{cc} calculates the direction of the shift, which indicates the speaker leading the change.
 The \acl{cc} function was not limited to a specific range of shifts, so that all possible lags were examined.
-The lag associated with the maximal correlation -- and only it -- was used to determine the leader.
-Since these calls have a typical structure, it is also interesting to see at which point of the conversation the maximal correlation occurs.
+The lag associated with the maximal correlation, and only it, was used to determine the leader.
+Since the calls in the collections used here have a typical structure, it is also interesting to see at which point of the conversation the maximal correlation occurs.
 \cref{fig:barplot_conv_leaders} shows the time, in percent, in which the maximal correlation occurred for \acp{ae} and prospects in successful and failed calls.
-The difference between the lag position distribution of reps and prospects is significant, with a p-value of \num{0.0065} at $\alpha = 0.05$.
+The difference between the lag position distribution of reps and prospects is significant ($p = 0.0065$ with $\alpha = 0.05$).
 However, the differences between successful and failed calls within the leading speakers are not significant.
-It is also evident that when the reps lead, they do so consistently at the very beginning of the conversation, all the more so in successful calls, whereas the prospects' lead varies much more and generally happens at a much later time.
+It is also evident that when the reps were leading, they consistently did so at an early stage of the conversation, all the more so in successful calls, whereas the prospects' lead varied much more and generally happens at a much later time.
+\todo[inline]{write a bit about insignificant results in bottom half of table}
 
-\section{Discussion}
-\label{discussion}
-
-The results of the study show two sides of \ac{crqa} with respect to call success and role detection.
-
-On the one hand, successful and failed calls could be distinguished by three of the \ac{crqa} output values.
-Although based on \ac{hhi} studies it might be hypothesized that recurrence is more likely to occur in successful calls, the means of two of the three values suggest the opposite.
-Surprisingly, this stands in line with some studies from sales research that show more \enquote{desperate} behavior from the rep side when a call seems to fail.
-For example, over-emphasizing the deal's \ac{roi} -- with the hope that it will convince the prospect to buy -- often achieves the opposite effect \citep{Orlob2018roi}.
-Another possible explanation is that reps give up their own lead in the call (see below) when a call is on the verge of failing, and instead let the prospect lead, either as a natural tendency or to give a better feeling.
-
-On the other hand, utilizing \acl{cc} lags (i.e., how the recurrence needs to shift for the speakers to be maximally aligned) was useful for differentiating between the leader in the calls.
-When \acp{ae} lead, they tend to do so at an earlier stage than prospects, especially in successful calls.
-This, along with the \ac{crqa} results explained above, suggests that \acp{ae} do not necessarily always lead the conversation, but they know when to take advantage of it to improve their stance in calls.
-
-Future research on this topic may go into three main directions.
-First, deepening the aspect of the relationship between the \acp{ae} and the prospects by examining the mutual changes not only within single calls, but over the course of several meetings.
-This could shed light on long-term changes and connect changes to the success of the deal.
-Secondly, distinguishing between different \acp{ae} to find behaviors of sub-groups.
-For example, sales persons with higher ratings (star reps) might be revealed to better exploit accommodation and trigger different behavior on the prospect side to increase their chance of closing a deal.
-Lastly, different methods could be applied to predict the success of a call.
-Specifically, machine learning methods that are good at capturing serial changes, such as recurrent neural networks, can be used to train such prediction models.
-All of these direction can also be combined with more features to measure and more calls to analyze to reveal more consistent accommodation patterns.
-
-%Conclusion
-
-We have presented a study that examines phonetic accommodation in real-world sales calls.
-The focus was on mutual proximity of \acl{f0} between sales persons and prospects to find both how close they are to each other in general across the call, and how quickly changes in proximity occur and by whom they are initiated.
-This was done by \acf{crqa} and \aclp{cc}, which together provide various measures regarding recurrence between the speakers and who leads the other in terms of \acl{f0} changes.
-A corpus of 708 calls was used for the analyses, which makes it possible to find more global, consistent effects that are not influenced by the design of a specific experimental setting.
-The results show significant differences in some of the values between successful and failed calls, and significant differences between the leading behavior of sales persons and prospects.
-These findings encourage further investigations, like looking for other predictors of successful calls and examining the influence of additional features and factors on the success of calls.
-
-\begin{figure}[t]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{boxplot_ccf}
 	\caption[Comparison between sales reps' and prospects' maximal \acl{cc} point in conversation for successful and failed calls.]
@@ -585,3 +493,35 @@ These findings encourage further investigations, like looking for other predicto
 	\label{fig:barplot_conv_leaders}
 	%	\todo[inline]{use logarithmic y-scale?}
 \end{figure}
+
+\section{Discussion}
+\label{sec:discussion_hhi}
+
+The results of the study show two sides of \ac{crqa} with respect to call success and role detection.
+On the one hand, successful and failed calls could be distinguished by three of the \ac{crqa} output values.
+Although based on \ac{hhi} studies it might be hypothesized that recurrence is more likely to occur in successful calls, the means of two of the three values suggest the opposite.
+Yet, this stands in line with some studies from sales research that show more \enquote{desperate} behavior from the rep side when a call seems to fail.
+This includes unconsciously showing assimilation towards the prospect, and over-emphasizing the deal's \ac{roi}, with the hope that it will convince the prospect to buy. \citep{Orlob2018roi}.
+However, these often achieve the opposite effect and are therefore discouraged in the sales industry.
+Another possible explanation is that reps give up their own lead in the call (see below) when a call is on the verge of failing, and instead let the prospects lead, either as a natural tendency or to give them a better feeling.
+This, too, is a known effect in sales business.
+On the other hand, utilizing \acl{cc} lags (i.e., how the recurrence needs to shift for the speakers to be maximally aligned) was useful for differentiating between the leader in the calls.
+When \acp{ae} lead, they tend to do so at an earlier stage than prospects, especially in successful calls.
+This, together with the \ac{crqa} results shown in \cref{subsec:results}, suggests that \acp{ae} do not necessarily always lead the conversation, but know when to exploit this technique, consciously or not, to improve their stance in calls.
+
+Though beyond the scope of this work, three further investigation directions on this topic are suggested here:
+First, deepening the aspect of the relationship between the \acp{ae} and the prospects by examining the mutual changes not only within single calls, but over the course of an entire deal spanning over several meetings.
+This could shed light on long-term changes and connect changes to the success of the deal.
+Secondly, distinguishing between different \acp{ae} to find behaviors of sub-groups or identifying star reps.
+For example, sales persons with higher ratings might be revealed to better exploit accommodation and trigger different behavior on the prospect side to increase their chance of closing a deal.
+Lastly, different methods could be applied to predict the success of a call.
+Specifically, machine learning methods that are good at capturing serial changes, such as recurrent neural networks, can be used to train such prediction models.
+All of these direction can also be combined with more features to uncover more consistent accommodation patterns.
+
+% Conclusion
+%We have presented a study that examines phonetic accommodation in real-world sales calls.
+%The focus was on mutual proximity of \acl{f0} between sales persons and prospects to find both how close they are to each other in general across the call, and how quickly changes in proximity occur and by whom they are initiated.
+%This was done by \acf{crqa} and \aclp{cc}, which together provide various measures regarding recurrence between the speakers and who leads the other in terms of \acl{f0} changes.
+%A corpus of 708 calls was used for the analyses, which makes it possible to find more global, consistent effects that are not influenced by the design of a specific experimental setting.
+%The results show significant differences in some of the values between successful and failed calls, and significant differences between the leading behavior of sales persons and prospects.
+%These findings encourage further investigations, like looking for other predictors of successful calls and examining the influence of additional features and factors on the success of calls.
