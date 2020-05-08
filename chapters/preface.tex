@@ -1,5 +1,5 @@
 % *** Dedication ***
-% ==============
+% ==================
 \vspace*{9cm}
 \begin{center}
 %        \textit{dedication text here}
@@ -7,7 +7,7 @@
 \newpage
 
 % *** Acknowledgments ***
-% ==============
+% =======================
 \vspace*{3cm}
 \begin{center}
     {\textbf{\huge Acknowledgments}}\\[0.3cm]
@@ -17,7 +17,7 @@
 \newpage
 
 % *** Forword ***
-% ==================
+% ===============
 {\calligra \Huge \textit{Forword}}
 \clearpage        
 
@@ -57,12 +57,8 @@
 \end{center}
 \cleardoublepage
 
-% *** Tables of Contents ***
-% =========================
-
-\fixme{have the table of contents title only once, at the beginning (and not at the top of every following page)}
-% table of contents layout changes
-%---------------------------------
+% table of contents
+%------------------
 \renewcommand{\contentsname}{\hfill\bfseries\Huge Table of Contents\hfill}
 \renewcommand{\cftaftertoctitle}{\hfill}
 \setlength\cftaftertoctitleskip{60pt} % space between TOC and its title
@@ -148,3 +144,21 @@ Then, a module linking between the speech input and output of a system is introd
 Together with the modeling information and the techniques from \cref{part:speech_manipulation}, it grants the accommodation capabilities to its \acl{sds}.
 Finally, an web-based end-to-end system is presented in \cref{chap:web-based_responsive_spoken_dialogue_system}.
 The extended architecture, usage options, and  graphical visualizations are described, and a showcase is provided as well.
+
+% set pages header and footers (moved to end of preface)
+%-----------------------------
+\pagestyle{fancy}
+%\renewcommand{\sectionmark}[1]{\markright{#1}{}}
+%\fancyhf{}
+%\lhead{\fancyplain{}{\rightmark}} % 1. sectionname, 1.1 subsection name etc
+\fancyhead{}
+\fancyhead[LO]{\leftmark}
+\fancyhead[RE]{\rightmark}
+
+%\fancyfoot{}
+%\fancyhead[RO,LE]{\thepage}
+%\fancyhead[LO]{\leftmark}
+%\fancyhead[RE]{\rightmark}
+%\fancyhead[RE]{\section}
+%\fancyfoot[CE,CO]{\leftmark}
+%\fancyfoot[LE,RO]{\thepage}
