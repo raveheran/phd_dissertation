@@ -24,14 +24,31 @@ This feature can be interpreted and explained by people with little or no phonet
 Furthermore, it can be easily controlled by speakers, making it a tangible tool for the \acp{ae} to exploit to improve their performance, as opposed to, e.g., more complex, acoustic features like \acp{mfcc} or changes in the \ac{ltas} that are often used in phonetic accommodation studies \citep{Levitan2011measuring, Borrie2019syncing}.
 For this, a large-scale corpus of real-world conversations was used, which takes the examination of phonetic accommodation out of the controlled, supervised experimental laboratory environment.
 The conversations in this corpus are therefore mostly flexible and structured-free than experiments in laboratory setting (like those in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices}), as there are no instructions or defined tasks to perform.
-By extension, they are also more authentic and spontaneous, since the interlocutors are driven solely by their own behavior and motivation to succeed and do not fill a given temporary role as part of an experiment.
-\Ac{crqa} \citep{Zbilut1998detecting}, a bivariate correlation technique, is used for the analysis (see \cref{sec:crqa}).
+By extension, they are also more authentic and spontaneous, since the interlocutors are driven solely by their own behavior and motivation to succeed and are not given a temporary role to fill as part of an experiment.
+\Ac{crqa} \citep{Zbilut1998detecting}, a bivariate correlation technique, is used for the analysis.
 This method finds instances where coordinates of two time series occur close to each other within a certain radius in some phase-space continuum.
 Since \ac{crqa} can evaluate the degree to which the similarity of two time series changes over time, and can also determine the leading relationship between them, it is highly suitable and informative for analyzing phonetic accommodation between two speakers.
 A comprehensive overview of this method is presented by \citet{Wallot2018analyzing}, and the way it is used here is explained in \cref{sec:crqa}.
-The contribution of this study is therefore both in the methodology of measuring accommodation, and its application in practice for a real-world purpose.
+The contributions of this study are therefore both in methodology of measuring accommodation, and its practical application in a real-world purpose.
 
-\Acf{c-iq}\ldots
+\subsection{\Acl{c-iq}}
+\label{subsec:conversation_intelligence}
+
+There are influences on the way we communicate and structure to how conversations unfold.
+These can be analyzed and interpreted to uncover conversation-level trends, which may differ from the linear, turn-by-turn changes.
+\Acf{c-iq} is a relatively newly coined term and a field of research that flourished due to advancements in neuroscience, communication science, and \ac{ml}.
+It complements other types of human intelligence (e.g., \emph{emotional intelligence}, c.f. \emph{Theory of Multiple Intelligences} \citep{Gardner1983frames, Davis2011theory}) as the ensemble of aspects conversations are handled \textbf{beyond the surface words and shared information}.
+\citet{Glaser2016conversational} explains and demonstrates how \ac{c-iq} can be learned and improved, with emphasis on the ability to gain trust and maintain more successful and healthy communication with others.
+\todo{add 1-2 more key ideas from the book}
+
+Narrowing down this broad idea, \citet{SilberVarod2018human} discusses the way individual conversations can be \emph{managed}.
+This includes both the structure and evolution of a conversation over time and the dynamics of the interlocutors' roles in it.
+Noticeably, it concludes that some speech-related phenomena in conversations tend to be more complex and unpredictable than how it might seem from their surface form.
+Such works dealing with managing spoken interactions become even more relevant with the growing interest in intelligent conversational systems for civilian purposes as well \citep{Mehr2017artificial}.
+
+Recently, the importance of \ac{c-iq} has pervaded the enterprise sector and created new businesses.
+Specifically, the utilization of computer-based customer services \citep{Gnewuch2017towards} and conversation intelligence services for inside sales calls to train representatives and improve performance \citep{Orlob2017winning,Orlob2017separates}).
+It was found, for example, that distinguished sales reps let the prospects talk more and keep certain parts of the calls shorter than others.
 
 \subsection{Inside sales}
 \label{subsec:inside_sales}
@@ -48,15 +65,19 @@ Such demo calls are often done using a web conferencing tool, such as Zoom\footn
 Such a dataset is analyzed in this work (see \cref{sec:dataset_calls}).
 Since these calls were made as a first step after the prospect expressed interest in the company's product, it can be assumed that the behavior and verbal skills of the \ac{ae} will have a larger weight in the success of the call than in calls that may fail due to lack of interesting in the product from the prospect's side.
 
-\todo[inline]{can expand this more if have something else to say...}
+\subsection{Speaker roles and influences}
+\label{subsec:speaker_roles_and_influences}
 
-\subsection{Speaker roles and influences in sales calls}
-\label{subsec:speaker_roles_and_influences_in_sales_calls}
-
-\todo[inline]{here provide concrete examples of behavior change and role detection/division in sales calls}
-
-\citet{Glaser2016conversational}
-\citet{SilberVarod2018human}
+\todo{somewhere above mention that accommodation is at best a rare measure in C-IQ to link to this}
+Although \ac{c-iq} doesn't traditionally use accommodation measures for evaluation, there has been some attempts to use the former for the latter's benefit.
+\citet{Glaser2016conversational} explains how important it is that speakers in a business conversation are aligned on the turn level.
+Lack of of alignment can result in a skeptic and even resisting behavior that will worsen the quality and success change of the call (cf.\ Table 2 in \citet{Glaser2014conversational}).
+At the very least, this demonstrates how important it is, as a whole, for interlocutors to be attentive not only to the contents but also to the way the communication is conveyed during a conversation (and in sales call, for the sales rep in particular).
+\citet{SilberVarod2018human} shows how vocal convergence is related to power relations aspects in \ac{c-iq} analyses.
+Specifically, speaker \enquote{dominancy} is sometimes hard to spot on the surface but becomes more clear when examining the vocal relations between the speakers.
+Analyses like this improve the the understanding of vocal behaviors in \ac{hhi}.
+Furthermore, \citet{Abrego2011effects} discusses how judgment of speaker's role in a conversation influences on phonetic aspects of production.
+The idea of speakers' behavioral modifications due to their role and perception of the other interlocutor is a key concept for the presented study.
 
 \section[\Acl{crqa}]{\Acl{crqa} for measuring accommodation}
 \label{sec:crqa}
@@ -65,7 +86,7 @@ Depending on the circumstances, \ac{hhi} may involve different communication mod
 The analyses here concentrate on the phonetic level, as it is the primary modality used for conveying information in sales calls, even if video or screen sharing are available as well.
 It has been shown in various studies based on \ac{cat} \citep[][and cf.\ \cref{sec:communication_accommodation_theory}]{Giles1991CAT, Gallois2015CAT} that humans naturally tend to change their speech behavior within a conversation based on the speech they hear from another human speaker \citep[see, e.g.][]{Bailly2010speech, Babel2014novelty}.
 Such mutual adjustment in \ac{hhi} also increases the success of the conversation \citep{Pickering2004behavioral} and affects the social distance between speakers \citep{Schweitzer2017social}.
-Accordingly, effects of the same nature have been found in sales calls as well, as presented in \cref{subsec:speaker_roles_and_influences_in_sales_calls}. 
+Accordingly, effects of the same nature have been found in sales calls as well, as presented in \cref{subsec:speaker_roles_and_influences}. 
 
 Linear methods for measuring accommodation rely on the chronological, turn-by-turn order of the interaction.
 These methods are limited to detection of local phenomena evolving gradually across adjacent turns.
@@ -77,20 +98,18 @@ Such phenomena point to more general, conversation-level properties that do not 
 This is especially useful for long interaction, like sales calls tend to be, where a more general view may be insightful.
 The conversations in the large-scale corpus used here (see \cref{sec:dataset_calls}) have an inherent structure and are considerably longer than in typical experimental setups.
 This encourages the use of \ac{crqa} to quantify the accommodation over the course of whole conversations to detect long-term relations and accommodation structures, instead of comparing two halves of the conversation or neighboring turns, as often done \citep{Levitan2013entrainment,Rahimi2018weighting}.
-\todo[inline]{1-2 sentences connecting to time series}
-Non-linear analysis methods for time series include, among others, noise reduction and non-linear prediction.
+Such analyses overlook the serial temporal nature of such \acp{hhi}, which falls under the definition of a \emph{time series}.
+This open a new variety of non-linear methods that can enhance accommodation analysis
+Non-linear analysis methods for time series include, among others, noise reduction and non-linear prediction, e.g., for finance and natural phenomena.
 The method utilized here uses phase-space embedding, which describes temporal evolution of trajectories of a dynamic system by projecting their embedding onto some common space.
-
-\todo[inline]{find 1-2 more examples of non-linear methods, and say that here we present CRQA}
 
 \subsection{Capturing different behaviors with \acs{crqa}}
 \label{subsec:capturing_behaviors}
 
-In this study, the target features are either evaluated when detected or sampled in defined intervals using a dedicated system for accommodation analysis \citep{Raveh2018Specom}.
-\todo{make sure there is more explanation about how this is done where the experiments are described}
+In this study, the target features are either evaluated when detected or sampled in defined intervals using a dedicated system for accommodation analysis \citep[][and see details in \cref{sec:dataset_calls}]{Raveh2018Specom}.
 Furthermore, these values are extracted in chronological order, and thus produce sequences of discrete-time data, which makes them suitable for time series-based analysis.
 Due to the nature of these features (and perhaps any spontaneous, interactive linguistic feature), the resulted time series can be assumed to be non-seasonal and non-stationary.
-\todo{make sure that saying that doesn't invalidates the use of CRQA}
+%\todo{make sure that saying that doesn't invalidates the use of CRQA}
 This recognition as time series opens new methodological possibilities for examining the evolution of these features and their realizations by different speakers in an interaction over time.
 Such methods include, for example, autocorrelation for examining serial dependency and forecasting for transferring information about the time series across time.
 These methods can extend upon others in analyzing accommodation, with the advantage of offering more dynamic approach rather than the sequential methods usually used.
@@ -100,15 +119,18 @@ This is done by comparing delayed instances of the phase-space trajectories of t
 This allows finding more general patterns in the time series characteristics and how they interact.
 It is especially suitable for studying accommodation and related phenomena, as it detect times in which the time series (i.e., the speakers' productions) are more similar.
 Moreover, it can mathematically show which of the time series led the alignment or whether the changes were done in synchrony (see overview of these processes in \cref{subsec:variation_types}).
+Is has already been used in \ac{hhi} research.
+For instance, for analyzing and predicting differences in scenarios with disagreement and deceptive behavior \citep{Duran2017conversing}.
+Similar method was used to measure conversational entrainment for assessing speech pathology \citep{Borrie2019syncing}, finding that sessions in which periods of synchronization were established were rated as more successful by therapists.
+This is a good example of a cooperative interaction with a common goal where accommodation unconsciously contributes this its success.
 In sum, \ac{crqa} can be used to objectively quantify and describe accommodation between speakers dynamically across entire conversations.
-\Cref{subsubsec:detecting_recurrence,subsubsec:parameters_crqa} explain the technicalities of \ac{crqa}, how its output can be interpreted, and how it is used in the studies presented here.
+\Cref{subsec:recurrence_detection,subsec:parameters_crqa} explain the technicalities of \ac{crqa}, how its output can be interpreted, and how it is used in the studies presented here.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{crqa_plot_115993376241473405}
-	\caption
-	[\acs{crqa} analysis of pitch in a sales call]
-	{A recurrence plot generated for one of the analyzed conversations.
+	\caption[\acs{crqa} analysis of pitch in a sales call]
+		{A recurrence plot generated for one of the analyzed conversations.
 		The y-axis marks the conversation timeline, in time stamp, of the \ac{ae}, and the x-axis of the prospect.
 		Each blue dot represents a co-visitation of a similar state.
 		Blue dots forming an diagonal line indicate sustained recurrence between the two speakers (see description of NRLINE in \cref{subsec:output_values} for details).
@@ -120,8 +142,8 @@ In sum, \ac{crqa} can be used to objectively quantify and describe accommodation
 	\todo[inline]{make the plot square, to make it clearer that the times have the same length}
 \end{figure}
 
-\subsubsection{Detecting recurrence}
-\label{subsubsec:detecting_recurrence}
+\subsection{Recurrence detection}
+\label{subsec:recurrence_detection}
 
 \Ac{rqa} is a non-linear analysis method that quantifies the number and duration of recurrences withing a dynamical system presented by its state-space trajectory, which is typically the realization of a sampled time series.
 It was introduced by \citet{Zbilut1992embeddings} and later extended by \citet{Webber2005recurrence, Marwan2002cross}.
@@ -137,7 +159,7 @@ Recurrence can therefore be defined as the binary function
 	\end{cases},
 \end{equation}
 %
-where $i$ and $j$ are x-axis and y-axis coordinates in a recurrence plot (see \cref{fig:crqa_plot}), respectively, $d$ are the embedding dimensions, and $\varepsilon$ defines the threshold distance below which two cross-trajectory points are considered similar (see explanation about the \emph{radius} parameter in \cref{subsubsec:parameters_crqa}).
+where $i$ and $j$ are x-axis and y-axis coordinates in a recurrence plot (see \cref{fig:crqa_plot}), respectively, $d$ are the embedding dimensions, and $\varepsilon$ defines the threshold distance below which two cross-trajectory points are considered similar (see explanation about the \emph{radius} parameter in \cref{subsec:parameters_crqa}).
 In a recurrence plot, the points $R_{i,j}$ are colored equal if their value is 1 or stay white otherwise.
 \Ac{crqa} is an extension of \ac{rqa} analyzing recurrence quantification between two different time series rather than a single one time series with itself.
 As such, \ac{crqa} is a quantification technique for non-linear dynamical systems that describes when and to what extent concurrences (or \emph{co-visitations}) can be found in a system consists of two time series.
@@ -154,17 +176,14 @@ If the diagonal stretches above the \ac{los}, the speaker plotted on the x-axis 
 The closer the diagonal is from the \ac{los}, the quicker the process occurred, i.e., the led speaker aligned his behavior to the leading speaker after a shorter time.
 Due to its ability to detect these similarities non-linearly, \ac{crqa} can be utilized to measure accommodation in the scope of entire conversations rather than taking only neighboring turns into account \citep[cf.][]{Levitan2013entrainment}.
 
-For instance, it has already been used to describe behavior in conversations \citep{Duran2017conversing} and to measure conversational entrainment for assessing speech pathology \citep{Borrie2019syncing}.
-\todo[inline]{2-3 more sentences about each of those examples to show that CRQA is a valid technique}
-
-\subsubsection{Parameter tuning}
-\label{subsubsec:parameters_crqa}
+\subsection{Parameter tuning}
+\label{subsec:parameters_crqa}
 
 \Ac{crqa} uses three parameters:
 
 \begin{enumerate}
 	\item \textbf{Delay} -- estimates the temporal shift required to make the two time series maximally aligned.
-	It is measured by the same time unit as the time series, in the presented studies, a slice (see \putref{reference to where feature extraction is described}).
+	It is measured by the same time unit as the time series, in the presented studies, a slice (see \cref{subsec:results_hhi}).
 	
 	\item \textbf{Embedding dimensions} -- are the number of dimensions into which the data points are embedded.
 	These dimensions are delayed copies of the original time series $S(t)$ created by adding a lag $k$ to them.
@@ -295,22 +314,26 @@ It goes without saying that the labels of both criteria are noisy, as sales oppo
 To minimize such cases, calls done by personnel that are not sales people in the customer companies were filtered out.
 %Following that, we hypothesized that successful sales calls would show more distinct speech patterns and vocal accommodation behaviors than unsuccessful calls.
 
-\todo[inline]{1-2 sentence lead into feature extraction}
-Feature extraction was\ldots\\
-To increase temporal resolution, the audio signals were split into two-second slices.
+As a preparation for the feature extraction and to increase temporal resolution, the audio signals were split into two-second slices (see motivation and further details in \cref{sec:analysis_hhci}).
 Such fine-grained extraction makes the use of \ac{crqa} more elaborate, as it has more data points to consider (see \cref{sec:crqa}).
 Splitting the turns also creates equal, consecutive, and more comparable time units for an interaction without introducing artificial boundaries by dividing it into a predefined number of parts.
 The slicing was done per turn, so that a slice contains only the speech of a single speaker.
 Any remainder of a turn got a slice of its own.
 When a speaker is not speaking (e.g., during the turn of the other interlocutor), it is assumed that the last produced value is maintained until the speech is renewed and a new value can be measured.
 This way, no discontinuities are created and the same number of data points is extracted for both speakers, which creates a better temporal representation of the conversation.
-Feature extraction was done sequentially for all the conversations using Praat \citep{Boersma2001praat} scripts that first extracted the \ac{f0} value from the middle of each slice and then post-processed the output to acquire cleaner measures.
-\todo[inline]{a few more sentences about how the values were transformed/shaped as time series, padded (look at R scripts, etc.)}
+Feature extraction was done sequentially for all the conversations using Praat \citep{Boersma2001praat} scripts that extracted the \ac{f0} value from the middle of each slice and then post-processed the output to acquire cleaner measures.
+Afterwards, the list of measures were turned into two equally long time series.
+First, the values for each speaker were separated into two list.
+Subsequently, missing values, e.g., due to non-speech slice, were replaced by the most recent valid value of their respective speaker, as motivated above.
+Finally, if there were missing values at the beginning of a list, the first valid value of the that list was used, under the assumption that the first utterance represents the immediate time prior to it.
+The resulting two lists had the same number of values representing the same timestamps along a single conversation, and were used for the \ac{crqa}.
+Note that this process was performed individually for each conversation, regardless of whether one or more of the speakers participated in other conversations in the datatset.
 
 \section{Analysis}
 \label{sec:analysis_hhi}
 
-\todo[inline]{introduction to results}
+Time series-based analysis methods like \ac{crqa} can be used in many ways.
+The specific calculations used in this study are introduced below, followed by the results they yielded for the collection of sales calls and their interpretation.
 
 \subsection{\Acs{crqa} output values}
 \label{subsec:output_values}
@@ -344,7 +367,7 @@ For simplicity, it is assumed that the time series lengths are equal, so that $N
 	Note that $l=1$ refers to lines of length 1, i.e., a single recurrence point.	
 	Similarly, $l=2$ are lines spanning over two time stamps (shortest length possible).
 	This length is very forgiving in the context of accommodation, for such short lines can be formed arbitrarily and do not necessarily point to a meaningful accommodation process.
-	Therefore, in the experiments presented here $l_{\min}$ was set to $\frac{N}{100}$, as in \cref{subsubsec:parameters_crqa}.
+	Therefore, in the experiments presented here $l_{\min}$ was set to $\frac{N}{100}$, as in \cref{subsec:parameters_crqa}.
 	
 	Another measure, Laminarity (LAM), can be calculated the same way, but for the vertical lines in the plot.
 	In that case, a $v_{\min}$ would be defined and $P(v)$ would provide the histogram of vertical line lengths.
@@ -395,13 +418,13 @@ For simplicity, it is assumed that the time series lengths are equal, so that $N
 %
 
 \subsection{Results}
-\label{subsec:results}
+\label{subsec:results_hhi}
 
 Since multiple variables are compared here, the Bonferroni correction \citep{Bonferroni1936teoria} was applied, so that the overall error rate across all variables is \num{0.05}.
 Therefore, for a single comparison to be significant, it must be lower than $\alpha = 0.007$.
 The non-parametric two-sample Wilcoxon test \citep{Wilcoxon1945individual} was used to determine the significance levels.
 \cref{tab:crqa_results} shows a summary of means and p-values of the CRQA outputs for failed and successful calls.
-The \ac{rr} mean value is about 10 in both groups, which proves to be a suitable goal for optimizing the parameters (see \cref{subsubsec:parameters_crqa}).
+The \ac{rr} mean value is about 10 in both groups, which proves to be a suitable goal for optimizing the parameters (see \cref{subsec:parameters_crqa}).
 Significant differences between failed and successful calls were found for the values DET, NRLINE, and rENTR.
 The first two, along with their higher means for the failed calls, indicate more time-synchronized convergence in the failed calls.
 The latter is harder to interpret, especially due to the similar means for successful and failed calls.
@@ -462,6 +485,7 @@ The significant difference in the NRLINE measure stands in line with the finding
 		mean prospects	& 10.1					& 5.4					& 154.4					& 31.2				& 15.7			& 1.4				& 0.8				\\
 		\bottomrule	
 	\end{tabularx}
+	\todo[inline]{write a bit about insignificant results in bottom half of table}%
 \end{table}
 
 To shed more light on the lead role in a conversation, \acl{cc} was used to determine which interlocutor leads the change in behavior.
@@ -478,7 +502,7 @@ Since the calls in the collections used here have a typical structure, it is als
 The difference between the lag position distribution of reps and prospects is significant ($p = 0.0065$ with $\alpha = 0.05$).
 However, the differences between successful and failed calls within the leading speakers are not significant.
 It is also evident that when the reps were leading, they consistently did so at an early stage of the conversation, all the more so in successful calls, whereas the prospects' lead varied much more and generally happens at a much later time.
-\todo[inline]{write a bit about insignificant results in bottom half of table}
+\todo[inline]{add paragraph about interactivity and talking ratios with the functions in conversation-funs.R (make a table for this or combine with first table if too little information). add 1-2 sentences describing this in an earlier section if necessary}
 
 \begin{figure}[H]
 	\centering
@@ -507,7 +531,7 @@ Another possible explanation is that reps give up their own lead in the call (se
 This, too, is a known effect in sales business.
 On the other hand, utilizing \acl{cc} lags (i.e., how the recurrence needs to shift for the speakers to be maximally aligned) was useful for differentiating between the leader in the calls.
 When \acp{ae} lead, they tend to do so at an earlier stage than prospects, especially in successful calls.
-This, together with the \ac{crqa} results shown in \cref{subsec:results}, suggests that \acp{ae} do not necessarily always lead the conversation, but know when to exploit this technique, consciously or not, to improve their stance in calls.
+This, together with the \ac{crqa} results shown in \cref{subsec:results_hhi}, suggests that \acp{ae} do not necessarily always lead the conversation, but know when to exploit this technique, consciously or not, to improve their stance in calls.
 
 Though beyond the scope of this work, three further investigation directions on this topic are suggested here:
 First, deepening the aspect of the relationship between the \acp{ae} and the prospects by examining the mutual changes not only within single calls, but over the course of an entire deal spanning over several meetings.
