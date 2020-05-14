@@ -14,10 +14,110 @@ Finally, a survey of works on phonetic convergence in \acl{hci} lays the ground 
 \citet{Racz2020morphological}  % example for accommodation in morphology
 \citet{Aubanel2020speaking}  % example for f0
 
-\subsection{Audience design}
-\label{subsec:audience_design}
+%\subsection{Audience design}
+%\label{subsec:audience_design}
+%\todo{some start \url{https://en.wikipedia.org/wiki/Audience_design}}
 
-\todo{some start \url{https://en.wikipedia.org/wiki/Audience_design}}
+\subsection{Measuring accommodation}
+\label{subsec:measuring_accommodation}
+
+\subsection{Limitations of \acl{did} measures}
+\label{subsec:limitations_of_did}
+
+\todo[inline]{consider changing the title of this subsec to something more general like "limitations and aspects" (also to be able to write more general things}
+
+\todo[inline]{a few sentences (where?) that *two* aspects are missed by DiD -- temporal and directionality}
+
+%\subsection{Conversation-level accommodation behavior}
+%\label{subsec:conversation-level_accommodation_behavior}
+
+Conversations are complex processes that require some expertise and some quantitative analysis to detect and isolate specific patterns in them.
+All the more so, since effects may have long, non-linear relations.
+A behavior is a complex collection of conducts of a person (and any organism, system, or artificial entity), particularly those towards a certain environment.
+The realization of one's behavior over the course of a conversation can communicate information regarding one's state and goals, especially with this deviates from the individual's expected behavior.
+The behavior leads to reactions to environmental input and can be modified due to reinforcements from the environment or self-directed motives.
+These modifications can occur over time quickly or slowly, consciously or unconsciously, and to greater or lesser extends, which makes them dynamic and thus cannot be defined discretely.
+All the above is true also for vocal behaviors, which are expressed in spoken interactions.
+Specifically, vocal accommodation reflects dynamic changes during conversation that can be affected by the external speech input of other interlocutors.
+It can therefore be beneficial to \textbf{move away from value comparisons in favor of behavior descriptors} to depict an interaction.
+This is done by analyzing spoken interactions as entire events with a continuous temporal dimensions as opposed to a comparison between some discrete points in time.
+Examining the whole conversation can help, for example, to determine who was leading the changes or when more accommodation occurred.
+In this work, such analyses were utilized in \cref{chap:conv_analysis} to determine the leading speaker in each conversation and in \cref{chap:speech_variations_in_hhci} to expose the ongoing changes in the human speaker's productions.
+
+The way speakers accommodate to each other is very unlikely to be linear from beginning to end and can change throughout the conversation.
+Therefore, comparing the differences between two discrete, distant points in time might miss or oversimplify some dynamics that occurred between them.
+Moreover, comparisons like that must inherently take the view of one speaker instead of looking at the conversation as a complete entity.
+Quantitative analyses often leave accommodation hidden or overly-simplified if analyzing a conversation on turn-by-turn basis or by splitting it arbitrarily into two or more parts (often equally-long, non-overlapping time intervals) and directly comparing them using raw values as in \citet{Heldner2010pitch, Rahimi2018weighting, Ibrahim2019fundamental}.
+\citet[][p.~15]{DeLooze2014investigating} points out that in these cases it is assumed that accommodation is a strictly local phenomenon where a speaker's utterances is linked exclusively to the other interlocutor's immediate preceding utterance.
+Such analyses result in a linear, static representation of the conversation's evolution, from which generalized conclusion are hard to draw.
+They might even be inaccurate or misleading, especially when both speakers change their output over time, as demonstrated by \citet{CohenPriva2019limitations}.
+That work specifically refer to \ac{did} measurements, where pairs of two discrete points in time are compared to measure accommodation between speakers using the following distance formula\footnote{Note that this way of measuring \ac{did} is commutative and therefore doesn't measure the changes from the view of a specific speaker \citep[unlike,~e.g.,][p.~3]{CohenPriva2019limitations}.}
+%
+\begin{equation}
+	\label{eq:did}
+	DiD_{\vec{i},\vec{s}} \coloneqq \sqrt{(\vec{i}_{t + 1}^n - \vec{s}_{t + 1}^n)^2 + (\vec{i}_t^n - \vec{s}_t^n)^2} \equiv \lVert \vec{i} - \vec{s} \rVert_n.
+\end{equation}
+\eqname{\Acl{did} measure (simplified)}
+\noindent
+%
+\cref{fig:accommodation_types} shows the interaction between two speakers' productions in a hypothetical conversation.
+By merely looking at the plot, it is clear that the two speakers do not sustain the same behavior throughout the conversation.
+For example, between marks A and B the orange speaker's values go remarkably downwards (though not linearly), while the green speaker remains roughly stable -- i.e., \emph{divergence} (although this can also be seen as an independent changes).
+Subsequently, between B and C the distance is generally maintained.
+Between C and D \emph{convergence} occurs \textbf{in both speakers}.
+Lastly, lagged \emph{synchrony} can be observed between marks D and E.
+If compared directly, the lagging might make the value changes look somewhat random.
+However, looking at the entire segment, it's clear that the change is similar and is lead by the green speaker.
+None of these mutual behavior can be captured by a \ac{did}-based approach.
+For instance, comparing the beginning (mark A) and end (mark E) of the conversation would lead to the conclusion that there was no change in the values (illustrated by the corresponding dashed lines).
+Similarly, splitting the conversation in two equal halves (A to D and D to E) would make it look like the changes were symmetrical, missing the obviously different behaviors of the speakers in these two halves.
+Additionally, the directionality of the convergence between marks C and D will be missed by simple \ac{did} distance measures, which might give the impression that the changed rooted from only one of the speakers.
+This could be satisfactory when it can be assumed that such changes can only occur in one speaker, like when talking with some computer-based interlocutor like a \ac{pa} (\cref{sec:convergence_to_natural_and_synthetic_stimuli,sec:dataset_hhci}, but not when both speakers' productions may be flexible, like in \ac{hhi} (\cref{sec:analysis_hhi}) or ultimately adaptive \acl{sds} (\cref{sec:adaptive_spoken_dialogue_systems}).
+This limitation can be compensated to some extent by examining the \emph{relative} occurring changes \emph{gradually} (\cref{fig:condition_convergence_comparison,subsec:temporal_analysis}).
+
+%Methods used in time series analysis are utilized in this paper to detect and model long-term relations within a conversation.
+%This approach offers different types of analyses and emphasizes the temporal aspect of spoken interactions.
+%The first is \ac{crqa}, which is proportionate to the conversation's length.
+%It measures the \emph{mutual} similarity changes of the speakers throughout the entire conversation in term of recurrence.
+%Additionally, it tells when the recurrence segments sustained for longer periods and which speaker lead them.
+%\cref{sec:capturing_patterns_in_time_series} explains how this method is used to differentiate the dataset introduced in \cref{sec:dataset_and_feature_extraction} to define different profiles.
+%Another method is neural autoencoder (\cref{subsec:dim_reduction}), which can learn non-linear representations in a latent space.
+%This technique is good for creating generalized models based on many conversations and speakers.
+%By using \ac{vae}, these models become generative and can therefore be used for producing varying speech output of a system fitting to its chosen profile or combination of profiles.
+%Finally, \acp{gp} add stochastic Gaussian variability to the yielded output based on the function distribution derived from the models.
+%Variations of the base behavior are produced that way.
+%This is demonstrated in \cref{subsec:generation_gp_kriging}.
+
+%As discussed in \cref{subsec:conversation-level_accommodation_behavior}, \ac{did} and sequential methods for measuring vocal changes (e.g., accommodation) rely on the chronological, turn-by-turn order of the interaction and their scope is limited to detect local phenomena only.
+%Non-linear methods, contrarily, are not dependent on the chronological order of the interaction's turn and can therefore find long-term, more distant relations between the speakers with respect to the target feature.
+%For instance, that an accommodation process (or generally closer values) occurred at some point in the beginning and continued at a later time, or that there was a periodic pattern of convergence and divergence throughout the interaction.
+%Such phenomena point to more general, conversation-level properties that do not rely on the unfolding chronological order of the turns.
+%This is especially useful for long interaction, where various patterns occur a more general view may be insightful (see example in \cref{fig:accommodation_types}).
+%
+%We take here a different view on the structure of the conversation, namely referring to it as a set of \emph{time series}.
+%Time series is a sequence of chronologically ordered values sampled from some data stream along equal time intervals.
+%Due to the way the dataset presented in \cref{sec:dataset_and_feature_extraction} is analyzed, the extracted features can be treated as couples of \emph{time series}, one for each speaker in each conversation.
+%\todo{examples of where speech is treated as TS (ASR?)}
+%Because of the nature of these features (and perhaps any spontaneous, interactive linguistic feature), the resulted time series can be assumed to be non-seasonal and non-stationary.
+%\todo{might want to remove this sentence to not commit to this type of data}
+%This view on the data enables a new assortment of analysis methods, from which \acf{crqa} and \acf{gp} are demonstrated here (\cref{subsec:crqa,subsec:generation_gp_kriging}).
+%
+%This recognition as time series opens new methodological possibilities for examining the evolution of these features and their realizations by different speakers in an interaction over time.
+%Such methods include, among others, autocorrelation for examining serial dependency and forecasting for transferring information about the time series across time.
+%Non-linear analysis methods for time series include, for example, noise reduction and non-linear prediction.
+%We utilize here another method that uses phase-space embedding, which describes temporal evolution of trajectories of a dynamic system by projecting their embedding onto some common space.
+
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\linewidth]{accommodation_types}
+	\caption[Different accommodation types in a conversation]
+		{The evolution of a feature's values produced by two speakers represented by the green and orange solid lines.
+		The dashed lines connect the corresponding initial and final values of each speaker.
+		The letters A to E mark timestamps with behavioral changes.
+		Each caption describes the behavior between the two corresponding marks.}
+	\label{fig:accommodation_types}
+\end{figure}
 
 \section{Pronunciation varieties}
 \label{sec:pronunciation_varieties}
@@ -125,7 +225,6 @@ introduction\ldots
 \citet{Xiao2015analyzing}\\% speech rate entrainment in HHI
 \citet{Cohen2017converging}\\% a bigger work on speech rate tnrainment in HHI
 \citet{DeLooze2014investigating}\\% good for when talking about methods
-\citet{Priva2019limitations}\\% why just measuring differences is not enough. probably better to put this in the chapter with CRQA
 
 \begin{figure}[t]
 	\centering
