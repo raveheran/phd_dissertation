@@ -29,6 +29,7 @@
 \usepackage{amsmath} % for extended mathematical expressions
 \usepackage{amssymb} % for more math symbols
 \usepackage{mathtools} % for even more math symbols
+\usepackage{mathptmx} % unify math-mode and normal text font
 \usepackage{lingmacros} % for ``linguistic'' listing
 \usepackage{fancyhdr} % for more control over header/footer desiging
 \usepackage{sectsty} % more options for sections
@@ -79,6 +80,7 @@
 
 % *** additional packages ***
 % --------------------------------------------------
+\usepackage{datetime} % for customized date formating 
 \usepackage{titlesec} % for controlling title formatting
 \usepackage{lmodern} % for avoiding font-shape and letter-size warnings
 \usepackage[colorinlistoftodos]{todonotes} % for todo notes on PDF
@@ -88,6 +90,10 @@
 % ==========================================
 % 				CONFIGURATIONS
 % ==========================================
+
+% month-year date format definition
+%---------------------------
+\newdateformat{monthyeardate}{\monthname[\THEMONTH], \THEYEAR}
 
 % font definitions
 % ----------------
@@ -355,6 +361,7 @@
     \Large \textit{\textbf{Doctor of Philosophy in}}\\
     \Large \textit{\textbf{Computational Linguistics}}\\
     [1cm] \Large Supervisor: Dr.\ Ingmar Steiner\\[2cm]}
-\date{\today}
+%\date{\today} % normal date
+\date{\monthyeardate\today}
 %\titlepic{\includegraphics[scale=0.7]{Figures/logo_ekut.png}}
 \AlCentroPagina{uds_logo_trans.png}
