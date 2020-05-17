@@ -124,81 +124,143 @@ This limitation can be compensated to some extent by examining the \emph{relativ
 
 \todo[inline]{some introduction...}
 
-\subsection{Variation types}
+\subsection{Terminology -- variation types}
 \label{subsec:variation_types}
 
-The term \enquote{convergence} is a key concept in this work.
-To avoid confusion or ambiguous meaning from its use in other fields (like \ac{ml}), its relevant definition will be explained here, along with some other, related terms.
-The verb \textit{to converge} is defined by Cambridge Dictionary\footnote{\url{http://dictionary.cambridge.org/dictionary/english/converge}} as moving toward, or merging into, the same point (e.g., roads).
-A more non-materialistic definition is given as well: \enquote{If ideas and opinions converge, they gradually become similar}.
-Another, somewhat more general, definition to the noun \textit{convergence} is given by Merriam-Webster dictionary\footnote{https://www.merriam-webster.com/dictionary/convergence}: \enquote{the act of converging and especially moving toward union or uniformity}.
-As all these definitions suggest, the key idea of this concept is two (or more) entities that \textbf{both} change toward some point and ultimately meet.
-In some time-dependent cases, like spoken interactions, there might not be enough time for the entities (the speakers) to meet.
-In the scope of phonetic convergence, this still counts as convergence, based on the definition proposed by \citet{Pardo2006phonetic}: \enquote{[\ldots] increase in segmental and suprasegmental similarities between two speakers}.
-This also resembles the definition suggested by \citet{Xia2014prosodic}: \enquote{[\ldots] behaviors become more similar over time} (where \enquote{behaviors} refers to different modalities of communications in conversation, e.g., facial expressions, gestures, lexical choices, etc.)
+The term \enquote{convergence} is a central notion in this work.
+This term's definition in this work is different from its meaning in other fields, like \ac{ml}.
+Moreover, a wide range terms are used in the literature synonymously to describe the same phenomena, although there often subtle differences or emphases on specific angles of it.
+Disambiguate these various terms should help avoiding confusion and allow more fine-grained description of such processes.
+The core meaning of convergence is explained here in details, followed by a list of related terms and explanations about their use in the literature.
 
-Other terms are sometimes used to describe similar processes, and it is important to make the distinction between those and convergence.
-Note that some of the terms are used interchangeably or as synonyms or as hyper-~and~hyponyms in other works, and the distinctions made here, although pretend to unequivocally distinguish between them all, are designated for the scope of this work only.
-\todo{find references for each of those}
-\todo{create/find figures that describe (at least for some)}
-\todo{maybe create a table to compare all of them based on: mutual/one-sided, account for both increase and decrease, has a specific variation as a goal, etc.}
+The verb \textit{to converge} is defined in Cambridge Dictionary\footnote{\url{http://dictionary.cambridge.org/dictionary/english/converge}} as moving toward, or merging into, the same point (e.g., roads).
+A more non-materialistic definition is provided as well: \enquote{If ideas and opinions converge, they gradually become similar}.
+Another, somewhat more general, definition to the noun \textit{convergence} is given in Merriam-Webster dictionary\footnote{\url{https://www.merriam-webster.com/dictionary/convergence}}: \enquote{the act of converging and especially moving toward union or uniformity}.
+As all these definitions suggest, the core idea of this concept is two (or more) entities that change (potentially in different degrees) toward some physical or abstract point and ultimately meet.
+In some time-dependent cases, like spoken interactions, this point can be expected to be withing the range of the entities (the speakers).
+Further more, in such cases there might not be enough time for the them to meet, but to become closer, more similar, to one another nonetheless.
+This matches the definition of \emph{phonetic convergence} proposed by \citet{Pardo2006phonetic}: \enquote{[\ldots] increase in segmental and suprasegmental similarities between two speakers}.
+This also resembles the definition suggested by \citet{Xia2014prosodic}: \enquote{[\ldots] behaviors become more similar over time}, with \enquote{behaviors} referring to different modalities of communications in conversation, e.g., facial expressions, gestures, lexical choices, etc.
+\review{make sure the direct quotes are accurate}
+Other terms are sometimes used to describe similar processes or different aspects, and it is important to make the distinction between them.
+Note that some of the terms are used interchangeably, as synonyms, or as hypernyms and hyponyms in other works.
+
+The list presented here aims to unequivocally distinguish these terms and grant them useful relations to offer a meaningful common terminology, at the very least within the scope of this work and hopefully in the community of this research area in general.
+
+\todo{create/find figures that describe (at least for some)?}
+\todo{maybe create a table to compare all of them based on: mutual/one-sided, account for both increase and decrease, has a specific variation as a goal, what aspects is emphasizes (mutuality, initiating the effect, awared or not, capability, etc. maybe group the table by this text-based field and make the others yes/no (with V and X) columns) etc.}
 \begin{description}
-	\item[accommodation] a general term, comes from accommodation theory (?).
+	\item[accommodation] -- a general term, comes from accommodation theory (?).
 	Refers to both increase and decrease in similarity.
 	
-	\item[assimilation] implies a one-sided process, where one side changes in a certain way to match the other.
+	\item[convergence] -- \ldots
+	
+	\item[assimilation] -- implies a one-sided process, where one side changes in a certain way to match the other.
 	It is seen more as a process that occurs as a result of a specific area/context.
 	This term is typically used in Phonology to describe changes in pronunciation, e.g., when voiceness of a sound changes to match this of the sound adjacent to it.
-	For more details and examples, see \cite[][chapter 3.3, pp. 89-98]{Hall2011phonologie}.
+	For more details and examples, see \cite[][Section 3.3, pp.\ 89-98]{Hall2011phonologie}.
 	Note that assimilation is only one of the phonological processes (others would be dissimilation, epenthesis, elision, and more), but since it's the once describing two things becoming more similar to each other, it is the one that might be used in this context.
 	
-	\item[entrainment] \citet{Brennan1996lexical} presents this terms as the (potentially unaware) decision of an interlocutor to start using the same terms as the other interlocutor. This means that one of the interlocutors established the use of the aforementioned term in the interaction.
-	The change typically described as categorical (see also \textit{priming} below), which is a key difference from the definition of convergence here.
+	\item[entrainment] -- is presented by \citet{Brennan1996lexical} as the (potentially aware) influence of an interlocutor on another, e.g., to impose lexical units in an interaction, with emphasis on the on-sided nature of the effect.
+	This means that one of the interlocutors established the use of an aforementioned term which created a bias by the conversation partner to employ it as well.
+	The change is sometimes seen as categorical (similar to \textit{priming}), which is a key difference from the definition of convergence here.
 	This is especially relevant in \ac{hci}, as it is much easier for a computer, due to the vocabulary problem \citep{Furnas1987vocabulary}, to establish such uses.
-	\citet{Lopes2013automated} also sees entrainment as something imposed by one side of the interaction, but this time the computer follows the lexical choices of the user.
-	This term is sometimes also used a static measure of changes in an interaction. In this context, convergence is usually refereed to the parallel dynamic measure. The difference being comparing changes over the whole interaction or comparing changes in different temporal points in the interaction (For example, between two halves of a session, as done by \citet{Xia2014prosodic}).
+	\citet{Lopes2013automated} describes entrainment as imposed by a human speaker, where a computer-based interlocutor follows the lexical choices of the user.
+	This term is sometimes also used a static measure of changes in an interaction (cf.\ \cref{subsec:limitations_of_did}), as in \citet{Levitan2013entrainment}.
+	Conversely, \emph{convergence} is refereed here to the potentially mutual dynamic measure, the difference being comparing discrete timestamps in the interaction (for example, between two halves of a session, as done by \citet{Xia2014prosodic}) versus changes occurring gradually over its entire length.
+	In addition to all the above, entrainment is often synonymous to convergence or accommodation in more technical fields.
 	
-	\item[priming] is similar to entrainment, but usually works on a larger scope -- both in terms of change and time.
+	\item[priming] -- is similar to entrainment, but usually works on a larger scope -- both in terms of change and time.
 	As oppose to entrainment, e.g., on the lexical level, priming can influence not just the use of one specific term, but a whole semantic field, and more in psycholinguistics contexts.
 	For example, it was shown in experiments \cite[e.g.,][]{Meyer1971facilitation, Schvaneveldt1973retrieval} that people will response faster to words from a specific semantic field after being exposed to other words from it (i.e., different words that are semantically related).
 	In more general terms, priming changes the likelihood of a person to use specific behavior, typically on some semantic or syntactic level.
 	The temporal scope is different as well.
 	Priming can have an effect in a longer term than a single interaction, ranging from multiple interactions, hours, days, and up to years.
 	This is why priming is often referred to when talking about children \cite[see e.g.\ ][]{Huttenlocher2004syntactic, Wansink2012would}.
-	Like entrainment, priming also typically describe categorical change, as oppose to gradual change on a scale (see \textit{entrainment} above and cf.\ \citet{Reitter2006computational} and \citet{Pace2013concept}).
+	Like entrainment, priming also typically describe categorical change, as oppose to gradual change on a scale (see \textit{entrainment} above and cf.\ \citet{Reitter2006computational, Pace2013concept}).
 	
-	\item[adaptation] usually refers to the capability on the machine side (really only machine side?).
-	also refers to a change that will last after the current conversation, e.g., like a user adaptation in \ac{tts}.
+	\item[adaptation] -- refers to the process of making intentional changes that suit certain conditions or situations.
+	As such, this term stresses the ambition of these aware modifications in vocal behavior made by an interlocutor to be more similar to another, known and defined, target exhibited by another speaker.
+	\citet{Kang2010emergence, Hwang2015phonetic} both examine phonetic adaptation process that occur gradually when encountering a new sound environment, to which speakers want or are expected to adapt.
+	In these cases, the changes are also likely to be maintained outside the scope of a specific interaction.
+	Adaptation is also used to describe the technical capability -- or more often the lack of one -- of a machine to match its speech production (typically to a user talking with the system).
+	This fits the definition of adaptation being intentional and having a well-defined target to adapt towards.
+	However, this is still a very limited feature due to the state of \ac{tts} technologies.
+	More on the design and challenges of such capabilities in \acp{sds} in \cref{sec:adaptive_spoken_dialogue_systems,chap:convergence_module_for_sdss}.
 	
-	\item[alignment] maybe like coordination? Maybe refers more to the time-aspect, that the interlocutors change in the same times, but not necessarily in the same way? Iona talk a bit about alignment in the introduction of the 2018 journal paper. specifically Interactive Alignment Model \citep{Pickering2004behavioral}
+	\item[alignment] -- maybe like coordination? Maybe refers more to the time-aspect, that the interlocutors change in the same times, but not necessarily in the same way? Iona talk a bit about alignment in the introduction of the 2018 journal paper.
+	specifically Interactive Alignment Model \citep{Pickering2004behavioral}
 	
-	\item[synchrony] measures how similar the values of the changes over time.
+	\item[synchrony] -- measures how similar the values of the changes over time.
 	However, the changes might be\ldots, i.e., the distance between the speakers does not reduce, but they move in synchrony in terms of absolute values.
 	One of the interlocutors will be the ``leader'' of this process, after whom the synchronized changes will be triggered.
 	Typically measured using Pearson's correlation coefficient (e.g., as in \citet{Edlund2009pause, Xia2014prosodic}).
 	\todo[inline]{\citet{Levitan2011measuring} has a nice visual description for it.}
 	
-	\item[mimicry] difference from imitation from \url{https://www.voices.com/blog/mimicry_vs_imitation/} use here the \citet{Chartrand1999chameleon} and \citet{Gueguen2009mimicry} and maybe \citet{Parrill2006seeing} reference, mention \textit{Chameleon effect}\ldots
+	\item[mirroring] -- potentially an aware act.
+	the changes themselves are not planned, but rather automatic to match the target as closely as possible, without considering the output (like an actual mirror).
 	
-	\item[imitation] (also refer to mimicry, as they are similar)similar to mimickry, but is done awarely, where the speaker's goal is to appear as similar as possible to the imitated interlocutor.
+	\item[mimicry] -- is the tendency to behave, or speak, broadly like someone else.
+	The emphasize here is on the \emph{general} inclination, which hints it can be done unintentionally, or, alternatively, be deliberate, but without the goal to perfectly match the target (as oppose to imitation).
+	% inspired by https://www.voices.com/blog/mimicry_vs_imitation/
+	\citet{Gueguen2009mimicry} demonstrate how mimicry can earn the mimicker more favorable judgment in social interactions.
+	This is explained by mimicking creating greater feeling of affiliation and rapport in communication, or with the more positive evaluation of the mimicked person due to an enhanced familiarity established by the mimicker.
+	\citet{Parrill2006seeing} show just how natural mimicry is in \ac{hhi} in an experiment where participants' behavior was affected merely by watching mimicking takes place in another conversation.
+%	reference, mention \textit{Chameleon effect}\ldots
 	
-	\item[mirroring] potentially an aware act. the changes themselves are not planned, but rather automatic to match the target as closely as possible, without considering the output (like an actual mirror).
+	\item[imitation] -- similar to mimicry, but is done awarely and with the goal to completely match the target, where the speaker's goal is to appear as similar as possible to the imitated interlocutor.
+	emphasizes the speaker's intent to create the effect of copying the other's behavior as closely as possible.
+	% inspired by https://www.voices.com/blog/mimicry_vs_imitation/
+	attempt to repeat or replicate...
 	
-	\item[chameleon effect] \citep{Chartrand1999chameleon}
+	\item[chameleon effect] -- \citep{Chartrand1999chameleon}\\the very beginning of introduction of \citet{Gueguen2009mimicry} also have some good sentences
 	
-	\item[proximity] indicates how close are the interlocutors to each other as a starting point with respect to their normal behavior.
-	For example, their normal f0 compared to their f0 at the beginning of a specific conversation between these two interlocutors.
+	\item[proximity] -- indicates how close are the interlocutors to each other as a starting point with respect to their normal behavior.
+	For example, their normal \ac{f0} compared to their \ac{f0} at the beginning of a specific conversation between these two interlocutors.
 	This measurement refers only to the beginning of the interaction and serves as a reference point for a specific interaction.
 	\todo[inline]{\citet{Levitan2011measuring} has a nice visual description for it.}
 	
-	\item[coordination] implies cooperation between the interlocutors, i.e. that there is a common goal to achieve.
+	\item[coordination] -- implies cooperation between the interlocutors, i.e., that there is a common goal to achieve.
 	Increase or decrease of communication features is in this case a side of effect of this coordination.
 	This provides another point of view on the process, namely not to examine the speakers' collaboration based on common changes, but looking at the changes knowing they are collaborating.
 	
-	\item[inter-speaker influence] a general term to describe a change by a human interlocutor caused by another.
-	
-	\item[convergence] \ldots
+	\item[inter-speaker influence] -- a general term to describe a change by a human interlocutor caused by another.
 \end{description}
+
+\begin{table}[t]
+	\centering
+	\caption[Comparison of variation types]
+		{}
+	\label{tab:variation_types}
+	\begin{tabularx}{\linewidth}{Xcccc}
+		\toprule
+								&	mutuality			&	directionality	&	 intention/awareness	&	well-defined target	\\
+		\midrule
+		accommodation			&	\ding{71}			&					&							&						\\
+		\rowcolor{lightgray}
+		convergence				&						&					&							&						\\
+		assimilation			&						&	\ding{51}		&	\ding{71}				&	\ding{51}			\\
+		\rowcolor{lightgray}
+		entrainment				&						&	\ding{51}		&							&	\ding{71}			\\
+		priming					&						&	\ding{51}		&	\ding{71}				&	\ding{51}			\\
+		\rowcolor{lightgray}
+		adaptation				&						&	\ding{51}		&	\ding{51}				&	\ding{51}			\\
+		alignment				&						&	\ding{51}		&	\ding{71}				&	\ding{51}			\\
+		\rowcolor{lightgray}
+		synchrony				&	(\ding{51})			&	\ding{71}		&							&						\\
+		mimicry					&						&	\ding{51}		&	\ding{71}				&	\ding{51}			\\
+		\rowcolor{lightgray}
+		imitation				&						&	\ding{51}		&	\ding{51}				&	\ding{51}			\\
+		mirroring				&						&	\ding{51}		&	\ding{51}				&	\ding{51}			\\
+		\rowcolor{lightgray}
+		chameleon eff.			&	?					&		?			&			?				&		?				\\
+		proximity				&						&					&							&						\\			
+		\rowcolor{lightgray}
+		coordination			&	\ding{51}			&					&	\ding{51}				&	\ding{71}			\\
+		int.sp. influence		&						&	\ding{51}		&	\ding{71}				&	\ding{71}			\\
+		\bottomrule
+	\end{tabularx}
+\end{table}
 
 \subsection[Long-term sound change]{Sound change as part of a long-term language evolve process}
 \label{subsec:sound_change}
@@ -208,7 +270,7 @@ Note that some of the terms are used interchangeably or as synonyms or as hyper-
 \citet{Ohala1993phonetics}\\ % this is the main thing
 \review{would be cool to have some really old references here. probably there is something in one of Ohala's papers}
 
-\todo[inline]{here talk (very) long term changes (i.e. not in a single conversation). papers of Ohala (especially 1993 book) are good here, and look for more references from there}
+\todo[inline]{here talk (very) long term changes (i.e., not in a single conversation). papers of Ohala (especially 1993 book) are good here, and look for more references from there}
 
 \subsection[Short-term phonetic change]{Phonetic change as a short-term social process}
 \label{subsec:phonetic_change}
