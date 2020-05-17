@@ -151,8 +151,8 @@ The extended architecture, usage options, and  graphical visualizations are desc
 \pagestyle{fancy}
 %\renewcommand{\sectionmark}[1]{\markright{#1}{}}
 %\fancyhf{}
-%\lhead{\fancyplain{}{\rightmark}} % 1. sectionname, 1.1 subsection name etc
-\fancyhead{}
+\renewcommand{\chaptermark}[1]{\markboth{Chapter~\thechapter~--~#1}{}} % customize chapter header
+\renewcommand{\sectionmark}[1]{\markright{\thesection\quad#1}} % customize subsection header
 \fancyhead[LO]{\leftmark}
 \fancyhead[RE]{\rightmark}
 
