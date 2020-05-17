@@ -34,7 +34,7 @@
 \usepackage{fancyhdr} % for more control over header/footer desiging
 \usepackage{sectsty} % more options for sections
 \usepackage{etoolbox} % more control over the bibliography
-\usepackage{xcolor} % extended colors set (table is for colors in tables)
+\usepackage{xcolor} % extended colors set
 \usepackage[capitalise, nameinlink, noabbrev]{cleveref} % cross-referencing
 \usepackage{fancyvrb} % fancy verbatim
 
@@ -219,8 +219,12 @@
     identifierstyle=\color{darkgreen}
 }
 
-% set pages header and footers (moved to end of preface)
-%-----------------------------
+% set pages header and footers (partially moved to end of preface)
+% ----------------------------
+\pagestyle{empty}
+
+% cusotmize title pages of parts and chapters
+% -------------------------------------------
 \titleformat{\part}[display] % define display format for Part title pages (also required to gain control over those, e.g., page numbers)
 {\normalfont\huge\bfseries\filcenter}{\partname\ \thepart}{22pt}{\Huge}
 \assignpagestyle{\part}{empty} % hide page number on part title pages
