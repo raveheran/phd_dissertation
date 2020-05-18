@@ -41,7 +41,7 @@ These can be analyzed and interpreted to uncover conversation-level trends, whic
 \Acf{c-iq} is a relatively newly coined term and a field of research that flourished due to advancements in neuroscience, communication science, and \ac{ml}.
 It complements other types of human intelligence (e.g., \emph{emotional intelligence}, and c.f.\ \emph{Theory of Multiple Intelligences} \citep{Gardner1983frames, Davis2011theory}) as the ensemble of aspects conversations are handled \textbf{beyond the surface words and shared information}.
 \citet{Glaser2016conversational} explains and demonstrates how \ac{c-iq} can be learned and improved, with emphasis on the ability to gain trust and maintain more successful and healthy communication with others.
-\todo{add 1-2 more key ideas from the book?}
+\todo{add 1-2 key ideas from the book?}
 Although \ac{c-iq} comprises many further aspects beyond the scope of this work, the overarching idea of improvable communication between people by changing one's communication behavior is highly relevant in the context of vocal accommodation, which is seldom used for such analyses.
 
 Narrowing down this broad idea, \citet{SilberVarod2018human} discusses the way individual conversations can be \emph{managed}.
@@ -166,7 +166,7 @@ In a recurrence plot, the points $R_{i,j}$ are colored equal if their value is 1
 As such, \ac{crqa} is a quantification technique for non-linear dynamical systems that describes when and to what extent concurrences (or \emph{co-visitations}) can be found in a system consists of two time series.
 These quantification techniques are based on \emph{recurrence plots} that for each moment $i$ in time show the times at which a phase space trajectory visits roughly the same area in the phase space as at time $i$.
 Ultimately, a recurrence plot is a graph of $\vec{x}(i) \approx \vec{x}(j)$, showing $i$ on the x-axis and $j$ on the y-axis, where $\vec{x}$ is a phase space trajectory (see example in \cref{fig:crqa_plot}).
-\todo[inline]{take one of the RPs from the website and add the LoS (and other diagonals) to it to provide more detailed visualization}
+\todo[inline]{maybe take one of the RPs from the website and add the LoS (and other diagonals) to it to provide more detailed visualization?}
 Each colored point in the plot represents a time where the time series were close to each other based on the definition in \cref{eq:recurrence}.
 The main diagonal of the plot is called the \acf{los}.
 A high number of recurrences along this line indicates synchrony between the time series.
@@ -251,6 +251,8 @@ The radius optimization is described in \cref{alg:radius_opt}.
 The optimization processes of all three parameters were done separately for each interaction.
 %
 \begin{algorithm}[t]
+	\addtocounter{myequations}{1}
+	\setcounter{myequations}{13}
 	\caption{\acs{crqa} radius optimization}
 	\label{alg:radius_opt}
 	\algorithmcaption
@@ -283,7 +285,7 @@ The optimization processes of all three parameters were done separately for each
 \end{algorithm}
 \eqname{Radius optimization algorithm for \acs{crqa}}
 \footnotetext{As calculated by the \ac{crqa} package for R \citep{Coco2014crqa-r} with the additional arguments (unlisted in the algorithm itself) \emph{rescale=0, normalize=0, minvertline=length(ts1) / 100, mindiagline=length(ts1) / 100,} and \emph{tw=0}.}
-\todo{make sure algorithm block is on same page with its footnote and that the foot note is not cut into the next page}
+%\todo{make sure algorithm block is on same page with its footnote and that the foot note is not cut into the next page}
 
 \section{Dataset and feature extraction}
 \label{sec:dataset_calls}
@@ -357,7 +359,7 @@ For simplicity, it is assumed that the time series lengths are equal, so that $N
 		\label{eq:rr}
 		RR = \frac{1}{N^2} \sum_{i=1}^{N_i} \sum_{j=1}^{N_j} R_{i,j}.
 	\end{equation}
-	\eqname{CRQA-based measures: RR, DET, NRLINE, L, maxL, ENTR, and rENTR}
+	\eqname{-- 4.4.5 CRQA-based measures: RR, DET, L, maxL, and ENTR}
 	%
 	This number generally corresponds to the overall colored area in the recurrence plot.
 	The lengths of the time series ($N_i$ and $N_j$) are often -- but not necessarily -- equal
@@ -437,37 +439,7 @@ The latter is harder to interpret, especially due to the similar means for succe
 It therefore seems that the behavior in both cases is evenly predicted -- but differently -- across calls.
 One possible factor influencing these behaviors is related to the interlocutor leading the convergence effect, rather than the fact that it occurs at all.
 The significant difference in the NRLINE measure stands in line with the findings in \citet{Borrie2019syncing}, supporting it as evidence for sustaining convergence in this study as well.
-The same measures for measures were performed based on the leading speaker in each conversation.
-However, no significant differences were found for this criterion.
-
-%\begin{table}[t]
-%	\caption{P-values of the two-sample Wilcoxon test comparing the \ac{crqa} output values between calls with success/fail outcome and their respective mean values.
-%		Significant values based on the adjusted p-value are set in bold.}
-%	\label{tab:crqa_results}
-%	\begin{tabularx}{\linewidth}{XSSSS}
-%		\toprule
-%		& {\thead{\acs{rr}}} & {\thead{DET}} & {\thead{NRLINE}}	& {\thead{maxL}} \\
-%		\midrule
-%		p 				& 0.9		& \bfseries $\ll$ 0.001	& \bfseries $\ll$ 0.001	& 0.7  \\
-%		mean success	& 10.1		& 2.2					& 84.0					& 31.3 \\
-%		mean fail		& 10.0		& 5.9					& 174.0					& 32.9 \\
-%		
-%		%			p (leaders)		& 0.7		& 0.1						& 0.05						& 0.18\\
-%		%			mean \acsp{ae}	& 10.0		& 6.1						& 186.7						& 35.2\\
-%		%			mean prospect	& 10.1		& 5.4						& 154.4						& 31.2\\
-%		\midrule
-%		& {\thead{L}} 	& {\thead{ENTR}} 	& {\thead{rENTR}} 	& 						\\
-%		\midrule
-%		p 				& 0.07				& 0.1				& \bfseries 0.0058	& 	\\
-%		mean success	& 17.8				& 1.4				& 0.8				& 	\\
-%		mean fail		& 15.3				& 1.5				& 0.8				& 	\\
-%		
-%		%			p (leaders)		& 0.9		& 0.07		& 0.55					& {\qquad\qquad}\\
-%		%			mean \acsp{ae}	& 15.2		& 1.5		& 0.8					& {\qquad\qquad}\\
-%		%			mean prospect	& 15.7		& 1.4		& 0.8					& {\qquad\qquad}\\
-%		\bottomrule	
-%	\end{tabularx}
-%\end{table}
+The same measures for measures were performed based on the leading speaker in each conversation (bottom part of the table), but no significant differences were found for this criterion.
 
 \begin{table}[t]
 	\caption{P-values of the two-sample Wilcoxon test comparing the \ac{crqa} output values based on call success/fail and leading speaker along with their respective mean values.
@@ -510,8 +482,67 @@ Since the calls in the collections used here have a typical structure, it is als
 The difference between the lag position distribution of reps and prospects is significant ($p = 0.0065$ with $\alpha = 0.05$).
 However, the differences between successful and failed calls within the leading speakers are not significant.
 It is also evident that when the reps were leading, they consistently did so at an early stage of the conversation, all the more so in successful calls, whereas the prospects' lead varied much more and generally happens at a much later time.
-\todo[inline]{add paragraph about interactivity and talking ratios with the functions in conversation-funs.R (make a table for this or combine with first table if too little information). add 1-2 sentences describing this in an earlier section if necessary}
-
+%
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{speech-balance_success_violin}
+	\caption[Distribution of speech balance in successful and failed calls]
+		{Comparison of speech balance distribution in successful and failed calls, sub-grouped by the speaker who spoke in total in individual calls (sales rep or prospect).
+		The width of the shapes represent the probability density.
+		The inner boxes show the central quartiles of the data with the median (excluding outliers) is marked by the thick horizontal line in it.
+		The additional horizontal lines mark the \SI{25}{\percent}, \SI{50}{\percent}, and \SI{75}{\percent} quartiles of the data (including outliers).
+		The asterisks stand the significance levels of the comparisons between the main groups (successful vs.\ failed) in the center and for the subgroups below it (* $p < 0.05$, *** $p < 0.001$, **** $p < 0.0001$)}.
+	\label{fig:speech-balance_success_violin}
+	\todo[inline]{could be easier to read if the inner boxplots had white fill and the quartile lines would be different color or a bit thicker}
+\end{figure}
+%
+Another known conversational element in sales calls is the talk time each of the speakers get.
+\Acp{ae} are trained to let the prospects speak as much as possible.
+This is known to give them better feeling during the call, and also give the reps more information and opportunities to understand what their customers want to talk about.
+All in all, this is good practice for keeping the \emph{speech balance}, i.e., the ratio between the total amounts of time in which speaker talked during the call.
+Beside speech balance, the frequency and timing of speaker switching also sheds light on the dynamics of the speakers' vocal behaviors.
+While each speaker should get sufficient amount of time to talk, it is also important to take and give the floor to the other interlocutor.
+Long monologues can make the listener lose concentration or lack of expression, which damages the interaction.
+Therefore, the \emph{interactivity} of the speakers is important as well.
+While speech balance informs about the overall amount of time each speaker talked, interactivity complements this by informing how often a speaker gave the floor to the conversation partner.
+Despite not being a concrete phonetic features, these two speech-related properties do fit into the overall notion of vocal accommodation nonetheless.
+An analysis of these two additional conversation-level properties is performed here.
+Speech balance was measured by
+%
+\begin{equation}
+	\label{eq:speech_balance}
+	speech\_balance = 
+	1 - \left| \frac{\displaystyle \sum_{\forall S \in S_A} dur(S) - 
+						\sum_{\forall S \in S_B} dur(S)}
+					{\displaystyle \sum_{\forall S \in S_A \cup S_B} dur(S)}
+		\right|,
+\end{equation}
+\eqname{Speech balance in conversation}
+\noindent
+%
+where $S_A$ and $S_B$ are the slices in which speaker $A$ and $B$ speak, respectively and the function $dur$ returns the duration of a slice or set of slides.
+The yielded value between 0 and 1 measures the percentage of balance in term of speech times, with 1 standing for \enquote{perfect balance}, i.e., equal talking times for both speakers.
+As mentioned above, overall speech balance only reveals part of the whole picture.
+Another part of it is the interactivity in the conversation, which is here defined as
+%
+%\begin{equation}
+%	\label{eq:interactivity}
+%	interactivity = 
+%	,
+%\end{equation}
+%\eqname{Interactivity in conversation}
+%\noindent
+%
+the percentage of slices, in which speaker change occurred after a consecutive slice sequence longer than some threshold (here, 1) without such change.
+Sequences below this threshold can be generally ascribed to backchanneling, which does not indicate speaker change.
+Interactivity and speech balance were measure for a superset of the dataset presented in \cref{sec:dataset_calls}.
+\cref{fig:speech-balance_success_violin} shows the speech balance scores of successful and failed calls.
+On the one hand, it is clear that lower the balance the more likely it is that reps had more floor time.
+The recommendation to avoid imbalance is reflected by the significant difference between balance distribution in successful and failed calls.
+On the other hand, prospects are only likely to talk more when the balance score is high, even more so in successful conversations.
+This evident by the highly significant differences in both sub-groups.
+No significant influences of interactivity on call outcome were found, and only a weak correlation between speech balance and interactivity was found. % r=0.2
+%
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{boxplot_ccf}
@@ -520,11 +551,12 @@ It is also evident that when the reps were leading, they consistently did so at 
 		The x-axis groups the calls based on the speaker, and the fill color further separates the calls to successful and failed ones.
 		The y-axis points to the time in the call, in which the maximal correlation was detected.
 		The horizontal lines within the boxes represent the median,
-		the notches stand for the \SI{95}{\percent} confident level of the median, the area inside the boxes include the \acf{iqr} of values, the vertical lines outside the boxes show the value within the third quartile + 1.5~$\protect\cdot$~\ac{iqr}, and the isolated dots are the outliers.
+		the notches stand for the \SI{95}{\percent} confident level of the median, the area inside the boxes include the \acf{iqr} of values, the vertical lines outside the boxes show the value within the third quartile + 1.5$\protect\cdot$\ac{iqr}, and the isolated dots are the outliers.
 		The significance level based on a Wilcoxon test comparing the two groups and their subgroups is given above the boxes.}
 	\label{fig:barplot_conv_leaders}
 	%	\todo[inline]{use logarithmic y-scale?}
 \end{figure}
+%
 
 \section{Discussion}
 \label{sec:discussion_hhi}
