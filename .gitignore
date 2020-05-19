@@ -1,6 +1,7 @@
 # Gradle
 .gradle/
 build/
+/out/
 
 # LaTeX
 *.aux
@@ -23,6 +24,15 @@ dissertation.*
 # R
 .Rhistory
 .RData
+
+# LilyPond
+snippets/*.mid
+snippets/*.eps
+snippets/*.texi
+snippets/*.tex
+snippets/*.count
+snippets/*[0-9]*.pdf
+!snippets/deviation_example_2_mixed.pdf
 
 # internal/temp data
 data_tmp/
