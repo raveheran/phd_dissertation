@@ -121,7 +121,10 @@
 % configuring list of equations for table of contents
 \newcommand{\listequationsname}{List of Formulae and Algorithms}
 \newlistof{myequations}{equ}{\listequationsname}
-\newcommand{\eqname}[1]{\addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}\par} % add equation to ToC
+\newcommand{\eqname}[1]{%
+	\refstepcounter{myequations}%
+	\addcontentsline{equ}{myequations}%
+	{\protect\numberline{\theequation}#1}\par}
 \setlength{\cftmyequationsnumwidth}{2.5em} % width of equation number in List of Equations
 
 \DeclareMathOperator*{\argmin}{\mathit{argmin}}
