@@ -207,7 +207,7 @@ Which method to use is up to the user of the system, as there might be acoustic 
 \begin{landscape}
 	\begin{table}[tb]
 		\centering
-		\caption[Summary of computational model's parameters]{Computational model's parameters in their order of use. Parameters with an asterix symbol (\emph{\enquote*{*}}) are defined for each feature individually.}
+		\caption[Summary of computational model's parameters]{Computational model's parameters in their order of use.}
 		\label{tab:comp_model_parameters}
 		\begin{tabulary}{\linewidth}{lLL}
 			\toprule
@@ -217,11 +217,12 @@ Which method to use is up to the user of the system, as there might be acoustic 
 			\textit{allowed range*} 					& the value range in which new instances are accepted 		& numeric, depending on feature\\
 			\textit{exemplar pool size} 				& maximum number of exemplars in memory 					& integer, $> 0$\\
 			\textit{update frequency} 					& how frequently a feature's value is recalculated 			& integer, $\geq 0$ \\
-		\textit{calculation method*} 					& the manner in which the pool value is calculated 			& one of supported methods\\
+			\textit{calculation method*} 				& the manner in which the pool value is calculated 			& one of supported methods\\
 			\textit{convergence rate} 					& weight given to the pool value 							& float, typically $> 0$ and $< 1$\\
 			\textit{convergence limit*}  				& the maximum degree of convergence allowed for a feature 	& float, $> 0$ and $< 1$ \\	
 			\bottomrule
 		\end{tabulary}
+		\flushleft{\footnotesize \emph{* denotes parameters that are defined individually for each feature}}
 	\end{table}
 \end{landscape}
 
