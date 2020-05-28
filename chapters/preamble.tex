@@ -127,6 +127,15 @@
 	{\protect\numberline{\theequation}#1}\par}
 \setlength{\cftmyequationsnumwidth}{2.5em} % width of equation number in List of Equations
 
+% add space between chapters in list of equations
+\makeatletter
+\patchcmd{\@chapter}% <cmd>
+  {\addtocontents}% <search>
+  {\addtocontents{equ}{\protect\addvspace{10\p@}}
+   \addtocontents}% <replace>
+  {}{}% <success><failure>
+\makeatother
+
 \DeclareMathOperator*{\argmin}{\mathit{argmin}}
 \DeclareMathOperator*{\argmax}{\mathit{argmax}}
 
