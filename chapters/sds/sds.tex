@@ -27,19 +27,28 @@ Furthermore, \SI{72}{\percent} of people who own a smart speaker say they often 
 
 \begin{table}[tb]
 	\centering
-	\caption[Types of \aclp{sds}: Task-oriented vs.\ Chit-chats]{A comparison between task-oriented \acp{sds} and chatbots.}
+	\caption[Types of \aclp{sds}: Task-oriented vs.\ Chatbots]{A comparison of some characteristics in task-oriented \acp{sds} and chatbots.}
 	\label{tab:sds_types}
-	\begin{tabulary}{\linewidth}{>{\bfseries}lCC}
+	\begin{tabularx}{\linewidth}{>{\bfseries}lp{.35\linewidth}p{.35\linewidth}}
 		\toprule
-							&   {\large \textbf{Task-oriented}}																	& {\large \textbf{Chit-chats}}													\\
-		Goal				&	Helps the user achieve a specific, defined goal													& No specific goal, aims to converse as naturally and continuously as possible	\\
-		Applications		&	\Aclp{pa}, \ac{cnc} systems, integrated voice-activated systems for cars, reservations, etc.	& Chatbos, social robots, conversational AI										\\
-		Domain				&	Domain-specific, possibly multi-domain															& Aims to be domain-free (a.k.a.\ open domain)									\\
-		Modeling			&	Statistical models and/or handcrafted rules 													& Typically sequence-to-sequence models with no-go filters						\\
-		Evaluation			&	Task completion rate and completion time, number of turns (+ subjective criteria) 				& Chat length, relevant replies ratio, general user satisfaction				\\
-	
+							& \multicolumn{1}{c}{{\large \textbf{Task-oriented}}} & \multicolumn{1}{c}{{\large \textbf{Chatbots}}} \\
+		\vspace{.2cm}
+		Goal				& Help the user achieve a specific, pre-defined goal
+							& Converse as naturally and continuously as possible \\
+		\vspace{.2cm}
+		Applications		& \Aclp{pa}, \ac{cnc} systems, integrated voice-activated systems for cars, reservations, etc.
+							& Free-form \acl{c-ai} applications: chit-chat bots, social robots \\
+		\vspace{.2cm}
+		Domain				& Domain-specific, possibly multi-domain
+							& Aim to be domain-free (a.k.a.\ open domain) \\
+		\vspace{.2cm}
+		Modeling			& Statistical models and/or handcrafted rules
+							& Typically \ac{s2s} models with no-go filters \\
+		\vspace{.2cm}
+		Evaluation			& Task completion rate and completion time, number of turns (+ subjective criteria)
+							& Chat length, relevant replies ratio, user engagement, general user satisfaction \\
 		\bottomrule
-	\end{tabulary}
+	\end{tabularx}
 \end{table}
 
 \subsection{Personal assistants}
@@ -200,9 +209,9 @@ These aspects make the task of integrating flexible vocal characteristics into \
 	\centering
 	\includegraphics[width=\linewidth]{roadmap_adaptive_sds}
 	\caption[Roadmap to phonetically adaptive \acl{sds}]
-		{A suggested roadmap from static output (top left) to personalized output (bottom right) in \acp{sds} (and see \cref{fig:static_vs_adaptive_speech_output}).
+		{A suggested roadmap from static output (top left) to personalized output (bottom right) in \acp{sds} (and see \cref{fig:output_not_adapted,fig:output_adapted}).
 		The green, orange, and blue blocks stand for the modeling, manipulation, and integration components described in the text, respectively.
-		The \enquote*{+} signs represents direct addition to a static system and the arrows go from components required as a feed others.}
+		The \enquote*{+} signs represents direct addition to a static system and the arrows go from components required as a feed to others.}
 	\label{fig:roadmap_adaptive_sds}
 \end{figure}
 %
