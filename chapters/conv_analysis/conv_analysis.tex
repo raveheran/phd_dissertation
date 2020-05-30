@@ -359,7 +359,7 @@ For simplicity, it is assumed that the time series lengths are equal, so that $N
 		\label{eq:rr}
 		RR = \frac{1}{N^2} \sum_{i=1}^{N_i} \sum_{j=1}^{N_j} R_{i,j}.
 	\end{equation}
-	\eqname{-- 4.4.5 CRQA-based measures: RR, DET, L, maxL, and ENTR}
+	\eqname{-- 4.4.5 \ac{crqa}-based measures: RR, DET, L, maxL, and ENTR}
 	%
 	This number generally corresponds to the overall colored area in the recurrence plot.
 	The lengths of the time series ($N_i$ and $N_j$) are often -- but not necessarily -- equal
@@ -431,7 +431,7 @@ For simplicity, it is assumed that the time series lengths are equal, so that $N
 Since multiple variables are compared here, the Bonferroni correction \citep{Bonferroni1936teoria} was applied, so that the overall error rate across all variables is \num{0.05}.
 Therefore, for a single comparison to be significant, it must be lower than $\alpha = 0.007$.
 The non-parametric two-sample Wilcoxon test \citep{Wilcoxon1945individual} was used to determine the significance levels.
-\cref{tab:crqa_results} shows a summary of means and p-values of the CRQA outputs for failed and successful calls.
+\cref{tab:crqa_results} shows a summary of means and p-values of the \ac{crqa} outputs for failed and successful calls.
 The \ac{rr} mean value is about 10 in both groups, which proves to be a suitable goal for optimizing the parameters (see \cref{subsec:parameters_crqa}).
 Significant differences between failed and successful calls were found for the values DET, NRLINE, and rENTR.
 The first two, along with their higher means for the failed calls, indicate more time-synchronized convergence in the failed calls.
