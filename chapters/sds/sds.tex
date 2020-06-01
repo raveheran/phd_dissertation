@@ -14,33 +14,50 @@ The concept of adaptive \aclp{sds}, which is a core idea in this work, is introd
 Nowadays, \acfp{sds} are used in various forms in our everyday life.
 Giving users all the features of a responsive (sometimes personalized, see \cref{subsec:personal_assistants}) dialogue system with the advantage of using voice to communicate, leaving the hands free to perform any other action, such as driving.\\
 
-In recent years, the market for commercial \acp{va} has rapidly grown.
+In recent years, the market for commercial \acp{pa} has rapidly grown.
 For example, Microsoft Cortana had 133 million active users in 2016 \citep{Osborne2016why} and Echo Dot was Amazon's best-selling product between 2016 and 2018 \citep{Dickey2017echo}.
 Furthermore, \SI{72}{\percent} of people who own a smart speaker say they often use their devices as part of their daily routine \citep{Kleinberg2018ways}.
 
 \todo[inline]{give examples of commercial systems and places where SDSs are used}
 
+In the future, we are likely to witness an ever-growing presence of devices with spoken interaction capabilities, like speech-activated cars, hands-free medical assistants, and \acp{its}.
+This will increase the demands on voice-activated devices even more, as they will need to support more functionalities in a way that is comfortable and intuitive for the users.
+Additionally, it can be expected that such devices will be used not only by individuals, but also in more social contexts, i.e., where multiple humans are involved.
+
 \section{Types of spoken dialogue systems}
 \label{sec:types_of_sdss}
 
-\todo[inline]{short general introduction explaining the term ``computer-based'' agent as a overarching term for all of the other listed below.}
-
+By and large, \acp{sds} can be divided into two main categories, which determine the communication style and behavior of the system: task-oriented systems \citep[e.g.,][]{Wen2016network, Zhao2016towards} and chatbots systems \citep[e.g.,][]{Vinyals2015neural, Li2016deep}.
+\Cref{tab:sds_types} compares between these two main categories.
+Vocal accommodation is relevant for both these system categories, but in different ways.
+Task-oriented systems may need to accommodate faster and potentially introduce changes on every turn, leading to sharper, possibly unpleasant changes.
+It might also be required to reset the system's speech for each interaction if it's used by more than one user or for different purposes.
+Chatbots, on the other hand, might be able to exploit the fact that they are usually involved in longer conversations, giving them more time to learn the user's speech.
+This could lead to a slower, smoother, and probably less apparent process, which should gradually improve the personalization of the system.
+Another category is voice-activated \ac{cnc} systems, which are arguably not \acp{sds}, since they only rarely engage in conversation  or trigger a multi-turn dialogue.
+Therefore, such systems do not leave any room for accommodation to occur.
+Nevertheless, \ac{cnc} systems are considered a simple kind of task-oriented \ac{sds} in this work, as ultimately they are designed to achieve a specific task, even if a dialogue is not necessarily required for that.
+Indeed, task-oriented systems like \acp{pa} often offer \ac{cnc} commands as well.
+\Acp{sds} can be utilized in various ways and be embedded in different types of system.
+\Crefrange{subsec:personal_assistants}{subsec:virtual_humans} survey some of the main system types with a \ac{sds} at their core.
+%
 \begin{table}[tb]
 	\centering
 	\caption[Types of \aclp{sds}: Task-oriented vs.\ Chatbots]{A comparison of some characteristics in task-oriented \acp{sds} and chatbots.}
 	\label{tab:sds_types}
-	\begin{tabularx}{\linewidth}{>{\bfseries}lp{.35\linewidth}p{.35\linewidth}}
+	\begin{tabularx}{\linewidth}{>{\bfseries}lp{.38\linewidth}p{.37\linewidth}}
 		\toprule
+		\vspace{.3cm}
 							& \multicolumn{1}{c}{{\large \textbf{Task-oriented}}} & \multicolumn{1}{c}{{\large \textbf{Chatbots}}} \\
 		\vspace{.2cm}
 		Goal				& Help the user achieve a specific, pre-defined goal
 							& Converse as naturally and continuously as possible \\
 		\vspace{.2cm}
-		Applications		& \Aclp{pa}, \ac{cnc} systems, integrated voice-activated systems for cars, reservations, etc.
-							& Free-form \acl{c-ai} applications: chit-chat bots, social robots \\
+		Applications		& \Aclp{pa}, \ac{cnc} systems, in-car voice-activated systems, reservations, etc.
+							& Free-form \acl{c-ai} applications: chitchat bots, social robots, etc. \\
 		\vspace{.2cm}
-		Domain				& Domain-specific, possibly multi-domain
-							& Aim to be domain-free (a.k.a.\ open domain) \\
+		Domain				& Domain-specific and/or multi-domain
+							& Domain-free or robust within-domain \\
 		\vspace{.2cm}
 		Modeling			& Statistical models and/or handcrafted rules
 							& Typically \ac{s2s} models with no-go filters \\
@@ -50,46 +67,66 @@ Furthermore, \SI{72}{\percent} of people who own a smart speaker say they often 
 		\bottomrule
 	\end{tabularx}
 \end{table}
-
-\subsection{Personal assistants}
+%
+\subsection{\Aclp{pa}}
 \label{subsec:personal_assistants}
 
-\Acp{pa}\ldots
-
-A big advantage of \acp{va} is their simple operation.
-Using nothing but speech commands, users can perform tasks like playing music, searching the web, shopping online, etc.
-In the future, we are likely to witness an ever-growing presence of devices with spoken interaction capabilities, like speech-activated cars, hands-free medical assistants, and intelligent tutoring systems.
-This will increase the demands on voice-activated devices even more, as they will need to support more functionalities in a way that is comfortable and intuitive for the users.
-Additionally, it can be expected that such devices will be used not only by individuals, but also in more social contexts, i.e., where multiple humans are involved.
-
+A \acl{pa} (\acs{pa}; frequently also \emph{intelligent \acl{pa}} or \emph{virtual \acl{pa}}\footnote{The terms \emph{virtual assistant} is widely used as well. However, it is avoided here, since it also refers to a different kind of occupation (\url{https://www.investopedia.com/terms/v/virtual-assistant.asp}).}) is a software-based program (sometimes embedded into a dedicated device (see \cref{subsec:smart_speakers}) that in some way fills the role of a human-being personal assistant.
+More often than not this includes mainly straightforward tasks the latter can perform, like managing schedules and tasks, but the support for more complex tasks is rapidly increasing and nowadays may also include in-context question answering, smart online shopping, and more.
+An advantage of \acp{pa} is their simple operation, which is almost exclusively voice-based, making them accessible to the general public.
+Commercial voiced-based \acp{pa} include Amazon Alexa, Apple Siri, Google Assistant, Microsoft Cortana, and many more less famous ones.
 
 Besides making the operation of such voice-activated systems simple and user-friendly, \acp{pa} also aim to let users interact with them in a familiar, natural manner.
-One property of natural interactions is the tendency to accommodate to the specific situation and interlocutors to make the interactions more fluent and efficient \citep{Giles1991CAT,Gallois2015CAT}.
+One property of natural interactions is the tendency to accommodate to the specific situation and interlocutors to make the interactions more fluent and efficient \citep{Gallois2015CAT}.
 Linguistic accommodation is one aspect of this phenomenon, and it is found in various \ac{hhi} experiments \citep[e.g.,][]{Pardo2017phonetic,Schweitzer2017social}.
+\Cref{chap:speech_variations_in_hhci} presents a study of vocal accommodation in multiparty interactions with a \ac{pa}.
 
-\subsection{Intelligent speakers}
-\label{subsec:intelligent_speakers}
+\subsection{Smart speakers}
+\label{subsec:smart_speakers}
 
-\Acp{pa} are sometimes integrated into a loudspeaker that can be placed in a central spot at home or in an office\ldots
+Smart speakers (or \emph{intelligent speakers}) are small loudspeakers typically used by one to several users in a common household of working environment.
+The speakers themselves merely offer audio transmission with some basic, hands-free operation.
+The \enquote{smart} components comes from the software installed on it, which is usually some variety of a \ac{pa} (see \cref{subsec:personal_assistants}).
+Mainstream smart speakers device series (and the \ac{pa} powering them) include Amazon Echo (Alexa), Apple HomePod (Siri), Google Home (Google Assistant), and Microsoft Invoke (Cortana).
+Newer devices, called \emph{smart displays}, can also be operated via a touchscreen.
+Their easy operation and the convenience they offer make smart speakers very popular with steadily increasing user base, with some estimations of more than 150 million units sold in the United States alone by the beginning of 2020\footnote{\url{https://marketingland.com/more-than-200-million-smart-speakers-have-been-sold-why-arent-they-a-marketing-channel-276012}} and a rapidly increasing usage in other countries\footnote{\url{https://www.emarketer.com/content/global-smart-speaker-users-2019}}.
 
-\subsection{Chatbots and social robots}
+\subsection{Chatbots}
 \label{subsec:chatbots}
 
-Chatbots (sometimes also called \emph{chatterbots} or \emph{chitchat bots}) are a\ldots
+Chatbots (a.k.a.\ \emph{chatterbots} and \emph{chitchat bots}) are conversational agents that do not aim to accomplish a specific in-domain task, but to create a human-like communication with the user in lieu of a real human interlocutor.
+This makes the scope and evaluation of a chatbot more complex, as the definition of the end-goal is not as well-defined (and cf.\ \cref{tab:sds_types}).
+Due to their nature, chatbots can be utilized in a variety of ways, and are usually embedded into social robots, virtual agents, or smart speakers that offer one as a separate functionality.
 
-\todo{write a bit about history of chatbots (start with ALICE)}
+An early example of a program considered a chatbot with a defined purpose is ELIZA \citep{Weizenbaum1966eliza}, which tried to imitate the role of therapist in a therapeutic session.
+While ELIZA's functionality can, for the most part, be reduced to simple word matching, it was revolutionary for the time and open the way to more sophisticated methods.
+Nowadays, chatbots are used for improving experience and service in online customer support and instant messaging apps.
+Nowadays, chatbots have already been used in various domains, such as education \citep{Benotti2014engaging, Kerly2007bringing}, elderly care \citep{Iio2020twin}, culture heritage \citep{Pilato2005expert}, healthcare \citep{Kowatsch2017text}, software development \citep{Lebeuf2017software}, and others \citep{Shawar2007chatbots}.
 
-Chatbots have been used in various domains such as education \citep{Benotti2014engaging, Kerly2007bringing}, culture heritage \citep{Pilato2005expert}, healthcare \citep{Kowatsch2017text}, software development \citep{Lebeuf2017software}, and others \citep{Shawar2007chatbots}.
-
-\subsection{Embodied agents}
+\subsection{Embodied agents and social robots}
 \label{subsec:embodied_agents}
 
-\citet{Staum2010virtually, Gijssels2016speech}
+Embodied agents (sometimes also \emph{interface agent}) are communicative systems with some visual form.
+Though the embodiment may be graphical only (see \cref{subsec:virtual_humans}, this term usually refer to systems that interact and communicate with the environment through some physical shape.
+For social robots, this shape is normally human-like and may include a full-body representation (like the NAO robot \citep{Singh2016nao}) or only a face (like Furhat \citep{AlMoubayed2012furhat}).
+Social robots gather information in different modalities, like eye gaze and hand gestures, and may even generate some limited behavior in these modalities, but ultimately their primary means of communication is almost always speech.
+Accommodation towards embodied interlocutors is especially interesting, as it is closest to face-to-face \ac{hhi}.
+Vocal accommodation has been found in human-robot interaction, e.g., by \citet{Ibrahim2019fundamental}.
 
-\subsection{Virtual agents and virtual humans}
-\label{subsec:virtual_agents}
+\todo[inline]{would it bring any added value to put an image of interaction with NAO and/or Furhat?}
 
-Also known as \textit{avatars}, these...
+\subsection{Virtual humans and avatars}
+\label{subsec:virtual_humans}
+
+Though commonly used interchangeably in the literature, \acp{vh} and avatars refer to two similar yet distinct concepts.
+On-screen representations of an interlocutor (sometimes of the user) are largely referred to as \emph{avatars}.
+Those can be static images associated with specific speakers \putref{put Michelle's Interspeech 2020 paper as an example if accepted}, but nowadays normally include at least some basic facial expressions and animations.
+In addition, avatars are also used sometimes as a general term for any virtual, graphically rendered interlocutor (including a \ac{vh}).
+\Acp{vh}, on the other hand, are fully depicted humanoids that aim to portray a real human being as closely as possible.
+This typically entails characters with full bodies, but partial figures are used as well, depending on the application.
+Similar to agents with physical embodiment (\cref{subsec:embodied_agents}), these conversational agents are capable  of multimodal communication.
+They can be used in various interactive activities, like language assessment \citep{Peterson2005learning} and therapy \citep{Devault2014simsensei}.
+Experiments have shown vocal accommodation effects in interactions with \acp{vh} with respect to feature like speech rate and \ac{f0} \citep{Gijssels2016speech, Staum2010virtually}.
 
 \section{Architecture of spoken dialogue systems}
 \label{sec:architecture_sds}
@@ -201,7 +238,7 @@ The role of this component is feed the system's flexible voice parameters result
 This emphasizes the notion of the \ac{nlg} module decides \emph{what} the system says while the \ac{tts} module determines \emph{how} it will say it.
 This is further explained and illustrated in \cref{chap:convergence_module_for_sdss,fig:adaptation_module_architecture}.
 
-This work addresses to each of those facets.
+This work addresses each of those facets.
 \putref{when parts are more final, briefly refer to them here}
 These aspects make the task of integrating flexible vocal characteristics into \acp{sds} an involved task, each with its own challenges that requires a profound work to investigate.
 %
@@ -243,7 +280,7 @@ These terms seek to distinguish between the different capabilities that can be i
 %	Here, adapting means shifting the overall behaviors by updating a subset of the other properties.
 	That means, for example, modifying the base behavior, extending the variability, or reflecting the system's changes earlier.
 	This can happen between interactions or withing a single, usually longer, interaction.
-	The former could be more useful for \ac{cnc} systems or goal-oriented \acp{sds} that are used by many users, while the latter suits social systems like chatbots better and \acp{pa} (see \cref{sec:types_of_sdss}).
+	The former could be more useful for \ac{cnc} systems or goal-oriented \acp{sds} that are used by many users, while the latter is more suitable for social systems like chatbots and \acp{pa} (see \cref{sec:types_of_sdss}).
 	Ultimately, this is a means for the system to improve its performance and accessibility based on previous interactions.
 	However, for some applications, like a \ac{capt} system, for example, it would be better to \enquote{reset} their behavior between each use to offer a better experience.
 
