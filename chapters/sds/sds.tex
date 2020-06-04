@@ -1,28 +1,27 @@
 \chapter{Spoken Dialogue Systems}
 \label{chap:spoken_dialogue_systems}
 
-\lettrine{T}{his} chapter gives an overview of the \aclp{sds} paradigm, including common architectures, different system types, and evaluation methods.
-The concept of adaptive \aclp{sds}, which is a core idea in this work, is introduced as well, along with examples of adaptation on different levels.
+\lettrine{T}{his} chapter gives an overview on the \aclp{sds}, including common architectures, different system types, and implementation techniques.
+The concept of adaptive \aclp{sds}, which is a core idea in this work, is introduced as well, along with the challenges involved and examples of possible adaptation strategies on different levels.
 
 \pagebreak
 
 %\section{What is a spoken dialogue system?}
 %\label{sec:what_is_a_sds}
+%\todo[inline]{here talk about what is a dialogue, a spoken dialogue, turn, when an interaction becomes a dialogue (is every interaction with a machine is a dialogue system?), etc. can really use the introductions given by Olga in the SDS seminar}
 
-\todo[inline]{here talk about what is a dialogue, a spoken dialogue, turn, when an interaction becomes a dialogue (is every interaction with a machine is a dialogue system?), etc. can really use the introductions given by Olga in the SDS seminar}
+\Acfp{sds} offer a wide range of services and are used in various forms every day both for commercial and personal purposes.
+The main difference between them and many other ways to communicate with computers is the use of speech -- and mostly speech alone -- for interaction.
+This offers benefits to the users, like begin able to perform tasks while keeping their hands free, contrary to systems that requires textual input from a keyboard or haptic touch on a screen.
+We are witnessing an ever-growing presence of voice-activated devices, like speech-activated cars, hands-free medical assistants, and \acp{its}.
+These devices support more and more functionalities in a way that is more comfortable and intuitive for users.
+It can be expected that in the near future such devices will be used not only by individuals, but also in more social contexts, including interactions where multiple humans are involved.
+This makes the understanding and improving of social skills in \acp{sds} all the more important.
 
-Nowadays, \acfp{sds} are used in various forms in our everyday life.
-Giving users all the features of a responsive (sometimes personalized, see \cref{subsec:personal_assistants}) dialogue system with the advantage of using voice to communicate, leaving the hands free to perform any other action, such as driving.\\
-
-In recent years, the market for commercial \acp{pa} has rapidly grown.
-For example, Microsoft Cortana had 133 million active users in 2016 \citep{Osborne2016why} and Echo Dot was Amazon's best-selling product between 2016 and 2018 \citep{Dickey2017echo}.
-Furthermore, \SI{72}{\percent} of people who own a smart speaker say they often use their devices as part of their daily routine \citep{Kleinberg2018ways}.
-
-\todo[inline]{probably move these usage statistics to the relevant place in SDS tpyes}
-
-In the future, we are likely to witness an ever-growing presence of devices with spoken interaction capabilities, like speech-activated cars, hands-free medical assistants, and \acp{its}.
-This will increase the demands on voice-activated devices even more, as they will need to support more functionalities in a way that is comfortable and intuitive for the users.
-Additionally, it can be expected that such devices will be used not only by individuals, but also in more social contexts, i.e., where multiple humans are involved.
+The common architecture of \acp{sds} is explained in \cref{sec:architecture_sds}, along with details about each component and free tools for building them.
+\Cref{sec:types_of_sdss} gives an overview of some application that use a \ac{sds} to communicate with users.
+A roadmap toward \acp{sds} with vocal accommodation capabilities as well as the challenges involved are discussed in \cref{sec:adaptive_spoken_dialogue_systems}.
+Such capabilities would improve the personalization and overall experience of the interaction.
 
 \section{Architecture of \aclp{sds}}
 \label{sec:architecture_sds}
@@ -196,6 +195,10 @@ Besides making the operation of such voice-activated systems simple and user-fri
 One property of natural interactions is the tendency to accommodate to the specific situation and interlocutors to make the interactions more fluent and efficient \citep{Gallois2015CAT}.
 Linguistic accommodation is one aspect of this phenomenon, and it is found in various \ac{hhi} experiments \citep[e.g.,][]{Pardo2017phonetic,Schweitzer2017social}.
 \Cref{chap:speech_variations_in_hhci} presents a study of vocal accommodation in multiparty interactions with a \ac{pa}.
+
+In recent years, the market for commercial \acp{pa} has grown rapidly.
+For example, Microsoft Cortana had 133 million active users in 2016 \citep{Osborne2016why} and Echo Dot was Amazon's best-selling product between 2016 and 2018 \citep{Dickey2017echo}.
+Furthermore, \SI{72}{\percent} of people who own a smart speaker say they often use their devices as part of their daily routine \citep{Kleinberg2018ways}.
 
 \subsection{Smart speakers}
 \label{subsec:smart_speakers}
@@ -383,6 +386,8 @@ These terms seek to distinguish between the different capabilities that can be i
 
 \section{Evaluating spoken dialogue systems}
 \label{sec:evaluation_of_sdss}
+
+\todo[inline]{decide whether a section about evaluation is necessary}
 
 \ldots Therefore, evaluation of \acp{sds} depends on the purpose of the systems, which can be divided into two types, namely \textit{\aclp{tds}} and \textit{\aclp{ngs}}.
 
