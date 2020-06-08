@@ -6,26 +6,27 @@ The model presented here suggests a computational description of the convergence
 
 \pagebreak
 
-\section{From HHI to HCI}
+\section{From \acs{hhi} to \acs{hci}}
 \label{sec:from_hhi_to_hci}
 
-Close examination of the results of the experiment described in \cref{sec:convergence_to_natural_and_synthetic_stimuli} revealed great variation across participants. \todo{take the slides that Iona prepared to show some differences either here or at the mentioned section}
-While this is expected, it is worth looking into the nature of these variations, in order to spot the main influences on the convergence process.
-
-\todo{is this a good place to mention and explain the human and machine metaphors?}
-Since behavioral changes, e.g., as explained by \ac{cat}, happen naturally in \ac{hhi} and typically unawarely, it is not trivial to transfer them to computers, which need rules and some numeric representation to process.
-Numeric representation can be achieved by applying some measuring technique appropriate for each feature (e.g., formant values for vowel quality).
-Rules of different behaviors, however, cannot be directly constructed, due to the nature of this natural phenomenon, and can only be inferred from observed \ac{hhi} data.
-The connecting link between the measured raw values and systematic rules is a machine-accessible representation of the convergence process.
-Such representation would need to model, for example, the way humans percept the convergence-prone sounds, how they interact with previous instances and the current mental representation of the sound in question, and the cognitive process of the the phonetic changes.
-Therefore, such a model should include the perception of the phonetic features, representation of the change in mental state of each feature in memory, and the realization of the changes during a conversation.
-As these parts of the process are, by their nature, dependent on each other, the computational model presented here captures them as a linear pipeline (see \cref{sec:pipeline_representation}).
+The experiments presented in \cref{part:experiments} show humans' accommodative behaviors in different \ac{hhi} and \ac{hci} settings.
+Complementary to that, \cref{subsec:accommodation_levels} discusses ways to represent various level of accommodative behaviors in computers.
+Since behavioral changes, as explained by \ac{cat} (see \cref{sec:communication_accommodation_theory}), happen naturally and often unconsciously in \ac{hhi}, it is not trivial to transfer them to computers, which need defined rules and numeric representation to process.
+These can be achieved by applying some measuring technique appropriate for each feature, like formant values for vowel quality or frequency for \ac{f0}.
+Creating rules for different behaviors, however, cannot be directly constructed, due to the nature of this intuitive phenomenon, but rather inferred from observed \ac{hhi} data.
+For example, The results of the study described in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices} reveal high degree of variation across participants.
+\todo{take a slides about individual differences to show some differences either here or at the mentioned section}
+While this is expected, further examination of these variations uncovers some general properties that can be taken as a ground for characterizing the different changes.
+The link between the measured raw values and systematic rules should be a machine-applicable equivalence of the convergence process in humans.
+Such parallelisms would need to model, for instance, the way humans percept the convergence-prone sounds, how they interact with previous instances and the current internal state of the sound in question, and the cognitive process of the the phonetic changes.
+Therefore, such a model should include the perception of the phonetic features, representation of the change in state of each feature in memory, and the realization of the changes during a conversation.
+As these parts of the process are, by definition, dependent on each other, the computational model presented in \cref{sec:pipeline_representation} depicts them as a pipeline where each of its steps stand for an action performed, unconsciously, by a human speaker.
 
 \section{Pipeline representation}
 \label{sec:pipeline_representation}
 
 As convergence happens automatically and seamlessly in human interlocutors' cognition, it is hard to say what are the exact steps this process comprises.
-Merely observing convergence in \ac{hhi} does not shed any light on the internal process of changing the mental representation of features.
+Merely observing convergence in \ac{hhi} does not shed any light on the internal process of changing the internal representation of features.
 However, some key properties stand out when examining many occurrences in different interactions.
 The pipeline representation presented here aims to capture these properties and offer a defined process of describing the changes (\crefrange{subsec:detect}{subsec:assign}).
 The advantages of representing this process as a pipeline (as opposed to, e.g., a one-step, end-to-end conversion) is that each part in the process can be explained (and implemented, see \cref{subsec:computational_model,fig:adaptation_module_pipeline}) separately.
