@@ -179,66 +179,66 @@ It is also important that the features are distinguishable and clearly defined b
 \section{Parameters}
 \label{sec:parameters}
 
-To allow degrees of freedom within the computational model described in \cref{chap:computational_model}, some parameters need to be introduced.
-These parameters are the connecting link between the theoretical, schematic model and the implementation of the module as part of an \acs{sds} (see \cref{chap:convergence_module_for_sdss}).
-They are also the key for experimentation with the model in various scenarios on the look for the best configurations in different situations.
+Several parameters are introduced into the pipeline described in \cref{sec:pipeline_representation} to allow degrees of freedom in shaping the the accommodation behavior.
+These parameters link between the theoretical, schematic model and its integration into a \ac{sds} (\cref{chap:convergence_module_for_sdss}).
+They are also the key for experimentation with settings and scenarios for different applications.
 
-As shown in \cref{sec:convergence_to_natural_and_synthetic_stimuli}, not all participant showed the same \textit{sensitivity} toward changes in the stimuli in general.
-Here sensitivity refers to the degree of adaptation toward a stimulus.
-In addition, when one does converge, the sensitivity to changes (i.e.~the \enquote{amount of differentiation}) toward a single stimulus might differ.
-In the model, these two aspects were combined into one parameter -- \textit{convergence rate}.
-\todo{write a sentence that this rate is a balance between current and new style. put equation}
-For simulating the case where a participant does not converge at all, this rate can be set to zero.
+As shown in \cref{sec:convergence_to_natural_and_synthetic_stimuli}, not all participants showed the same \textit{sensitivity} toward changes in the stimuli in general.
+Here, sensitivity refers to the degree of overall change toward external speech input.
+In addition, when one does converge, the sensitivity to changes (i.e., the \enquote{amount of differentiation}) toward a single stimulus might differ as well.
+These two aspects are controlled by the parameter \textit{convergence rate}, which represents the balance between the current and the new speech style.
+For simulating the case where a speaker does not converge at all, this rate can be set to zero.
 In that case the model will ignore the other interlocutor's speech and stick to the current speech style.
-Another variation found among the participants was the overall convergence degree toward the stimuli.
-In other words, where would the convergence process stop.
-This is simulated by the parameters \textit{convergence limit}, which defines the maximally allowed degree of similarity between the interlocutors.
-The value of this parameter is between zero and one.
+Another difference found among the participants was the total overall convergence degree toward the stimuli, i.e., where does the convergence process stop.
+This monitored by the parameters \textit{convergence limit}, which defines the maximally allowed degree of similarity between the interlocutors with a value between zero and one.
 When set to 1.0 (\SI{100}{\percent}), the model is allowed to change up to \SI{100}{\percent} toward the other interlocutor; when set to 0.8, up to \SI{80}{\percent}, and so on.
 The parameter is used to control that the model does not simply imitate the user's input, which might happen especially with high convergence rate.
-By limiting the change, the accommodation process is more gradual and restrained.
+By limiting the change, the accommodation process is more gradual and restrained, avoiding peaks and abrupt changes.
+Parameters simulating the actual change are not enough.
+To properly model a vocal behavior, some aspect that are not directly related to the speech output are required as well.
 
-However, parameters simulating the actual change are not enough.
-To properly model an interlocutor, some individual aspect that are not directly related to the speech output are required as well.
-
-The accommodation target depends on the recent instances of the variable feature (or \textit{exemplars}).
-How many exemplars are taken into account when the feature's mental representation is updated depends on the interlocutor's short memory capacity.
-Working memory is a complex mechanism
-\review{reference for modeling working memory?}
-.
-It is modeled in a very simplified manner here, namely by the number of exemplars the interlocutor currently remembers on a first-in-first-out basis, i.e.~the \textit{exemplar pool size}.
-An exemplar is modeled as a vector with cardinality $n$, where $n$ is the number of dimensions the feature has (e.g.~the number of measured formants for a vowel-quality feature).
-Whenever an instance of the feature is encountered, a new exemplar is added to the pool.
-If the pool is already in full capacity, the oldest exemplar is forgotten by the speaker (deleted in the model) (see \cref{fig:exemplar_pool}).
-
-Individuals may also have different general \textit{tendency} to converge toward other interlocutors.
-Here tendency refers to the likelihood to adapt to the stimuli presented to them.
-This likelihood is modeled not probabilistically, but by an \textit{update frequency}.
+The accommodation process, in both human and machines, relies on the recent instances (here, \textit{exemplars}) of a target feature .
+How many exemplars are taken into account when the feature's state is updated depends on the interlocutor's working memory capacity.
+Language working memory is a complex mechanism \citep[see][]{Baddeley2003working} which is simplified here by a single parameter, namely the number of exemplars the interlocutor currently remembers on a first-in-first-out basis, i.e., a queue, named here the \textit{exemplar pool size}.
+Since the pool is modeled as queue, the \emph{order} in which the exemplars were acquired is kept as well.
+This size can be tweaked based on the scenario and the expected interaction length.
+An exemplar is modeled as a vector with cardinality $n$, where $n$ is the number of dimensions the feature has (e.g., the number of measured formants for a vowel-quality feature).
+Whenever an exemplar of the feature is encountered, a new exemplar is added to the pool.
+If the pool is already in full capacity, the oldest exemplar is forgotten by the speaker (removed from the pool, see \cref{fig:exemplar_pool}).
+Speakers may also have different general \textit{tendency to converge} towards other interlocutors.
+Here, this likelihood is modeled not probabilistically, but by a parameter (probabilistic properties can be integrated elsewhere, though, as explained below).
 After an exemplar is added to a feature's pool, an update of the feature's value may be triggered.
 Whether and how often this happens is determined by the \textit{update frequency}.
 If set to 1, an update will occur every time an exemplar is added; if set to 2, every other exemplar, and so on.
-When set to 0, however, updates will only take place when explicitly requested.
-This can be useful when, for example, all features are to be updated at the same time, regardless of how many exemplars have been accumulated for each feature.
-Increasing the update interval means that each new pool value will be affected by more new exemplars, which, depending on the calculation method used (see below), might result in a smoother converging process.
+When set to 0, however, updates will only take place when explicitly requested, e.g., after a pre-determined number of turns or a fixed amount of time.
+This can be useful, for example, when all features are to be updated at the same time, regardless of how many exemplars have been accumulated for each feature.
+Increasing the update interval means that each update will be affected by a higher number of new exemplars, which, depending on the calculation method used (see below), might result in a smoother converging process.
 Additionally, a longer update interval also means that accommodation will generally take longer, since the model's features are not being updated as frequently.
+This is fitting a systems with which the user is expected to have long interactions and/or many interactions over an extended period of time.
 
-Though not only the frequency in which the update occurs plays a roll in the process, but also the manner in which it is being updated.
-This manner is determined by the \textit{calculation method} used.
-Since the features in the model are represented by vectors, any function that takes a vector as input and outputs another as output would do.
-\todo{explain that first we need to transform the matrix!}
+Not only the frequency of updates plays a roll in the process, but also the manner in which the update is performed.
+This manner is determined by the \textit{calculation method}.
+Since the features in the model are represented by vectors, any function that takes a matrix as input and outputs a vector as output can be used (see further mathematical details in \cref{subsubsec:calculating_changed_value}).
+The method can be either statistical or deterministic, e.g., simply averaging the exemplars.
+Methods that can take order into account, like decaying average or some neural networks, might yield more convincing accommodative behaviors.
+A different calculation method can be assigned to each feature, which can help accounting for acoustic or psycholinguistic constrains.
+This can also be influence by the setting the system is purposed for (experimental, exploratory, data collection, etc.)
 
-After transforming the matrix, the model has a representation of each feature as a vector where each dimension is a single value of a 
-One option is to use a fixed function on each of the dimensions to create a vector with new values.
-This function could be, for example, simple average or decaying average.
-Such functions are easy to understand and follow, and can describe relatively simple mechanics of how each stimulus contributes to the overall change, since each value is calculated sequentially but independently of the other.
+The \emph{target phoneme} has two purposes:
+First, it tells the \ac{asr} component which phoneme is associates with this phoneme, so that it is forwarded for further analysis.
+Second, it is used in the \emph{phonetic context} parameter to filter instances of the phoneme that should not be associated with the feature.
+The context is a regular expression against which the phoneme sequence retrieved by the \ac{asr} is matched\footnote{This requires an \ac{asr} engine that returns such sequence in additional to textual output.
+It is therefore crucial that the phoneme symbol set used in the model and by the \ac{asr} is the same and unambiguous, specifically when used in a regular expression.
+This is the only part in the pipeline that is language-dependent (or rather symbol-dependent)
+Using non-ASCII symbol sets, like IPA, may solve many of these issues, but is not recommended since \ac{asr} engines rarely use those and also due to other technical reasons.}
+For suprasegmental features -- or any other feature that is not bound to a specific phoneme or context -- the target phoneme can remain empty and the phonetic context set to match any sequence.
+The second parameter used to put constrains on the detected phones is the \emph{allowed range}, which defines the acceptable value boundaries for the feature.
+This parameter is important to obtain clean and sensible exemplars, as it introduces restrictions based on phonetic knowledge (e.g., reasonable \ac{f0} values for a human speaker), which at the same time also help preventing \ac{asr} errors from meddling with the exemplars sent to the pool.
+Since these values depend are feature-dependent, this parameter is set for each feature individually.
+\Cref{subsubsec:detecting segment exemplars} shows an example of a feature definition.
 
-Each feature can use a different calculation method.
-Which method to use is up to the user of the system, as there might be acoustic or psycholinguistic constrains to take into account, based on the settings the system is used in (experimental, exploratory, data collection, etc.)
-
-% calculation method -- make sure you directly lead to it from the update step
-
-\todo{put equations where appropriate}
-
+The model's parameters are summarized in \cref{tab:comp_model_parameters} (and cf.\ \citet{Raveh2017Interspeech}).
+%
 \begin{landscape}
 	\begin{table}[tb]
 		\centering
@@ -258,12 +258,7 @@ Which method to use is up to the user of the system, as there might be acoustic 
 			\bottomrule
 		\end{tabulary}
 		\flushleft{\footnotesize \emph{* denotes parameters that are defined individually for each feature}}
+		\todo[inline]{add colors to parameter names based on the step they relate to}
+		\todo[inline]{also, small space between rows and longer description for values}
 	\end{table}
 \end{landscape}
-
-
-The model's parameters are summarized in \cref{tab:comp_model_parameters}
-With these criteria in mind, a computational model with several parameters wad developed.
-This model, described in detail in \citet{Raveh2017Interspeech}, includes these parameters and a few others, and its purpose is to generate different accommodation behaviors.
-
-% briefly also mention target phoneme and phonetic context
