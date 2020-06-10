@@ -6,8 +6,6 @@ The model presented here suggests a computational description of the convergence
 
 \pagebreak
 
-\todo[inline]{change (all?) \enquote{convergence} to \enquote{accommodation}}
-
 \section{From \acs{hhi} to \acs{hci}}
 \label{sec:from_hhi_to_hci}
 
@@ -19,15 +17,15 @@ Creating rules for different behaviors, however, cannot be directly constructed,
 For example, The results of the study described in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices} reveal high degree of variation across participants.
 \todo{take a slides about individual differences to show some differences either here or at the mentioned section}
 While this is expected, further examination of these variations uncovers some general properties that can be taken as a ground for characterizing the different changes.
-The link between the measured raw values and systematic rules should be a machine-applicable equivalence of the convergence process in humans.
-Such parallelisms would need to model, for instance, the way humans percept the convergence-prone sounds, how they interact with previous instances and the current internal state of the sound in question, and the cognitive process of the the phonetic changes.
+The link between the measured raw values and systematic rules should be a machine-applicable equivalence of the accommodation process in humans.
+Such parallelisms would need to model, for instance, the way humans percept the accommodation-prone sounds, how they interact with previous instances and the current internal state of the sound in question, and the cognitive process of the the phonetic changes.
 Therefore, such a model should include the perception of the phonetic features, representation of the change in state of each feature in memory, and the realization of the changes during a conversation.
 As these parts of the process are, by definition, dependent on each other, the computational model presented in \cref{sec:pipeline_representation} depicts them as a pipeline where each of its steps stand for an action performed, unconsciously, by a human speaker.
 
 \section{Pipeline representation}
 \label{sec:pipeline_representation}
 
-As convergence happens automatically and seamlessly in human interlocutors' cognition, it is hard to say what are the exact steps this process comprises.
+As accommodation  happens automatically and seamlessly in human interlocutors' cognition, it is hard to say what are the exact steps this process comprises.
 Some key properties stand out when examining many occurrences in different interactions.
 The pipeline presented here aims to capture these properties and offer a defined process of describing the changes.
 The advantages of representing this process as a pipeline (as opposed to, e.g., a one-step, end-to-end conversion) is that each part in the process can be interpreted and controlled separately (see \cref{subsec:computational_model,fig:adaptation_module_pipeline}).
@@ -118,7 +116,7 @@ After an instance of a feature is detected and validated, it needs to be registe
 This stands in parallel to the way such exemplars (and in other contexts also words, meanings, etc.) are mentally stored in the human's short and long term memories.
 These accumulated exemplars of a feature determine how a speaker processes it and shape its production when used in speech.
 One of the complexities of modeling such internal representation is the interleaving influences of both long-term and short-term memory.
-As this pipeline aims to describe convergence occurring within the scope of a single, isolated interaction (even if a long one), only the storage of exemplars is explicitly addressed in it.
+As this pipeline aims to describe accommodation occurring within the scope of a single, isolated interaction (even if a long one), only the storage of exemplars is explicitly addressed in it.
 However, long-term effects can be implicitly achieved by retaining values between interactions.
 To represent short-term memory of feature exemplars, a model must define how and when new exemplars are added, stored, and removed.
 \cref{fig:exemplar_pool} gives a schematic overview of such pooling model (and cf.\ the related parameters in \cref{tab:comp_model_parameters}).
@@ -200,12 +198,12 @@ This is simulated by the parameters \textit{convergence limit}, which defines th
 The value of this parameter is between zero and one.
 When set to 1.0 (\SI{100}{\percent}), the model is allowed to change up to \SI{100}{\percent} toward the other interlocutor; when set to 0.8, up to \SI{80}{\percent}, and so on.
 The parameter is used to control that the model does not simply imitate the user's input, which might happen especially with high convergence rate.
-By limiting the change, the convergence process is more gradual and restrained.
+By limiting the change, the accommodation process is more gradual and restrained.
 
 However, parameters simulating the actual change are not enough.
 To properly model an interlocutor, some individual aspect that are not directly related to the speech output are required as well.
 
-The convergence target depends on the recent instances of the variable feature (or \textit{exemplars}).
+The accommodation target depends on the recent instances of the variable feature (or \textit{exemplars}).
 How many exemplars are taken into account when the feature's mental representation is updated depends on the interlocutor's short memory capacity.
 Working memory is a complex mechanism
 \review{reference for modeling working memory?}
@@ -224,7 +222,7 @@ If set to 1, an update will occur every time an exemplar is added; if set to 2, 
 When set to 0, however, updates will only take place when explicitly requested.
 This can be useful when, for example, all features are to be updated at the same time, regardless of how many exemplars have been accumulated for each feature.
 Increasing the update interval means that each new pool value will be affected by more new exemplars, which, depending on the calculation method used (see below), might result in a smoother converging process.
-Additionally, a longer update interval also means that convergence will generally take longer, since the model's features are not being updated as frequently.
+Additionally, a longer update interval also means that accommodation will generally take longer, since the model's features are not being updated as frequently.
 
 Though not only the frequency in which the update occurs plays a roll in the process, but also the manner in which it is being updated.
 This manner is determined by the \textit{calculation method} used.
@@ -268,6 +266,6 @@ Which method to use is up to the user of the system, as there might be acoustic 
 
 The model's parameters are summarized in \cref{tab:comp_model_parameters}
 With these criteria in mind, a computational model with several parameters wad developed.
-This model, described in detail in \citet{Raveh2017Interspeech}, includes these parameters and a few others, and its purpose is to generate different convergence behaviors.
+This model, described in detail in \citet{Raveh2017Interspeech}, includes these parameters and a few others, and its purpose is to generate different accommodation behaviors.
 
 % briefly also mention target phoneme and phonetic context
