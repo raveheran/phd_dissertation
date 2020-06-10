@@ -45,7 +45,7 @@ In short, the proposed pipeline representation consists of the following five ma
 	
 	\item[\textbf{filter}] decide whether the encountered feature's instance appears in a way that can trigger change, capturing the inherent detection of phonological context and rules in the language;
 	
-	\item[\textbf{collect}] add the instance to the exemplar pool of this feature, representing the instances inventory building internal representation of the feature;
+	\item[\textbf{store}] add the instance to the exemplar pool of this feature, representing the instances inventory building internal representation of the feature;
 	
 	\item[\textbf{update}] update the feature's state, standing for the \enquote{recalculating} the way this feature is now perceived by the speaker; and
 	
@@ -92,10 +92,8 @@ After applying these two filters, only those instances that truthfully capture t
 Another purpose of this step is a way to integrate phonetic expertise and provide it to the system, both by defining the appropriate phonetic context of a feature, and by deciding on the appropriate values that should be considered for it.
 This helps not only to be more accurate regarding language-specific knowledge, but also to prevent \ac{asr} errors to be propagated further.
 
-\subsection{Collect}
-\label{subsec:collect}
-
-\todo{change all mentions of \enquote{collect} to \enquote{store}}
+\subsection{Store}
+\label{subsec:store}
 
 \begin{figure}[t]
 	\centering
@@ -137,7 +135,7 @@ The input to it is the current state of a feature and it outputs a new value for
 The core of the accommodation process is the actual change in a feature's state.
 Many factors may influence this process, both internal and external to the speaker.
 The two main considerations in this step is one of each, namely the desired accommodation behavior and the exemplars collected from the user(s) speech input.
-The latter is covered by the \enquote{collect} step, and the former is defined using adjustable parameters that correspond to accommodation properties in humans.
+The latter is covered by the \enquote{store} step, and the former is defined using adjustable parameters that correspond to accommodation properties in humans.
 For example, how prone is the speaker to be influenced by external others' speech and how easily should the change triggered.
 The sensitivity can be constant, or vary based one, e.g., how close the speakers are to each other to begin with.
 A trigger might be exemplar-based, i.e., after a certain number of new exemplars were added, or time-based, i.e., every time a certain amount of turns had passed.
