@@ -242,23 +242,52 @@ The model's parameters are summarized in \cref{tab:comp_model_parameters} (and c
 \begin{landscape}
 	\begin{table}[tb]
 		\centering
-		\caption[Summary of computational model's parameters]{Computational model's parameters in their order of use.}
+		\caption[Summary of computational model's parameters]
+			{Computational model's parameters in their order of use.
+			The colors mark parameters associates with the
+			{\color{Violet}\textbf{detect}},
+			{\color{BurntOrange}\textbf{filter}},
+			{\color{ForestGreen}\textbf{store}},
+			{\color{RoyalBlue}\textbf{update}}, and
+			{\color{red}\textbf{assign}} steps.}
 		\label{tab:comp_model_parameters}
 		\begin{tabulary}{\linewidth}{lLL}
 			\toprule
-			\multicolumn{1}{c}{\textbf{Parameter}} 		& \multicolumn{1}{c}{\textbf{Description}} 					& \multicolumn{1}{c}{\textbf{Value}} \\
-			\textit{target phoneme*} 					& the phoneme that triggers the feature 					& phoneme symbol\\
-			\textit{phonetic context*} 					& the environment in which the phoneme is accepted 			& regex of phoneme symbols\\
-			\textit{allowed range*} 					& the value range in which new instances are accepted 		& numeric, depending on feature\\
-			\textit{exemplar pool size} 				& maximum number of exemplars in memory 					& integer, $> 0$\\
-			\textit{update frequency} 					& how frequently a feature's value is recalculated 			& integer, $\geq 0$ \\
-			\textit{calculation method*} 				& the manner in which the pool value is calculated 			& one of supported methods\\
-			\textit{convergence rate} 					& weight given to the pool value 							& float, typically $> 0$ and $< 1$\\
-			\textit{convergence limit*}  				& the maximum degree of convergence allowed for a feature 	& float, $> 0$ and $< 1$ \\	
+			\multicolumn{1}{c}{\textbf{Parameter}} & \multicolumn{1}{c}{\textbf{Description}} & \multicolumn{1}{c}{\textbf{Value}} \\
+			
+			{\color{Violet}\textbf{target phoneme}}*
+			& the phoneme that triggers the feature's pipeline
+			& a phoneme symbol\\\addlinespace[0.2cm]
+			
+			{\color{BurntOrange}\textbf{phonetic context}}*
+			& the environment in which the feature instance is accepted
+			& regex containing the of phoneme symbols containing target phoneme\\\addlinespace[0.2cm]
+			
+			{\color{BurntOrange}\textbf{allowed range}}*
+			& the value range(s) in which new instances are accepted
+			& two numeric values (min and max) per feature dimension\\\addlinespace[0.2cm]
+			
+			{\color{ForestGreen}\textbf{exemplar pool size}}
+			& maximum number of exemplars in memory at a time, oldest exemplar removed when full
+			& integer, $> 0$\\\addlinespace[0.2cm]
+			
+			{\color{RoyalBlue}\textbf{update frequency}}
+			& how frequently a feature's value is recalculated, controlling the accommodation pace
+			& integer, $\geq 0$; 0 for manual update\\\addlinespace[0.2cm]
+			
+			{\color{RoyalBlue}\textbf{calculation method}}*
+			& the manner in which the pool value is calculated based on the values and order of the exemplars in pool
+			& any $\mathbb{Q}^{n \times m} \longrightarrow \mathbb{Q}^{m}$ function; either implemented directly in code or sent to an external statistical model\\\addlinespace[0.2cm]
+			
+			{\color{RoyalBlue}\textbf{convergence rate}}
+			& weight of the exemplar pool when updating the feature's state, controlling the impact of external input on the speaker's features states
+			& float, typically $> 0$ and $< 1$; 0 for ignoring pool; $> 1$ for over-weighting pool\\\addlinespace[0.2cm]
+			
+			{\color{red}\textbf{convergence limit}}*
+			& the maximum degree of convergence allowed for the feature with respect to the input instances
+			& float, $> 0$ and $\leq 1$; 1 (\SI{100}{\percent}) for no limitation \\
 			\bottomrule
 		\end{tabulary}
 		\flushleft{\footnotesize \emph{* denotes parameters that are defined individually for each feature}}
-		\todo[inline]{add colors to parameter names based on the step they relate to}
-		\todo[inline]{also, small space between rows and longer description for values}
 	\end{table}
 \end{landscape}
