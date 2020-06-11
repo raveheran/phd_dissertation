@@ -187,10 +187,10 @@ As shown in \cref{sec:convergence_to_natural_and_synthetic_stimuli}, not all par
 Here, sensitivity refers to the degree of overall change toward external speech input.
 In addition, when one does converge, the sensitivity to changes (i.e., the \enquote{amount of differentiation}) toward a single stimulus might differ as well.
 These two aspects are controlled by the parameter \textit{convergence rate}, which represents the balance between the current and the new speech style.
-For simulating the case where a speaker does not converge at all, this rate can be set to zero.
+For simulating the case where a speaker is not influenced by external speech input (the exemplars in the pool) at all, this rate can be set to zero.
 In that case the model will ignore the other interlocutor's speech and stick to the current speech style.
 Another difference found among the participants was the total overall convergence degree toward the stimuli, i.e., where does the convergence process stop.
-This monitored by the parameters \textit{convergence limit}, which defines the maximally allowed degree of similarity between the interlocutors with a value between zero and one.
+This is monitored by the parameters \textit{convergence limit}, which defines the maximally allowed degree of similarity between the interlocutors with a value between zero and one.
 When set to 1.0 (\SI{100}{\percent}), the model is allowed to change up to \SI{100}{\percent} toward the other interlocutor; when set to 0.8, up to \SI{80}{\percent}, and so on.
 The parameter is used to control that the model does not simply imitate the user's input, which might happen especially with high convergence rate.
 By limiting the change, the accommodation process is more gradual and restrained, avoiding peaks and abrupt changes.
@@ -232,7 +232,7 @@ It is therefore crucial that the phoneme symbol set used in the model and by the
 This is the only part in the pipeline that is language-dependent (or rather symbol-dependent)
 Using non-ASCII symbol sets, like IPA, may solve many of these issues, but is not recommended since \ac{asr} engines rarely use those and also due to other technical reasons.}
 For suprasegmental features -- or any other feature that is not bound to a specific phoneme or context -- the target phoneme can remain empty and the phonetic context set to match any sequence.
-The second parameter used to put constrains on the detected phones is the \emph{allowed range}, which defines the acceptable value boundaries for the feature.
+The second parameter used to put constrains on the detected phones is the \emph{allowed range}, which defines the acceptable value boundaries for the feature (min and max values per dimension).
 This parameter is important to obtain clean and sensible exemplars, as it introduces restrictions based on phonetic knowledge (e.g., reasonable \ac{f0} values for a human speaker), which at the same time also help preventing \ac{asr} errors from meddling with the exemplars sent to the pool.
 Since these values depend are feature-dependent, this parameter is set for each feature individually.
 \Cref{subsubsec:detecting segment exemplars} shows an example of a feature definition.
