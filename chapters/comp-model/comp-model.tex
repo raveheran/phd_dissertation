@@ -6,134 +6,169 @@ The model presented here suggests a computational description of the convergence
 
 \pagebreak
 
-\section{From HHI to HCI}
+\section{From \acs{hhi} to \acs{hci}}
 \label{sec:from_hhi_to_hci}
 
-Close examination of the results of the experiment described in \cref{sec:convergence_to_natural_and_synthetic_stimuli} revealed great variation across participants. \todo{take the slides that Iona prepared to show some differences either here or at the mentioned section}
-While this is expected, it is worth looking into the nature of these variations, in order to spot the main influences on the convergence process.
-
-\todo{is this a good place to mention and explain the human and machine metaphors?}
-Since behavioral changes, e.g., as explained by \ac{cat}, happen naturally in \ac{hhi} and typically unawarely, it is not trivial to transfer them to computers, which need rules and some numeric representation to process.
-Numeric representation can be achieved by applying some measuring technique appropriate for each feature (e.g., formant values for vowel quality).
-Rules of different behaviors, however, cannot be directly constructed, due to the nature of this natural phenomenon, and can only be inferred from observed \ac{hhi} data.
-The connecting link between the measured raw values and systematic rules is a machine-accessible representation of the convergence process.
-Such representation would need to model, for example, the way humans percept the convergence-prone sounds, how they interact with previous instances and the current mental representation of the sound in question, and the cognitive process of the the phonetic changes.
-Therefore, such a model should include the perception of the phonetic features, representation of the change in mental state of each feature in memory, and the realization of the changes during a conversation.
-As these parts of the process are, by their nature, dependent on each other, the computational model presented here captures them as a linear pipeline (see \cref{sec:pipeline_representation}).
+The experiments presented in \cref{part:experiments} show humans' accommodative behaviors in different \ac{hhi} and \ac{hci} settings.
+Complementary to that, \cref{subsec:accommodation_levels} discusses ways to represent various level of accommodative behaviors in computers.
+Since behavioral changes, as explained by \ac{cat} (see \cref{sec:communication_accommodation_theory}), happen naturally and often unconsciously in \ac{hhi}, it is not trivial to transfer them to computers, which need defined rules and numeric representation to process.
+These can be achieved by applying some measuring technique appropriate for each feature, like formant values for vowel quality or frequency for \ac{f0}.
+Creating rules for different behaviors, however, cannot be directly constructed, due to the nature of this intuitive phenomenon, but rather inferred from observed \ac{hhi} data.
+For example, The results of the study described in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices} reveal high degree of variation across participants.
+\todo{take a slides about individual differences to show some differences either here or at the mentioned section}
+While this is expected, further examination of these variations uncovers some general properties that can be taken as a ground for characterizing the different changes.
+The link between the measured raw values and systematic rules should be a machine-applicable equivalence of the accommodation process in humans.
+Such parallelisms would need to model, for instance, the way humans percept the accommodation-prone sounds, how they interact with previous instances and the current internal state of the sound in question, and the cognitive process of the the phonetic changes.
+Therefore, such a model should include the perception of the phonetic features, representation of the change in state of each feature in memory, and the realization of the changes during a conversation.
+As these parts of the process are, by definition, dependent on each other, the computational model presented in \cref{sec:pipeline_representation} depicts them as a pipeline where each of its steps stand for an action performed, unconsciously, by a human speaker.
 
 \section{Pipeline representation}
 \label{sec:pipeline_representation}
 
-As convergence happens automatically and seamlessly in human interlocutors' cognition, it is hard to say what are the exact steps this process comprises.
-Merely observing convergence in \ac{hhi} does not shed any light on the internal process of changing the mental representation of features.
-However, some key properties stand out when examining many occurrences in different interactions.
-The pipeline representation presented here aims to capture these properties and offer a defined process of describing the changes (\crefrange{subsec:detect}{subsec:assign}).
-The advantages of representing this process as a pipeline (as opposed to, e.g., a one-step, end-to-end conversion) is that each part in the process can be explained (and implemented, see \cref{subsec:computational_model,fig:adaptation_module_pipeline}) separately.
+As accommodation  happens automatically and seamlessly in human interlocutors' cognition, it is hard to say what are the exact steps this process comprises.
+Some key properties stand out when examining many occurrences in different interactions.
+The pipeline presented here aims to capture these properties and offer a defined process of describing the changes.
+The advantages of representing this process as a pipeline (as opposed to, e.g., a one-step, end-to-end conversion) is that each part in the process can be interpreted and controlled separately (see \cref{subsec:computational_model,fig:adaptation_module_pipeline}).
 This enables combining different methods and implementations while keeping the steps independent of each other.
-Therefore, only the \emph{order} of execution is important, which does not introduces any limitation, since it is expected to be -- and should be -- consistent.
-This also allows performing specific steps in other, non-computational manners, like statistical-based (see \cref{chap:statistical_model}), \ac{ml}, or \ac{dl}.
-Substituting specific steps gives the scientific freedom of experimenting with different methods without losing the core understanding of the convergence process and the ability to explain the meaning and contribution of each step.
-For example, substituting the calculation method in the \textit{update} step or replacing it with a statistical-based method will of course influence the output of this step, but will not alter the role of it or influence the overall logic of the pipeline.
+Therefore, only the \emph{order} of execution is important, which does not introduces any limitation, as long as it is consistent.
+This modular structure makes the execution of specific steps more flexible, like introducing different ways to calculate accommodation.
+Substituting specific steps' techniques grants the freedom to experiment with different methods without losing the core principles of the accommodation process.
+For example, substituting the calculation method in the \textit{update} step or replacing it with a statistical method (see \cref{chap:statistical_model})
+\putref{add mentions for ML/DL models chapters/sections if there are any}
+will of course influence the output of this step, but will not alter its role in the pipeline's overall logic.
+Note that although only speech-related features are discussed here, this pipeline could be used in principle for describing changes in other type of features or modalities, like lexical choices, linguistic complexity, eye gaze, emotional state, etc.
 
-Note that although only phonetic convergence is discussed here, this pipeline could be used for describing changes in other type of features or modalities, like lexical choices, text complexity, or information density.
-\review{need an abbreviation for information density?}
-\review{need general references for these examples to give an idea what they are?}
-This would naturally require some modifications\ldots
-
-The proposed pipeline representation consists of five main steps: \emph{detect}, \emph{filter}, \emph{collect}, \emph{update}, and \emph{assign}.
+In short, the proposed pipeline representation consists of the following five main steps, which are explained in detail in \crefrange{subsec:detect}{subsec:assign}:
+%
+\begin{itemize}[topsep=0cm, itemsep=-.1cm, wide=0cm, leftmargin=!, labelwidth=\widthof{\textbf{update}}]
+	\item[\textbf{detect}] hear and identify a feature that can be changed, corresponding to a human's ear's ability to notice such variations;
+	
+	\item[\textbf{filter}] decide whether the encountered feature's instance appears in a way that can trigger change, capturing the inherent detection of phonological context and rules in the language;
+	
+	\item[\textbf{store}] add the instance to the exemplar pool of this feature, representing the instances inventory building internal representation of the feature;
+	
+	\item[\textbf{update}] update the feature's state, standing for the \enquote{recalculating} the way this feature is now perceived by the speaker; and
+	
+	\item[\textbf{assign}] apply and potentially limit the updated state, expressing the change in production of this feature with the individual preference as to how far to go with a change.
+\end{itemize}
+%
+The output of each step is the direct input for the next, except for cases where the execution is discontinued due to an unmet condition (see below).
 
 \subsection{Detect}
 \label{subsec:detect}
 
-For changes on any level to happen, some feature that is prone to changes needs to be defined and occur in the speech input.
-If these feature are not omitted in the interlocutors' speech, they are not likely to converge with regard to them, and will probably not register these changes as different realizations of these features.
-Moreover, for the changes to register as a variation, the realization produced by the speaker must be prominent and distinctive enough to be perceived by the listener.
+This step stands for the human ability to hear sounds in speech and analyze the way they were realized.
+The input to this first step in the pipeline is the raw speech signal of the speaker and its output is a list of phone realizations that may contain phonetic changes.
+The \ac{asr} component of the system is responsible for detecting these realizations and their timestamps in the signal.
+With that information, various methods can be used to define and measure target features to take into consideration and pass forward.
+\Cref{subsubsec:detecting segment exemplars} shows an example of such definition and how it is used in a \ac{sds}.
 
-Which features fulfill this requirement is of course language- and culture-dependent, and might also differ based on the specific situation in which the interaction takes place.
-For example, a feature of a language where a vowel can be alternatively realized by two different vowels will probably be ignored by a speaker of a language where only one of these vowels exist in its repository.
-%Another option is that the additional vowel will cause confusion to the listener.
-In this case, the two vowels will simply be mentally merged into one, causing no difficulties in comprehension, or as two completely different sounds in the language, as opposed to variations of the same sound that might potentially create confusion if another word is registered by the listener.
-
-The input for this first step in the pipeline is the raw speech signal of the speaker, and its output is a list of phones representing phonemes that may trigger a phonetic change.
-The \ac{asr} component of the system is responsible for detecting the phones realizations of phonemes that are defined as targets.
-\putref{link to an example of feature definition}
-These detected phones are then filtered in the \textit{Filter} step.
+An interlocutor cannot accommodate towards features that are not present in a speaker's speech.
+For changes on any level to happen, some pre-defined feature that is prone to change needs to be present and detected in the spoken input.
+Moreover, for the changes to register as a variation of that feature, the realization produced by the speaker must be prominent and distinctive enough to be perceived by the listener.
+In the case of computers, this means a way to measure that difference between realizations and classify their distance from one another.
+This difference can be categorical or continual, depending on the feature.
+In addition, which features introduce meaningful difference is language- and culture-dependent, and might also differ based on the specific situation in which the interaction takes place.
+For example, a segmental feature of a language where a phoneme can be realized in two alternative ways (as explained in \cref{subsec:target_features_HCIConv}) will probably be ignored by a speaker of a language where only one of these vowels exist in its repository.
+In this case, the two vowels will simply be mentally merged into one, not causing any difficulties in comprehension.
+Suprasegmental features, like \ac{f0} contour and \ac{ar}, occur globally across the speech signal and are more often cross-lingual.
+Still, for a computer to be able to detect and track changes in those features, a way to measure and compare them is required.
 
 \subsection{Filter}
 \label{subsec:filter}
 
-The input for this step is the list of detected realizations of the defined target phonemes. After applying a filtering mechanism, it passes on only those phones from the list that occur in a change-prone position.
-A target phoneme is a phoneme that serves as an anchor for a rule that aims to capture a phonetic feature or a more evolved phonological rule.
+This step replaces the human internal, often unconscious, linguistic knowledge and how it is used to decide which detected realizations are legitimate new instances that will be stored in memory.
+The input to it is the list of detected realizations of the defined target phonemes and it outputs those realizations that should be stored as exemplars of their respective features.
+\Cref{subsubsec:filtering_exemplars} demonstrates how a filter is applied based on a phonological rule and a feature definition.
+
+A target phoneme serves as an anchor for a rule that aims to capture a phonetic feature or a more evolved phonological rule.
 For example, the German phonological rule of \textipa{[@]} elision at words ending with \emph{-en} described in \cpageref{eq:shcwa_elision_rule} can be captured by the phoneme sequence /C\textipa{@n}/, where C represents a consonant (although in practice only a subset of the German consonants can be replaced by it in this context).
-The anchor phoneme is \textipa{[@]} itself, since this is the segment that is subject to the change, namely the length -- or complete absence -- of it.
+The anchor phoneme is \textipa{[@]}, since this is the segment that is subject to the change, namely the length -- or complete absence -- of it.
 For this phenomenon, the target phoneme would be \textipa{@} and the measured feature would be segment length.
 Another target feature described in \cref{subsec:target_features_HCIConv} is \textipa{[e:]} vs.\ \textipa{[E:]} realization of the mid-word grapheme \emph{ä}, which is captured by the target anchor phoneme \textipa{[E]} in a non-final position of a word.
 Any defined feature goes through two filters. First, it required context to be an instance of the desired phonological phenomenon (C\textipa{@n} and non-final position for the above-mentioned features);
 and secondly the defined accepted value range that would make it an acceptable instance of that phenomenon (for example, \textipa{[@]} length between \SI{0}{\milli\second} and \SI{60}{\milli\second} and appropriate F$_1$ and F$_2$ values for the \textipa{[e:]} and \textipa{[E:]} vowels in the above-mentioned features).
 After applying these two filters, only those instances that truthfully capture the desired phonetic phenomenon are kept.
+Another purpose of this step is a way to integrate phonetic expertise and provide it to the system, both by defining the appropriate phonetic context of a feature, and by deciding on the appropriate values that should be considered for it.
+This helps not only to be more accurate regarding language-specific knowledge, but also to prevent \ac{asr} errors to be propagated further.
 
-It is important to emphasize that this step is where phonetic expertise can be applied, both by defining the appropriate phonetic context of a feature, and by deciding on the appropriate values that should be considered for it.
-For example, \textit{[@]} length of \SI{60}{\milli\second} can considered somewhat or disproportionately long in different situations. 
-
-\subsection{Collect}
-\label{subsec:collect}
-
-After an instance of a feature was detected and validated in the filtering step, it needs to be registered as an exemplar of the feature it is associated with.
-This stands in parallel to the way such exemplars (and in other contexts also words, meanings, etc.) are mentally stored in the human's short and long term memories.
-Even though this process occurs unawarely (similarly to Exemplar Theory
-\review{reference}
-), but influences the way linguistic conventions and features of the language are represented -- and, by extension, produced -- by the speaker.
-One of the complexities of modeling such internal representation is the interleaving influences of both long-term and short-term memory.
-As this pipeline aims to describe convergence occurring within the scope of a single, isolated interaction (even if a long one), only short-term storage of exemplars is explicitly addressed in it.
-The implementation of the implicit accounts of short-term and long-term memories representation is detailed in \cref{subsubsec:collecting_exemplars}.
-
-To represent short-term memory of feature exemplars, a model must define how new exemplars are added, stored, retrieved and used (more in \cref{subsec:update}, and forgotten.
-\cref{fig:exemplar_pool} gives a schematic overview of such model.
-An exemplar is represented by a vector, where each dimension stands for a property of it based on the feature it is associated with (e.g., formant values for vowel quality features, pitch changes for intonation-related features, etc.).
-Each feature has an \emph{exemplar pool}, containing the newly encountered exemplars.
-This pool structured as a queue and represents the short-term memory of this feature.
-New exemplars are \enquote{memorized}, i.e., added to the feature's pool.
-The size of the pool can be defined by a parameter (see \cref{sec:parameters}).
-If the pool is already at full capacity when a new exemplar is added, the oldest exemplar will be \enquote{forgotten}, i.e., deleted from the feature's pool.
-
-This model of short-term memory of a feature's representation can be used to determine which exemplars are still affecting the speaker's mental representation of a feature, and therefore will be taken into account when it is produced.
-Temporal aspects of the exemplars can be taken into account as well.
-For example, the time interval between acquired exemplars can alter their degree of influence on the feature's state, or temporally close clusters of exemplars may have greater influence, etc.
+\subsection{Store}
+\label{subsec:store}
 
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=\textwidth]{pool}
-	\caption
-	[The exemplar pool]
-	{A new exemplar is added to the feature's pool when encountered.
+	\includegraphics[width=0.85\textwidth]{pool}
+	\caption[The exemplar pool]
+		{A new exemplar is added to the feature's pool when encountered.
 		Old exemplars are removed when the pool is full.
 		Exemplars currently in the pool are taken into account when the realization of the feature is determined.
 		Each dimension of an exemplar represents a property of the feature it is associated with.}
 	\label{fig:exemplar_pool}
 \end{figure}
+%
+This step represents the mental phonetic storage of a speaker, here referred to as a \emph{pool} for a computer-based interlocutor.
+The input to it is a feature's exemplar that passed the filtering step and its output is used for updating the feature's representation.
+An implementation of such exemplar pool is shown in \cref{subsubsec:collecting_exemplars}.
+
+After an instance of a feature is detected and validated, it needs to be registered as an exemplar of the feature it is associated with.
+This stands in parallel to the way such exemplars (and in other contexts also words, meanings, etc.) are mentally stored in the human's short and long term memories.
+These accumulated exemplars of a feature determine how a speaker processes it and shape its production when used in speech.
+One of the complexities of modeling such internal representation is the interleaving influences of both long-term and short-term memory.
+As this pipeline aims to describe accommodation occurring within the scope of a single, isolated interaction (even if a long one), only the storage of exemplars is explicitly addressed in it.
+However, long-term effects can be implicitly achieved by retaining values between interactions.
+To represent short-term memory of feature exemplars, a model must define how and when new exemplars are added, stored, and removed.
+\cref{fig:exemplar_pool} gives a schematic overview of such pooling model (and cf.\ the related parameters in \cref{tab:comp_model_parameters}).
+In this form, each exemplar is a vector with dimensions standing for its properties, based on the feature it is associated with (e.g., formant values for vowel quality features, pitch changes for intonation-related features, etc.).
+Each feature has its own exemplar pool to which newly encountered exemplars are \enquote{memorized}, i.e., added.
+This pool is structured as a queue as a very rough, high-level representation of the short-term memory of this feature.
+The size of the pool can be defined by a parameter (see \cref{sec:parameters}).
+If the pool is already at full capacity when a new exemplar is added, the oldest exemplar will be \enquote{forgotten}, i.e., removed from the feature's pool.
+Ultimately, a pool of a feature can be used to determine which exemplars are still affecting the speaker's mental state of a feature.
+As the order of the added exemplars is kept, it can be taken into account as well when determining each exemplar's weight, just like recent turns are more likely to impact the current utterance it as ones that occurred at the beginning.
 
 \subsection{Update}
 \label{subsec:update}
 
-The core of the convergence process is the change itself in feature mental state.
-As describe above, the \textit{collect} step is responsible for storing new feature exemplars and forgetting older ones.
-This step is responsible for how these stored exemplars are actually handled, the relations and hierarchies between them, and ultimately the convergence effect itself.
-Each feature has a state, which is the model's corresponding of a human's current mental representation of this feature.
-This state is used whenever the value of this feature is needed, e.g., in the \textit{assign} step (see \cref{subsec:assign}).
-However, the change of this state is determined in the \textit{update} step.
-More precisely, a new state will be generated every time this step is triggered, based on the current state and the exemplars in the pool.
-A trigger might be exemplar-based, i.e., after a certain number of new exemplars were added, or time-based, i.e., every time a pre-determined amount of time had passed.
-\todo{example/motivation for each}
-\todo{calculation methods}
+This step incorporates the process of changing the mental state of a feature based on its accumulated exemplars.
+The input to it is the current state of a feature and it outputs a new value for it.
+
+The core of the accommodation process is the actual change in a feature's state.
+Many factors may influence this process, both internal and external to the speaker.
+The two main considerations in this step is one of each, namely the desired accommodation behavior and the exemplars collected from the user(s) speech input.
+The latter is covered by the \enquote{store} step, and the former is defined using adjustable parameters that correspond to accommodation properties in humans.
+For example, how prone is the speaker to be influenced by external others' speech and how easily should the change triggered.
+The sensitivity can be constant, or vary based one, e.g., how close the speakers are to each other to begin with.
+A trigger might be exemplar-based, i.e., after a certain number of new exemplars were added, or time-based, i.e., every time a certain amount of turns had passed.
+\Cref{tab:comp_model_parameters} provides more details about these parameters.
+Another means to shape the behavior is the way the new state is computed based on the exemplars.
+For example, the computations may make newer exemplars influence the change more.
+Moreover, the general accommodation tendency is defined in this step, e.g., converging or diverging from the user's speech, which is determined, among others, by the application.
+A \ac{capt} system would probably not aim to align its speech to the user's, but rather diverge from it as a way to present the corrections.
+This computation can use simple mathematical operations (as demonstrated in \cref{subsubsec:calculating_changed_value}) or more involved data-driven statistical methods (as the one in \cref{chap:statistical_model}).
 
 \subsection{Assign}
 \label{subsec:assign}
 
-\todo[inline]{explain the limitation mechanism and why it's needed}
+This step mediates between the new state of a feature to its use in the system's speech output.
+The input to it is the newly calculated state of a feature and it outputs a potentially altered of this state to be used by the \ac{tts} component.
 
+This final step of the pipeline is responsible for assigning the features' representations to the speech production of the system, i.e., as additional input to he \ac{tts} of the system.
+For a \ac{tts} module that can directly control the speech output (as part of the model itself or on the outputted waveform),
+\putref{refer to chapters with this is discusses when they exist}
+The additional information can be used to manipulate the target features in a way that expresses the accommodative behavior of the system.
+This closes a circle of feature pronounced by the user and detected by the \ac{asr} component and are now taken into account by the system when speaking back.
+Since that means the user will now hear some vocal characteristics that are based on their own speech, it is important to avoid a situation where the user feels imitated -- or even mocked - by the systems.
+To that end, this step introduces a limitation mechanism that limits the values given to the \ac{tts} component.
+If desired, the values are re-evaluated if some threshold is bypassed (see \cref{eq:new_value}), to avoid such imitation from the system's side.
+This mechanism also helps to prevent too extreme values from going the other way.
+For example, a \ac{capt} system might demotivate or frustrate the user if its speech is consistently considerably different.
+From a human's perspective, this step corresponds to the natural degree to which a speaker would change the realization of a feature.
+As shown in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices,chap:speech_variations_in_hhci}, this varies from feature to feature, and hence this parameter is set for each feature individually (see \cref{tab:comp_model_parameters}).
+It is also important that the features are distinguishable and clearly defined by the pipeline, so that the specific modification in the system's speech output can be properly applied in -- and only in -- the correct places, as illustrated in \cref{fig:adapted_synthesis_output}.
+%
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{synthesis}
+	\includegraphics[width=0.85\textwidth]{synthesis}
 	\caption
 	[Manipulated features on a synthesized waveform]
 	{An illustration of a manipulated output audio waveform.
@@ -144,91 +179,115 @@ A trigger might be exemplar-based, i.e., after a certain number of new exemplars
 \section{Parameters}
 \label{sec:parameters}
 
-To allow degrees of freedom within the computational model described in \cref{chap:computational_model}, some parameters need to be introduced.
-These parameters are the connecting link between the theoretical, schematic model and the implementation of the module as part of an \acs{sds} (see \cref{chap:convergence_module_for_sdss}).
-They are also the key for experimentation with the model in various scenarios on the look for the best configurations in different situations.
+Several parameters are introduced into the pipeline described in \cref{sec:pipeline_representation} to allow degrees of freedom in shaping the the accommodation behavior.
+These parameters link between the theoretical, schematic model and its integration into a \ac{sds} (\cref{chap:convergence_module_for_sdss}).
+They are also the key for experimentation with settings and scenarios for different applications.
 
-As shown in \cref{sec:convergence_to_natural_and_synthetic_stimuli}, not all participant showed the same \textit{sensitivity} toward changes in the stimuli in general.
-Here sensitivity refers to the degree of adaptation toward a stimulus.
-In addition, when one does converge, the sensitivity to changes (i.e.~the \enquote{amount of differentiation}) toward a single stimulus might differ.
-In the model, these two aspects were combined into one parameter -- \textit{convergence rate}.
-\todo{write a sentence that this rate is a balance between current and new style. put equation}
-For simulating the case where a participant does not converge at all, this rate can be set to zero.
+As shown in \cref{sec:convergence_to_natural_and_synthetic_stimuli}, not all participants showed the same \textit{sensitivity} toward changes in the stimuli in general.
+Here, sensitivity refers to the degree of overall change toward external speech input.
+In addition, when one does converge, the sensitivity to changes (i.e., the \enquote{amount of differentiation}) toward a single stimulus might differ as well.
+These two aspects are controlled by the parameter \textit{convergence rate}, which represents the balance between the current and the new speech style.
+For simulating the case where a speaker is not influenced by external speech input (the exemplars in the pool) at all, this rate can be set to zero.
 In that case the model will ignore the other interlocutor's speech and stick to the current speech style.
-Another variation found among the participants was the overall convergence degree toward the stimuli.
-In other words, where would the convergence process stop.
-This is simulated by the parameters \textit{convergence limit}, which defines the maximally allowed degree of similarity between the interlocutors.
-The value of this parameter is between zero and one.
+Another difference found among the participants was the total overall convergence degree toward the stimuli, i.e., where does the convergence process stop.
+This is monitored by the parameters \textit{convergence limit}, which defines the maximally allowed degree of similarity between the interlocutors with a value between zero and one.
 When set to 1.0 (\SI{100}{\percent}), the model is allowed to change up to \SI{100}{\percent} toward the other interlocutor; when set to 0.8, up to \SI{80}{\percent}, and so on.
 The parameter is used to control that the model does not simply imitate the user's input, which might happen especially with high convergence rate.
-By limiting the change, the convergence process is more gradual and restrained.
+By limiting the change, the accommodation process is more gradual and restrained, avoiding peaks and abrupt changes.
+Parameters simulating the actual change are not enough.
+To properly model a vocal behavior, some aspect that are not directly related to the speech output are required as well.
 
-However, parameters simulating the actual change are not enough.
-To properly model an interlocutor, some individual aspect that are not directly related to the speech output are required as well.
-
-The convergence target depends on the recent instances of the variable feature (or \textit{exemplars}).
-How many exemplars are taken into account when the feature's mental representation is updated depends on the interlocutor's short memory capacity.
-Working memory is a complex mechanism
-\review{reference for modeling working memory?}
-.
-It is modeled in a very simplified manner here, namely by the number of exemplars the interlocutor currently remembers on a first-in-first-out basis, i.e.~the \textit{exemplar pool size}.
-An exemplar is modeled as a vector with cardinality $n$, where $n$ is the number of dimensions the feature has (e.g.~the number of measured formants for a vowel-quality feature).
-Whenever an instance of the feature is encountered, a new exemplar is added to the pool.
-If the pool is already in full capacity, the oldest exemplar is forgotten by the speaker (deleted in the model) (see \cref{fig:exemplar_pool}).
-
-Individuals may also have different general \textit{tendency} to converge toward other interlocutors.
-Here tendency refers to the likelihood to adapt to the stimuli presented to them.
-This likelihood is modeled not probabilistically, but by an \textit{update frequency}.
+The accommodation process, in both human and machines, relies on the recent instances (here, \textit{exemplars}) of a target feature .
+How many exemplars are taken into account when the feature's state is updated depends on the interlocutor's working memory capacity.
+Language working memory is a complex mechanism \citep[see][]{Baddeley2003working} which is simplified here by a single parameter, namely the number of exemplars the interlocutor currently remembers on a first-in-first-out basis, i.e., a queue, named here the \textit{exemplar pool size}.
+Since the pool is modeled as queue, the \emph{order} in which the exemplars were acquired is kept as well.
+This size can be tweaked based on the scenario and the expected interaction length.
+An exemplar is modeled as a vector with cardinality $n$, where $n$ is the number of dimensions the feature has (e.g., the number of measured formants for a vowel-quality feature).
+Whenever an exemplar of the feature is encountered, a new exemplar is added to the pool.
+If the pool is already in full capacity, the oldest exemplar is forgotten by the speaker (removed from the pool, see \cref{fig:exemplar_pool}).
+Speakers may also have different general \textit{tendency to converge} towards other interlocutors.
+Here, this likelihood is modeled not probabilistically, but by a parameter (probabilistic properties can be integrated elsewhere, though, as explained below).
 After an exemplar is added to a feature's pool, an update of the feature's value may be triggered.
 Whether and how often this happens is determined by the \textit{update frequency}.
 If set to 1, an update will occur every time an exemplar is added; if set to 2, every other exemplar, and so on.
-When set to 0, however, updates will only take place when explicitly requested.
-This can be useful when, for example, all features are to be updated at the same time, regardless of how many exemplars have been accumulated for each feature.
-Increasing the update interval means that each new pool value will be affected by more new exemplars, which, depending on the calculation method used (see below), might result in a smoother converging process.
-Additionally, a longer update interval also means that convergence will generally take longer, since the model's features are not being updated as frequently.
+When set to 0, however, updates will only take place when explicitly requested, e.g., after a pre-determined number of turns or a fixed amount of time.
+This can be useful, for example, when all features are to be updated at the same time, regardless of how many exemplars have been accumulated for each feature.
+Increasing the update interval means that each update will be affected by a higher number of new exemplars, which, depending on the calculation method used (see below), might result in a smoother converging process.
+Additionally, a longer update interval also means that accommodation will generally take longer, since the model's features are not being updated as frequently.
+This is fitting a systems with which the user is expected to have long interactions and/or many interactions over an extended period of time.
 
-Though not only the frequency in which the update occurs plays a roll in the process, but also the manner in which it is being updated.
-This manner is determined by the \textit{calculation method} used.
-Since the features in the model are represented by vectors, any function that takes a vector as input and outputs another as output would do.
-\todo{explain that first we need to transform the matrix!}
+Not only the frequency of updates plays a roll in the process, but also the manner in which the update is performed.
+This manner is determined by the \textit{calculation method}.
+Since the features in the model are represented by vectors, any function that takes a matrix as input and outputs a vector as output can be used (see further mathematical details in \cref{subsubsec:calculating_changed_value}).
+The method can be either statistical or deterministic, e.g., simply averaging the exemplars.
+Methods that can take order into account, like decaying average or some neural networks, might yield more convincing accommodative behaviors.
+A different calculation method can be assigned to each feature, which can help accounting for acoustic or psycholinguistic constrains.
+This can also be influence by the setting the system is purposed for (experimental, exploratory, data collection, etc.)
 
-After transforming the matrix, the model has a representation of each feature as a vector where each dimension is a single value of a 
-One option is to use a fixed function on each of the dimensions to create a vector with new values.
-This function could be, for example, simple average or decaying average.
-Such functions are easy to understand and follow, and can describe relatively simple mechanics of how each stimulus contributes to the overall change, since each value is calculated sequentially but independently of the other.
+The \emph{target phoneme} has two purposes:
+First, it tells the \ac{asr} component which phoneme is associates with this phoneme, so that it is forwarded for further analysis.
+Second, it is used in the \emph{phonetic context} parameter to filter instances of the phoneme that should not be associated with the feature.
+The context is a regular expression against which the phoneme sequence retrieved by the \ac{asr} is matched\footnote{This requires an \ac{asr} engine that returns such sequence in additional to textual output.
+It is therefore crucial that the phoneme symbol set used in the model and by the \ac{asr} is the same and unambiguous, specifically when used in a regular expression.
+This is the only part in the pipeline that is language-dependent (or rather symbol-dependent)
+Using non-ASCII symbol sets, like IPA, may solve many of these issues, but is not recommended since \ac{asr} engines rarely use those and also due to other technical reasons.}
+For suprasegmental features -- or any other feature that is not bound to a specific phoneme or context -- the target phoneme can remain empty and the phonetic context set to match any sequence.
+The second parameter used to put constrains on the detected phones is the \emph{allowed range}, which defines the acceptable value boundaries for the feature (min and max values per dimension).
+This parameter is important to obtain clean and sensible exemplars, as it introduces restrictions based on phonetic knowledge (e.g., reasonable \ac{f0} values for a human speaker), which at the same time also help preventing \ac{asr} errors from meddling with the exemplars sent to the pool.
+Since these values depend are feature-dependent, this parameter is set for each feature individually.
+\Cref{subsubsec:detecting segment exemplars} shows an example of a feature definition.
 
-Each feature can use a different calculation method.
-Which method to use is up to the user of the system, as there might be acoustic or psycholinguistic constrains to take into account, based on the settings the system is used in (experimental, exploratory, data collection, etc.)
-
-% calculation method -- make sure you directly lead to it from the update step
-
-\todo{put equations where appropriate}
-
+The model's parameters are summarized in \cref{tab:comp_model_parameters} (and cf.\ \citet{Raveh2017Interspeech}).
+%
 \begin{landscape}
 	\begin{table}[tb]
 		\centering
-		\caption[Summary of computational model's parameters]{Computational model's parameters in their order of use.}
+		\caption[Summary of computational model's parameters]
+			{Computational model's parameters in their order of use.
+			The colors mark parameters associates with the
+			{\color{Violet}\textbf{detect}},
+			{\color{BurntOrange}\textbf{filter}},
+			{\color{ForestGreen}\textbf{store}},
+			{\color{RoyalBlue}\textbf{update}}, and
+			{\color{red}\textbf{assign}} steps.}
 		\label{tab:comp_model_parameters}
 		\begin{tabulary}{\linewidth}{lLL}
 			\toprule
-			\multicolumn{1}{c}{\textbf{Parameter}} 		& \multicolumn{1}{c}{\textbf{Description}} 					& \multicolumn{1}{c}{\textbf{Value}} \\
-			\textit{target phoneme*} 					& the phoneme that triggers the feature 					& phoneme symbol\\
-			\textit{phonetic context*} 					& the environment in which the phoneme is accepted 			& regex of phoneme symbols\\
-			\textit{allowed range*} 					& the value range in which new instances are accepted 		& numeric, depending on feature\\
-			\textit{exemplar pool size} 				& maximum number of exemplars in memory 					& integer, $> 0$\\
-			\textit{update frequency} 					& how frequently a feature's value is recalculated 			& integer, $\geq 0$ \\
-			\textit{calculation method*} 				& the manner in which the pool value is calculated 			& one of supported methods\\
-			\textit{convergence rate} 					& weight given to the pool value 							& float, typically $> 0$ and $< 1$\\
-			\textit{convergence limit*}  				& the maximum degree of convergence allowed for a feature 	& float, $> 0$ and $< 1$ \\	
+			\multicolumn{1}{c}{\textbf{Parameter}} & \multicolumn{1}{c}{\textbf{Description}} & \multicolumn{1}{c}{\textbf{Value}} \\
+			
+			{\color{Violet}\textbf{target phoneme}}*
+			& the phoneme that triggers the feature's pipeline
+			& a phoneme symbol\\\addlinespace[0.2cm]
+			
+			{\color{BurntOrange}\textbf{phonetic context}}*
+			& the environment in which the feature instance is accepted
+			& regex containing the of phoneme symbols containing target phoneme\\\addlinespace[0.2cm]
+			
+			{\color{BurntOrange}\textbf{allowed range}}*
+			& the value range(s) in which new instances are accepted
+			& two numeric values (min and max) per feature dimension\\\addlinespace[0.2cm]
+			
+			{\color{ForestGreen}\textbf{exemplar pool size}}
+			& maximum number of exemplars in memory at a time, oldest exemplar removed when full
+			& integer, $> 0$\\\addlinespace[0.2cm]
+			
+			{\color{RoyalBlue}\textbf{update frequency}}
+			& how frequently a feature's value is recalculated, controlling the accommodation pace
+			& integer, $\geq 0$; 0 for manual update\\\addlinespace[0.2cm]
+			
+			{\color{RoyalBlue}\textbf{calculation method}}*
+			& the manner in which the pool value is calculated based on the values and order of the exemplars in pool
+			& any $\mathbb{Q}^{n \times m} \longrightarrow \mathbb{Q}^{m}$ function; either implemented directly in code or sent to an external statistical model\\\addlinespace[0.2cm]
+			
+			{\color{RoyalBlue}\textbf{convergence rate}}
+			& weight of the exemplar pool when updating the feature's state, controlling the impact of external input on the speaker's features states
+			& float, typically $> 0$ and $< 1$; 0 for ignoring pool; $> 1$ for over-weighting pool\\\addlinespace[0.2cm]
+			
+			{\color{red}\textbf{convergence limit}}*
+			& the maximum degree of convergence allowed for the feature with respect to the input instances
+			& float, $> 0$ and $\leq 1$; 1 (\SI{100}{\percent}) for no limitation \\
 			\bottomrule
 		\end{tabulary}
 		\flushleft{\footnotesize \emph{* denotes parameters that are defined individually for each feature}}
 	\end{table}
 \end{landscape}
-
-
-The model's parameters are summarized in \cref{tab:comp_model_parameters}
-With these criteria in mind, a computational model with several parameters wad developed.
-This model, described in detail in \citet{Raveh2017Interspeech}, includes these parameters and a few others, and its purpose is to generate different convergence behaviors.
-
-% briefly also mention target phoneme and phonetic context
