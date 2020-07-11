@@ -1,15 +1,12 @@
-\chapter{Statistical Model}
+\chapter{Probabilistic Model}
 \label{chap:statistical_model}
 
 \lettrine{I}{ntroduction} into this chapter\dots
 
 \pagebreak
 
-\section{Time series analysis}
+\section{Time series representation and \aclp{gp}}
 \label{sec:time_series_analysis}
-
-\section{Regression and classification with Gaussian processes}
-\label{sec:gaussian_processes}
 
 \todo[inline]{introduction to GP. search over all functions. emphasize the aspects of it that we are using it for, but also a bit generally why it's good for ML. compare it to other interpolation/extrapolation methods. if makes sense, explain to what kind of data it suits.}
 
@@ -59,20 +56,20 @@ The definitions of the used kernels are as follows:
 	\item[Noise kernel -- ]
 	is a kernel used for capturing unexplained variation in the data, i.e., noise.
 	It is typically based on the constant kernel as part of a sum kernel, in which it explains the noise component of a signal.
-	In this role, the constant parameter is tuned to estimate the noise level.
+	In this context, the constant parameter is tuned to estimate the noise level.
 	This is determined by
 	%
 	\begin{equation}
 		\label{eq:noise_kernel}
-		k_{noise}({noise_level}, x, x') =
+		k_{noise}(\{noise\_level\}, x, x') =
 		\begin{cases}
-		C_{noise}, & if\quad x_1 = x_2\\
+		C_{noise\_level}, & if\quad x_1 = x_2\\
 		0, & otherwise,\\
 		\end{cases}
 	\end{equation}
 	\eqname{Noise kernel}
 	%
-	where $noise_level$ equals the variance of the noise found in the input signal.
+	where $noise\_level$ equals the variance of the noise found in the input signal.
 	
 	\item[Radial-basis function (RBF) kernel --]
 	also known as \emph{squared exponential kernel}, the RBF kernel is a stationary kernel with one parameter, \emph{lengthscale} $l > 0$.
@@ -82,9 +79,9 @@ The definitions of the used kernels are as follows:
 	%
 	\begin{equation}
 		\label{eq:RBF_kernel}
-		k_{RBF}(\{\ell, \sigma\}, x, x') = \sigma^2 exp\left(\frac{\lVert x_1 - x_2 \lVert ^2_n}{2\ell^2}\right),
+		k_{RBF}(\{\ell\}, x, x') = \sigma^2 exp\left(\frac{\lVert x_1 - x_2 \lVert ^2_n}{2\ell^2}\right),
 	\end{equation}
-	\eqname{Radial-basis function (squared exponential) kernel}
+	\eqname{Radial basis function (squared exponential) kernel}
 	%
 	where $\lVert x_1 - x_2 \lVert$ is the Euclidean distance between two $n$-dimensional input points and $\sigma^2$ is a scalar factor that determines the average distance of your function away from its mean.
 	\cref{fig:RBF_prior_posterior} shows prior and posterior examples of the RBF kernel.
@@ -102,8 +99,9 @@ The definitions of the used kernels are as follows:
 		[Prior and posterior of RBF kernel]
 		{Prior and posterior of RBF kernel.
 			This kernel typically results in smoothed functions.
-			The length scale parameter determines the length of the \enquote*{wiggles} of the functions}
+			The length scale parameter determines the length of the \enquote{wiggles} of the functions}
 		\label{fig:RBF_prior_posterior}
+		\todo[inline]{put URL of these images in a footnote}
 	\end{figure}
 	
 %	\item[Rational quadratic kernel]
@@ -122,8 +120,11 @@ The definitions of the used kernels are as follows:
 
 \todo[inline]{here write about the initial parameter values, boundaries, etc.}
 
-\section{Interpolating data using kriging}
-\label{sec:interploating_data_using_kriging}
+\subsection{Data interpolation using kriging}
+\label{subsec:interploating_data_using_kriging}
+
+% explain why kriging is a good appraoch for accommodation (continuous, better than average-iterploation)
+% from wiki: riging gives the best linear unbiased prediction of the intermediate values. Interpolating methods based on other criteria such as smoothness (e.g., smoothing spline) may not yield the most likely intermediate values.
 
 \todo[inline]{explain that we use GP to obtain ``missing'' data points in the feature vectors of the speakers to make the time series parallel and comparable.}
 
@@ -132,5 +133,18 @@ The definitions of the used kernels are as follows:
 \citet{Kousidis2009monitoring}\\ % another TAMA paper, with an a bit more concrete example
 
 \todo[inline]{as an introduction, present Kriging, use this for a start \url{https://en.wikipedia.org/wiki/Kriging}}
-\todo[inline]{definitely write down and explain the kernel we used for interpolation (probably a sum kernel of product kernel)}
-\todo[inline]{don't forget to mention the log maximum likelihood of the interpolation}
+
+\section{Marking changes}
+\label{sec: marking_changes}
+
+\section{Accommodation as a language model}
+\label{sec:accommodation_as_a_lm}
+
+\subsection{Dimensionality reduction and symbol representation}
+\label{subsec:dim_reduction_and_symbolic_rep}
+
+\subsection{Word extraction and sequence probabilities}
+\label{subsec:word_extraction_and_seq_prob}
+
+\section{Clustering and incremental generation}
+\label{clustering_and_incremental_generation}
