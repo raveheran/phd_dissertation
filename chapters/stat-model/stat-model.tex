@@ -39,8 +39,8 @@ Some common covariance functions are given below.
 	It requires a single parameter, the constant value, and is defined as 
 	
 	\begin{equation}
-	\label{eq:constant_kernel}
-	k_{constant}(C, x, x') = C\forall x_1, x_2,
+		\label{eq:constant_kernel}
+		k_{constant}(C, x, x') = C\forall x_1, x_2,
 	\end{equation}
 	\eqname{Constant kernel}
 	
@@ -50,12 +50,12 @@ Some common covariance functions are given below.
 	This is determined by
 	
 	\begin{equation}
-	\label{eq:noise_kernel}
-	k_{noise}(C_{noise}, x, x') =
-	\begin{cases}
-	C_{noise}, & if\quad x_1 = x_2\\
-	0, & otherwise.\\
-	\end{cases}
+		\label{eq:noise_kernel}
+		k_{noise}(C_{noise}, x, x') =
+		\begin{cases}
+		C_{noise}, & if\quad x_1 = x_2\\
+		0, & otherwise.\\
+		\end{cases}
 	\end{equation}
 	\eqname{Noise kernel}
 	
@@ -98,12 +98,10 @@ Some common covariance functions are given below.
 	When $\alpha$ $\lim$ $\inf$, the RQ kernel is identical to the SE kernel, as described by
 	
 	\begin{equation}
-	\label{eq:RQ_kernel}
-	k_{RQ}(\{\sigma, \alpha, \ell\}, x, x') = \sigma^2 \left( 1 + \frac{\lVert x_1 - x_2 \lVert ^2}{2\alpha \ell^2} \right)^{-\alpha}.
+		\label{eq:RQ_kernel}
+		k_{RQ}(\{\sigma, \alpha, \ell\}, x, x') = \sigma^2 \left( 1 + \frac{\lVert x_1 - x_2 \lVert ^2}{2\alpha \ell^2} \right)^{-\alpha}.
 	\end{equation}
 	\eqname{Rational quadratic kernel}
-	
-	
 \end{description}
 
 Since convergence analyses usually refer to the difference between production values and not to the values themselves, only stationary kernels are used for interpolation of such measures \putref{refer to a later section where interpolation of data is performed}.
@@ -122,6 +120,9 @@ For example, multiplying a linear kernel by a periodic one will result in functi
 
 \section{Interpolating data using kriging}
 \label{sec:interploating_data_using_kriging}
+
+\citet{Galvez2020unifiying} % compare to the rather simplistic (and naive) approach taken here (based on TAMA)
+\citet{Kousidis2008towards} % original TAMA paper. read again, but seems like it's glorified moving average. say that my appraoch actually learns the curve of the speaker and doesn't just interpolate, which allows continuous predictions and more evolve description.
 
 \todo[inline]{as an introduction, present Kringing, use this for a start \url{https://en.wikipedia.org/wiki/Kriging}}
 \todo[inline]{definitely write down and explain the kernel we used for interpolation (probably a sum kernel of product kernel)}
