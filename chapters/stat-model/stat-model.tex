@@ -155,6 +155,7 @@ The kernel was initialized with the priors $C = 1$, $lengthscale = 1$, and no as
 The search boundaries for the RBF and noise components were $1 < lengthscale < 100$ and $\num{1e-4} < \xi < 10$, respectively, with a maximum of six optimization iterations. % the initial one plus five allowed restarts (n_restarts_optimizer parameter in code)
 \todo[inline]{make sure these numbers are up to date}
 \todo[inline]{write about how datapoints where selected from each turn to represent points of change}
+With the fitted kernel, a continuous prediction can be made for each speaker over the entire conversation time span.
 \Cref{fig:gp_vacc} shows an example of \ac{gp} predictions for one of the conversations. % 20171121A_Calendar_01 was used
 %
 \begin{figure}[t]
@@ -166,12 +167,62 @@ The search boundaries for the RBF and noise components were $1 < lengthscale < 1
 		 The additional lines around the means are randomly drawn functions from the fitted kernel representing potential variational output.
 		 The colored areas around the means lines show the \SI{95}{\percent} confident interval for the distributions of the same color.
 		 The straight horizontal lines indicate the overall mean of each speaker's productions.
-		 The posterior parameters and the log marginal likelihood of the fitted distributions are stated at the top.}
+		 The posterior parameters and the log marginal likelihoods of the fitted distributions are stated at the top.}
 	\label{fig:gp_vacc}
 \end{figure}
 
-\section{Measuring degree of change}
+\section{Marking degrees of change}
 \label{sec:measuring_changes}
+
+Once a regression line is drawn for each speaker from their respective distributions, the differences between the speakers' productions can be measured.
+Furthermore, due to the higher temporal resolution, more fine-grained degrees of change over time can be calculated as well.
+The differences are calculated by the subtracting the trapped areas between the two regression lines (see \cref{fig:gp_vacc})
+%
+\begin{equation}
+	f_{diff} \equiv\Delta\vec{x}_* =
+	\int_{\vec{x}_i}^{\vec{x}_{j}}\mu_{f_*subject} -
+	\int_{\vec{x}_i}^{\vec{x}_{j}}\mu_{f_*alexa}
+\end{equation}
+% - 
+and the directional derivatives of the resulted delta line to measure the degree of change
+%
+\begin{equation}
+	\nabla\Delta\vec{x}_*' = \frac{d}{dx}f_{diff}
+\end{equation}
+%
+along the difference line.
+\Cref{fig:diff_and_derivatives} demonstrates this on the same conversation from \cref{fig:gp_vacc} using the mean predictions of each speaker.
+%
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\textwidth]{diff_and_derivatives}
+	\caption[Continuous integral differences and derivatives in a \acl{hci}]
+		{Continuous integral differences (red line) and their corresponding derivatives (blue line) of speakers' productions in a conversation.}
+	\label{fig:diff_and_derivatives}
+\end{figure}
+%
+For building a generative model as described in \crefrange{sec:accommodation_as_a_lm}{clustering_and_incremental_generation}, the changes must be marked with pre-defined labels.
+To that end, the derivative values were translated into a continuum of change ranging from \textit{divergence} to \textit{convergence}.
+Based on this continuum, a discrete scale can be defined.
+The more categories this discrete scale offers, the more specific the behavior descriptions can be.
+\Cref{fig:cont_disc_scales} shows this process for a discrete scale of three categories: divergence, no (major) change, and convergence.
+%
+\begin{figure}[t]
+	\centering
+	\subfigure[Continuous scale]
+		{\includegraphics[width=0.47\textwidth]{cont_scale}
+	\label{fig:continuous_scale}}
+	\hfill
+%	\vspace{-1cm}\hfill\hspace{-1cm}{\hbox{\LARGE $\Longrightarrow$}}\hfill
+	\subfigure[Discrete scale]
+		{\includegraphics[width=0.47\textwidth]{discrete_scale}
+	\label{fig:discrete_scale}}
+	\caption[Continuous and discrete scales for labeling degrees of change]
+		{Continuous and discrete color-coded scales for labeling degrees of change in a conversation.}
+	\label{fig:cont_disc_scales}
+\end{figure}
+\todo[inline]{more details regarding how the discrete categories are defined}
+
 
 \section{Accommodation as a language model}
 \label{sec:accommodation_as_a_lm}
