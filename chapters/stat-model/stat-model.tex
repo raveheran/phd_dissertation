@@ -128,7 +128,7 @@ This allows analysis on continuous series of values instead of point-by-point co
 One way of achieving that, using \ac{loess}, is shown in \cref{fig:hds_dds_time_pitch}.
 A more evolve approach is presented here, where a speaker's vocal behavior is described as a distribution of functions that match the accumulated \textit{evidence} from the speaker's productions.
 
-\citet{Galvez2020unifiying}\\ % compare to the rather simplistic (and naive) approach taken here (based on TAMA)
+\citet{Galvez2020unifiying}\\ % compare to the rather simplistic (and naive) approach taken here (based on TAMA) -- can refer to some of the specific methods there, specifically that they also use area under curve difference
 \citet{Kousidis2008towards}\\ % original TAMA paper. read again, but seems like it's glorified moving average. say that my appraoch actually learns the curve of the speaker and doesn't just interpolate, which allows continuous predictions and more evolve description.
 \citet{Kousidis2009monitoring}\\ % another TAMA paper, with an a bit more concrete example
 
@@ -183,7 +183,7 @@ The differences are calculated by the subtracting the trapped areas between the 
 	\int_{\vec{x}_i}^{\vec{x}_{j}}\mu_{f_*subject} -
 	\int_{\vec{x}_i}^{\vec{x}_{j}}\mu_{f_*alexa}
 \end{equation}
-% - 
+%
 and the directional derivatives of the resulted delta line to measure the degree of change
 %
 \begin{equation}
@@ -201,7 +201,7 @@ along the difference line.
 	\label{fig:diff_and_derivatives}
 \end{figure}
 %
-For building a generative model as described in \crefrange{sec:accommodation_as_a_lm}{clustering_and_incremental_generation}, the changes must be marked with pre-defined labels.
+For building a generative model as described in \cref{sec:accommodation_as_a_lm,clustering_and_incremental_generation}, the changes must be marked with pre-defined labels.
 To that end, the derivative values were translated into a continuum of change ranging from \textit{divergence} to \textit{convergence}.
 Based on this continuum, a discrete scale can be defined.
 The more categories this discrete scale offers, the more specific the behavior descriptions can be.
@@ -227,13 +227,74 @@ The more categories this discrete scale offers, the more specific the behavior d
 \section{Accommodation as a language model}
 \label{sec:accommodation_as_a_lm}
 
+\todo[inline]{say that an n-gram language model has the advatage of ver other methods like markov chains that it takes time (history) into account (as opposed to only the last state), which I claim to be important in accommodation (and refer to one of the places where this is explained)}
+
 \subsection{Dimensionality reduction and symbolic representation}
 \label{subsec:dim_reduction_and_symbolic_rep}
 
 \subsection{Sequence extraction and probabilities}
 \label{subsec:word_extraction_and_seq_prob}
 
+[\ldots] similar distributions were found for all $n$ size up to half the size of an whole interactions.
+
 \section{Clustering and incremental variational generation}
 \label{clustering_and_incremental_generation}
 
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\textwidth]{3d_clustering}
+	\caption[3D \ac{knn} clustering of degrees of change \ac{pca} components]
+		{}
+	\label{fig:knn_clustering}
+\end{figure}
+
+\todo[inline]{1-2 intro sentences that both bottom-up and top-down approaches are shown here and each has its useful insights (which??)}
+
+
+Since the \ac{paa} representations created in \cref{subsec:dim_reduction_and_symbolic_rep} can be arbitrarily long and high dimensional, they are reduced here to their $n$ first \ac{pca} components for the purposes of visualizing their clustering.
+The k-nearest neighbors algorithm was used for clustering.
+the process was performed for 2, 3, and 5 clusters using the first 2 or 3 first \ac{pca}, with the combination of 3 clusters and 3 components performing the best on average.
+% on average since kNN is not deterministic and was run multiple times
+The result is shown in \cref{fig:knn_clustering}.
+
+\todo[inline]{what else can be said about the kNN clustering?}
+
+\todo{need references for PCA and KNN?}
+
+\begin{landscape}
+	\begin{figure}[t]
+		\centering
+		\hspace*{-4cm}
+		\includegraphics[width=1.7\textwidth]{paa_dist_dendrogram}
+		\caption[Dendrogram of time series representation of interactions distances]
+			{Dendrogram of the time series \ac{paa} representations of the solo condition interactions based on complete-link distances.
+			 Each cluster is represented by a different color of lines.
+			 Blue lines connect pairs of clusters that are most similar to each other, and similarly pairs of the closest subsequent sub-cluster and eventually leaves are connect directly to each other.
+			 Each leaf represent the interaction indicated by its label.
+			 Labels of the same color mark interaction with the same subject (two interactions per subject).
+			 The leaf and cluster colors are \emph{not} related.
+			 The leaves are order horizontally by their distance from left to right, so that the leaves of interactions that are more similar to each other (both inter- and within-cluster) are positioned closer.
+			 For example, the two interactions of subject \emph{20171201A} (12\textsuperscript{th} and 13\textsuperscript{th} leaves from the right) are the closet to each, as they are positioned together and within the same smaller sub-cluster.}
+		\label{fig:paa_dist_dendrogram}
+	\end{figure}
+\end{landscape}
+
 \todo[inline]{if this really works decently, refer to this section when describing variational vocal behavior as one of the levels for accommodative SDS}
+
+While top-down clustering can uncover general grouping of elements, bottom-up hierarchical clustering can reveal structural relations between them and measure their degrees of similarity.
+With numeric values assign to the degrees of changes along an interaction via the the \ac{paa} representations created in \cref{subsec:dim_reduction_and_symbolic_rep}, the distances between the 54 interactions can be measured and compared.
+The calculation was done using \emph{complete link} (a.k.a.\ farthest point algorithm).
+This kind of linkage is supported by the assumption that there are more general behavior patterns beyond the individual differences, as it searches the most dissimilar (and hence principally all) interactions in neighboring clusters and not only the closest one.
+This method also allows using the entire \ac{paa} sequences.
+\Cref{fig:paa_dist_dendrogram} shows the bottom-up distance clustering based on this linkage. 
+Although, unsurprisingly, no definite order emerges, some general trends can be seen regarding the similarity between interactions of the same subject.
+As the leaves are ordered horizontally based on their overall similarity, the distances between their positions be utilized to determine each subject's behavior consistency.
+The average distance of the population is 16.5, far from the maximal possible average of 27.
+% This is the maximal possible average, since this is when each interaction is half of the population away from its pair.
+% With the largest possible distance between two leaves being 53, the space can be divided into three bins of 18 (rounded up).
+Dividing the space into three equal bins of \enquote{short}, \enquote{medium}, and \enquote{long} distances shows that 15, 10, and 2 interactions fall into these bins, respectively.
+Moreover, this distribution has median of 17 and the second tertiles at 19, far from the 
+Such skewed distribution indicates that interactions of the same speaker tend to be relatively similar in terms of accommodation trends, regardless of any other factor (interaction length, task, order, and other factors used in \cref{chap:speech_variations_in_hhci}).
+Notably, the two interactions of one participant, 20171201A, even have the minimal possible distance of 1 between them (leaves (12\textsuperscript{th} and 13\textsuperscript{th} in \cref{fig:paa_dist_dendrogram}) and they are located together in the smallest sub-cluster.
+
+\todo[inline]{if it's not too much work, calculate how many subjects are in the same-color cluster}.
