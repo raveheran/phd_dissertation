@@ -1,4 +1,4 @@
-\chapter{Probabilistic Time Series Model}
+\chapter{Probabilistic Variational Model}
 \label{chap:statistical_model}
 
 \lettrine{I}{ntroduction} into this chapter\dots
@@ -38,7 +38,7 @@ Addition-based kernels, are maximized when any of their addend kernels yield a h
 For the modeling presented here, an additive kernel is used with constant, RBF, and noise terms (see \crefrange{eq:constant_kernel}{eq:RBF_kernel}).
 The RBF term determines the general shape of the curve (see example in \cref{fig:RBF_prior_posterior}), the constant term enables shifting of the curve if necessary, and the noise term adds degrees of freedom in case the curve cannot completely fit the input signal.
 
-The definitions of the used kernels are as follows:
+The definitions of the individual kernels are as follows:
 
 \begin{description}
 	\item[Constant kernel -- ]
@@ -129,7 +129,7 @@ To avoid that, some interpolation method is required, with the goal of generatin
 This allows analysis on continuous series of values instead of point-by-point comparison, where the temporal gaps between data points might be greatly unbalanced.
 One way of achieving that, using \ac{loess}, is shown in \cref{fig:hds_dds_time_pitch}.
 A more evolve approach is presented here, where a speaker's vocal behavior is described as a distribution of functions that match the accumulated \textit{evidence} from the speaker's productions.
-
+\todo{integrate these references}
 \citet{Galvez2020unifiying}\\ % compare to the rather simplistic (and naive) approach taken here (based on TAMA) -- can refer to some of the specific methods there, specifically that they also use area under curve difference
 \citet{Kousidis2008towards}\\ % original TAMA paper. read again, but seems like it's glorified moving average. say that my appraoch actually learns the curve of the speaker and doesn't just interpolate, which allows continuous predictions and more evolve description.
 \citet{Kousidis2009monitoring}\\ % another TAMA paper, with an a bit more concrete example
@@ -155,6 +155,7 @@ where $\mu_{conv}$ is the mean feature value of a single speaker and $\Sigma_*$ 
 It is important to note that the mean is not zeroed (as usually done in \ac{gp} regression) to maintain the original input values for the subsequent steps.
 The kernel was initialized with the priors $C = 1$, $lengthscale = 1$, and no assumptions regarding noise level.
 The search boundaries for the RBF and noise components were $1 < lengthscale < 100$ and $\num{1e-4} < \xi < 10$, respectively, with a maximum of six optimization iterations. % the initial one plus five allowed restarts (n_restarts_optimizer parameter in code)
+% \xi is here the sign for noise
 \todo[inline]{make sure these numbers are up to date}
 \todo[inline]{write about how datapoints where selected from each turn to represent points of change}
 With the fitted kernel, a continuous prediction can be made for each speaker over the entire conversation time span.
@@ -204,7 +205,7 @@ along the difference line.
 	\label{fig:diff_and_derivatives}
 \end{figure}
 %
-For building a generative model as described in \cref{sec:accommodation_as_a_lm,clustering_and_incremental_generation}, the changes must be marked with pre-defined labels.
+For building a generative model as described in \cref{sec:accommodation_as_a_lm,sec:clustering_and_incremental_generation}, the changes must be marked with pre-defined labels.
 To that end, the derivative values were translated into a continuum of change ranging from \textit{divergence} to \textit{convergence}.
 Based on this continuum, a discrete scale can be defined.
 The more categories this discrete scale offers, the more specific the behavior descriptions can be.
@@ -226,16 +227,26 @@ The more categories this discrete scale offers, the more specific the behavior d
 \end{figure}
 \todo[inline]{more details regarding how the discrete categories are defined}
 
-
 \section{Accommodation as a language model} % Accommodation as an n-gram model
 \label{sec:accommodation_as_a_lm}
 
-\todo[inline]{say that an n-gram language model has the advantage of over other methods like markov chains that it takes time (history) into account (as opposed to only the last state), which I claim to be important in accommodation (and refer to one of the places where this is explained)}
+In order to generate accommodation sequences, a model is needed, which can iteratively emits a label based on the seen labels history. 
+Predictions of any model based on Markov decision process \citep{Bellman1957markovian} depend only on the current state of the conversation.
+This neglects any temporal aspect of the conversation, which is a key component in spoken dialogue and accommodation \putref{cref to one or two places where this point is made}.
+One way to overcome this is to extend the transition function of a Markov-based model, so that the previous $n$ states are somehow incorporated into the action $a$ of $P_a(s, s')$.
+However, this violates the core idea of a Markov decision process and makes it cumbersome to use.
+Therefore, an n-gram model is proposed here, which incorporates a portion of a sequence's history (or \emph{context}) into the decision making, without losing the Markov property.
+The estimation of the element $e$ at position $i$ is therefore calculated by the probability term $P(e_i \mid e_{i-(n-1)},\ \ldots\ , e_{i-1})$.
+N-gram models are traditionally used for describing sequences of some linguistic units, e.g., words in a language model \citep[e.g.,][]{Niesler1996variable}, and are used in applications like machine translation \citep{Marino2006ngram} and proteins identification \citep{Xu2015identification}.
+The n-grams model here describes sequences of \emph{accommodation levels} across interactions.
+These levels are represented by discretized values that are based on the degrees of change acquired in \cref{sec:measuring_changes}.
+After computing the n-grams probabilities of the level, this model can be used for generating new sequences.
+The resolution and variability of the model can be controlled by changing the n-grams' $n$ and the number of levels used to distinguish between the different accommodation levels.
 
 \subsection{Dimensionality reduction and symbolic representation}
 \label{subsec:dim_reduction_and_symbolic_rep}
 
-The gradient time series extraction process described in \cref{sec:measuring_changes} (cf.\ \cref{fig:diff_and_derivatives}) is greatly high dimensional, even for short interactions.
+The gradient time series extraction process described in \cref{sec:measuring_changes} (and see \cref{fig:diff_and_derivatives}) is greatly high dimensional, even for short interactions.
 While this representation is useful for obtaining a fine-grained overview of the data, it is not practical for various analysis techniques that do not benefit (or are not designed to handle) such high dimensional data.
 For instance, clustering algorithms, which need to iteratively compare between all points in a collection, scale better with lower dimensionality.
 The dimensionality of the data in question here is reduced using \acf{paa} \citep{Keogh2001dimensionality}, which is a common dimensionality reduction technique for time series.
@@ -247,8 +258,8 @@ Each element $\vec{x}_i$ of the reduced vector is calculated by
 \end{equation}
 \eqname{\Acl{paa} dimensionality reduction}\noindent
 %
-where $n$ is the dimensionality of the original times series, $N$ is the dimensionality of the output vector, and $S_j$ is the $j$\textsuperscript{th} element of the original time series.
-\Ac{paa} is suitable here, as the goal is to obtain vectors with fewer dimensions that still faithfully represent the data, and not, e.g., decompositions of the original data \citep[and see][pp.\ 271-275]{Keogh2001dimensionality}.
+where $n$ is the dimensionality of the original times series, $1 \leq N \leq n$ is the dimensionality of the output vector, and $S_j$ is the $j$\textsuperscript{th} element of the original time series.
+\Ac{paa} is suitable here, as the goal is to obtain vectors with fewer dimensions that still faithfully represent the data, and not, e.g., decompositions of the original data \citep[cf.\ method survey in][pp.\ 271-275]{Keogh2001dimensionality}.
 As the goal here is to compare \emph{trends in change} within and across conversations rather than their absolute values, all gradient time series where z-normalized before applying the \ac{paa}.
 Ultimately, \ac{paa} provides \textbf{continuous numeric values} that represent the overall shape of the original time series.
 \todo{if eventually relevant, say that this normalization is reversed again when actual values are generated}
@@ -293,30 +304,77 @@ To that end, the \ac{sax} discretization was done using bins based on the normal
 Five categories (bins) are used here for categorizing degrees of change, labeled \enquote*{d+} for \emph{strong divergence}, \enquote*{d} for \emph{divergence}, \enquote*{n} for \emph{no (major) change}, \enquote*{c} for \emph{convergence}, and \enquote*{c+} for \emph{strong convergence}.
 This number was found to adequately describe types of accommodation;
 Three categories resulted in too unspecified sequences where all degrees of convergence or divergence are labeled similarly (as in \cref{fig:discrete_scale}), and seven or more categories did not add a substantial added value and often yielded in sparse sequences.
-The motivation to choose an odd number of categories is to have a \enquote{no-change} category.
-However, an even number can be used as well, ignoring zero values and forcing each value to stand for either convergence or divergence.
+The motivation for choosing an odd number of categories is to have a \enquote{no-change} category.
+However, an even number can be used as well, forcing each value to stand for either convergence or divergence while ignoring zero values.
 Note that the term \emph{synchrony} is avoided here for describing steady distance between the speakers, per the definition introduced in \cref{subsec:variation_types}, which entails additional properties.
 Ultimately, \ac{sax} provides \textbf{discrete textual labels}, which are a discretized version of the original time series.
-\Cref{fig:sax} shows the \ac{sax} of mutual change time series based on the \ac{paa} in \cref{fig:paa}.
+\Cref{fig:sax} shows the \ac{sax} of mutual change time series based on the \ac{paa} points in \cref{fig:paa}.
 
-\subsection{Sequence extraction and probabilities}
+\subsection{Sequence extraction and probability calculation}
 \label{subsec:word_extraction_and_seq_prob}
 
-[\ldots] similar distributions were found for all $n$ size up to half the size of an whole interactions.
+After applying \ac{sax}, a sequence of accommodation labels was obtained for each corresponding interaction.
+The count distribution of the labels was computed to examine their frequency.
+As could be expected, the symbol $n$ (standing for no-change) had the highest frequency.
+This frequency was about 2.5 times higher than the convergence and divergence labels $c$ and $d$, whose frequency, in turn, was roughly four times higher than the frequency of the strong convergence and strong divergence labels $c+$ and $d+$.
+The same process was repeated for combinations of the labels as they appear in the \ac{sax} sequences.
+The frequencies could be clearly separated into three groups:
+Matching the single-label distribution, repeated $n$ labels were about three times more frequent than the second group, which consisted of most other combinations that included $n$.
+Lastly, this group was followed by a longer tail of less frequent sequences, starting from counts three to four times lower, which included the rest of the symbol combinations.
+Sequences with many repeated $c+$ or $d+$ labels (i.e., sustained convergence/divergence) always appeared at the end of the tail.
+Increasingly smoother instances of the same overall distribution shape were found for all sequence lengths from two up to half the \ac{sax} sequence length (after which such frequencies become not as meaningful).
+The percentage of covered n-grams of length $w$ found in the \ac{sax} sequences out of the $5^w$ theoretically possible combinations was exponentially lower the higher $w$ was.
+
+\begin{table}[t]
+	\centering
+	\caption[Examples of probabilistically generated accommodation level label sequences]
+		{Three examples of probabilistically generated accommodation level label sequences.
+		 Each sequence consists of eight labels that were generated based on the initial context of the padding symbol $p$.
+		 The first line of each example shows the generated symbols as introduced in \cref{subsec:dim_reduction_and_symbolic_rep} and their average variability (value between 0 and 1, higher number means more variability.).
+		 The second line lists the scores (probabilities) of each corresponding generated label given the context seen up to that point and the overall probability of generating this entire sequence.
+		 The third line lists the perplexity of the trigram ending with the corresponding generated label given the context at the time of the generation.
+		 Note that the first two padding labels do not have score values, as they are given as the initial context.
+		 Similarly, perplexity can only be calculated once the sequence is longer than the one trigram.}
+		 % variability was calculated as the average "deviation", where c and d have value of 0.5, c+ and d+ value of 1, and n value of 0. for Example (c + c+ + n + n + d+ + c + n + n) / 8 = 0.375
+	\label{tab:generated_symbol_sequences}
+	\begin{tabularx}{\linewidth}{*{10}{c}l@{\hskip 0.1cm}l}
+		\toprule
+		p    & p    & n    & n    & n    & c    & n    & d    & d    & c    & variability: & \num{0.187}  \\
+		---  & ---  & 0.44 & 0.46 & 0.55 & 0.18 & 0.32 & 0.29 & 0.25 & 0.35 & probability: & \num{1.63e-4}\\
+		---  & ---  & ---  & 2.22 & 1.99 & 3.16 & 4.16 & 3.27 & 3.67 & 3.35 & perplexity: & \num{3.11}   \\[0.4cm]
+		
+		p    & p    & n    & d    & d    & c    & c+   & d+   & d+   & c+   & variability: & \num{0.687}  \\
+		---  & ---  & 0.44 & 0.17 & 0.25 & 0.35 & 0.13 & 0.25 & 0.34 & 0.19 & probability: & \num{1.37e-5}\\
+		---  & ---  & ---  & 3.67 & 4.88 & 3.35 & 4.69 & 5.62 & 3.46 & 3.96 & perplexity: & \num{4.23}   \\[0.4cm]
+		
+		p    & p    & c    & c+   & n    & n    & d+    & c     & n    & n    & variability: & \num{0.375}  \\
+		---  & ---  & 0.30 & 0.25 & 0.25 & 0.16 & 00.04 & 00.20 & 0.22 & 0.41 & probability: & \num{2.16e-6}\\
+		---  & ---  & ---  & 3.67 & 4.03 & 5.02 & 12.72 & 11.51 & 4.77 & 3.30 & perplexity: & \num{6.43}   \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+N-grams of $n = 3$, i.e., trigrams, were used here for computing the probabilities.
+The size of the n-gram determines the amount of previously acquired evidence that can be use to calculate a subsequent value.
+This fulfills the same role as the \emph{pool size} parameter of the computational model (see \cref{sec:parameters}).
+In both cases, the goal is to account for the temporal evolution of the conversation for deciding on its continuation.
+To account for conversation-initial sequences, the beginning of each symbol sequence was padded.
+The end of the sequence was not padded, since, unlike a traditional language model, the generative model here lets the user decide on the end of the interaction (see \cref{sec:clustering_and_incremental_generation}).
+This summed up to a collection of \num{2700} trigrams, which comprised 143 out of the $5^3$ level combinations~1~$\times$~5~two-padding combinations~+~5~$\times$~5~one-padding combinations~$= 155$~possible symbol combinations (\SI{92}{\percent}).
+% 2700 is 54 solo interactions times 50 trigrams for each: the size of SAX used was 50, which gives 48 trigrams. with the 3 trigrams added from padding, it's 50. 50 times 54 = 2700
+This shows a great variety in conversation dynamics.
+% however, since not all possible combinations are used for training, unseen trigrams can still be seen during generation. we set the vocab to be all possible combinations (plus all initial padded trigrams)
+% smoothing??
+% probabilities for OOV trigrams?
+Based on this n-grams model, sequences of symbols, representing accommodation levels in a conversation, can be probabilistically generated.
+For example, the next accommodation level $l$ after two convergence labels is taken from the probability distribution $p(l \mid c,\ c)$.
+\Cref{tab:generated_symbol_sequences} shows examples of such probabilistically generated sequences for the eight first accommodation labels of a conversation.
+It is worth noticing that the third sequence in the table has lower variability than the second sequence, although its overall probability is lower and its mean perplexity is higher.
+That means that, based on this model, interactions with lower variability are not necessarily more likely.
+On the other hand, since in most context the probability of label $n$ is relatively high, sequences with many $n$ labels are more likely to appear, on average.
 
 \section{Clustering and incremental variational generation}
-\label{clustering_and_incremental_generation}
-
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=\textwidth]{3d_clustering}
-	\caption[3D \ac{knn} clustering of mutual changes \ac{pca} components]
-		{\ac{knn} clustering of the first three \ac{pca} components of the interactions' \ac{paa} sequences.
-		 Each circle represents one sequence in the three-dimensional space.
-		 A circle's color indicates the cluster to which the datapoint belongs.}
-		 % elevation is 40 azimuth is 160
-	\label{fig:knn_clustering}
-\end{figure}
+\label{sec:clustering_and_incremental_generation}
 
 After defining a unified representation of the mutual changes in interactions over time in \cref{subsec:dim_reduction_and_symbolic_rep}, the question arises whether clusters in these representation can be found to detect general similarities in behavioral patterns.
 Two clustering methods are, namely \ac{knn} and hierarchical linkage, each offering a different angle and insights.
@@ -328,6 +386,16 @@ However, some separable clusters and general tendencies are expected to emerge, 
 
 \todo[inline]{try look into the clusters to see if they can be defined/described somehow (this is where Alexander's visualization can be used)}
 
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\textwidth]{3d_clustering}
+	\caption[3D \ac{knn} clustering of mutual changes \ac{pca} components]
+		{\ac{knn} clustering of the first three \ac{pca} components of the interactions' \ac{paa} sequences.
+		 Each circle represents one sequence in the three-dimensional space.
+		 A circle's color indicates the cluster to which the datapoint belongs.}
+		 % elevation is 40 azimuth is 160
+	\label{fig:knn_clustering}
+\end{figure}
 
 Since the \ac{paa} representations created in \cref{subsec:dim_reduction_and_symbolic_rep} can be arbitrarily long and high dimensional, they are reduced here to their $n$ first \ac{pca} components for the purposes of visualizing their clustering.
 The k-nearest neighbors algorithm was used for clustering.
@@ -369,10 +437,8 @@ The average distance of the population is 16.5, far from the maximal possible av
 Dividing the space into three equal bins of \enquote{short}, \enquote{medium}, and \enquote{long} distances shows that 16, 10, and 1 interaction(s) fall into these bins, respectively.
 Moreover, this distribution has median of 16 and its second tertiles located at 19, far from the \enquote{long distance} bin.
 Such skewness in the distribution indicates that interactions of the same speaker tend to be relatively similar in terms of accommodation trends, regardless of any other factor (interaction length, task, order, and other factors used in \cref{chap:speech_variations_in_hhci}).
-Notably, the two interactions of one participant, 20171201A, even have the minimal possible distance of 1 between them (leaves (12\textsuperscript{th} and 13\textsuperscript{th} in \cref{fig:paa_dist_dendrogram}) and they are located together in the smallest sub-cluster.
+Notably, the two interactions of one participant, 20171201A, even have the minimal possible distance of 1 between them (12\textsuperscript{th} and 13\textsuperscript{th} leaves in \cref{fig:paa_dist_dendrogram}) and they are located together in the smallest sub-cluster.
 
 \todo[inline]{if the generation based on cluster really works decently, refer to this section when describing variational vocal behavior as one of the levels for accommodative SDS}
 
 \todo[inline]{if it's not too much work, calculate how many subjects are in the same-color cluster}.
-
-\todo[inline]{when introducing incremental generation, say that n-gram has the advantage over Markov chain or state machine that it takes temporal aspect into account (the size of the n-gram)}
