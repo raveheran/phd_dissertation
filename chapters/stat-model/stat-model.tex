@@ -8,18 +8,28 @@
 \section{Time series representation and \aclp{gp}}
 \label{sec:time_series_analysis}
 
-\todo[inline]{introduction to GP. search over all functions. emphasize the aspects of it that we are using it for, but also a bit generally why it's good for ML. compare it to other interpolation/extrapolation methods. if makes sense, explain to what kind of data it suits.}
+The approach presented here capitalizes on the temporal aspect of spoken interaction, specifically the evolution of the observed accommodation over the course of a conversation.
+Hence, with the feature in question chronologically sampled along equal intervals in high temporal resolution, its values can be treated as a \emph{time series}.
+Time series are used for both analysis and prediction in many field, like anomaly detection, econometrics, seismology, geophysics, and more.
+Viewing accommodation as time series helps exploring it a process evolving over time and enables a range of analysis methods.
+This approach is motivated by the arguments explained in \cref{subsec:temporal_analysis}, vis.\ that representing mutual changes by merely a few points throughout an interaction or directly comparing its beginning state to its end state is not very informative and draw a very simplistic picture (See \cref{subsec:limitations_of_did} and \cref{fig:accommodation_types} for more details about this motivation and the limitation of \ac{did} measures).
 
-\todo[inline]{say that the novel process introduced here can be used for any dataset, and VACC is used here for demonstration}
+Whereas the computational model introduced in \cref{chap:computational_model} grants a \ac{sds} \emph{responsiveness} per the definition in \cref{subsec:accommodation_levels}, the approach here leads to a model that grants \emph{variability}.
+It can also define a \emph{profile}, e.g., by taking the mean prediction as the core behavior (see \cref{fig:gp_vacc}), but this is not the goal pursued here.
+Moreover, the generative model presented in \cref{sec:clustering_and_incremental_generation} can be combined with the aforementioned computational model, e.g., to limit the degree of accommodation or to control the change rate
+This variability is achieved by fitting a \emph{\ac{gp}} to each speaker.
+\Acp{gp} are stochastic processes with a multivariate normal distribution for each random variables.
+Therefore, a \ac{gp} provides the joint distribution for infinitely many random variables, i.e., a \emph{distribution of functions} that match some given evidence.
+Specifically \acp{gp} are used here for \emph{kriging} (\cref{subsec:interploating_data_using_kriging}), an interpolation technique, which is a technique used in application in various fields, like geostatistics, economics, and astronomy, to name a few.
+The utilization of \acp{gp} provides not only a continuous line with likelihoods for the observed speech productions, but also an infinite number of potential alternatives -- the variations -- that describe the speaker's vocal behavior.
 
-%\subsection{Covariance functions (kernels)}
 \subsection{Kernel building and tuning}
 \label{subsec:covariance_functions}
 
 \todo[inline]{current information taken from \url{http://scikit-learn.org/stable/modules/gaussian_process.html}. in the introduction add the reference(s) mention at the end of this page.}
 \todo[inline]{also, there was a very detailed thesis/paper about kernels, check if there are more good details there}
 
-Kernels (also called \textit{covariance functions} in the context of \acp{gp}) are a key component \acp{gp}, as they define the statistical relationship between the input values.
+Kernels (also called \textit{covariance functions} in the context of \acp{gp}) are a key in component \acp{gp}, as they define the statistical relationship between the input values.
 In general, they represent describe the similarity $k(x, x')$ between each pair of input points, so that $k(\cdot, \cdot)$ determines how similar the outputs $y_*$ and $y_*'$ will be. 
 More formally, a covariance function can be described as $\mathcal{K}(u, v) = \phi(u) \cdot \phi(v)$, where $\phi(\cdot)$ is a function that maps the input vectors into a transformed feature space.
 Which function to use is a key question when modeling using a \ac{gp}, as it determines the behavior of the model and the quality of the predictions it will be able to make.
@@ -33,7 +43,7 @@ Since convergence analyses usually refer to the \textit{difference} between valu
 %\putref{put 2 references about kernels, or only 1 is the first is used above}
 Kernels can also be chained using multiplication or addition to combine characteristics of multiple kernels.
 Multiplication-based kernels are maximized when all of its kernel factors yield high values, whereas
-Addition-based kernels, are maximized when any of their addend kernels yield a high value.
+addition-based kernels, are maximized when any of their addend kernels yield a high value.
 %For example, multiplying a linear kernel by a periodic one will result in functions that are \textit{both} periodic \textit{and} with increasing amplitude as they move away from the origin.
 For the modeling presented here, an additive kernel is used with constant, RBF, and noise terms (see \crefrange{eq:constant_kernel}{eq:RBF_kernel}).
 The RBF term determines the general shape of the curve (see example in \cref{fig:RBF_prior_posterior}), the constant term enables shifting of the curve if necessary, and the noise term adds degrees of freedom in case the curve cannot completely fit the input signal.
@@ -135,15 +145,13 @@ A more evolve approach is presented here, where a speaker's vocal behavior is de
 \citet{Kousidis2009monitoring}\\ % another TAMA paper, with an a bit more concrete example
 
 Kriging (or \textit{\acl{gp} regression}) is an interpolation method that gives an optimally fitted and unbiased prediction of intermediate values.
-\todo{references for a few fields where it is used?}
 Since this method fits a function distribution over the data, it not only yields mathematically more likely values, but also provides a curve that describes the characteristics of the interpolated curved, as opposed to more naive methods like linear interpolation or smoothing spline.
 Another advantage of this method is that it offers a \textit{distribution over functions} rather than specific values.
 Therefore, an infinite number of suitable values can be drawn from one fitted kernel and their likelihood can be evaluated.
 Such interpolation is illustrated in \cref{fig:RBF_posterior}, where each line represents a mean regression prediction drawn from the posterior distribution based on the given data points.
-
-This method was applied on the dataset presented in \cref{sec:vacc}.
+To demonstrate this method, it was applied here on the dataset presented in \cref{sec:vacc}.
 For simplicity, only the interactions in solo condition were used.
-The functions prediction for a each speaker can be described by
+The \ac{gp} prediction for each speaker can be described by
 %
 \begin{equation}
 	\label{eq:gp_function_prediction}
