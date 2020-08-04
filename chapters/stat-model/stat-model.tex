@@ -19,7 +19,7 @@ It can also define a \emph{profile}, e.g., by taking the mean prediction as the 
 Moreover, the generative model presented in \cref{sec:clustering_and_incremental_generation} can be combined with the aforementioned computational model, e.g., to limit the degree of accommodation or to control the change rate
 This variability is achieved by fitting a \emph{\ac{gp}} to each speaker.
 \Acp{gp} are stochastic processes with a multivariate normal distribution for each random variables.
-Therefore, a \ac{gp} provides the joint distribution for infinitely many random variables, i.e., a \emph{distribution of functions} that match some given evidence.
+Therefore, a \ac{gp} provides the joint distribution for infinitely many random variables, i.e., a \emph{distribution of functions} that match the given evidence.
 Specifically \acp{gp} are used here for \emph{kriging} (\cref{subsec:interploating_data_using_kriging}), an interpolation technique, which is a technique used in application in various fields, like geostatistics, economics, and astronomy, to name a few.
 The utilization of \acp{gp} provides not only a continuous line with likelihoods for the observed speech productions, but also an infinite number of potential alternatives -- the variations -- that describe the speaker's vocal behavior.
 
@@ -269,6 +269,7 @@ Each element $\vec{x}_i$ of the reduced vector is calculated by
 where $n$ is the dimensionality of the original times series, $1 \leq N \leq n$ is the dimensionality of the output vector, and $S_j$ is the $j$\textsuperscript{th} element of the original time series.
 \Ac{paa} is suitable here, as the goal is to obtain vectors with fewer dimensions that still faithfully represent the data, and not, e.g., decompositions of the original data \citep[cf.\ method survey in][pp.\ 271-275]{Keogh2001dimensionality}.
 As the goal here is to compare \emph{trends in change} within and across conversations rather than their absolute values, all gradient time series where z-normalized before applying the \ac{paa}.
+In the context of conversation analysis, the \ac{paa}'s dimensional cardinality determines the "zoom" level, i.e., the fine-grained the representation is (the more points the more detailed the time series is described).
 Ultimately, \ac{paa} provides \textbf{continuous numeric values} that represent the overall shape of the original time series.
 \todo{if eventually relevant, say that this normalization is reversed again when actual values are generated}
 \Cref{fig:paa} illustrates \ac{paa} on the gradients of one of the interactions.
@@ -375,8 +376,25 @@ This shows a great variety in conversation dynamics.
 % smoothing??
 % probabilities for OOV trigrams?
 Based on this n-grams model, sequences of symbols, representing accommodation levels in a conversation, can be probabilistically generated.
-For example, the next accommodation level $l$ after two convergence labels is taken from the probability distribution $p(l \mid c,\ c)$.
-\Cref{tab:generated_symbol_sequences} shows examples of such probabilistically generated sequences for the eight first accommodation labels of a conversation.
+For example, the next accommodation level $l$ after two convergence labels $c$ is taken from the probability distribution $p(l \mid c,\ c)$.
+\Cref{tab:generated_symbol_sequences} shows examples of such probabilistically generated sequences for the first eight accommodation labels of a conversation.
+The variability measure is defined as
+%
+\begin{equation}
+	sequence\ variability = \frac{1}{N} \sum_{i=1}^{N} \left| \frac{num(label_i)}{2} \right|,
+	% the absolute value is divided by 2 to make the vaerage per turn (i.e., max 1 "variability point" per turn)
+\end{equation}
+\eqname{Label sequence variability score}
+%
+where $N$ is the number of labels in the sequence and $num(label)$ maps a label to a numeric value between -2 ($d+$) and 2 ($c+$).
+The overall probability of the sequence is calculated by
+%
+\begin{equation}
+	sequence\ probability = \prod_{i=1}^{N} p(label_i \mid label_{i-2}, label_{i-1}).
+\end{equation}
+\eqname{Label sequence probability score}
+%
+The perplexity measure is the average of all the individual perplexity scores of the labels in the sequence.
 It is worth noticing that the third sequence in the table has lower variability than the second sequence, although its overall probability is lower and its mean perplexity is higher.
 That means that, based on this model, interactions with lower variability are not necessarily more likely.
 On the other hand, since in most context the probability of label $n$ is relatively high, sequences with many $n$ labels are more likely to appear, on average.
@@ -407,7 +425,7 @@ However, some separable clusters and general tendencies are expected to emerge, 
 
 Since the \ac{paa} representations created in \cref{subsec:dim_reduction_and_symbolic_rep} can be arbitrarily long and high dimensional, they are reduced here to their $n$ first \ac{pca} components for the purposes of visualizing their clustering.
 The k-nearest neighbors algorithm was used for clustering.
-the process was performed for 2, 3, and 5 clusters using the 2 or 3 first \ac{pca}, with the combination of 3 clusters and 3 components performing the best on average.
+the process was performed for two, three, and five clusters using the two or three first \ac{pca} components, with the combination of three clusters and three components performing the best on average.
 % on average since kNN is not deterministic and was run multiple times
 The result is shown in \cref{fig:knn_clustering}.
 
