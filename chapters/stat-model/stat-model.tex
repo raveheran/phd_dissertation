@@ -165,7 +165,7 @@ The kernel was initialized with the priors $C = 1$, $lengthscale = 1$, and no as
 The search boundaries for the RBF and noise components were $1 < lengthscale < 100$ and $\num{1e-4} < \xi < 10$, respectively, with a maximum of six optimization iterations. % the initial one plus five allowed restarts (n_restarts_optimizer parameter in code)
 % \xi is here the sign for noise
 \todo[inline]{make sure these numbers are up to date}
-\todo[inline]{write about how datapoints where selected from each turn to represent points of change}
+\todo[inline]{write about how datapoints where selected from each turn to represent points of change. this must be explained here, as it is referred to later.}
 With the fitted kernel, a continuous prediction can be made for each speaker over the entire conversation time span.
 \Cref{fig:gp_vacc} shows an example of \ac{gp} predictions for one of the conversations. % 20171121A_Calendar_01 was used
 %
@@ -255,7 +255,7 @@ The resolution and variability of the model can be controlled by changing the n-
 \label{subsec:dim_reduction_and_symbolic_rep}
 
 The gradient time series extraction process described in \cref{sec:measuring_changes} (and see \cref{fig:diff_and_derivatives}) is greatly high dimensional, even for short interactions.
-While this representation is useful for obtaining a fine-grained overview of the data, it is not practical for various analysis techniques that do not benefit (or are not designed to handle) such high dimensional data.
+While this representation is useful for gaining a fine-grained overview of the data, it is not practical for various analysis techniques that do not benefit (or are not designed to handle) such high dimensional data.
 For instance, clustering algorithms, which need to iteratively compare between all points in a collection, scale better with lower dimensionality.
 The dimensionality of the data in question here is reduced using \acf{paa} \citep{Keogh2001dimensionality}, which is a common dimensionality reduction technique for time series.
 Each element $\vec{x}_i$ of the reduced vector is calculated by
@@ -408,9 +408,7 @@ The former method is a top-down approach with a pre-defined number of clusters, 
 It cannot be expected to find completely distinct pattern for each speaker.
 However, some separable clusters and general tendencies are expected to emerge, both when inspecting individual speakers and at the collection as a whole.
 
-\todo[inline]{if it's not too much work, see how many subject end up having both their interactions in the same cluster}
-
-\todo[inline]{try look into the clusters to see if they can be defined/described somehow (this is where Alexander's visualization can be used)}
+\todo[inline]{get the IDs in each cluster and create a plot with the PAAs of each (Alexander's vis)}
 
 \begin{figure}[t]
 	\centering
@@ -428,7 +426,6 @@ The k-nearest neighbors algorithm was used for clustering.
 the process was performed for two, three, and five clusters using the two or three first \ac{pca} components, with the combination of three clusters and three components performing the best on average.
 % on average since kNN is not deterministic and was run multiple times
 The result is shown in \cref{fig:knn_clustering}.
-
 \todo{need references for PCA and kNN?}
 
 \begin{landscape}
@@ -463,8 +460,63 @@ The average distance of the population is 16.5, far from the maximal possible av
 Dividing the space into three equal bins of \enquote{short}, \enquote{medium}, and \enquote{long} distances shows that 16, 10, and 1 interaction(s) fall into these bins, respectively.
 Moreover, this distribution has median of 16 and its second tertiles located at 19, far from the \enquote{long distance} bin.
 Such skewness in the distribution indicates that interactions of the same speaker tend to be relatively similar in terms of accommodation trends, regardless of any other factor (interaction length, task, order, and other factors used in \cref{chap:speech_variations_in_hhci}).
-Notably, the two interactions of one participant, 20171201A, even have the minimal possible distance of 1 between them (12\textsuperscript{th} and 13\textsuperscript{th} leaves in \cref{fig:paa_dist_dendrogram}) and they are located together in the smallest sub-cluster.
+Notably, the two interactions of one participant, 20171201A, even have the minimal possible distance of 1 between them (12\textsuperscript{th} and 13\textsuperscript{th} leaves in \cref{fig:paa_dist_dendrogram}) and they are in the same lower-level sub-cluster.
+
+These clustering techniques show that different accommodative behaviors among speakers can be found measured.
+Together with the probabilistic approach presented in \cref{subsec:word_extraction_and_seq_prob}, these can be used for generating sequences based on a specific behavior (or rather a group of latent behaviors).
+Ultimately, this would result in a variational behavior of a system while interacting with a user (along with some a core latent behavior), as described in \cref{subsec:variation_types}.
+To this, an \emph{incremental} generation process is needed, as opposed to the block generation process demonstrated in \cref{tab:generated_symbol_sequences}, where the data for the entire interaction was known.
+An incremental generation better represents a live interaction, in which only the evidence accumulated up to a certain turn can be used for analysis and prediction of the next turn.
+This can be utilized both for integration into a system and for simulating possible system behaviors for further research.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\textwidth]{incr_gen_pipe}
+	\caption[Incremental generation process]
+		{Schema of the incremental generation process.
+		 Blue boxes are related to the user phase and orange boxes to the system phase.
+		 Together, they complete a cycle of one round.
+		 The dashed orange frame marks an optional step.
+		 Note that the new value generated for the system is used both as output (e.g., for \ac{tts} synthesis) and as additional evidence for the next cycle.
+		 The user's values can be obtained either from online input or from some database.}
+	\label{fig:incr_gen_pipe}
+\end{figure}
+
+
+The process is summarized in \cref{fig:incr_gen_pipe}.
+It consists of the user and the system phases, which are roughly symmetric and with opposite goals:
+While the former assign a label to an input value, the latter yields a value based on a label (which, in turn, is generated based on the label assigned to the user's input).
+A round is completed once both phases were executed once.
+Hence, each round adds two values and their two corresponding labels, one for the user and one for the system.
+In the user phase, the user input -- obtained either for live input or a database -- is added to the rest of the so-far accumulated evidence to predict both the user and the system values up to the current turn using \acp{gp} (the same way as in \cref{subsec:interploating_data_using_kriging}).
+Then, deltas and gradients of these values are calculated (see \cref{fig:diff_and_derivatives}) to subsequently create \ac{paa} and \ac{sax} sequences (see \cref{fig:paa_and_sax}).
+In the system phase, the resulted \ac{sax} contains one label per turn, including the user's new turn.
+The next system label is generated using the n-gram model with the probabilities acquired from the subset with the desired accommodative behavior (a cluster from \cref{fig:knn_clustering} in the example below).
+This label represents a relative z-normalized change degree.
+Therefore, the value range covered by this label can be computed from all accumulated gradients (shown by the arrow between the second user step to the second system step in \cref{fig:incr_gen_pipe}).
+The system's \ac{gp} from the first step, which hold the expected behavior, is used to draw a single gradient value from that range.
+These two steps grant the variational property to the generation process; a label for the general accommodation direction and a value for the specific amount of change.
+The drawn gradient value and the last system's gradient are used to determine the new gradient, from which the next system value can be calculated.
+Importantly, external policies can intervene in this step to modify this value to enforce the desired change of the system (see \cref{subsec:assign} for more motivation and examples).
+The yielded value is then added to the accumulated evidence, so that it can be taken into account in the next round.
+In parallel, it can also be sent to a component of a \ac{sds} (e.g., the \ac{tts} module, see \cref{subsubsec:dialogue_system,fig:adaptation_module_architecture}).
+
+
+
 
 \todo[inline]{if the generation based on cluster really works decently, refer to this section when describing variational vocal behavior as one of the levels for accommodative SDS}
 
-\todo[inline]{if it's not too much work, calculate how many subjects are in the same-color cluster}.
+%%% in each round, the entire \emph{current} evidence is taken into account to generate the next label. this might introduce small inconsistencies in the labeling scale between the individual turns (i.e., what is considered $d$ or $n$). However this faithfully represents the process in a real live conversation, where accommodation can only occur based on already produced of an interlocutor, as there is no way to know the full production range in advance. This is different from a data analysis performed on already known data (as done above), where accommodation levels can be computed based on the complete value range in a conversation. Therefore, the incremental generation is done as if the user and system take turns alternately, but the definition of a \enquote{user turn} can configured. For demonstration, every user value here is as obtained as described in \cref{subsec:interploating_data_using_kriging}.
+
+%%% the challenge is difference in each phase: for the user the a label needs to be determined based on a given value, whereas for the system a value needs to be generated based on a probabilistically generated label.
+
+%%% the system starts with it's means value, which can be assumed to be known from the the \ac{tts} module.
+
+%%% The "user input" can be raw values, averaged accummulation over several turns and the output of some post-processing. This leaves room for the system designer to control how the accommodation process will shaped.
+
+%%% a limitation policy here was applied based on the standard deviation of the user's input.
+
+\todo[inline]{refer to 2-3 places in this chapter when describing the different accommodation levels in SDS chapter}
+
+\todo[inline]{so how can GPs be used here? need to show that their variability can be used with degrees of confidence. either in generation of labels/values or somewhere else}
+
