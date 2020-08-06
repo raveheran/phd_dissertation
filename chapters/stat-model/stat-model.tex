@@ -501,14 +501,41 @@ Importantly, external policies can intervene in this step to modify this value t
 The yielded value is then added to the accumulated evidence, so that it can be taken into account in the next round.
 In parallel, it can also be sent to a component of a \ac{sds} (e.g., the \ac{tts} module, see \cref{subsubsec:dialogue_system,fig:adaptation_module_architecture}).
 
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\textwidth]{incr_gen_models}
+	\caption[]
+		{Responses of the three models, generated for the same user input (in blue).
+	 	 The dashed lines show the linear overall trend of the solid line of the same color.
+	 	 Note that these lines should be taken a reference for the general trend and \textbf{not as a representation or estimation of the values}.}
+	\label{fig:incr_gen_models}
+\end{figure}
 
-
+This process was used to simulate accommodation changes during a conversation using the three clusters in \cref{fig:knn_clustering}.
+Although the dataset used here is relatively small and is not designed to trigger different behaviors, the natural tendencies of the participants should be, at least to some extent, be reflected in this latent representation and be expressed in these simulations.
+For each cluster, an n-gram model was created as described in \cref{subsec:word_extraction_and_seq_prob}, based only on the interactions from this cluster.
+These models were then used to generate an accommodation response for each turn, similarly to those shown in \cref{tab:generated_symbol_sequences}, but longer and with concrete values in additional to the label.
+However, this time the generation was only for the system's side, given a pre-defined input of a human user.
+In the example presented here, the raw production values from interaction \texttt{20171201B\_Calendar\_02} were used, but there is room for system designers to control this differently depending on the application.
+For example, in interactions where the user is expected to take multiple turns before giving the floor to the system, only the last few values (as motivated in \cref{chap:conv_analysis}) or the average of these turns could be used instead.
+The first 30 rounds (60 turns) of three hypothetical conversations for this user input were generated, one per model.
+An n-gram length of ten symbols was used, to take advantage of the longer context available in such longer interactions.
+All the models starts with the mean value of the system in the data, which is known also in a real-world scenario from the development of system's \ac{tts} component.
+An arbitrary suitable value can be chosen as a starting value as well.
+\Cref{fig:incr_gen_models} shows the simulated interactions.
+The trend lines show the, in general, each model behaves differently:
+The green one tends towards divergence (from the user's trend line), the red one inclines to convergence, and the yellow one stays roughly the same regardless of the user input.
+These behaviors are triggered (or intensified) once the user starts to vary more around turns 35-40, and subsequently to a lesser extent till the end.
+Following these turns, the green line goes more sharply up, the red more sharply down, and the somewhat more neutral yellow starts to wiggle more.
+It can be claimed, therefore, that certain core behaviors exist, but are sensitive to external input.
+This emphasizes the need to look at accommodation as a mutual process occurring in context and not as a one-sided phenomena, even if each speaker has an inert typical behavior.
+Noticeably, around turn 50 the red line goes down to \ac{f0} values that might sound untypical for a female speaker (or just overly converging in general).
+This is due to the fact that the models here learn some theoretical probabilistic accommodative behavior, but do not have any knowledge about realistic human speech.
+\todo{too negative? makes the model sound incompetent...}
+Such issues can be easily addressed by applying policies based either on data and expert knowledge, as explained and demonstrated in \cref{chap:computational_model}.
 
 \todo[inline]{if the generation based on cluster really works decently, refer to this section when describing variational vocal behavior as one of the levels for accommodative SDS}
 
-%%% in each round, the entire \emph{current} evidence is taken into account to generate the next label. this might introduce small inconsistencies in the labeling scale between the individual turns (i.e., what is considered $d$ or $n$). However this faithfully represents the process in a real live conversation, where accommodation can only occur based on already produced of an interlocutor, as there is no way to know the full production range in advance. This is different from a data analysis performed on already known data (as done above), where accommodation levels can be computed based on the complete value range in a conversation. Therefore, the incremental generation is done as if the user and system take turns alternately, but the definition of a \enquote{user turn} can configured. For demonstration, every user value here is as obtained as described in \cref{subsec:interploating_data_using_kriging}.
-
-%%% the challenge is difference in each phase: for the user the a label needs to be determined based on a given value, whereas for the system a value needs to be generated based on a probabilistically generated label.
 
 %%% the system starts with it's means value, which can be assumed to be known from the the \ac{tts} module.
 
