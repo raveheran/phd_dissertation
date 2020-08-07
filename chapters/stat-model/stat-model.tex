@@ -8,18 +8,27 @@
 \section{Time series representation and \aclp{gp}}
 \label{sec:time_series_analysis}
 
-\todo[inline]{introduction to GP. search over all functions. emphasize the aspects of it that we are using it for, but also a bit generally why it's good for ML. compare it to other interpolation/extrapolation methods. if makes sense, explain to what kind of data it suits.}
+The approach presented here capitalizes on the temporal aspect of spoken interaction, specifically the evolution of the observed accommodation over the course of a conversation.
+Hence, with the feature in question chronologically sampled along equal intervals in high temporal resolution, its values can be treated as a \emph{time series}.
+Time series are used for both analysis and prediction in many field, like anomaly detection, econometrics, seismology, geophysics, and more.
+Viewing accommodation as time series helps exploring it a process evolving over time and enables a range of analysis methods.
+This approach is motivated by the arguments explained in \cref{subsec:temporal_analysis}, vis.\ that representing mutual changes by merely a few points throughout an interaction or directly comparing its beginning state to its end state is not very informative and draw a very simplistic picture (See \cref{subsec:limitations_of_did} and \cref{fig:accommodation_types} for more details about this motivation and the limitation of \ac{did} measures).
 
-\todo[inline]{say that the novel process introduced here can be used for any dataset, and VACC is used here for demonstration}
+Whereas the computational model introduced in \cref{chap:computational_model} grants a \ac{sds} \emph{responsiveness} per the definition in \cref{subsec:accommodation_levels}, the approach here leads to a model that grants \emph{variability}.
+It can also define a \emph{profile}, e.g., by taking the mean prediction as the core behavior (see \cref{fig:gp_vacc}), but this is not the goal pursued here.
+Moreover, the generative model presented in \cref{sec:clustering_and_incremental_generation} can be combined with the aforementioned computational model, e.g., to limit the degree of accommodation or to control the change rate
+This variability is achieved by fitting a \emph{\ac{gp}} to each speaker.
+\Acp{gp} are stochastic processes with a multivariate normal distribution for each random variables.
+Therefore, a \ac{gp} provides the joint distribution for infinitely many random variables, i.e., a \emph{distribution of functions} that match the given evidence.
+Specifically \acp{gp} are used here for \emph{kriging} (\cref{subsec:interploating_data_using_kriging}), an interpolation technique, which is a technique used in application in various fields, like geostatistics, economics, and astronomy, to name a few.
+The utilization of \acp{gp} provides not only a continuous line with likelihoods for the observed speech productions, but also an infinite number of potential alternatives -- the variations -- that describe the speaker's vocal behavior.
 
-%\subsection{Covariance functions (kernels)}
 \subsection{Kernel building and tuning}
 \label{subsec:covariance_functions}
 
-\todo[inline]{current information taken from \url{http://scikit-learn.org/stable/modules/gaussian_process.html}. in the introduction add the reference(s) mention at the end of this page.}
-\todo[inline]{also, there was a very detailed thesis/paper about kernels, check if there are more good details there}
+% \url{http://scikit-learn.org/stable/modules/gaussian_process.html}
 
-Kernels (also called \textit{covariance functions} in the context of \acp{gp}) are a key component \acp{gp}, as they define the statistical relationship between the input values.
+Kernels (also called \textit{covariance functions} in the context of \acp{gp}) are a key in component \acp{gp}, as they define the statistical relationship between the input values.
 In general, they represent describe the similarity $k(x, x')$ between each pair of input points, so that $k(\cdot, \cdot)$ determines how similar the outputs $y_*$ and $y_*'$ will be. 
 More formally, a covariance function can be described as $\mathcal{K}(u, v) = \phi(u) \cdot \phi(v)$, where $\phi(\cdot)$ is a function that maps the input vectors into a transformed feature space.
 Which function to use is a key question when modeling using a \ac{gp}, as it determines the behavior of the model and the quality of the predictions it will be able to make.
@@ -30,10 +39,9 @@ Since convergence analyses usually refer to the \textit{difference} between valu
 %That is, they fulfill $k(x_1, x_2) = k(x_1 - x_2)$.
 %This list only covers a small subset of common covariance functions.
 %Further kernels include the exp-sine squared, dot-product, linear, and more.
-%\putref{put 2 references about kernels, or only 1 is the first is used above}
 Kernels can also be chained using multiplication or addition to combine characteristics of multiple kernels.
 Multiplication-based kernels are maximized when all of its kernel factors yield high values, whereas
-Addition-based kernels, are maximized when any of their addend kernels yield a high value.
+addition-based kernels, are maximized when any of their addend kernels yield a high value.
 %For example, multiplying a linear kernel by a periodic one will result in functions that are \textit{both} periodic \textit{and} with increasing amplitude as they move away from the origin.
 For the modeling presented here, an additive kernel is used with constant, RBF, and noise terms (see \crefrange{eq:constant_kernel}{eq:RBF_kernel}).
 The RBF term determines the general shape of the curve (see example in \cref{fig:RBF_prior_posterior}), the constant term enables shifting of the curve if necessary, and the noise term adds degrees of freedom in case the curve cannot completely fit the input signal.
@@ -74,7 +82,7 @@ The definitions of the individual kernels are as follows:
 	
 	\item[Radial-basis function (RBF) kernel --]
 	also known as \emph{squared exponential kernel}, the RBF kernel is a stationary kernel with one parameter, \emph{lengthscale} $l > 0$.
-%	 which can either be a scalar (isotropic variant of the kernel) or a vector with the same number of dimensions as the inputs x (anisotropic variant of the kernel).
+%	which can either be a scalar (isotropic variant of the kernel) or a vector with the same number of dimensions as the inputs x (anisotropic variant of the kernel).
 	This kernel typically results in generally smoothed functions, with the lengthscale being associated with the long-term smoothness and degree of variability on the time dimension.
 	The RBF kernel is defined as
 	%
@@ -110,9 +118,8 @@ The definitions of the individual kernels are as follows:
 		{\includegraphics[width=0.45\textwidth]{RBF_prior}
 	\label{fig:RBF_prior}}
 	\hfill % no empty line here to avoid staring a new paragraph (figures will be vertically aligned)
-	\subfigure
-	[RBF kernel posterior ($length scale = 0.279$)]
-	{\includegraphics[width=0.45\textwidth]{RBF_posterior}
+	\subfigure[RBF kernel posterior ($length scale = 0.279$)]
+		{\includegraphics[width=0.45\textwidth]{RBF_posterior}
 	\label{fig:RBF_posterior}}
 	\caption[Prior and posterior of RBF kernel]
 		{\hspace{-0.18cm}\footnotemark\ 
@@ -124,26 +131,22 @@ The definitions of the individual kernels are as follows:
 \end{figure}
 \footnotetext{adapted from \url{https://scikit-learn.org/stable/_images/sphx_glr_plot_gpr_prior_posterior_001.png}}
 
-As also motivated in \cref{subsec:limitations_of_did,subsec:temporal_analysis}, artificially splitting interactions into a fixed, pre-determined number of parts to measure accommodation results in a partial view on the process.
+As also motivated in \cref{subsec:limitations_of_did,subsec:temporal_analysis}, artificially splitting interactions into a fixed, pre-determined number of parts to measure accommodation results in a partial view on the accommodation process.
 To avoid that, some interpolation method is required, with the goal of generating a more general behavior based on the observed productions.
 This allows analysis on continuous series of values instead of point-by-point comparison, where the temporal gaps between data points might be greatly unbalanced.
-One way of achieving that, using \ac{loess}, is shown in \cref{fig:hds_dds_time_pitch}.
-A more evolve approach is presented here, where a speaker's vocal behavior is described as a distribution of functions that match the accumulated \textit{evidence} from the speaker's productions.
-\todo{integrate these references}
-\citet{Galvez2020unifiying}\\ % compare to the rather simplistic (and naive) approach taken here (based on TAMA) -- can refer to some of the specific methods there, specifically that they also use area under curve difference
-\citet{Kousidis2008towards}\\ % original TAMA paper. read again, but seems like it's glorified moving average. say that my appraoch actually learns the curve of the speaker and doesn't just interpolate, which allows continuous predictions and more evolve description.
-\citet{Kousidis2009monitoring}\\ % another TAMA paper, with an a bit more concrete example
+One way of achieving that is using \ac{loess} smoothing (see \cref{fig:hds_dds_time_pitch}), which adequate for gain a smooth estimation of a speaker's overall performance.
+A similar approach is used in \citet{Galvez2020unifiying}, in which the average values obtained by \acl{tama} \citep[\acs{tama};][]{Kousidis2008towards, Kousidis2009monitoring} define the behavior.
+However, average values may hide some conceal turns with substantial changes and other tendencies that could distinguish one speaker from the other.
+A more evolve approach is presented here to describe a speaker's vocal behavior as a distribution of functions that match the accumulated \textit{evidence} from that speaker's productions.
 
 Kriging (or \textit{\acl{gp} regression}) is an interpolation method that gives an optimally fitted and unbiased prediction of intermediate values.
-\todo{references for a few fields where it is used?}
 Since this method fits a function distribution over the data, it not only yields mathematically more likely values, but also provides a curve that describes the characteristics of the interpolated curved, as opposed to more naive methods like linear interpolation or smoothing spline.
 Another advantage of this method is that it offers a \textit{distribution over functions} rather than specific values.
 Therefore, an infinite number of suitable values can be drawn from one fitted kernel and their likelihood can be evaluated.
 Such interpolation is illustrated in \cref{fig:RBF_posterior}, where each line represents a mean regression prediction drawn from the posterior distribution based on the given data points.
-
-This method was applied on the dataset presented in \cref{sec:vacc}.
+To demonstrate this method, it was applied here on the dataset presented in \cref{sec:vacc}.
 For simplicity, only the interactions in solo condition were used.
-The functions prediction for a each speaker can be described by
+The \ac{gp} prediction for each speaker can be described by
 %
 \begin{equation}
 	\label{eq:gp_function_prediction}
@@ -154,17 +157,20 @@ The functions prediction for a each speaker can be described by
 where $\mu_{conv}$ is the mean feature value of a single speaker and $\Sigma_*$ is the fitted additive covariance function described in \cref{subsec:covariance_functions}.
 It is important to note that the mean is not zeroed (as usually done in \ac{gp} regression) to maintain the original input values for the subsequent steps.
 The kernel was initialized with the priors $C = 1$, $lengthscale = 1$, and no assumptions regarding noise level.
-The search boundaries for the RBF and noise components were $1 < lengthscale < 100$ and $\num{1e-4} < \xi < 10$, respectively, with a maximum of six optimization iterations. % the initial one plus five allowed restarts (n_restarts_optimizer parameter in code)
+The search boundaries for the RBF and noise components were $1 < lengthscale < 100$ and $\num{1e-4} < \xi < 10$, respectively, with a maximum of six optimization iterations.
+% the initial one plus five allowed restarts (n_restarts_optimizer parameter in code)
 % \xi is here the sign for noise
-\todo[inline]{make sure these numbers are up to date}
-\todo[inline]{write about how datapoints where selected from each turn to represent points of change}
+The datapoints of the original series were grouped by the turn they belong to.
+Then, the average values of turns immediately before and after a floor change were taken as evidence for the \ac{gp}.
+This results in evidence concentrated around input from the other interlocutor, with the objective to capture turning points that are more prone to accommodation.
 With the fitted kernel, a continuous prediction can be made for each speaker over the entire conversation time span.
-\Cref{fig:gp_vacc} shows an example of \ac{gp} predictions for one of the conversations. % 20171121A_Calendar_01 was used
+\Cref{fig:gp_vacc} shows an example of \ac{gp} predictions for one of the conversations.
+% 20171121A_Calendar_01 was used
 %
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=\textwidth]{GP_VACC_with_draws}
-	\caption[Gaussian process regression on conversation with Alexa]
+	\caption[Gaussian process regression on a conversation with Alexa]
 		{Gaussian process regression for an interaction of a subject with Alexa.
 		 The thick blue and red lines show the predictions' mean.
 		 The additional lines around the means are randomly drawn functions from the fitted kernel representing potential variational output.
@@ -225,14 +231,14 @@ The more categories this discrete scale offers, the more specific the behavior d
 		{Continuous and discrete color-coded scales for labeling degrees of change in a conversation.}
 	\label{fig:cont_disc_scales}
 \end{figure}
-\todo[inline]{more details regarding how the discrete categories are defined}
+\todo[inline]{need more details regarding how the discrete categories are defined?}
 
 \section{Accommodation as a language model} % Accommodation as an n-gram model
 \label{sec:accommodation_as_a_lm}
 
 In order to generate accommodation sequences, a model is needed, which can iteratively emits a label based on the seen labels history. 
 Predictions of any model based on Markov decision process \citep{Bellman1957markovian} depend only on the current state of the conversation.
-This neglects any temporal aspect of the conversation, which is a key component in spoken dialogue and accommodation \putref{cref to one or two places where this point is made}.
+This neglects any temporal aspect of the conversation, which is a key component in spoken dialogue and accommodation (see \cref{subsec:limitations_of_did,sec:crqa,sec:analysis_hhci}).
 One way to overcome this is to extend the transition function of a Markov-based model, so that the previous $n$ states are somehow incorporated into the action $a$ of $P_a(s, s')$.
 However, this violates the core idea of a Markov decision process and makes it cumbersome to use.
 Therefore, an n-gram model is proposed here, which incorporates a portion of a sequence's history (or \emph{context}) into the decision making, without losing the Markov property.
@@ -247,7 +253,7 @@ The resolution and variability of the model can be controlled by changing the n-
 \label{subsec:dim_reduction_and_symbolic_rep}
 
 The gradient time series extraction process described in \cref{sec:measuring_changes} (and see \cref{fig:diff_and_derivatives}) is greatly high dimensional, even for short interactions.
-While this representation is useful for obtaining a fine-grained overview of the data, it is not practical for various analysis techniques that do not benefit (or are not designed to handle) such high dimensional data.
+While this representation is useful for gaining a fine-grained overview of the data, it is not practical for various analysis techniques that do not benefit (or are not designed to handle) such high dimensional data.
 For instance, clustering algorithms, which need to iteratively compare between all points in a collection, scale better with lower dimensionality.
 The dimensionality of the data in question here is reduced using \acf{paa} \citep{Keogh2001dimensionality}, which is a common dimensionality reduction technique for time series.
 Each element $\vec{x}_i$ of the reduced vector is calculated by
@@ -261,8 +267,8 @@ Each element $\vec{x}_i$ of the reduced vector is calculated by
 where $n$ is the dimensionality of the original times series, $1 \leq N \leq n$ is the dimensionality of the output vector, and $S_j$ is the $j$\textsuperscript{th} element of the original time series.
 \Ac{paa} is suitable here, as the goal is to obtain vectors with fewer dimensions that still faithfully represent the data, and not, e.g., decompositions of the original data \citep[cf.\ method survey in][pp.\ 271-275]{Keogh2001dimensionality}.
 As the goal here is to compare \emph{trends in change} within and across conversations rather than their absolute values, all gradient time series where z-normalized before applying the \ac{paa}.
+In the context of conversation analysis, the \ac{paa}'s dimensional cardinality determines the \enquote{zoom} level, i.e., how fine-grained the representation is (the more points the more in detail the time series is described).
 Ultimately, \ac{paa} provides \textbf{continuous numeric values} that represent the overall shape of the original time series.
-\todo{if eventually relevant, say that this normalization is reversed again when actual values are generated}
 \Cref{fig:paa} illustrates \ac{paa} on the gradients of one of the interactions.
 
 \begin{figure}[t]
@@ -290,7 +296,7 @@ Ultimately, \ac{paa} provides \textbf{continuous numeric values} that represent 
 
 \Ac{paa} is suitable for analyses of continuous numeric values.
 However, discrete values are required for symbolic sequence-based processing, such as calculating probabilities of n-grams.
-For converting the continuous \ac{paa} values, the \acf{sax} \citep{Lin2007experiencing} method was used.
+For converting the continuous \ac{paa} values, the \acl{sax} \citep[\acs{sax};][]{Lin2007experiencing} method was used.
 \Ac{sax} assigns a string label to each of the pre-defined bins.
 This is an advantage of \ac{sax}, as these labels provide a more meaningful and intuitive representation for humans.
 As explained, e.g., by \citet{Apostolico2003monotony}, it is preferable to use a discretization technique that outputs a symbol set with equiprobability\footnote{It can be claimed that realistically equiprobability does not hold for the symbols in this kind of data.
@@ -298,12 +304,11 @@ While that may be true to some extent, neither the pre-processing nor the dimens
 Moreover, the data was z-normalized to avoid any bias stemming from specific numeric values.
 For these reason, together with the fact that the participants were, in practice, free to speak in whatever way they wanted, equiprobability can be assumed in this analysis.
 See \cref{subsec:word_extraction_and_seq_prob} for more information regarding the distribution of extracted symbol sequences}.
-To that end, the \ac{sax} discretization was done using bins based on the normal distribution:
+To that end, the \ac{sax} discretization was done using bins based on the normal distribution of the values.
 % this is defined by the method="normal" parameter in the SAX function (or `strategy` parameter internally)
-\todo{can express the binning as a formula?}
 Five categories (bins) are used here for categorizing degrees of change, labeled \enquote*{d+} for \emph{strong divergence}, \enquote*{d} for \emph{divergence}, \enquote*{n} for \emph{no (major) change}, \enquote*{c} for \emph{convergence}, and \enquote*{c+} for \emph{strong convergence}.
-This number was found to adequately describe types of accommodation;
-Three categories resulted in too unspecified sequences where all degrees of convergence or divergence are labeled similarly (as in \cref{fig:discrete_scale}), and seven or more categories did not add a substantial added value and often yielded in sparse sequences.
+This number of bins was found to adequately describe types of accommodation;
+three categories resulted in too unspecified sequences where all degrees of convergence or divergence are labeled similarly (as in \cref{fig:discrete_scale}), and seven or more categories did not add a substantial added value and often yielded in sparse sequences.
 The motivation for choosing an odd number of categories is to have a \enquote{no-change} category.
 However, an even number can be used as well, forcing each value to stand for either convergence or divergence while ignoring zero values.
 Note that the term \emph{synchrony} is avoided here for describing steady distance between the speakers, per the definition introduced in \cref{subsec:variation_types}, which entails additional properties.
@@ -367,8 +372,25 @@ This shows a great variety in conversation dynamics.
 % smoothing??
 % probabilities for OOV trigrams?
 Based on this n-grams model, sequences of symbols, representing accommodation levels in a conversation, can be probabilistically generated.
-For example, the next accommodation level $l$ after two convergence labels is taken from the probability distribution $p(l \mid c,\ c)$.
-\Cref{tab:generated_symbol_sequences} shows examples of such probabilistically generated sequences for the eight first accommodation labels of a conversation.
+For example, the next accommodation level $l$ after two convergence labels $c$ is taken from the probability distribution $p(l \mid c,\ c)$.
+\Cref{tab:generated_symbol_sequences} shows examples of such probabilistically generated sequences for the first eight accommodation labels of a conversation.
+The variability measure is defined as
+%
+\begin{equation}
+	sequence\ variability = \frac{1}{N} \sum_{i=1}^{N} \left| \frac{num(label_i)}{2} \right|,
+	% the absolute value is divided by 2 to make the vaerage per turn (i.e., max 1 "variability point" per turn)
+\end{equation}
+\eqname{Label sequence variability score}
+%
+where $N$ is the number of labels in the sequence and $num(label)$ maps a label to a numeric value between -2 ($d+$) and 2 ($c+$).
+The overall probability of the sequence is calculated by
+%
+\begin{equation}
+	sequence\ probability = \prod_{i=1}^{N} p(label_i \mid label_{i-2}, label_{i-1}).
+\end{equation}
+\eqname{Label sequence probability score}
+%
+The perplexity measure is the average of all the individual perplexity scores of the labels in the sequence.
 It is worth noticing that the third sequence in the table has lower variability than the second sequence, although its overall probability is lower and its mean perplexity is higher.
 That means that, based on this model, interactions with lower variability are not necessarily more likely.
 On the other hand, since in most context the probability of label $n$ is relatively high, sequences with many $n$ labels are more likely to appear, on average.
@@ -382,14 +404,10 @@ The former method is a top-down approach with a pre-defined number of clusters, 
 It cannot be expected to find completely distinct pattern for each speaker.
 However, some separable clusters and general tendencies are expected to emerge, both when inspecting individual speakers and at the collection as a whole.
 
-\todo[inline]{if it's not too much work, see how many subject end up having both their interactions in the same cluster}
-
-\todo[inline]{try look into the clusters to see if they can be defined/described somehow (this is where Alexander's visualization can be used)}
-
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=\textwidth]{3d_clustering}
-	\caption[3D \ac{knn} clustering of mutual changes \ac{pca} components]
+	\caption[3D \ac{knn} clustering of mutual changes \acs{pca} components]
 		{\ac{knn} clustering of the first three \ac{pca} components of the interactions' \ac{paa} sequences.
 		 Each circle represents one sequence in the three-dimensional space.
 		 A circle's color indicates the cluster to which the datapoint belongs.}
@@ -399,10 +417,9 @@ However, some separable clusters and general tendencies are expected to emerge, 
 
 Since the \ac{paa} representations created in \cref{subsec:dim_reduction_and_symbolic_rep} can be arbitrarily long and high dimensional, they are reduced here to their $n$ first \ac{pca} components for the purposes of visualizing their clustering.
 The k-nearest neighbors algorithm was used for clustering.
-the process was performed for 2, 3, and 5 clusters using the 2 or 3 first \ac{pca}, with the combination of 3 clusters and 3 components performing the best on average.
+the process was performed for two, three, and five clusters using the two or three first \ac{pca} components, with the combination of three clusters and three components performing the best on average.
 % on average since kNN is not deterministic and was run multiple times
 The result is shown in \cref{fig:knn_clustering}.
-
 \todo{need references for PCA and kNN?}
 
 \begin{landscape}
@@ -437,8 +454,75 @@ The average distance of the population is 16.5, far from the maximal possible av
 Dividing the space into three equal bins of \enquote{short}, \enquote{medium}, and \enquote{long} distances shows that 16, 10, and 1 interaction(s) fall into these bins, respectively.
 Moreover, this distribution has median of 16 and its second tertiles located at 19, far from the \enquote{long distance} bin.
 Such skewness in the distribution indicates that interactions of the same speaker tend to be relatively similar in terms of accommodation trends, regardless of any other factor (interaction length, task, order, and other factors used in \cref{chap:speech_variations_in_hhci}).
-Notably, the two interactions of one participant, 20171201A, even have the minimal possible distance of 1 between them (12\textsuperscript{th} and 13\textsuperscript{th} leaves in \cref{fig:paa_dist_dendrogram}) and they are located together in the smallest sub-cluster.
+Notably, the two interactions of one participant, 20171201A, even have the minimal possible distance of 1 between them (12\textsuperscript{th} and 13\textsuperscript{th} leaves in \cref{fig:paa_dist_dendrogram}) and they are in the same lower-level sub-cluster.
 
-\todo[inline]{if the generation based on cluster really works decently, refer to this section when describing variational vocal behavior as one of the levels for accommodative SDS}
+These clustering techniques show that different accommodative behaviors among speakers can be found measured.
+Together with the probabilistic approach presented in \cref{subsec:word_extraction_and_seq_prob}, these can be used for generating sequences based on a specific behavior (or rather a group of latent behaviors).
+Ultimately, this would result in a variational behavior of a system while interacting with a user (along with some a core latent behavior), as described in \cref{subsec:variation_types}.
+To this, an \emph{incremental} generation process is needed, as opposed to the block generation process demonstrated in \cref{tab:generated_symbol_sequences}, where the data for the entire interaction was known.
+An incremental generation better represents a live interaction, in which only the evidence accumulated up to a certain turn can be used for analysis and prediction of the next turn.
+This can be utilized both for integration into a system and for simulating possible system behaviors for further research.
 
-\todo[inline]{if it's not too much work, calculate how many subjects are in the same-color cluster}.
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\textwidth]{incr_gen_pipe}
+	\caption[Incremental generation process]
+		{Schema of the incremental generation process.
+		 Blue boxes are related to the user phase and orange boxes to the system phase.
+		 Together, they complete a cycle of one round.
+		 The dashed orange frame marks an optional step.
+		 Note that the new value generated for the system is used both as output (e.g., for \ac{tts} synthesis) and as additional evidence for the next cycle.
+		 The user's values can be obtained either from online input or from some database.}
+	\label{fig:incr_gen_pipe}
+\end{figure}
+
+The process is summarized in \cref{fig:incr_gen_pipe}.
+It consists of the user and the system phases, which are roughly symmetric and with opposite goals:
+While the former assign a label to an input value, the latter yields a value based on a label (which, in turn, is generated based on the label assigned to the user's input).
+A round is completed once both phases were executed once.
+Hence, each round adds two values and their two corresponding labels, one for the user and one for the system.
+In the user phase, the user input -- obtained either for live input or a database -- is added to the rest of the so-far accumulated evidence to predict both the user and the system values up to the current turn using \acp{gp} (the same way as in \cref{subsec:interploating_data_using_kriging}).
+Then, deltas and gradients of these values are calculated (see \cref{fig:diff_and_derivatives}) to subsequently create \ac{paa} and \ac{sax} sequences (see \cref{fig:paa_and_sax}).
+In the system phase, the resulted \ac{sax} contains one label per turn, including the user's new turn.
+The next system label is generated using the n-gram model with the probabilities acquired from the subset with the desired accommodative behavior (a cluster from \cref{fig:knn_clustering} in the example below).
+This label represents a relative z-normalized change degree.
+Therefore, the value range covered by this label can be computed from all accumulated gradients (shown by the arrow between the second user step to the second system step in \cref{fig:incr_gen_pipe}).
+The system's \ac{gp} from the first step, which hold the expected behavior, is used to draw a single gradient value from that range.
+These two steps grant the variational property to the generation process; a label for the general accommodation direction and a value for the specific amount of change.
+The drawn gradient value and the last system's gradient are used to determine the new gradient, from which the next system value can be calculated.
+Importantly, external policies can intervene in this step to modify this value to enforce the desired change of the system (see \cref{subsec:assign} for more motivation and examples).
+The yielded value is then added to the accumulated evidence, so that it can be taken into account in the next round.
+In parallel, it can also be sent to a component of a \ac{sds} (e.g., the \ac{tts} module, see \cref{subsubsec:dialogue_system,fig:adaptation_module_architecture}).
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\textwidth]{incr_gen_models}
+	\caption[]
+		{Responses of the three models, generated for the same user input (in blue).
+	 	 The dashed lines show the linear overall trend of the solid line of the same color.
+	 	 Note that these lines should be taken a reference for the general trend and \textbf{not as a representation or estimation of the values}.}
+	\label{fig:incr_gen_models}
+\end{figure}
+
+This process was used to simulate accommodation changes during a conversation using the three clusters in \cref{fig:knn_clustering}.
+Although the dataset used here is relatively small and is not designed to trigger different behaviors, the natural tendencies of the participants should be, at least to some extent, be reflected in this latent representation and be expressed in these simulations.
+For each cluster, an n-gram model was created as described in \cref{subsec:word_extraction_and_seq_prob}, based only on the interactions from this cluster.
+These models were then used to generate an accommodation response for each turn, similarly to those shown in \cref{tab:generated_symbol_sequences}, but longer and with concrete values in additional to the label.
+However, this time the generation was only for the system's side, given a pre-defined input of a human user.
+In the example presented here, the raw production values from interaction \texttt{20171201B\_Calendar\_02} were used, but there is room for system designers to control this differently depending on the application.
+For example, in interactions where the user is expected to take multiple turns before giving the floor to the system, only the last few values (as motivated in \cref{chap:conv_analysis}) or the average of these turns could be used instead.
+The first 30 rounds (60 turns) of three hypothetical conversations for this user input were generated, one per model.
+An n-gram length of ten symbols was used, to take advantage of the longer context available in such longer interactions.
+All the models starts with the mean value of the system in the data, which is known also in a real-world scenario from the development of system's \ac{tts} component.
+An arbitrary suitable value can be chosen as a starting value as well.
+\Cref{fig:incr_gen_models} shows the simulated interactions.
+The trend lines show the, in general, each model behaves differently:
+The green one tends towards divergence (from the user's trend line), the red one inclines to convergence, and the yellow one stays roughly the same regardless of the user input.
+These behaviors are triggered (or intensified) once the user starts to vary more around turns 35-40, and subsequently to a lesser extent till the end.
+Following these turns, the green line goes more sharply up, the red more sharply down, and the somewhat more neutral yellow starts to wiggle more.
+It can be claimed, therefore, that certain core behaviors exist, but are sensitive to external input.
+This emphasizes the need to look at accommodation as a mutual process occurring in context and not as a one-sided phenomena, even if each speaker has an inert typical behavior.
+Noticeably, around turn 50 the red line goes down to \ac{f0} values that might sound untypical for a female speaker (or just overly converging in general).
+This is due to the fact that the models here learn some theoretical probabilistic accommodative behavior, but do not have any knowledge about realistic human speech.
+\todo{too negative? makes the model sound incompetent...}
+Such issues can be easily addressed by applying policies based either on data and expert knowledge, as explained and demonstrated in \cref{chap:computational_model}.

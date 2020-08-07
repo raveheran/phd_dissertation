@@ -64,14 +64,16 @@ Phonemes not ascribed to any defined feature are ignore.
 \label{subsubsec:filtering_exemplars}
 
 Seeing that the target features are detected merely based on a phoneme, in which they might occur, additional filtering is required to retain only those instances where is does.
-For example, the target feature \textit{@\_length} introduced in \cref{subsubsec:detecting segment exemplars} aims to capture the German phonological process of elision or epenthesis of \textipa{@} in word-final \textit{-en}\todo{put angle brackets around this}, as described by the rule (simplified version adapted from \citet[pp.\,142--143]{Benware1986phonetics}):
-
-\begin{equation}
-	\label{eq:schwa_elision_rule}
-	\text{\textipa{@}}\longrightarrow \varnothing \diagup
-	\left[\text{-son}\right] \ \_\_ \ \{\text{\#}, \left[\text{+const}\right]\}.
-\end{equation}
-\eqname{Phonological rule: schwa elision}
+For example, the target feature \textit{@\_length} introduced in \cref{subsubsec:detecting segment exemplars} aims to capture the German phonological process of elision or epenthesis of \textipa{@} in word-final \textit{-en}\todo{put angle brackets around this}, as described by the rule described in \cref{eq:schwa_elision_rule}.
+%(simplified version adapted from \citet[pp.\,142--143]{Benware1986phonetics}):
+%
+%\begin{equation}
+%	\label{eq:schwa_elision_rule}
+%	\text{\textipa{@}}\longrightarrow \varnothing \diagup
+%	\left[\text{-son}\right] \ \_\_ \ \{\text{\#}, \left[\text{+const}\right]\}.
+%	\todo{this rule is already defined in \cref{eq:}}
+%\end{equation}
+%\eqname{Phonological rule: schwa elision}
 
 This filtering step comes to add any linguistic considerations related to the phonetic feature beside the phoneme itself.
 Such considerations can phonemic context (defined as a phoneme regular expression in the \textbf{context} property) or range of acceptable values (defined by the \textbf{minimum} and \textbf{maximum} properties).
