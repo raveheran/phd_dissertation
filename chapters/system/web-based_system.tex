@@ -122,6 +122,8 @@ The responsiveness algorithm's pipeline is summarized in \cref{fig:adaptation_mo
 \subsubsection{Tracked features}
 \label{subsubsec:tracked_features}
 
+\todo[inline]{this section (and maybe other parts in this chapter are pretty much redundant to the pipeline implementation in the module chapter. make sure such parts are removed and refer to the relevant place there.)}
+
 The entire convergence process is based on the the phonetic features that are defined as \enquote{convergeable}, i.e., phonetic features that are prone to variation, and is triggered whenever the \ac{asr} component detects a segment containing a phoneme associated with one or more of these features.
 These feature definitions aim to capture phonological rules.
 For instance, the German phonological \textipa{/@/} elision rule in word-final syllables $\langle$-en$\rangle$ is defined by \citep[adapted from][pp.\,142--143]{Benware1986phonetics}
