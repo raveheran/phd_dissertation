@@ -28,7 +28,7 @@
 \subsection{Computational model}
 \label{subsec:computational_model}
 
- \cref{sec:pipeline_representation}
+\cref{sec:pipeline_representation}
 
 \todo[inline]{in the intro and in each step add 1-2 sentences about the case of suprasegmental features and say that here the focus is on segmental because they are more complex to track and control and it's one of the novelties here.}
 
@@ -307,24 +307,25 @@ It is important to mention that this limitation not only comes to prevent situat
 \subsection{Extended \acl{sds} architecture}
 \label{subsec:extended_sds}
 
-\todo[inline]{short section to explain how the ASP module is integrated into the SDS. talk a bit why it's separate (and not inside TTS) -- allow processing in parallel and treat the accommodation as a separate process in the system, which could, in theory, also be used to influence NLG or DM}
-
+The accommodation process can now be utilized, using the implementation described in \Cref{sec:modularization}, and it can now be integrated into a \ac{sds} with a standard architecture (cf.\ \Cref{fig:sds_architecture}) as an separate module.
+As this module relies on input from the \ac{asr} module and its output is consumed by the \ac{tts} module, it is inserted as a new, direct link between the two, in additional to their connections to the \ac{nlu} and from the \ac{nlg} modules, respectively.
+\Cref{fig:adaptation_module_architecture} shows these connections.
+The name of this module, \acf{asp}, doesn't not refer to accommodation, as it could, in principle, be used for other purposes as well.
+This may include any processing relying on the user's speech signal, beside transcription.
+Since the speech signal is discarded after the \ac{asr} module finishes its processing, not speech-related analysis can be sent as input to the other modules.
+Here, this is leveraged by the \ac{tts} module, but such analyses could be useful for also for the \ac{dm} or \ac{nlg} modules, e.g., for matching the response content to the user's mood based on voice characteristics \citep{Braun2016assessing, Rothkrantz2004voice}.
+%
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=\linewidth]{sds_architecture_ext}
-	\caption[Proposed extended architecture of a spoken dialogue system] {
-		Suggested architecture for a spoken dialogue system with the phonetic convergence module (cf.\ \cref{fig:sds_architecture}).
-		The module connects the \ac{asr} and the \ac{tts} modules, and performs additional speech processing used phonetic for adaptation, like feature detection and extraction.}
+	\caption[Proposed extended architecture of a spoken dialogue system]
+		{Suggested architecture for a spoken dialogue system with the phonetic convergence module (cf.\ \cref{fig:sds_architecture}).
+		The \acs{asp} module adds a direct link between the \ac{asr} and the \ac{tts} modules to perform additional speech processing used for phonetic accommodation.}
 	\label{fig:adaptation_module_architecture}
 \end{figure}
 
-\subsection{Validation}
-\label{subsec:module_evaluation}
-
-\todo[inline]{from IS 2017. can probably be taken as-is from System chapter.}
-
-\section{Speech manipulation}
-\label{sec:speech_manipulation}
+\subsection{Speech manipulation}
+\label{subsec:speech_manipulation}
 
 \todo[inline]{emphasize that it is real-time}
 
