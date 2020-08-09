@@ -255,7 +255,7 @@ Ultimately, the final updated value for the feature is determined as follows:
 It is important to mention that this limitation not only comes to prevent situations where the model imitates the user's behavior, but is also loyal to empirically observed behaviors in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices,chap:speech_variations_in_hhci}, where participants typically converged only up to a certain limit.
 
 \addtocounter{myequations}{1}
-\begin{algorithm}[t]
+\begin{algorithm}[h!]
 	\caption{Phonetic responsiveness}
 	\label{alg:comp_model}
 	\eqname{Phonetic responsiveness algorithm}
@@ -299,25 +299,100 @@ It is important to mention that this limitation not only comes to prevent situat
 \subsection{Statistical model}
 \label{subsec:statistical_model}
 
+\todo[inline]{this should be a short section to explain how the statistical model can be used together with the comp model to support variational change. emphasize that it is replacing only the update step, while all the rest can remain to enjoy advantages of both models. the comp one can help controlling the input for the stat, e.g., decide how the input to the stat model will be calculated (which is a design choice, as explain in that chapter)}
+
 \section{Integration}
 \label{sec:integration}
 
 \subsection{Extended \acl{sds} architecture}
 \label{subsec:extended_sds}
 
+\todo[inline]{short section to explain how the ASP module is integrated into the SDS. talk a bit why it's separate (and not inside TTS) -- allow processing in parallel and treat the accommodation as a separate process in the system, which could, in theory, also be used to influence NLG or DM}
+
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=\linewidth]{sds_architecture_ext}
 	\caption[Proposed extended architecture of a spoken dialogue system] {
-		Suggested architecture for a spoken dialogue system with the phonetic convergence module (conf.\ \cref{fig:sds_architecture}).
-		The module connects the \ac{asr} and the \ac{tts} modules, and performs additional speech processing used phonetic for adaptation, like feature detection and extraction.
-	}
+		Suggested architecture for a spoken dialogue system with the phonetic convergence module (cf.\ \cref{fig:sds_architecture}).
+		The module connects the \ac{asr} and the \ac{tts} modules, and performs additional speech processing used phonetic for adaptation, like feature detection and extraction.}
 	\label{fig:adaptation_module_architecture}
 \end{figure}
 
 \subsection{Validation}
 \label{subsec:module_evaluation}
 
+\todo[inline]{from IS 2017. can probably be taken as-is from System chapter.}
+
 \section{Speech manipulation}
 \label{sec:speech_manipulation}
 
+\todo[inline]{emphasize that it is real-time}
+
+Although, as explained in \cref{subsec:extended_sds}, the \ac{asp} module is not responsible for the synthesis of the system's speech output, it is important to show that the information it provides could indeed be relevant for speech synthesis.
+The examples given here are for segmental features, because real-time manipulation techniques for  them are less common than for supra-segmental features like \ac{f0} and \ac{ar}.
+\todo{need reference for this?}
+For segmental features, modifications are applied to specific sounds occurring within short time spans, as oppose to supra-segmental features where longer segments (or the entire utterance) are influenced.
+The challenge is, therefore, to apply these modifications without distorting the surrounding segments, to maintain the overall smoothness of the synthesized speech.
+First, it is required to obtain the time spans to manipulate.
+These can be usually provided by the \ac{asr} component of the system (see \cref{subsubsec:detecting segment exemplars}).
+Then, the manipulation itself takes place.
+What aspect of the signal is modified depends on the target feature.
+For instance, the first two formants or an allophone's categorical variant are targeted in the examples below.
+Finally, the manipulated segment needs to be connected the rest of the segment while minimizing the distortion.
+The way the latter two steps are executed depend on the technique used for the manipulation.
+This is demonstrated here by two examples:
+One for the \emph{\textipa{[e]} vs.\ \textipa{[E]}} feature, using an approach based on the source-filter theory \citep{Fant1970acoustic}; and one for the \emph{\textipa{[\c{c}]} vs.\ \textipa{[k]}} feature, using a neural approach (both feature are described in \cref{subsec:target_features_HCIConv}).
+The main difference between the two approaches is when the manipulation is done.
+In the former, the modifications are post-synthesis on an existing audio signal, while in the latter the desired modifications are sent to the synthesizer's as part of its input and can be directly taken into account.
+The advantage of this approach is that the resulted signal is more likely to be smoother, as it is not changed after created.
+However, the neural approach is prone to overall lesser quality if it is not adequately trained to support changes to the target features.
+This would influence not only the time span of the manipulated feature, but the entire generated signal.
+Additionally, such \ac{e2e} methods also lack the freedom of directly controlling the manipulation, which may be crucial for achieving the desired final output.
+Moreover, for research and evaluation purposes, it is convenient to have both the original and modified signals for comparison and be able to directly control how the changes are applied.
+%
+\begin{landscape}
+	\begin{figure}[t]
+		\centering
+		\hspace*{-2cm}
+		\includegraphics[width=1.5\textwidth]{ic_ik_manipulation}
+		\caption[]
+			{}
+		\label{fig:spectrogram_e_E}
+	\end{figure}
+\end{landscape}
+%
+
+\todo[inline]{explanation of e/E feature}
+\missingfigure{spectrogram comparison for e/E feature}
+
+% For each analysis window, Praat applies a Gaussian-like window, and computes the LPC coefficients with the algorithm by Burg, as given by Childers (1978) and Press et al. (1992).
+
+% for the first method, it is also necessary to re-synthesize the audio (overlap-add Moulines & Charpentier (1990), who called it Time-Domain Pitch-Synchronous Overlap-and-Add (TD-PSOLA))
+
+\todo[inline]{explain that e/E is modified on a continuum while c/k is categorical}
+
+
+
+The neural-based manipulation is based on Tacotron\footnote{Tacotron2 architecture based on the implementation in the repository \url{https://github.com/NVIDIA/tacotron2}} \citep{Shen2018natural}, which is trained to generate spectral information directly from textual input.
+To capture the categorical phoneme variance of the feature \emph{\textipa{[\c{c}]} vs.\ \textipa{[k]}}, the system was trained on \emph{phoneme} input (as oppose to orthographic forms).
+For this, the neutral voice subset of the PAVOQUE dataset\footnote{\url{https://github.com/marytts/pavoque-data}} \citep{Steiner2013pavoque} was used ($\sim$\SI{5.8}{\hour} of speech).
+The phonetic transcriptions were done automatically based on the transcriptions provided with the dataset and were manually verified and corrected.
+\todo{need more details?}
+After training, the model was able to generate synthesized speech based on an input of an arbitrary phoneme sequence.
+This opens many possibilities, one of them is alternating between \textipa{[\c{c}]} and \textipa{[k]} to express the variation of this feature.
+It is important to note that that the other-category variant of a word was not included in any dictionary and was not seen by the model during training.
+\Cref{fig:spectrogram_ic_ik}\ldots
+%
+\begin{landscape}
+	\begin{figure}[t]
+		\centering
+		\hspace*{-2cm}
+		\includegraphics[width=1.5\textwidth]{ic_ik_manipulation}
+		\caption[Oscillograms and spectrograms of categorical manipulation comparison]
+			{Oscillograms and spectrograms of the word \emph{\enquote{König}} (king) and \emph{\enquote{wichtig}} (important) pronounced originally with \textipa{[\c{c}]} sounds, which were changed into \textipa{[k]} sounds.
+			The x-axis shows the chronological phonetic transcription over time (\SI{2.3375}{\second} in total) and the spectrograms' y-axes show the frequencies up to \SI{5000}{\hertz}.
+			The segments of the modified phonemes are marked with red circles.
+			The purple arrows at the end of the \textipa{[k]} segments show that the model even captured the voicing assimilation a vowel.}
+		\label{fig:spectrogram_ic_ik}
+	\end{figure}
+\end{landscape}
