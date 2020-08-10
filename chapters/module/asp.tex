@@ -327,9 +327,8 @@ Here, this is leveraged by the \ac{tts} module, but such analyses could be usefu
 \subsection{Speech manipulation}
 \label{subsec:speech_manipulation}
 
-\todo[inline]{emphasize that it is real-time}
-
 Although, as explained in \cref{subsec:extended_sds}, the \ac{asp} module is not responsible for the synthesis of the system's speech output, it is important to show that the information it provides could indeed be relevant for speech synthesis.
+This is especially important, as the synthesis, along with the required changed for expressing accommodation, need to be applied \emph{in real time} and cannot be learned offline from the input.
 The examples given here are for segmental features, because real-time manipulation techniques for  them are less common than for supra-segmental features like \ac{f0} and \ac{ar}.
 \todo{need reference for this?}
 For segmental features, modifications are applied to specific sounds occurring within short time spans, as oppose to supra-segmental features where longer segments (or the entire utterance) are influenced.
@@ -343,6 +342,7 @@ Finally, the manipulated segment needs to be connected the rest of the segment w
 The way the latter two steps are executed depend on the technique used for the manipulation.
 This is demonstrated here by two examples:
 One for the \emph{\textipa{[e]} vs.\ \textipa{[E]}} feature, using an approach based on the source-filter theory \citep{Fant1970acoustic}; and one for the \emph{\textipa{[\c{c}]} vs.\ \textipa{[k]}} feature, using a neural approach (both feature are described in \cref{subsec:target_features_HCIConv}).
+Note that the former feature vary on a continuum (the formant space), while the latter is a discrete change between two categories (a fricative or a plosive).
 The main difference between the two approaches is when the manipulation is done.
 In the former, the modifications are post-synthesis on an existing audio signal, while in the latter the desired modifications are sent to the synthesizer's as part of its input and can be directly taken into account.
 The advantage of this approach is that the resulted signal is more likely to be smoother, as it is not changed after created.
@@ -368,12 +368,15 @@ Moreover, for research and evaluation purposes, it is convenient to have both th
 
 % For each analysis window, Praat applies a Gaussian-like window, and computes the LPC coefficients with the algorithm by Burg, as given by Childers (1978) and Press et al. (1992).
 
+The source-filter manipulation was done as follows:
+First, the formant contours were extracted from the audio signal.
+this was done by computing the LPC coefficients with the algorithm by Burg, as given by \putref{Press et al. (1992)}.
+One value was extracted per formant every \SI{6}{\milli\second}.
+% with linear interpolation for missing values.
+Then, the first and second formants of the vowel target were changed separately.
+The changes were based on the respective means of the formants in the duration of the target vowel, while taking the overall contour into account.
+Finally, The original signal was used as the source and was filtered by the manipulated formant contours, resulting in a new speech signal that differs from the original only by the target vowel's segment.
 % for the first method, it is also necessary to re-synthesize the audio (overlap-add Moulines & Charpentier (1990), who called it Time-Domain Pitch-Synchronous Overlap-and-Add (TD-PSOLA))
-
-\todo[inline]{explain that e/E is modified on a continuum while c/k is categorical}
-
-
-
 The neural-based manipulation is based on Tacotron\footnote{Tacotron2 architecture based on the implementation in the repository \url{https://github.com/NVIDIA/tacotron2}} \citep{Shen2018natural}, which is trained to generate spectral information directly from textual input.
 To capture the categorical phoneme variance of the feature \emph{\textipa{[\c{c}]} vs.\ \textipa{[k]}}, the system was trained on \emph{phoneme} input (as oppose to orthographic forms).
 For this, the neutral voice subset of the PAVOQUE dataset\footnote{\url{https://github.com/marytts/pavoque-data}} \citep{Steiner2013pavoque} was used ($\sim$\SI{5.8}{\hour} of speech).
@@ -387,13 +390,16 @@ It is important to note that that the other-category variant of a word was not i
 \begin{landscape}
 	\begin{figure}[t]
 		\centering
+		\vspace*{-2cm}
 		\hspace*{-2cm}
 		\includegraphics[width=1.5\textwidth]{ic_ik_manipulation}
 		\caption[Oscillograms and spectrograms of categorical manipulation comparison]
 			{Oscillograms and spectrograms of the word \emph{\enquote{König}} (king) and \emph{\enquote{wichtig}} (important) pronounced originally with \textipa{[\c{c}]} sounds, which were changed into \textipa{[k]} sounds.
 			The x-axis shows the chronological phonetic transcription over time (\SI{2.3375}{\second} in total) and the spectrograms' y-axes show the frequencies up to \SI{5000}{\hertz}.
 			The segments of the modified phonemes are marked with red circles.
-			The purple arrows at the end of the \textipa{[k]} segments show that the model even captured the voicing assimilation a vowel.}
+			The purple arrows at the end of the \textipa{[k]} segments show that the model even captured the voicing assimilation a vowel.
+			The vertical lines show the phoneme segmentation.
+			Note that the segments are not perfectly aligned in the two productions.}
 		\label{fig:spectrogram_ic_ik}
 	\end{figure}
 \end{landscape}
