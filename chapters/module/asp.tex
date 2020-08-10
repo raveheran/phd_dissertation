@@ -280,9 +280,15 @@ It is important to mention that this limitation not only comes to prevent situat
 \subsection{Statistical model}
 \label{subsec:statistical_model}
 
-\todo[inline]{this should be a short section to explain how the statistical model can be used together with the comp model to support variational change. emphasize that it is replacing only the update step, while all the rest can remain to enjoy advantages of both models. the comp one can help controlling the input for the stat, e.g., decide how the input to the stat model will be calculated (which is a design choice, as explain in that chapter)}
-
-
+While the computational model covers all the required steps for processing changes, its division into independent steps make it possibly to replace specific steps with alternatives.
+Specifically, the \emph{update} step, which is responsible for the actual change in the feature's representation, can use different technique for doing so.
+The input for this step is a history of exemplars (the pool) and its output is a new value for the feature.
+These are exactly the input and output of the statistical model introduced in \cref{chap:statistical_model}.
+Therefore, it may be substitute this step to generate variational accommodative behavior, if needed.
+On of the potential issues in the statistical model is choosing the input values for the generation.
+This is especially challenging when dealing with segmental features, which might not occur as regularly as supra-segmental features, and thus make the filtering trickier.
+As part of the pipeline, the \emph{store} step takes care of collecting the relevant exemplars and decide how to treat each of them when calculating the next value.
+Combining the computational and statistical models lets the system enjoy the benefits of both and give the system designer more degrees of freedom when creating different application.
 
 \section{Integration}
 \label{sec:integration}
