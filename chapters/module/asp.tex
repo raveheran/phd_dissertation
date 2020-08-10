@@ -248,33 +248,36 @@ It is important to mention that this limitation not only comes to prevent situat
 	\SetKwInOut{Input}{Inputs}
 	\SetKwInOut{Output}{Output}
 	
-	\Input{\underline{$ASRInput$} -- recognized user speech\newline
+	\Input{\underline{$ASRInput$} -- phonemes from recognized user speech\newline
 		   \underline{$targetPhonemes$} -- convergence features\newline}
-	\Output{list of feature vectors with converged values\newline}
+	\Output{feature vectors with accommodated values\newline}
 	
 	\ForEach {(phoneme $\in$ ASRInput) $\in$ targetPhonemes}{ \label{line:asrinput}
 		$feature \gets$ $phoneme$.associatedFeature\;
 		$context \gets feature$.phoneticContext\;
-		\uIf {\textbf{not} matches(phoneme, context)}{ \tcp*{filter based on context}
+		\;
+		\uIf(\tcp*[f]{filter based on context}){\textbf{not} matches(phoneme, context)}{
 			break\;}
-		\uIf {inRange($phoneme$, $allowedRange$)}{ \tcp*{filter based on value range}
+		\;
+		\uIf(\tcp*[f]{filter based on range}){inRange($phoneme$, $feature.allowedRange$)}{
 			\uIf {poolSize=maxPoolSize}{
 				deleteOldestExemplar()\;}
 			feature.addExemplar($phoneme$)\;}
 		\uElse{
 			break\;}
+		\;
 		\uIf {toUpdate $=0$}{
 			$method \gets feature$.calculationMethod\;
 			$poolValue \gets method$.calculate(pool)\;
-			$newValue \gets rate\cdot poolValue + (1-rate)\cdot feature.$value\;
+			$newValue \gets rate\cdot poolValue + (1-rate)\cdot feature.$currentValue\;
 			$threshold \gets convergenceLimit \cdot poolValue$\;
-			\uIf {$newValue > threshold$}{ \tcp*{limit convergence}
+			\;
+			\uIf(\tcp*[f]{limit convergence}){$newValue > threshold$}{
 				$newValue \gets threshold$\;}
 			$feature$.value $\gets newValue$\;
 			{\em toUpdate $\gets$ updatefrequency}\;}
 		\uElse{
 			{\em toUpdate $\gets$ toUpdate - 1}\;}}
-\todo[inline]{make algorithm more readable, change, variable/method names, etc.}
 \end{algorithm}
 
 \subsection{Statistical model}
