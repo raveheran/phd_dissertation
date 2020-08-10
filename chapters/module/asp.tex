@@ -8,39 +8,17 @@
 \section{Modularization}
 \label{sec:modularization}
 
-%\begin{figure}[t]
-%	\centering
-%	\includegraphics[width=\linewidth]{adaptation_module_pipeline}
-%	\caption[Adaptataion pipeline for convergence module] {
-%		Overview of the phonetic convergence pipeline used in the computational model. Rectangles
-%		represent steps where an action is performed, round rectangles are inputs (either for external resources
-%		or from the system), and diamonds stand for decision points. When a decision node does not have a “no”
-%		outcome it means that the process is terminated (and therefore no convergence occurs) if the condition
-%		is not met. The pipeline can only be successfully completed at the “Set feature’s new value” node.
-%		However, if the “Add exemplar” action was performed prior to termination, the exemplar is not removed
-%		and will be taken into consideration the next time the pipeline is triggered for the feature with which it is
-%		associated. The “Feature definitions” come from the configuration file and can be changed by the user.
-%	}
-%	\label{fig:adaptation_module_pipeline}
-%\end{figure}
-\todo{here make an algorithm version of the pipeline (the figure comes later)}
+An implementation of the pipeline introduced in \cref{sec:pipeline_representation} is presented here as an independent module for \acp{sds}.
+It is shown how the statistical components from \cref{chap:statistical_model} can be added to it to take advantage of the capabilities of both approaches.
+This suggested implementation is an example for how the model works while keeping the complexity of each step to a minimum.
+While supra-segmental features can be handled as well, only segmental features are discussed here, as they are more less represented in accommodation modeling for computer-based systems and they require additional considerations, like segment context and local manipulation, as demonstrated in this chapter.
+See \citet{Raveh2017SemDial} for further motivation and explanations.
+The \ac{asp} module described here in integrated into the \ac{e2e} \ac{sds} presented in \cref{chap:web-based_responsive_spoken_dialogue_system} (and cf.\ \cref{fig:adaptation_module_pipeline}).
 
 \subsection{Computational model}
 \label{subsec:computational_model}
 
-\cref{sec:pipeline_representation}
-
-\todo[inline]{in the intro and in each step add 1-2 sentences about the case of suprasegmental features and say that here the focus is on segmental because they are more complex to track and control and it's one of the novelties here.}
-
-\todo[inline]{make sure that the SemDial paper is referred to.}
-
-\todo[inline]{some intro. say that this is the implementation for the comp model}
-
-
-The entire computational model is described in \cref{alg:comp_model}.
-Further details about the model and all the steps can be found in \citet{Raveh2017Interspeech}.
-
-These will be explained using the following feature definition example, which describes the feature \textit{@\_length}, i.e., length of a segment containing the phoneme schwa (\textipa{[@]}, and cf.\ \cref{subsec:target_features_HCIConv}):
+The implementations of the pipeline's steps will be explained using the following feature definition example, which describes the feature \textit{@\_length}, i.e., length of a segment containing the phoneme schwa (\textipa{[@]}, and cf.\ \cref{subsec:target_features_HCIConv}):
 %
 \begin{Verbatim}[tabsize=4, commandchars=\\\{\}]
 	- \textbf{`@\_length'}:
@@ -53,6 +31,9 @@ These will be explained using the following feature definition example, which de
 			\textbf{calculation}: decaying average
 			\textbf{sensitivity}: 0.5
 \end{Verbatim}
+%
+The entire implementation is described in \cref{alg:comp_model}.
+Further details about the model and all the steps can be found in \citet{Raveh2017Interspeech}.
 
 \subsubsection{Detecting segment exemplars}
 \label{subsubsec:detecting segment exemplars}
@@ -104,7 +85,7 @@ For instance, the matrix in
 %
 \begin{equation}
 	\label{eq:feature_matrix}
-	\mathcal{F} =
+	\mathcal{F}_{exemplar-view} =
 	\begin{bmatrix} 
 		v_{11} & v_{12} & \dots  & v_{1m}\\
 		v_{21} & v_{22} & \dots  & v_{2m}\\
@@ -125,7 +106,7 @@ To calculate the change for each dimension, the feature matrix is first transpos
 %
 \begin{equation}
 	\label{eq:transposed_feature_matrix}
-	\textbf{$\mathcal{F}$}^\top =
+	\textbf{$\mathcal{F}_{dimension-view}$} =
 	\begin{bmatrix} 
 		v_{11} & v_{21} & \dots  & v_{n1}\\
 		v_{12} & v_{22} & \dots  & v_{n2} \\
@@ -293,13 +274,15 @@ It is important to mention that this limitation not only comes to prevent situat
 			{\em toUpdate $\gets$ updatefrequency}\;}
 		\uElse{
 			{\em toUpdate $\gets$ toUpdate - 1}\;}}
-\end{algorithm}
 \todo[inline]{make algorithm more readable, change, variable/method names, etc.}
+\end{algorithm}
 
 \subsection{Statistical model}
 \label{subsec:statistical_model}
 
 \todo[inline]{this should be a short section to explain how the statistical model can be used together with the comp model to support variational change. emphasize that it is replacing only the update step, while all the rest can remain to enjoy advantages of both models. the comp one can help controlling the input for the stat, e.g., decide how the input to the stat model will be calculated (which is a design choice, as explain in that chapter)}
+
+
 
 \section{Integration}
 \label{sec:integration}
@@ -351,22 +334,19 @@ This would influence not only the time span of the manipulated feature, but the 
 Additionally, such \ac{e2e} methods also lack the freedom of directly controlling the manipulation, which may be crucial for achieving the desired final output.
 Moreover, for research and evaluation purposes, it is convenient to have both the original and modified signals for comparison and be able to directly control how the changes are applied.
 %
-\begin{landscape}
-	\begin{figure}[t]
-		\centering
-		\hspace*{-2cm}
-		\includegraphics[width=1.5\textwidth]{ic_ik_manipulation}
-		\caption[]
-			{}
-		\label{fig:spectrogram_e_E}
-	\end{figure}
-\end{landscape}
+%\begin{landscape}
+%	\begin{figure}[t]
+%		\centering
+%		\hspace*{-2cm}
+%		\includegraphics[width=1.5\textwidth]{ic_ik_manipulation}
+%		\caption[]
+%			{}
+%		\label{fig:spectrogram_e_E}
+%	\end{figure}
+%\end{landscape}
 %
 
-\todo[inline]{explanation of e/E feature}
-\missingfigure{spectrogram comparison for e/E feature}
-
-% For each analysis window, Praat applies a Gaussian-like window, and computes the LPC coefficients with the algorithm by Burg, as given by Childers (1978) and Press et al. (1992).
+%\missingfigure{spectrogram comparison for e/E feature}
 
 The source-filter manipulation was done as follows:
 First, the formant contours were extracted from the audio signal.
