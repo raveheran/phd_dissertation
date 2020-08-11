@@ -10,10 +10,10 @@
 
 An implementation of the pipeline introduced in \cref{sec:pipeline_representation} is presented here as an independent module for \acp{sds}.
 It is shown how the statistical components from \cref{chap:statistical_model} can be added to it to take advantage of the capabilities of both approaches.
-This suggested implementation is an example for how the model works while keeping the complexity of each step to a minimum.
-While supra-segmental features can be handled as well, only segmental features are discussed here, as they are more less represented in accommodation modeling for computer-based systems and they require additional considerations, like segment context and local manipulation, as demonstrated in this chapter.
+This suggested implementation is an example of how the model works while keeping the complexity of each step to a minimum.
+While supra-segmental features can be handled as well, only segmental features are discussed here, as they are less represented in accommodation modeling for computer-based systems and they require additional considerations, like segment context and local manipulation, as demonstrated in this chapter.
 See \citet{Raveh2017SemDial} for further motivation and explanations.
-The \ac{asp} module described here in integrated into the \ac{e2e} \ac{sds} presented in \cref{chap:web-based_responsive_spoken_dialogue_system} (and cf.\ \cref{fig:adaptation_module_pipeline}).
+The \ac{asp} module described here is integrated into the \ac{e2e} \ac{sds} presented in \cref{chap:web-based_responsive_spoken_dialogue_system} (and cf.\ \cref{fig:adaptation_module_pipeline}).
 
 \subsection{Computational model}
 \label{subsec:computational_model}
@@ -41,16 +41,16 @@ Further details about the model and all the steps can be found in \citet{Raveh20
 The first step in the model's pipeline is detecting segments in the user's utterance that can be ascribed to target features defined for the system.
 These features are defined in a configuration file that is loaded by the model.
 For that, an \ac{asr} engine that emits phoneme times is required.
-Here, CMU Sphinx\footnote{\url{https://cmusphinx.github.io/}} was used, with extended functionality to support emission of phoneme-level information.
-This additional functionality was build specifically for this purpose (and as part of the system described in \cref{chap:web-based_responsive_spoken_dialogue_system}), with emphasis on phoneme-boundary accuracy.
-Each feature is represented by a YAML\footnote{YAML Ain't Markup Language \url{http://yaml.org/}} dictionary entry, which in turn contains a dictionary itself, where each key-value pair refer to a property of that feature that is relevant for the system's accommodation.
+Here, CMU Sphinx\footnote{\url{https://cmusphinx.github.io/}} was used, with extended functionality to support the emission of phoneme-level information.
+This additional functionality was built specifically for this purpose (and as part of the system described in \cref{chap:web-based_responsive_spoken_dialogue_system}), with an emphasis on phoneme-boundary accuracy.
+Each feature is represented by a YAML\footnote{YAML Ain't Markup Language \url{http://yaml.org/}} dictionary entry, which in turn contains a dictionary itself, where each key-value pair refers to a property of that feature that is relevant for the system's accommodation.
 Concretely, the phoneme \textipa{[@]} is labeled as \textit{AX} in the German CMU phonemeset, which was the phonemeset used in CMU Sphinx.
 This is defined by the \texttt{phoneme} key in the feature definition above.
 The key \texttt{measure} sets the measure by which this feature is evaluated; here, its duration.
 Other measures are \enquote{formants} (for vowel quality), \enquote{category} (for categorical differences), and more.
-This feature's initial value in the system's representation for it is set by the key \texttt{initial}.
+This feature's initial value in the system's representation for it is set by the \texttt{initial} key.
 This step is performed for each feature separately against each recognized phoneme (see \cref{alg:comp_model}).
-Phonemes not ascribed to any defined feature are ignore.
+Phonemes not ascribed to any defined feature are ignored.
 
 \subsubsection{Filtering exemplars}
 \label{subsubsec:filtering_exemplars}
@@ -74,7 +74,7 @@ In the case of \textit{@\_length} feature above, only segments appearing in the 
 The range's role is to filter out segments with unrealistic values (extremely long segment, unreliable formant values, etc.).
 For example, a schwa segment longer than \SI{80}{\milli\second} would sound very unnatural.
 Any linguistic knowledge about the feature nature can be reflected in this step.
-This is important to make sure that all exemplars taken into account when calculating a new value for the feature (see \cref{subsubsec:calculating_changed_value} are sensible, to prevent unstable behavior of the model due to lack of linguistic knowledge or \ac{asr} errors.
+This is important to make sure that all exemplars are taken into account when calculating a new value for the feature (see \cref{subsubsec:calculating_changed_value} are sensible, to prevent unstable behavior of the model due to lack of linguistic knowledge or \ac{asr} errors.
 
 \subsubsection{Storing exemplars}
 \label{subsubsec:collecting_exemplars}
@@ -134,8 +134,8 @@ A function $g$ is defined so that it maps a vector to a scalar (i.e., one featur
 \end{equation}
 %
 \textit{Decaying average} is used here as a simple way to simulate the effect on the exemplars in the pool.
-This measure is similar to normal average, only that in this variation each value contributes exponentially less to the overall average, so that the last (newest) value contributes the most.
-Adding such property to the measure gives more weight to new exemplars that were received chronologically closer to the current turn and thus makes the change more strongly influence by the productions closer to the accommodation change.
+This measure is similar to the regular average, only that in this variation each value contributes exponentially less to the overall average, so that the last (newest) value contributes the most.
+Adding such property to the measure gives more weight to new exemplars that were received chronologically closer to the current turn and thus makes the change more strongly influenced by the productions closer to the accommodation change.
 %Using this measure comes to support the analogy of the exemplar pool to short-term memory, which remembers recent event better than older ones.
 Decaying average is defined here as
 \begin{equation}
@@ -159,8 +159,8 @@ This is defined by the \texttt{sensitivity} (convergence rate), which determines
 where $\Upsilon$ is the new feature value, $\upsilon$ is the calculated pool after applying $\mathcal{G}$, $\mathcal{C}_{u-1}$ is the current value of the feature, and $\rho$ is the convergence rate.
 A $\rho$ value of 0 means that no convergence occurs (the current value is retained), a value of 1 will result in complete convergence (the current value is ignored), and $\rho=0.5$ will result in an average between the two.
 While the convergence rate is typically a value between 0 and 1, smaller and greater values could be meaningful in some applications to achieve over-divergence or over-convergence, respectively.
-As shown in \cref{part:experiments}, peoples' accommodation may vary considerably in \acp{hhi} and \acp{hci} and in different settings.
-This parameter can help tuning the system's behavior to achieve the desired behavior in the interaction.
+As shown in \cref{part:experiments}, peoples' accommodation may vary considerably in \acp{hhi} and \acp{hci} and different settings.
+This parameter can help to tune the system's behavior to achieve the desired behavior in the interaction.
 For instance, in a tutoring system for pronunciation training, the desired behavior might be for the system to diverge from users' input when it detects that their pronunciation is wrong.
 By reflecting the users' utterance with diverged pronunciation (instead of explicitly pointing out their mistake), the user receives auditory feedback in a more implicit, \enquote{conversational} learning process.
 
@@ -189,11 +189,11 @@ By reflecting the users' utterance with diverged pronunciation (instead of expli
 The final step is to set the newly calculated value as the new value for the feature in the system's representation.
 After this step, this new value will be used whenever this feature is used by a system using this model (as shown in \cref{subsec:extended_sds}).
 Although this step is fairly straight forward, there is still an important issue to take into consideration here, namely \textit{user imitation}.
-After some turns, it might happen that the model calculated a value very close to the user's input and then continues to follow the user's production values, resulting in an imitation of the user.
+After some turns, it might happen that the model calculated a value very close to the user's input and then continues to follow the user's production values, resulting in imitation of the user.
 To avoid imitation, the new value is limited in how close it is allowed to get to the exemplars.
 This is done by the global property \texttt{ConvergenceThreshold}, which defines the maximally allowed proximity (in percentage) the new value is allowed to have:
 Setting this property to 0.8 (\SI{80}{\percent} means that the new value is not allowed to be changed more than (\SI{80}{\percent} of the difference between the current value and the pool's value (and be set to (\SI{80}{\percent} in case it exceeded this threshold).
-Of course, the limitation can also be set to 1 to allow the new value be as similar as \SI{100}{\percent} to the pool's value -- i.e., not limiting it.
+Of course, the limitation can also be set to 1 to allow the new value to be as similar as \SI{100}{\percent} to the pool's value -- i.e., not limiting it.
 The maximal value allowed by the limitation is defined by
 %
 \begin{equation}
@@ -233,7 +233,7 @@ Ultimately, the final updated value for the feature is determined as follows:
 \eqname{Setting accommodation limit}
 \noindent
 %
-It is important to mention that this limitation not only comes to prevent situations where the model imitates the user's behavior, but is also loyal to empirically observed behaviors in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices,chap:speech_variations_in_hhci}, where participants typically converged only up to a certain limit.
+It is important to mention that this limitation not only comes to prevent situations where the model imitates the user's behavior but is also loyal to empirically observed behaviors in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices,chap:speech_variations_in_hhci}, where participants typically converged only up to a certain limit.
 
 \addtocounter{myequations}{1}
 \begin{algorithm}[h!]
@@ -283,15 +283,15 @@ It is important to mention that this limitation not only comes to prevent situat
 \subsection{Statistical model}
 \label{subsec:statistical_model}
 
-While the computational model covers all the required steps for processing changes, its division into independent steps make it possibly to replace specific steps with alternatives.
-Specifically, the \emph{update} step, which is responsible for the actual change in the feature's representation, can use different technique for doing so.
+While the computational model covers all the required steps for processing changes, its division into independent steps makes it possible to replace specific steps with alternatives.
+Specifically, the \emph{update} step, which is responsible for the actual change in the feature's representation, can use different techniques for doing so.
 The input for this step is a history of exemplars (the pool) and its output is a new value for the feature.
 These are exactly the input and output of the statistical model introduced in \cref{chap:statistical_model}.
 Therefore, it may be substitute this step to generate variational accommodative behavior, if needed.
-On of the potential issues in the statistical model is choosing the input values for the generation.
+One of the potential issues in the statistical model is choosing the input values for the generation.
 This is especially challenging when dealing with segmental features, which might not occur as regularly as supra-segmental features, and thus make the filtering trickier.
 As part of the pipeline, the \emph{store} step takes care of collecting the relevant exemplars and decide how to treat each of them when calculating the next value.
-Combining the computational and statistical models lets the system enjoy the benefits of both and give the system designer more degrees of freedom when creating different application.
+Combining the computational and statistical models lets the system enjoy the benefits of both and give the system designer more degrees of freedom when creating different applications.
 
 \section{Integration}
 \label{sec:integration}
@@ -299,11 +299,11 @@ Combining the computational and statistical models lets the system enjoy the ben
 \subsection{Extended \acl{sds} architecture}
 \label{subsec:extended_sds}
 
-The accommodation process can now be utilized, using the implementation described in \Cref{sec:modularization}, and it can now be integrated into a \ac{sds} with a standard architecture (cf.\ \Cref{fig:sds_architecture}) as an separate module.
-As this module relies on input from the \ac{asr} module and its output is consumed by the \ac{tts} module, it is inserted as a new, direct link between the two, in additional to their connections to the \ac{nlu} and from the \ac{nlg} modules, respectively.
+The accommodation process can now be utilized, using the implementation described in \Cref{sec:modularization}, and it can now be integrated into a \ac{sds} with a standard architecture (cf.\ \Cref{fig:sds_architecture}) as a separate module.
+As this module relies on input from the \ac{asr} module and its output is consumed by the \ac{tts} module, it is inserted as a new, direct link between the two, in addition to their connections to the \ac{nlu} and from the \ac{nlg} modules, respectively.
 \Cref{fig:adaptation_module_architecture} shows these connections.
-The name of this module, \acf{asp}, doesn't not refer to accommodation, as it could, in principle, be used for other purposes as well.
-This may include any processing relying on the user's speech signal, beside transcription.
+The name of this module, \acf{asp}, does not refer to accommodation, as it could, in principle, be used for other purposes as well.
+This may include any processing relying on the user's speech signal, besides transcription.
 Since the speech signal is discarded after the \ac{asr} module finishes its processing, not speech-related analysis can be sent as input to the other modules.
 Here, this is leveraged by the \ac{tts} module, but such analyses could be useful for also for the \ac{dm} or \ac{nlg} modules, e.g., for matching the response content to the user's mood based on voice characteristics \citep{Braun2016assessing, Rothkrantz2004voice}.
 %
@@ -320,26 +320,26 @@ Here, this is leveraged by the \ac{tts} module, but such analyses could be usefu
 \label{subsec:speech_manipulation}
 
 Although, as explained in \cref{subsec:extended_sds}, the \ac{asp} module is not responsible for the synthesis of the system's speech output, it is important to show that the information it provides could indeed be relevant for speech synthesis.
-This is especially important, as the synthesis, along with the required changed for expressing accommodation, need to be applied \emph{in real time} and cannot be learned offline from the input.
-The examples given here are for segmental features, because real-time manipulation techniques for  them are less common than for supra-segmental features like \ac{f0} and \ac{ar}.
+This is especially important, as the synthesis, along with the required changes for expressing accommodation, need to be applied \emph{in real-time} and cannot be learned offline from the input.
+The examples given here focus on segmental features, because real-time manipulation techniques for  them are less common than for supra-segmental features like \ac{f0} and \ac{ar}.
 \todo{need reference for this?}
-For segmental features, modifications are applied to specific sounds occurring within short time spans, as oppose to supra-segmental features where longer segments (or the entire utterance) are influenced.
+For segmental features, modifications are applied to specific sounds occurring within short timespans, as oppose to supra-segmental features where longer segments (or the entire utterance) are influenced.
 The challenge is, therefore, to apply these modifications without distorting the surrounding segments, to maintain the overall smoothness of the synthesized speech.
-First, it is required to obtain the time spans to manipulate.
+First, it is required to obtain the timespans to manipulate.
 These can be usually provided by the \ac{asr} component of the system (see \cref{subsubsec:detecting segment exemplars}).
 Then, the manipulation itself takes place.
 What aspect of the signal is modified depends on the target feature.
-For instance, the first two formants or an allophone's categorical variant are targeted in the examples below.
-Finally, the manipulated segment needs to be connected the rest of the segment while minimizing the distortion.
-The way the latter two steps are executed depend on the technique used for the manipulation.
+For instance, the first two formants of an allophone's categorical variant are targeted in the examples below.
+Finally, the manipulated segment needs to be connected to the rest of the segment while minimizing the distortion.
+The way the latter two steps are executed depends on the technique used for the manipulation.
 This is demonstrated here by two examples:
-One for the \emph{\textipa{[e]} vs.\ \textipa{[E]}} feature, using an approach based on the source-filter theory \citep{Fant1970acoustic}; and one for the \emph{\textipa{[\c{c}]} vs.\ \textipa{[k]}} feature, using a neural approach (both feature are described in \cref{subsec:target_features_HCIConv}).
-Note that the former feature vary on a continuum (the formant space), while the latter is a discrete change between two categories (a fricative or a plosive).
+One for the \emph{\textipa{[e]} vs.\ \textipa{[E]}} feature, using an approach based on the source-filter theory \citep{Fant1970acoustic}; and one for the \emph{\textipa{[\c{c}]} vs.\ \textipa{[k]}} feature, using a neural approach (both features are described in \cref{subsec:target_features_HCIConv}).
+Note that the former feature varies on a continuum (the formant space), while the latter is a discrete change between two categories (a fricative or a plosive).
 The main difference between the two approaches is when the manipulation is done.
 In the former, the modifications are post-synthesis on an existing audio signal, while in the latter the desired modifications are sent to the synthesizer's as part of its input and can be directly taken into account.
 The advantage of this approach is that the resulted signal is more likely to be smoother, as it is not changed after created.
 However, the neural approach is prone to overall lesser quality if it is not adequately trained to support changes to the target features.
-This would influence not only the time span of the manipulated feature, but the entire generated signal.
+This would influence not only the timespan of the manipulated feature, but the entire generated signal.
 Additionally, such \ac{e2e} methods also lack the freedom of directly controlling the manipulation, which may be crucial for achieving the desired final output.
 Moreover, for research and evaluation purposes, it is convenient to have both the original and modified signals for comparison and be able to directly control how the changes are applied.
 %
@@ -367,14 +367,14 @@ The changes were based on the respective means of the formants in the duration o
 Finally, The original signal was used as the source and was filtered by the manipulated formant contours, resulting in a new speech signal that differs from the original only by the target vowel's segment.
 % for the first method, it is also necessary to re-synthesize the audio (overlap-add Moulines & Charpentier (1990), who called it Time-Domain Pitch-Synchronous Overlap-and-Add (TD-PSOLA))
 The neural-based manipulation is based on Tacotron\footnote{Tacotron2 architecture based on the implementation in the repository \url{https://github.com/NVIDIA/tacotron2}} \citep{Shen2018natural}, which is trained to generate spectral information directly from textual input.
-To capture the categorical phoneme variance of the feature \emph{\textipa{[\c{c}]} vs.\ \textipa{[k]}}, the system was trained on \emph{phoneme} input (as oppose to orthographic forms).
+To capture the categorical phoneme variance of the feature \emph{\textipa{[\c{c}]} vs.\ \textipa{[k]}}, the system was trained on \emph{phoneme} input (as opposed to orthographic forms).
 For this, the neutral voice subset of the PAVOQUE dataset\footnote{\url{https://github.com/marytts/pavoque-data}} \citep{Steiner2013pavoque} was used ($\sim$\SI{5.8}{\hour} of speech).
 The phonetic transcriptions were done automatically based on the transcriptions provided with the dataset and were manually verified and corrected.
 \todo{need more details?}
 After training, the model was able to generate synthesized speech based on an input of an arbitrary phoneme sequence.
 This opens many possibilities, one of them is alternating between \textipa{[\c{c}]} and \textipa{[k]} to express the variation of this feature.
-It is important to note that that the other-category variant of a word was not included in any dictionary and was not seen by the model during training.
-\Cref{fig:spectrogram_ic_ik}\ldots
+It is important to note that the other-category variant of a word was not included in any dictionary and was not seen by the model during training.
+\Cref{fig:spectrogram_ic_ik} shows an example of an original sentence (pronounced with \textipa{[\c{c}]} sounds) and its manipulated form (with \textipa{[k]} sounds).
 %
 \begin{landscape}
 	\begin{figure}[t]
@@ -386,7 +386,7 @@ It is important to note that that the other-category variant of a word was not i
 			{Oscillograms and spectrograms of the word \emph{\enquote{König}} (king) and \emph{\enquote{wichtig}} (important) pronounced originally with \textipa{[\c{c}]} sounds, which were changed into \textipa{[k]} sounds.
 			The x-axis shows the chronological phonetic transcription over time (\SI{2.3375}{\second} in total) and the spectrograms' y-axes show the frequencies up to \SI{5000}{\hertz}.
 			The segments of the modified phonemes are marked with red circles.
-			The purple arrows at the end of the \textipa{[k]} segments show that the model even captured the voicing assimilation a vowel.
+			The purple arrows at the end of the \textipa{[k]} segments show that the model even captured the voicing assimilation to the following vowel.
 			The vertical lines show the phoneme segmentation.
 			Note that the segments are not perfectly aligned in the two productions.}
 		\label{fig:spectrogram_ic_ik}
