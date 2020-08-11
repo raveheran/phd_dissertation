@@ -124,7 +124,7 @@ The responsiveness algorithm's pipeline is summarized in \cref{fig:adaptation_mo
 
 \todo[inline]{this section (and maybe other parts in this chapter are pretty much redundant to the pipeline implementation in the module chapter. make sure such parts are removed and refer to the relevant place there.)}
 
-The entire convergence process is based on the the phonetic features that are defined as \enquote{convergeable}, i.e., phonetic features that are prone to variation, and is triggered whenever the \ac{asr} component detects a segment containing a phoneme associated with one or more of these features.
+The entire convergence process is based on the phonetic features that are defined as \enquote{convergeable}, i.e., phonetic features that are prone to variation, and is triggered whenever the \ac{asr} component detects a segment containing a phoneme associated with one or more of these features.
 These feature definitions aim to capture phonological rules.
 For instance, the German phonological \textipa{/@/} elision rule in word-final syllables $\langle$-en$\rangle$ is defined by \citep[adapted from][pp.\,142--143]{Benware1986phonetics}
 %
@@ -236,10 +236,10 @@ The latter option is especially useful for simulating specific user input, or fo
 \subsubsection{Graph area}
 \label{subsubsec:graph_area}
 
-Each of the tracked features is visualized in a separate plot, and new data points are automatically added whenever applicable.
+Each of the tracked features is visualized in a separate plot, and new datapoints are automatically added whenever applicable.
 These plots are generated using the Plotly library\footnote{\url{https://plot.ly}}, which provides some interactive functionalities.
-For example, hovering over a data point in a graph reveals additional information, such as the turn in which it was added, or the realized variant of the feature produced in that turn as predicted by its classifier.
-\Cref{fig:plot} shows a graph with several accumulated data points.
+For example, hovering over a datapoint in a graph reveals additional information, such as the turn in which it was added, or the realized variant of the feature produced in that turn as predicted by its classifier.
+\Cref{fig:plot} shows a graph with several accumulated datapoints.
 
 %\subsubsection{Settings and help}
 %\label{subsubsec:settings_and_help}
@@ -324,9 +324,9 @@ A shortened example of the shadowing phase's flow is shown in \cref{app:dialogue
 
 The validation stays faithful to the original experiment in every possible aspect.
 Therefore, the training data used for each classifier contains only the productions of the corresponding target feature from a single stimulus set, since these are the productions to which the participants were exposed during the experiment.
-This provides relatively few -- but at the same time very precise -- data points for each classifier,
+This provides relatively few -- but at the same time very precise -- datapoints for each classifier,
 which were obtained using the same signal processing technique as the data collected in the experiment.
-The classifiers were trained offline on these data points.
+The classifiers were trained offline on these datapoints.
 However, the system also supports incremental, online re-training whenever requested by the user,
 such as, every time the convergence model is updated.
 

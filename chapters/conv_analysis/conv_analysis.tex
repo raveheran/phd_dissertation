@@ -115,7 +115,7 @@ This recognition as time series opens new methodological possibilities for exami
 Such methods include, for example, autocorrelation for examining serial dependency and forecasting for transferring information about the time series across time.
 These methods can extend upon others in analyzing accommodation, with the advantage of offering a more dynamic approach rather than the sequential methods usually used.
 
-One such analysis method is \acf{crqa}, which provides insights on the time series across an entire time span (here, a conversation).
+One such analysis method is \acf{crqa}, which provides insights on the time series across an entire timespan (here, a conversation).
 This is done by comparing delayed instances of the phase-space trajectories of time series.
 This allows for finding more general patterns in the time series characteristics and how they interact.
 It is especially suitable for studying accommodation and related phenomena, as it detects times in which the time series (i.e., the speakers' productions) are more similar.
@@ -186,12 +186,12 @@ Due to its ability to detect these similarities non-linearly, \ac{crqa} can be u
 	\item \textbf{Delay} -- estimates the temporal shift required to make the two time series maximally aligned.
 	It is measured by the same time unit as the time series, in the presented studies, a slice (see \cref{subsec:results_hhi}).
 	
-	\item \textbf{Embedding dimensions} -- are the number of dimensions into which the data points are embedded.
+	\item \textbf{Embedding dimensions} -- are the number of dimensions into which the datapoints are embedded.
 	These dimensions are delayed copies of the original time series $S(t)$ created by adding a lag $k$ to them.
 	Typically, multiple lags are considered, which create the dimensions of embedding $S(t + nk)$.
 	
-	\item \textbf{Radius} -- determines the margin within which two data points are considered a recurrent instance.
-	Distances between the data points are measured in the embedded space defined by embedding dimensions, using the same unit used for measuring the values of the time series.
+	\item \textbf{Radius} -- determines the margin within which two datapoints are considered a recurrent instance.
+	Distances between the datapoints are measured in the embedded space defined by embedding dimensions, using the same unit used for measuring the values of the time series.
 \end{enumerate}
 %
 These parameters are a crucial key aspect in \ac{crqa} and how they are set is decisive for its outcome.
@@ -323,12 +323,12 @@ To minimize such cases, calls done by personnel that are not sales people in the
 %Following that, we hypothesized that successful sales calls would show more distinct speech patterns and vocal accommodation behaviors than unsuccessful calls.
 
 As a preparation for the feature extraction and to increase temporal resolution, the audio signals were split into two-second slices (see motivation and further details in \cref{sec:analysis_hhci}).
-Such fine-grained extraction makes the use of \ac{crqa} more elaborate, as it has more data points to consider (see \cref{sec:crqa}).
+Such fine-grained extraction makes the use of \ac{crqa} more elaborate, as it has more datapoints to consider (see \cref{sec:crqa}).
 Splitting the turns also creates equal, consecutive, and more comparable time units in an interaction without introducing artificial boundaries by dividing it into a predefined number of parts.
 The slicing was done per turn, so that a slice contains only the speech of a single speaker.
 Any remainder of a turn got a slice of its own.
 When a speaker is not speaking (e.g., during the turn of the other interlocutor), it is assumed that the last produced value is maintained until the speech is renewed and a new value can be measured.
-This way, no discontinuities are created and the same number of data points is extracted for both speakers, which creates a better temporal representation of the conversation.
+This way, no discontinuities are created and the same number of datapoints is extracted for both speakers, which creates a better temporal representation of the conversation.
 Feature extraction was done sequentially for all the conversations using Praat \citep{Boersma2001praat} scripts that extracted the \ac{f0} value from the middle of each slice and then post-processed the output to acquire cleaner measures.
 Afterward, the list of measures was turned into two equally long time series.
 First, the values for each speaker were separated into two lists.
@@ -397,8 +397,8 @@ For simplicity, it is assumed that the time series lengths are equal, so that $N
 	The average length of vertical lines, called trapping time (TT), is achieved in a similar way when using the same formula for the vertical line length and the histogram of vertical line lengths.
 	
 	\item[Maximal length (maxL)] -- The longest diagonal line in the plot, excluding the main diagonal.	
-	This is the longest, uninterrupted time span over which accommodation between the speakers lasted.
-	Higher value indicates a longer time span.
+	This is the longest, uninterrupted timespan over which accommodation between the speakers lasted.
+	Higher value indicates a longer timespan.
 	The unit of this measure is the same as the axes of the plot (here, a representation of the conversation's turns).
 	It is determined by
 	%
@@ -421,7 +421,7 @@ For simplicity, it is assumed that the time series lengths are equal, so that $N
 	%
 	where $p(l)$ is the probability of length $l$ from the lengths probability distribution.
 	\item[Normalized entropy (rENTR)] -- The entropy value normalized by the number of lines formed in the recurrent plot.
-	This measure helps understanding how the speakers vary across multiple calls with different characteristics.
+	This measure helps to understand how the speakers vary across multiple calls with different characteristics.
 \end{description}
 %
 
