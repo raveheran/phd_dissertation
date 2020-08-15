@@ -391,7 +391,7 @@ where $N$ is the number of labels in the sequence and $num(label)$ maps a label 
 The overall probability of the sequence is calculated by
 %
 \begin{equation}
-	sequence\ probability = \prod_{i=1}^{N} p(label_i \mid label_{i-2}, label_{i-1}).
+	sequence\ probability = \prod_{i=3}^{N} p(label_i \mid label_{i-2}, label_{i-1}).
 \end{equation}
 \eqname{Label sequence probability score}
 \noindent
