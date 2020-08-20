@@ -374,31 +374,31 @@ The list presented here aims to unequivocally distinguish these terms and grant 
 % lettrine text: Paradigms and interfaces of human interaction with machines are described in this chapter, with emphasis on more modern forms of interaction with computers and mobile devices.
 %The importance, advantages, and challenges of verbal interaction are discussed here as well.
 
-\subsection{What is an interaction?}
-\label{subsec:what_is_an_interaction}
-
-\todo[inline]{a bit about interaction vs.\ conversation. say that there often used interchangeably in this work in the context of spoken interaction between two interlocutors.}
-
-\todo[inline]{here talk about the very elementary properties of what is actually an interaction in general.}
-
-\todo[inline]{say that his term is used a lot in this work, so it is explained here.}
-
-%\subsection{Interacting with computers}
-%\label{sec:subinteracting_with_computers}
+%\subsection{What is an interaction?}
+%\label{subsec:what_is_an_interaction}
 
 \subsection{Verbal interaction with computers}
 \label{subsec:verbal_interaction}
 
-\todo[inline]{here talk about how the general definition from previous chapter can be applied for computers. specifically, go over interfaces and methods for interacting with machines and computers is specific (there was a thesis/long paper about that somewhere). can even give the example of this calculation of best button for mouse pointing, which is an example of how computer interfaces should be treated differently from other interactions.}
+In \ac{hhi}, an \emph{interaction} is a mutual or reciprocal relationship between two (or more) interlocutors within a defined timespan.
+This is also true for interaction with machine, though the beneficial side is typically the human speaker(s) while the machine is used to achieve the humans' goal.
+In more modern application, and especially when \ac{ai} is involved, the computer might also be programmed to \enquote{benefit} from the interaction, e.g., by acquiring information for future interactions or being able to finish a task more efficiently.
+One type of interaction is a \emph{conversation}, where the communication is language-based.
+This difference is more prominent in \ac{hci}, since there are ways to interact with machines without using written or spoken words, like using touchscreens, a computer mouse, or hand gestures. This can be compared to non-verbal -- neither written nor spoken -- human communication, but purely non-verbal communication occurs more often with machines than with people.
+The main reason for that is probably since machines are not, yet, capable of using language as freely and verbosely as humans.
+The terms \enquote{interaction} and \enquote{conversation} are often used interchangeably in this work, since the interaction in question are spoken conversations.
+Nevertheless, interactions refer to more general concept of communication that might involve other components than speech and conversations focus on the language components of the communication.
+% spoken interaction -- Although the linguistic content might remain the same, adds complexity due to variety or speech and the technological challenge of generating inteligble speech output.
 
-\citet{Bernsen1998designing}
-\todo[inline]{this book (which I have) has a broad and detailed information about this topic. can take some hints from there}
-
-\todo[inline]{say how in most ways to interacts with computers humans need to learn new ways to interact or at the very least change a known way. this is true also for speech, although it's improving. as it's improving, people start to talk more naturally to machines, and therefore also natural phenomena, like accommodation, are expected to occur.}
-
-\todo[inline]{say that, with current technology, only the user can vocally accommodate to the system, which is different from the HHI case.}
-
-\todo[inline]{this rises the question whether the social motivation of CAT is valid in HCI. mention CASA and other things from the second part of 1.2 in Iona's paper}
+Interestingly, humans almost always need to compromise on the way they interact with computers, or learn new interfaces (like those mentioned above) even for performing simple tasks.
+Even in the case of spoken communication, which develops early on in humans, compromises need to be made as to how to speak to the computer so that it understands that user's intention.
+For any of the system types mentioned in \cref{sec:types_of_sdss}, users needs to learn how to modify their speech so that they can properly use the systems (be it the speech style of wording), instead of the system being able to adapt to the user.
+With the advance of speech technology, this gap is shrinking, but there is still a way to go before computers will be able to understand and produce spoken language well enough that people are able to speech to computers as they speak to other human-beings.
+The topics of this work capitalizes on this evolution, to see whether \ac{hhi} phenomena like vocal accommodation are transferred to \ac{hci} as talking to computers becomes easier and more common.
+More generally, the question rises whether \ac{cat} holds for \ac{hci} as well.
+This is supported, for example, by the \ac{casa} paradigm \citep{Nass2000machines}, which argues that humans apply similar social behaviors when interacting with computers because they ascribe human characteristics to them.
+As a starting point, domain-specific systems with alternate turn taking are easier for computers, as they take away a lot of the complexity of spoken language and reduce it to individual utterances that can be mapped to actions the system supports.
+For example, a \ac{sds} for ordering train tickets will probably follow a very specific protocol and react only to specific input, as opposed, for example, for a general-purpose system that could talk with the user about a planned trip and help booking tickets as part of a longer, general-purpose conversation (see \cref{tab:sds_types}).
 
 \subsection{Previous work}
 \label{subsec:previous_work}
@@ -435,23 +435,3 @@ All these experiments focus on \ac{hci}, while those in \cref{subsec:linguistic_
 However, accommodation in \ac{hhi} and \ac{hci} has not been directly compared within the same interaction, as done in \cref{chap:speech_variations_in_hhci}.
 Furthermore, mainly suprasegmental characteristics have been studied for accommodation in \ac{hci}, mostly due to technical limitations (see \cref{sec:adaptive_spoken_dialogue_systems} for details).
 a wizard-of-Oz experiment with focus on \emph{segmental} features is described in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices}.
-
-\begin{figure}[t]
-	\centering
-	\subfigure
-		[An illustration of a device's output, which is \emph{not} personalized for each user.
-		The same spoken output (in black) is played to all three users.]
-		{\includegraphics[width=0.45\textwidth]{speech_no_adapt}
-		\label{fig:output_not_adapted}} 
-	\hfill % no empty line here to avoid staring a new paragraph (figures will be vertically aligned)
-	\subfigure
-		[An illustration of a device's output, which is \emph{personalized} for each user.
-		A different, customized spoken output (in blue, green, and red) is played to each user.]
-		{\includegraphics[width=0.45\textwidth]{speech_adapt}
-		\label{fig:output_adapted}}
-	\caption[Static vs.\ adaptive speech output]
-		{Schematic comparison between an interaction with static spoken outputs (on the left) and an interaction with adaptive (i.e., personalized) spoken outputs (on the right).
-		The system that adapts to the user makes the interaction tailored to the user's behavior.}
-	\label{fig:static_vs_adaptive_speech_output}
-	\todo[inline]{move this figure to SDS chapter? it already describes an adaptive SDS}
-\end{figure}

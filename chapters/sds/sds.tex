@@ -247,6 +247,25 @@ Experiments have shown vocal accommodation effects in interactions with \acp{vh}
 \section{Accommodative spoken dialogue systems}
 \label{sec:adaptive_spoken_dialogue_systems}
 
+\begin{figure}[t]
+	\centering
+	\subfigure
+		[An illustration of a device's output, which is \emph{not} personalized for each user.
+		The same spoken output (in black) is played to all three users.]
+		{\includegraphics[width=0.45\textwidth]{speech_no_adapt}
+		\label{fig:output_not_adapted}} 
+	\hfill % no empty line here to avoid staring a new paragraph (figures will be vertically aligned)
+	\subfigure
+		[An illustration of a device's output, which is \emph{personalized} for each user.
+		A different, customized spoken output (in blue, green, and red) is played to each user.]
+		{\includegraphics[width=0.45\textwidth]{speech_adapt}
+		\label{fig:output_adapted}}
+	\caption[Static vs.\ adaptive speech output]
+		{Schematic comparison between an interaction with static spoken outputs (on the left) and an interaction with adaptive (i.e., personalized) spoken outputs (on the right).
+		The system that adapts to the user makes the interaction tailored to the user's behavior.}
+	\label{fig:static_vs_adaptive_speech_output}
+\end{figure}
+
 Dynamically changing the voice is a capability currently ascribed almost exclusively to humans and exist only sparsely and simplistically in computer-based systems.
 A voice-activated device always talks the same way, regardless of how the user speaks to it, the environment and setting in which the interaction takes place, the goal and role of the device, etc.
 This capability, which comes naturally to humans in social interactions, involves several steps of (partially unaware) decisions, which together form the overall effect of becoming behaviorally more or less similar to an interlocutor, as explained in \cref{sec:communication_accommodation_theory}.
@@ -257,6 +276,11 @@ Several attempts to integrate this capability into \acp{sds} are presented below
 The parallelisms to the human perspective are highlighted along the way to help to understand the motivations and goals.
 
 \todo[inline]{here take 2-3 systems (from Chapter 1 and/or 3) and explain a bit in detail how they implemented the accommodation capabilities. specifically, emphasize the limitations and hint how the work here is doing more}
+
+\citet{Bernsen1998designing}
+\todo[inline]{this book (which I have) has a broad and detailed information about this topic. can take some hints from there}
+
+\todo[inline]{say that, with current technology, only the user can vocally accommodate to the system, which is different from the HHI case.}
 
 %Studying convergence in speech in an \ac{hci} context is made possible with more natural synthesis technology, which gives more fine-grained control over parameters of the system's spoken output.
 
