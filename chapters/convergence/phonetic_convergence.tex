@@ -43,7 +43,7 @@ Detailed examples of linguistic accommodation are described in \cref{subsec:ling
 While \ac{cat} advocates these changes, it is worth noticing that there are other further frameworks that explain them.
 For instance, the Interactive Alignment Model \citep{Pickering2004behavioral, Pickering2013integrated} offers a model where adjustments in communicative behavior are described as \emph{alignment} as opposed to \emph{accommodation}, hinting that the process is rather one-sided and uni-directional (see \cref{tab:variation_types}).
 Despite this difference and others, all these frameworks describe a process where the similarity between interlocutors increases or decrease with respect to certain features over the course their communication.
-\Cref{subsec:variation_types} sheds more light on the difference between the various terms used to describe this process and how they are used in the literature.
+\Cref{subsec:variation_types} sheds more light on the difference between the different terms used to describe this process and how they are used in the literature.
 
 \todo[inline]{find an example for each non-linguistic modality mentioned (put in parantheses like "(e.g., moving the hands the same way (CITE))}
 
@@ -73,11 +73,11 @@ This great variety in spoken language makes the accommodation process somewhat m
 %(comparing with a lexical entity that would always be recognized as the same).
 
 Vocal accommodation has been found in both segmental \citep{Pardo2010conversational, Smith2007prosodic} and suprasegmental \citep{Walker2015repeat, Shockley2004imitation} phonetic features and
-both in conversational \citep{Pardo2006phonetic, Lewandowski2012talent} and non-conversational \citep{Babel2014novelty, Shockley2004imitation} scenarios.
+both in conversational \citep{Pardo2006phonetic, Lewandowski2012talent, Weise2018looking} and non-conversational \citep{Babel2014novelty, Shockley2004imitation} scenarios.
 There is evidence for it being both an internal mechanism \citep{Pickering2004behavioral} and socially motivated \citep{Kim2011phonetic, Giles1991CAT}.
 For instance, phonetic convergence \citep{Giles1973mobility} or divergence \citep{Bourhis1977distinctiveness} is triggered with decreasing or increasing social distance between interlocutors, respectively.
 \Citet{Baumann2020how} even shows that feedback given by conversation partners can influence the convergence process.
-As demonstrated by \citet{Pardo2013measuring}, vocal accommodation can occur with respect to various phonetic features.
+As demonstrated by \citet{Pardo2013measuring}, vocal accommodation can occur with respect to numerous phonetic features.
 \citet{Aubanel2020speaking} found that speakers accurately and consistently converge to each other's pitch (\ac{f0}) in scripted read-aloud dyadic conversation on a turn-by-turn basis.
 This shows the ability to track changing \ac{f0} both in perception and production.
 The study conducted in \citet{Babel2012role} supports the importance of \ac{f0} in convergence effects by showing that filtering out the \ac{f0} frequencies in the signals the participants hear leads to reduced convergence.
@@ -91,13 +91,12 @@ In a second experiment, the degree of intensity convergence could be predicted b
 A third studied feature is speaking rate (and sometimes \acf{ar}).
 In an exemplar-theoretic view in mind, \citet{Schweitzer2016exemplar} investigated how syllable frequency influences the degree of change.
 Evidently, stronger effects were found in more frequent syllables, which supports this view.
-Relatedly, \citet{Edlund2009pause} introduces a way to measure temporal prosodic changes, like pauses, in conversation, which affect the speaking rate.
+Relatedly, \citet{Edlund2009pause, Xiao2015analyzing, Cohen2017converging} introduce ways to measure temporal prosodic changes, like pauses, in conversation, which affect the speaking rate.
 \citet{Levitan2011measuring, Local2007phonetic} found convergence effects in all these three features (and others) in collaborative games and every-day scenarios.
 Such wide variety of evidence suggest that, even in the vocal modality alone, accommodation is reflected in various ways in \acp{hhi}.
 These features are investigated in this work in both \ac{hhi} (\cref{chap:conv_analysis}) and \ac{hci} (\cref{chap:speech_variations_in_hhci}) contexts.
-In addition to these, other factors and phonetic features were investigated for accommodation, such as voice quality \citep{Borrie2017conversational}, voice onset time \citep{Nielsen2011specificity} and other timing-related phenomena \citep{Putman1984conception}, second language proficiency \citep{Law2020convergence}, interlocutors' sex \citep{Levitan2012acoustic, Bailly2014assessing}, perceived attractiveness \citep{Michalsky2017pitch}, and more.
-
-\todo[inline]{need more reference and examples?}
+In addition to these, other factors and phonetic features were investigated for accommodation, such as voice quality \citep{Borrie2017conversational}, voice onset time \citep{Nielsen2011specificity} and other timing-related phenomena \citep{Putman1984conception}, second language proficiency \citep{Law2020convergence}, interlocutors' sex \citep{Levitan2012acoustic, Bailly2014assessing}, perceived attractiveness \citep{Michalsky2017pitch}, word frequency \citep{Nenkova2008high}, and more.
+Further methods and ways to measure accommodation in \ac{hhi} can be found in \citet{Lewandowski2019phonetic, DeLooze2014investigating}.
 
 \subsection{Limitations of \acl{did} measures}
 \label{subsec:limitations_of_did}
@@ -406,16 +405,36 @@ The list presented here aims to unequivocally distinguish these terms and grant 
 
 \todo{maybe there is a better title for this section?}
 
-introduction\ldots
+\Cref{subsec:linguistic_accommodation} discusses vocal accommodation in \ac{hhi}, but this phenomenon has been studied in \ac{hci} as well.
+A key difference between the two settings is the lack of naturalness on the computer's side. 
+Since accommodation is often ascribed to mutual social aspects (as explained by \ac{cat} in \cref{sec:communication_accommodation_theory}), this introduces a limitation in the amount of accommodation that may occur.
+Two main approaches are used to overcome this limitation in experiments:
+Simulating a computer's output in a wizard-of-Oz setting and integrating some accommodation capabilities into a \ac{sds}.
+Wizard-of-Oz experiments have the advantage that the output of the computer-based interlocutor can be directly controlled by the experimenter, usually using pre-defined utterances.
+This grants precision and control over the experiment, which makes it a very suitable approach for research.
+However, preparing the experimenter's control interface and the utterances might be time consuming, e.g., if they need to be recorded or manually manipulated in a certain way.
+Another disadvantage is the disability to deviate from a pre-defined script covered by the prepared utterances, limiting the variety of interactions the simulated system can support.
+\Acp{sds} that support at least some level of accommodation or real-time manipulation save the time and effort of creating stimuli prior to the experiment.
+Though the quality of the output and the time required to generate it might be affected, this setting better represents real-world \ac{hci} and can typically better react to varying paths the experiment is going (depending on its domain constraints).
+As with real-world systems, it requires a lot of time to develop these capabilities, which often makes this option impractical in research.
+\Cref{sec:adaptive_spoken_dialogue_systems} discusses further facets and possible solutions for integrating accommodation capabilities into \acp{sds}.
 
-\citet{Weise2018looking}\\% lexical and prosodic entrainment
-\citet{Lewandowski2019phonetic}\\% should be a very good overview paper
-\citet{Xiao2015analyzing}\\% speech rate entrainment in HHI
-\citet{Cohen2017converging}\\% a bigger work on speech rate tnrainment in HHI
-\citet{DeLooze2014investigating}\\% good for when talking about methods
-\citet{Lopes2013lexical} % lexical entrainment
-\citet{Bergqvist2020nontrivial} % lexical convergence in dialogue system
-\citep{Lopes2013automated} % improve performance
+Using these two methods, various experiment have been conducted to measure accommodation in \ac{hci}.
+%Various studies have investigated entrainment and priming in \acp{sds}, aiming to better understand \ac{hci} dynamics and improve task-completion rates.
+\citet{Bergqvist2020nontrivial, Lopes2011primes}, for example, focused on dynamic entrainment and adaptation on the lexical level, and found users adapt to a system's terminology that differs from theirs.
+This also led to improved performance in the given tasks.
+\citet{Parent2010lexical} examined correlation of lexical choices and word frequency using the \emph{Let's Go}~\ac{sds} \citep{Raux2005letsgo} and found that users adapt more to words that occur more often.
+While these studies addressed the changes in experimental, scripted scenarios, the theoretical foundations for studying these changes in spontaneous dialogue exist as well \citep{Brennan1996lexical}.
+\citet{Gasic2013policy, Levin2000stochastic} provide examples of online adaptation for dialogue policies and strategies.
+Noticeably, while all of the studies mentioned above examine various facets of dialogues, none of those are related to the auditory aspects of speech -- the primary modality used to interact with \acp{sds}.
+\citet{Benus2018prosodic} found relationships between the level of user's trust toward an avatar and the degree of the system's vocal entrainment or disentrainment.
+Similarly, \citet[][pp.\ 142-144]{Levitan2014acoustic} shows relationships between prosodic entrainment and how much participants liked the avatar they were interacting with.
+\citet{Bell2003prosodic} found that users' speech rate can be manipulated using a human-simulated \ac{sds}.
+Similar results were found when intensity changes in children's interaction with synthesized output were examined \citep{Coulston2002amplitude}.
+All these experiments focus on \ac{hci}, while those in \cref{subsec:linguistic_accommodation} concentrate on \ac{hhi}.
+However, accommodation in \ac{hhi} and \ac{hci} has not been directly compared within the same interaction, as done in \cref{chap:speech_variations_in_hhci}.
+Furthermore, mainly suprasegmental characteristics have been studied for accommodation in \ac{hci}, mostly due to technical limitations (see \cref{sec:adaptive_spoken_dialogue_systems} for details).
+a wizard-of-Oz experiment with focus on \emph{segmental} features is described in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices}.
 
 \begin{figure}[t]
 	\centering
@@ -434,13 +453,5 @@ introduction\ldots
 		{Schematic comparison between an interaction with static spoken outputs (on the left) and an interaction with adaptive (i.e., personalized) spoken outputs (on the right).
 		The system that adapts to the user makes the interaction tailored to the user's behavior.}
 	\label{fig:static_vs_adaptive_speech_output}
+	\todo[inline]{move this figure to SDS chapter? it already describes an adaptive SDS}
 \end{figure}
-
-
-Phonetic convergence is often examined in the scope of shadowing experiments, in which the participants are asked to repeat utterances spoken by an interlocutor \citep{Pardo2017phonetic, Dias2016visibilivty, Walker2015repeat, Shockley2004imitation}.
-This is typically done with single words as targets.
-The experiment showcasing our system in \cref{sec:showcase} uses whole sentences as stimuli, in which the target features are embedded, making it a semi-conversational \ac{hci} setting.
-
-% \input{chapters/introduction/spokendialoguesystems}
-
-\todo[inline]{make sure there are only HCI papers here as examples}
