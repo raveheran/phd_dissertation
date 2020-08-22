@@ -199,27 +199,33 @@ This limitation can be compensated to some extent by examining the \emph{relativ
 \section{Pronunciation varieties}
 \label{sec:pronunciation_varieties}
 
-\todo[inline]{some introduction...}
-
 \subsection{Long-term and short-term sound changes}
 \label{subsec:sound_change}
 
-% use these descriptions in a sentence to describe the nature of the respevtive changes
-%\subsection[Long-term sound change]{Sound change as part of a long-term language evolve process}
-%\subsection[Short-term phonetic change]{Phonetic change as a short-term social process}
-
-\citet{Ohala1989sound}\\
-\citet{Ohala1990phonetics}\\
-\citet{Ohala1993phonetics}\\ % this is the main thing
+All the sound changes discussed in this work are short-term changes occurring over the timespan of a single, even if long, interaction (e.g., \cref{chap:conv_analysis}) or a series of following interactions (e.g., \cref{chap:speech_variations_in_hhci}).
+Similarly, the models and applications in \crefrange{chap:computational_model}{chap:web-based_responsive_spoken_dialogue_system} are also designed to handle accommodation-related changed within the scope of time-limited interactions.
+However, sound change may occur in continuously over long period of times -- even years or decades.
+While short-term accommodative changes can be ascribed to local social influences of specific interlocutors (see \cref{sec:communication_accommodation_theory}), long-term changes may stem from larger cultural influences and independent evolution of the person's speech.
+In both cases, the change's source can be both the the speaker and the listener \citep[][pp.\ 176-187]{Ohala1989sound} and is typically caused by confusion or correction \citep{Ohala1993phonetics}.
+The latter is more relevant, for instance, for short-term assimilation, as demonstrated in \citet{Ohala1990phonetics}.
+The former, however, is more dominant in long-term changes and cross-language influences, e.g., when sounds in one language are replaced by similar sounds in another when loaning words.
+This is also related to mutual influences of speaker in the evolution of a language, or the way different speaking styles can be created within a language to mark cultural, regional, and social difference.
 \review{would be cool to have some really old references here. probably there is something in one of Ohala's papers}
 
-\todo[inline]{start with Harrington's paper about the changes in the queen's phonetics over 60 years or so when talking to the people. explain that this is mid-term change, since it's not a change in language, but also not during a single conversation, but rather over a series of "conversations" with the same crowd}
+Such long-term changes can also occur in the speech of a single person.
+\citet{Harrington2007evidence} examined vowel changes in the Queen's pronunciation in her annual Christmas messages from 1952 to 2002.
+Some gradual changes were, indeed, found, but could not be ascribed to age or varying speech style.
+The author therefore considered it an independent, long-term sound change of an individual.
+Contrarily, in the pronunciations around the 1980s assimilation was found towards accents associated with younger people of lower classes \citep{Harrington2000does, Harrington2000monophthongal}.
+This suggests a, potentially aware, audience design from the Queen's side \citep{Bell1984language}.
+Such use of communication falls under the social motivation of \ac{cat}, although the interactions were one-sided.
+In this example, the changes were not a result of interactions over a long period of time.
+However, this may happen as well between people who speak often to each other for many years.
+This is relevant for \acp{hci} that are designed to last very a long time, like \acp{pa} or social companion (see \cref{sec:types_of_sdss}).
+Therefore, in such systems, accommodation effects should be taken into account as well, but the modeling approach could take advantage of the fact that there is a much longer timespan for the changes to unfold.
+This can be used, for example, for accumulating more evidence before deciding on the appropriate change from the system side (cf.\ exemplar approach in \cref{chap:computational_model} and floor-change approach in \cref{chap:statistical_model}).
 
-\todo[inline]{here talk (very) long term changes (i.e., not in a single conversation). papers of Ohala (especially 1993 book) are good here, and look for more references from there}
-
-\todo[inline]{transition to short-term changes and say that in this work only this kind of changes are discussed, i.e., within a single conversation or a few chronologically close interactions}
-
-\subsection{Terminology -- variation types}
+\subsection{Variation types -- terminology}
 \label{subsec:variation_types}
 
 The term \enquote{convergence} is a central notion in this work.
