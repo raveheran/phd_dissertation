@@ -247,6 +247,25 @@ Experiments have shown vocal accommodation effects in interactions with \acp{vh}
 \section{Accommodative spoken dialogue systems}
 \label{sec:adaptive_spoken_dialogue_systems}
 
+\begin{figure}[t]
+	\centering
+	\subfigure
+		[An illustration of a device's output, which is \emph{not} personalized for each user.
+		The same spoken output (in black) is played to all three users.]
+		{\includegraphics[width=0.45\textwidth]{speech_no_adapt}
+		\label{fig:output_not_adapted}} 
+	\hfill % no empty line here to avoid staring a new paragraph (figures will be vertically aligned)
+	\subfigure
+		[An illustration of a device's output, which is \emph{personalized} for each user.
+		A different, customized spoken output (in blue, green, and red) is played to each user.]
+		{\includegraphics[width=0.45\textwidth]{speech_adapt}
+		\label{fig:output_adapted}}
+	\caption[Static vs.\ adaptive speech output]
+		{Schematic comparison between an interaction with static spoken outputs (on the left) and an interaction with adaptive (i.e., personalized) spoken outputs (on the right).
+		The system that adapts to the user makes the interaction tailored to the user's behavior.}
+	\label{fig:static_vs_adaptive_speech_output}
+\end{figure}
+
 Dynamically changing the voice is a capability currently ascribed almost exclusively to humans and exist only sparsely and simplistically in computer-based systems.
 A voice-activated device always talks the same way, regardless of how the user speaks to it, the environment and setting in which the interaction takes place, the goal and role of the device, etc.
 This capability, which comes naturally to humans in social interactions, involves several steps of (partially unaware) decisions, which together form the overall effect of becoming behaviorally more or less similar to an interlocutor, as explained in \cref{sec:communication_accommodation_theory}.
@@ -256,24 +275,27 @@ For computers, however, these steps must be broken down and \emph{explained}, as
 Several attempts to integrate this capability into \acp{sds} are presented below, followed by a description of a roadmap toward such a system and an introduction of relevant terminology to describe these different steps and ways to achieve accommodative vocal behavior in machines.
 The parallelisms to the human perspective are highlighted along the way to help to understand the motivations and goals.
 
-Various studies have investigated entrainment and priming in \acp{sds}, aiming to better understand \ac{hci} dynamics and improve task-completion rates.
-\citet{Lopes2013automated, Lopes2011primes}, for example, focused on dynamic entrainment and adaptation on the lexical level.
-Others, like \citet{Nenkova2008high}, concentrated on word frequency.
-\citet{Parent2010lexical} examined changes in both lexical choices and word frequency using the \emph{Let's Go}~\ac{sds} \citep{Raux2005letsgo}.
-While these studies addressed the changes in experimental, scripted scenarios, the theoretical foundations for studying these changes in spontaneous dialogue exist as well \citep{Brennan1996lexical}.
-\citet{Gasic2013policy, Levin2000stochastic} provide examples of online adaptation for dialogue policies and strategies.
-\todo{add 1-2 more sentences for each of the examples?}
-Noticeably, while all of the studies mentioned above examine various facets of dialogues, none of those are related to the auditory aspects of speech -- the primary modality used to interact with \acp{sds}.
+\todo[inline]{here take 2-3 systems (from Chapter 1 and/or 3) and explain a bit in detail how they implemented the accommodation capabilities. specifically, emphasize the limitations and hint how the work here is doing more}
+
+\citet{Bernsen1998designing}
+\todo[inline]{this book (which I have) has a broad and detailed information about this topic. can take some hints from there}
+
+\todo[inline]{say that, with current technology, only the user can vocally accommodate to the system, which is different from the HHI case.}
+
 %Studying convergence in speech in an \ac{hci} context is made possible with more natural synthesis technology, which gives more fine-grained control over parameters of the system's spoken output.
-%\todo{need references here?}
-Some systems deal with adaptation of speech-related features that focus on prosodic characteristics like intonation or speech rate.
-\citet{Levitan2014acoustic} sheds light on acoustic-prosodic entrainment in both \ac{hhi} and \ac{hci} via the use of interactive avatars.
-\citet{Bell2003prosodic} found that users' speech rate can be manipulated using a human-simulated \ac{sds}.
-Similar results were found when intensity changes in children's interaction with synthesized \ac{tts} output were examined \citep{Coulston2002amplitude}.
-A technical overview of the development of adaptive \acp{sds} is given by \citet{Levitan2016implementing}, where speech rate and intensity are manipulated and entrained by the system.
+
+% A technical overview of the development of adaptive \acp{sds} is given by \citet{Levitan2016implementing}, where speech rate and intensity are entrained by the system.
 
 \subsection{Roadmap and challenges}
 \label{subsec:roadmap_and_challenges}
+
+\subsubsection{Dialogue is hard}
+\label{subsubsec:dialogue_is_hard}
+
+\citep{Turing1950computing}\ldots
+
+\subsubsection{Suggested roadmap}
+\label{subsubsec:suggested roadmap}
 
 The lack of accommodative speech in computer-based systems roots from what is more often than not natural and even automatic for humans, namely realizing how and how much to change their vocal behavior, the physiological means to express those differences, and the ability to combine the two into a coherent production in an interaction.
 \Cref{fig:roadmap_adaptive_sds} shows an overview of a (simplified) roadmap to integrating adaptive capabilities into a \ac{sds}.
@@ -312,7 +334,7 @@ Furthermore, this process may involve other components of the \ac{sds} as well (
 For instance, the Dialogue Manager might consider changes in the user's speech when making decisions, e.g., based on apparent mood and calmness.
 The \ac{nlg} component could make alterations to its output to better fit the vocal changes of the system and the user's dynamic state, such as shortening sentences and omit additional information if phonetic indicators of hurry or urgency (like those shown by \citet{Edworthy2003acoustic}) are detected in the speech input.
 
-\subsection{Terminology -- accommodation levels}
+\subsection{Accommodation levels -- terminology}
 \label{subsec:accommodation_levels}
 
 In addition to all the above, another design choice for accommodative \acp{sds}, which is not explicitly required in human speech, concerns the overall \emph{level of accommodation} the system introduces.
@@ -382,6 +404,11 @@ These terms seek to distinguish between the different capabilities that can be i
 %The balance between the influences from the user input and the system's profile can be defined as well, similarly to the bias utilized in speech adaptation, in the form of \putref{reference to this method)}
 %\todo{sentence about balance might be unnecessary}
 % ----------
+
+\subsection{Systems with accommodation capabilities}
+\label{subsec:systems_with_accommodation_capabilities}
+
+\citet{Levitan2016implementing} % the system that (linearly?) entraining. read the deatils again and then say how this differs from the architecture in this paper. also, find references there for more such systems.
 
 \section{Evaluating spoken dialogue systems}
 \label{sec:evaluation_of_sdss}
