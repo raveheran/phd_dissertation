@@ -82,8 +82,8 @@ Furthermore, as the connection to the server is done via a web browser, particip
 And most importantly, multiple users can connect to the system simultaneously.
 All of these makes it possible to collect data from many users rapidly and easily.
 
-\subsubsection{Dialogue System}
-\label{subsubsec:dialogue_system}
+\subsection{Dialogue System}
+\label{subsec:dialogue_system}
 
 The \emph{Dialogue System} component is the core of the system (see \cref{fig:web-based_architecture}).
 It controls the flow of the interaction, processes the user's input, and generates the system's responses.
@@ -251,6 +251,11 @@ For example, hovering over a datapoint in a graph reveals additional information
 %It also lists special commands that can be executed from text field (used for simulating the user's input, as mentioned in \cref{subsubsec:interaction_area}).
 %These commands include printing a short or detailed summary of the phonetic changes throughout the interaction, extracting the data from the features' plots (e.g., for further analysis), and more.
 %\todo{screenshot with the settings tab}
+
+\section{Online and Offline paths}
+\label{sec:online_and_offline_paths}
+
+\missingfigure{online and offline paths}
 
 \section{Showcase: simulating a shadowing experiment}
 \label{sec:showcase}
@@ -465,11 +470,9 @@ Task completion rate, performance accuracy, and completion time metrics can be u
 		However, if the \enquote{Add exemplar} action was performed prior to termination, the exemplar is not removed and will be taken into consideration the next time the pipeline is triggered for the feature with which it is associated.
 		The \enquote{feature definitions} come from the configuration file and can be changed by the user.}
 	\label{fig:adaptation_module_pipeline}
+	\todo{fix in figure: two ``yes''es are going out of the Convergence Limited block}
+	\todo{use colors to associate each shape (excluding arrows) to a step in the pipeline (maybe same colors as in stripes figure?)}
 \end{figure}
-
-\todo{fix in figure: two ``yes''es are going out of the Convergence Limited block}
-
-\todo{use colors to associate each shape (excluding arrows) to a step in the pipeline (maybe same colors as in stripes figure?)}
 
 \todo[inline]{somewhere in the thesis where evaluation of an actual system is discussed, talk in detail about the challenge that there is no absolute correct answer regarding how and how much to converge (user dependent, etc.) and for the same reasons there is no gold standard to compare against. so need to find other criteria for evaluation.}
 
