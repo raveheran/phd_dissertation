@@ -13,9 +13,9 @@ The implementation and integration details as well as a demonstration of manipul
 An implementation of the pipeline introduced in \cref{sec:pipeline_representation} is presented here as an independent module for \acp{sds}.
 It is shown how the statistical components from \cref{chap:statistical_model} can be added to it to take advantage of the capabilities of both approaches.
 This suggested implementation is an example of how the model works while keeping the complexity of each step to a minimum.
-While supra-segmental features can be handled as well, only segmental features are discussed here, as they are less represented in accommodation modeling for computer-based systems and they require additional considerations, like segment context and local manipulation, as demonstrated in this chapter.
-See \citet{Raveh2017SemDial} for further motivation and explanations.
-The \ac{asp} module described here is integrated into the \ac{e2e} \ac{sds} presented in \cref{chap:web-based_responsive_spoken_dialogue_system} (and cf.\ \cref{fig:adaptation_module_pipeline}).
+While supra-segmental features can be handled as well, only segmental features are discussed here, as they are less represented in accommodation modeling for computer-based systems and they require additional considerations, like segment context and local manipulation, as demonstrated in this chapter (and see \citet{Raveh2017SemDial}).
+Thanks to the independence of this module, it can be added into any existing system that can provide the user's speech signal as input and a \ac{tts} module that can receive its output.
+The \ac{sds} presented in \cref{chap:web-based_responsive_spoken_dialogue_system} has the \ac{asp} module integrated into it.
 
 \subsection{Computational model}
 \label{subsec:computational_model}

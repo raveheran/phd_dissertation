@@ -1,13 +1,59 @@
 \chapter{Web-Based Responsive Spoken Dialogue System}
 \label{chap:web-based_responsive_spoken_dialogue_system}
 
-\lettrine{I}{introduction} to this chapter\ldots
+\lettrine{I}{ntroduction} to this chapter\ldots
+% complete, web-based \ac{sds} with focus on vocal adaptation.
 
 \pagebreak
 
-\section{Architecture}
-\label{sec:architecture_web-based}
+\section{Overview and key aspects}
+\label{sec:overview_and_key_aspects}
 
+Simulating and triggering accommodation effects occurring in \ac{hhi} like those found in \cref{chap:conv_analysis} in \acp{sds} takes them one step further toward human-like communication.
+The system presented in this chapter encapsulates the knowledge acquired from the experiments in \cref{part:experiments}, the behavior designs developed in \cref{part:modeling}, and the module introduced in \cref{chap:convergence_module_for_sdss} which enables the vocal changes.
+It contains mechanisms to track the states and changes of segment-level and suprasegmental-level phonetic features during a dialogue.
+All the analyses are automated and run in real-time, which not only saves a lot of time and manual work typically needed in convergence studies, but also makes the system more suitable for integration into other applications.
+It holds the following key principles:
+%
+\begin{description}
+	\item[Focus on adaptation] --
+	the main goal of the system is to offer a tool for investigating vocal accommodation in \ac{hci} for both online experiments and offline analyses.
+	Putting vocal accommodation under the spotlight is the core novel contribution of the system, as very few systems offer such capabilities at all, and with control over the accommodative behavior in particular.
+	
+	\item[Customizability] --
+	the system includes several components that can be modified, either for changing the accommodation behavior itself (features, parameters, etc.) or changing the setting (e.g., for different experiments).
+	This allows experimenting with different scenarios and configurations and easily compare them in a controlled, reproducible environment.
+	
+	\item[Online scalability] --
+	the system can run in a web browser without any installations or additional files\footnote{some features need to be enabled in the browser, like JavaScript and microphone access.
+	However, any modern browser should not have any problem supporting all the necessary requirements.
+	To increase performance, all speech analyses and processing are done on the server side.}.
+	Since the system itself runs on a single server, it is also possible to operate multiple instances, each with its own configurations and parameters.
+	This makes it easy to distribute, e.g., for remotely conducting an experiment where each participant may receive a different configuration.
+\end{description}
+%
+Ultimately, this customizable system could help to deepen the experimental possibilities and automating some aspects of the processes convergence-related experiments typically comprises.
+The system's architecture, and \ac{gui}, and functionality are described in \cref{sec:architecture,sec:online_and_offline_paths}.
+The experiment presented in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices} is replicated in \cref{sec:showcase} to demonstrate the system's utilization.
+
+\section{Architecture}
+\label{sec:architecture}
+
+As the system aims to offer a customizable playground for experimenting and studying phonetic adaptation in \ac{hci}, a key aspect of its architecture is the separation between client-side, server-side, and external resources (see \cref{fig:web-based_architecture}).
+This separation makes it possible to run multiple clients on different machines at the same time with a single server collecting the data from all of them at the same time.
+The server, ideally running on a dedicated machine, is operated by an a person responsible of designing and configuring the interactions, e.g., an experimenter.
+It collects information and audio recordings from all interactions with the system (which can be deleted afterwards for privacy purposes).
+This separation of the server grants the experimenter a lot of freedom and flexibility, since resources like feature configurations and dialogue domain can be modified independently of specific machines interacting with the system.
+Additionally, multiple configurations can be prepared in advance (e.g., for different participant groups), regardless of the device the experiment will be performed on and before summoning the participants.
+Configurations can even be changed mid-interaction.
+These configurations are transparent to the users, and no effort is required from them (aside from start a new interaction in the case of some specific configurations).
+This flexibility makes it easier and quicker to create new scenarios of interaction and to experiment with different features and parameters.
+
+In addition to the technical advantages, letting users interact with the system on a separate machine broadens the usage possibilities.
+For example, an experiment can be carried out remotely, without the need to invite participants to the recording studio one by one.
+Furthermore, as the connection to the server is done via a web browser, participants can connect use the system with their own computers wherever and whenever it suits them, without any additional installation or technical configurations.
+All of these makes it possible to collect data from many users rapidly and easily.
+%
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=\linewidth]{web-based_architecture_no-ajax}
@@ -17,84 +63,83 @@
 		The dashed line indicates that the feature predictions may or may not be passed from the model to the system depending on the feature definition and update parameter.}
 	\label{fig:web-based_architecture}
 \end{figure}
+%
+As shown in \cref{fig:web-based_architecture}, the main components of the system are the \ac{sds} itself (including the accommodation module; \cref{subsec:dialogue_system}), the \ac{gui} (\cref{subsec:graphical_user_interface}), and the external resources and configuration (\cref{subsec:models_and_cusomizations}).
 
-For deepening the experimental possibilities and automating some aspects of the processes convergence-related experiments include, a dedicated systems with high degree of customizability was developed.
-The system introduced tracks the states and changes of segment-level and suprasegmental-level phonetic features during a dialogue.
-All of the analyses are automated and run in real-time, which not only saves a lot of time and manual work typically needed in convergence studies, but also makes the system more suitable for integration into other applications.
-In \cref{sec:showcase} we demonstrate a possible use of the system by simulating a convergence study previously run entirely by hand.
-
-% par about simulating
-Simulating and triggering convergence on the phonetic level, as found in \ac{hhi}, may contribute a lot to the naturalness of the dialogue.
-Our primary focus is on changes on the phonetic level, and more specifically variation in pronunciation and prosody, with no influence on the voice's overall acoustics.
-\Acp{sds} with such personalized speech style may offer more natural and efficient interactions, as shown by \citet{Porzel2006entrainment}, and advance one more step away from the \emph{interface metaphor} \citep{Edlund2006twofaces} toward the \emph{human metaphor} \citep{Carlson2006humanlike}, which describe different user approaches when interacting with \ac{hci} systems.
-
-% par about 
-
-\putref{sds architecture}
-\putref{computational model}
-\putref{sds module}
-
-\section{Background and related work}
-\label{sec:background_and_related_work}
-
-\ac{cat} \citep{Gallois2015CAT, Giles2007CAT, Shepard2001CAT} describes possible reasons for behavioral changes of interlocutors during interaction on various levels.
-According to \citet{Weise2017towards}, integrating such changes into computer systems will enhanced \ac{hci} and provide improved tools for studying convergence in \ac{hci}.
-\citet{Oviatt2004adaptive} discusses the advantages of systems that dynamically adapt their speech output to that of the user, and the challenges involved in developing and using these systems.
-
-\section{System}
-\label{sec:system}
-
-The system introduced here is an end-to-end, web-based \ac{sds} with focus on phonetic convergence.
-Besides placing convergence in the spotlight, it is designed to be flexible and to meet the researcher's needs by offering a wide range of component customizations (see \cref{subsec:models_and_cusomizations}).
-Its online access via a web browser makes it scalable and simple for the end-user to operate.
-The system's architecture and functionality are described in \cref{subsec:architecture},
-its \ac{gui} and operation in \cref{subsec:graphical_user_interface},
-and a real-world example of its utilization is demonstrated in \cref{sec:showcase}.
-
-Ultimately, it offers a platform for studying and experimenting with phonetic convergence, with emphasis on the following:
-
-\begin{description}
-	\item[Focus~on~convergence] -- 
-	offering an interface for general-purpose \acp{sds} with tools for analyzing and visualizing phonetic convergence.
-	
-	\item[Customizability] -- 
-	allowing the user to experiment with different scenarios by configuring parameters and definitions in many of the system's components.
-	
-	\item[Online~scalability] -- 
-	connecting multiple web clients to a server, allowing users to use it anywhere without installation, and helping experimenters to collect data remotely.
-\end{description}
-
-\subsection{Architecture}
-\label{subsec:architecture}
-
-As the system aims to offer a customizable playground for experimenting and studying phonetic convergence in \ac{hci}, a key aspect of its architecture is the separation between client-side, server-side, and external resources (see \cref{fig:web-based_architecture}).
-This separation makes it possible to run multiple clients on different machines at the same time with a single server collecting the data from all of them at the same time.
-The server, ideally located on dedicated machine, is operated by an a person responsible of designing and configuring the interactions, e.g., an experimenter.
-It has an overview over all of the interactions with the system and collects all of the audio recordings, analyses, and any other data in one place.
-This separation of the server grants the experimenter a lot of freedom and flexibility, since resources like feature configurations and dialogue domain can be modified independently of specific machines interacting with the system.
-These changes are transparent to the users, and no effort is required from them aside from restarting the interaction to apply them.
-As the server is also responsible for the connection to the client, it is also possible to defined different configuration to different users based on some characteristics, like their gender, native language, phonetic preferences etc.
-This flexibility makes it easier and quicker to create new scenarios of interaction and to experiment with different features and parameters, without the need to create a dedicated system for each experiment.
-
-In addition to the technical advantages, letting users interact with the system on a separate machine broadens the usage possibilities.
-For example, an experiment can be carried out remotely, without the need to invite participants to the recording studio one by one.
-Furthermore, as the connection to the server is done via a web browser, participants can connect use the system with their own computers wherever and whenever it suits them, without any additional installation or technical configurations.
-And most importantly, multiple users can connect to the system simultaneously.
-All of these makes it possible to collect data from many users rapidly and easily.
-
-\subsection{Dialogue System}
+\subsection{Dialogue system}
 \label{subsec:dialogue_system}
 
-The \emph{Dialogue System} component is the core of the system (see \cref{fig:web-based_architecture}).
-It controls the flow of the interaction, processes the user's input, and generates the system's responses.
-As shown in \cref{fig:adaptation_module_architecture}, it consists of typical \ac{sds} components such as \ac{nlu} and a \ac{dm}, but contains an \ac{asp} module as well \citep{Raveh2017SemDial}.
-This module is responsible for processing the audio\footnote{\label{foot:praatver}using Praat, v6.0.35, \url{http://praat.org/}, \citep{Boersma2018praat} as the signal processing back-end} and extracts the features required by the convergence model (\cref{subsubsec:convergence_model}).
+The core of the system is the dialogue system component (see \cref{fig:web-based_architecture}), which controls the flow of the interaction, processes user's inputs, and generates the system's responses.
+It uses the extended architecture presented in \cref{subsec:extended_sds}, which consists of typical \ac{sds} components such as \ac{nlu} and a \ac{dm}, but also contains the \ac{asp}  module that adds accommodation support \citep{Raveh2017SemDial}.
+The implementation of this module in the system is as described in \cref{fig:adaptation_module_architecture}.
 While the \ac{nlu} component uses merely the transcription provided by the \ac{asr}, the \ac{asp} module analyzes the speech signal itself.
-More specifically, it tracks occurrences of the defined features and passes the measured values to the convergence model, as explained in \cref{subsubsec:tracked_features}, which, in turn, forwards the tracked feature parameters to the \ac{tts} synthesis component.
-Finally, the \ac{tts} engine takes the text generated by the \ac{nlg} component, and, if phonetic-level manipulation is supported, synthesizes the utterance using the values specified by the convergence model.
-The \emph{OpenDial} dialogue framework \citep{Lison2016opendial} is used in the \ac{sds} component of the system.
-The \ac{asr} module uses CMUSphinx \citep{Lamere2003sphinx} with additional customized functionality required for the \ac{asp} module, and the \ac{tts} is driven by MaryTTS \citep{LeMaguer2017uprooted, Schroeder2003mary}.
-The rule-based implementation of the \ac{nlu} and \ac{nlg} modules is described in \cref{subsubsec:dialogue_domain}.
+Concretely, it tracks occurrences of the defined features and passes their measured values to the convergence model, as explained in \cref{subsubsec:tracked_features}, which, in turn, forwards the tracked feature parameters to the \ac{tts} synthesis component.
+The \ac{tts} engine then takes the text generated by the \ac{nlg} component, and, if phonetic-level manipulation is supported, synthesizes the utterance using the values specified by the convergence model.
+The connection between the dialogue system's modules is managed by the \emph{OpenDial} framework \citep{Lison2016opendial}.
+The \ac{asr} module uses CMUSphinx \citep{Lamere2003sphinx} with additional customized functionality for obtaining the phonetic information required for the \ac{asp} module, and the \ac{tts} is driven by MaryTTS \citep{LeMaguer2017uprooted, Schroeder2003mary}.
+The \ac{nlu} and \ac{nlg} modules are built using an OpenDial's domain file, as described in \cref{subsubsec:dialogue_domain}.
+
+\subsection{\Acl{gui}}
+\label{subsec:graphical_user_interface}
+
+\todo[inline]{add a screenshot of the entire GUI (landscape)? have some in presentations etc.}
+
+The interaction of the user with the system is done via a web-based \ac{gui}.
+This \ac{gui} consists of a navigation bar and four areas:
+a chat area, where the dialogue is shown (see \cref{subsubsec:chat_area}),
+an interaction area where the user input is recorded (see \cref{subsubsec:interaction_area}),
+a graph area where the tracked features are visualized and analyzed (see \cref{subsubsec:graph_area}),
+and a notification area where prompts for the user can be shown.
+
+\subsubsection{Chat area}
+\label{subsubsec:chat_area}
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\linewidth]{plot_area}
+	\caption[Real-time visualization of phonetic changes]{A screenshot of the plot area showing the states of the feature \textipa{[E:]}~vs.~\textipa{[e:]} during an interaction.
+		The system's internal convergence model (orange, bottom right) gradually adapts to the user's (blue, upper left) detected realizations.
+		A prediction of the feature's current realization is given for both interlocutors.
+		The text box annotates a turn in which the system's realization changes.}
+	\label{fig:plot}
+\end{figure}
+
+The interaction between the user and the system is shown in a chat-like representation (see example in \cref{app:dialogue_example}).
+Each turn's utterance appears inside a chat bubble with different colors for the user and the system.
+The turns are also numbered, to better track the dialogue progress and analysis shown in the plots in the graph area.
+The history of the chat is kept under the \emph{Turns} drop-down in the navigation bar, and it is possible to reset the interaction to start a new session.
+%Beside the chat bubbles, the system can also insert general-purpose messages to the users, which are not part of the dialogue's flow.
+
+\subsubsection{Interaction area}
+\label{subsubsec:interaction_area}
+
+The user can interact with the system with written or spoken input using the controls in this area.
+Text-based interactions progress through the dialogue (if applicable) and trigger any subsequent domain model, but will not affect convergence-related models, since there is no audio input to process.
+Spoken input can be provided either by speaking into the microphone or via audio files with pre-recorded speech.
+The latter option is especially useful for simulating specific user input, or for reproducing a previous experiment with the exact same input, as done in \cref{subsec:validation}.
+
+\subsubsection{Graph area}
+\label{subsubsec:graph_area}
+
+Each of the tracked features is visualized in a separate plot, and new datapoints are automatically added whenever applicable.
+These plots are generated using the Plotly library\footnote{\url{https://plot.ly}}, which provides some interactive functionalities.
+For example, hovering over a datapoint in a graph reveals additional information, such as the turn in which it was added, or the realized variant of the feature produced in that turn as predicted by its classifier.
+\Cref{fig:plot} shows a graph with several accumulated datapoints.
+
+\subsubsection{Notification area}
+\label{subsubsec:notification_area}
+
+%\subsubsection{Settings and help}
+%\label{subsubsec:settings_and_help}
+%
+%An additional modal window can be called, in which various settings can be changed, and some usage information is provided.
+%Configurable settings include the convergence model parameters, domain file, \ac{gui} tweaks, and more.
+%These settings can be modified at any point during the interaction, so that it is possible to experiment with different configurations in real-time.
+%For persistent changes, it is also possible to edit the configuration file itself, which is loaded when the system starts.
+%The usage tab explains the various functionalities of the system and how each area of the \ac{gui} works.
+%It also lists special commands that can be executed from text field (used for simulating the user's input, as mentioned in \cref{subsubsec:interaction_area}).
+%These commands include printing a short or detailed summary of the phonetic changes throughout the interaction, extracting the data from the features' plots (e.g., for further analysis), and more.
+%\todo{screenshot with the settings tab}
 
 \subsection{Models and customizations}
 \label{subsec:models_and_cusomizations}
@@ -102,21 +147,6 @@ The rule-based implementation of the \ac{nlu} and \ac{nlg} modules is described 
 The system aims to offer a platform for \acp{sds} with convergence support that can be modified and customized according to the user's needs.
 All of the aforementioned system components can be customized to some extent.
 This also includes the phonetic convergence model, the features tracked by the system, and the dialogue domain.
-
-\subsubsection{Convergence model}
-\label{subsubsec:convergence_model}
-
-The computational model for phonetic convergence used in our system is derived from the one introduced in \citet{Raveh2017Interspeech}.
-Different behavioral patterns with respect to phonetic convergence that were observed in \ac{hhi} and \ac{hci} experiments \citep{Cohen2017converging, Gessinger2017Interspeech, Schweitzer2016exemplar, Babel2010dialect} can be simulated by combinations of the model's parameters presented in \cref{tab:comp_model_parameters}.
-For example, the parameter \emph{allowed range} describes the segments that would be perceived as instances of a feature by the interlocutor.
-The number of instances of a feature which the interlocutor can hold in his or her short-term memory is defined by the parameter \emph{history size} (or \emph{exemplar pool size}).
-Similarly, the parameter \emph{convergence rate} determines how quickly the system converges to the human interlocutor with respect to the tracked features.
-This comes to characterize the sensitivity of a speaker to other pronunciation variants.
-\emph{Calculation method} specifies how the feature's new value is obtained from the instances in the exemplar pool.
-This can be a simple average, some smoothing function, or any other function defined by the user.
-All of the model's parameters can be modified in the configuration file.
-The responsiveness algorithm's pipeline is summarized in \cref{fig:adaptation_module_pipeline} and is described in detail in \citet{Raveh2017Interspeech}.
-\todo{here create an algorithm block version of the figure to not repeat it twice}
 
 \subsubsection{Tracked features}
 \label{subsubsec:tracked_features}
@@ -128,10 +158,10 @@ These feature definitions aim to capture phonological rules.
 For instance, the German phonological \textipa{/@/} elision rule in word-final syllables $\langle$-en$\rangle$ is defined by \citep[adapted from][pp.\,142--143]{Benware1986phonetics}
 %
 \begin{equation}
-\text{\textipa{@n}}\longrightarrow \varnothing \text{\textipa{\s{n}}} \diagup
-%	\left[\text{$-$son}\right] \ \_\_ \ \{\text{\#}, \left[\text{+const}\right]\} .
-\text{+consonantal} \ \_\_ \ \ \text{\#} .
-\label{eq:elision_rule}
+	\text{\textipa{@n}}\longrightarrow \varnothing \text{\textipa{\s{n}}} \diagup
+	%	\left[\text{$-$son}\right] \ \_\_ \ \{\text{\#}, \left[\text{+const}\right]\} .
+	\text{+consonantal} \ \_\_ \ \ \text{\#} .
+	\label{eq:elision_rule}
 \end{equation}
 \eqname{Rule implementation: Schwa elision in German}
 %
@@ -164,8 +194,8 @@ This determines the variation of the feature with which the model starts.
 In this example, the convergence rate (\emph{sensitivity} key) is set to 0.3, and the \emph{calculation} method, to \enquote{decaying average}, which is a recursive weighted average measure defined as,
 %
 \begin{equation} 
-\label{eq:decaying_average} 
-\mu_n = \frac{1}{n}\sum_{i = 2}^{n}(\eta v_i + (1 - \eta )\mu_{i-1}), 
+	\label{eq:decaying_average} 
+	\mu_n = \frac{1}{n}\sum_{i = 2}^{n}(\eta v_i + (1 - \eta )\mu_{i-1}), 
 \end{equation} 
 \eqname{Decaying average}
 %
@@ -194,64 +224,6 @@ The acoustic model and pronunciation dictionary were taken from CMUSphinx models
 All of the phonetic analysis is done using Praat \citep{Boersma2018praat}.
 MaryTTS \citep{LeMaguer2017uprooted} is used as the \ac{tts} engine, with \emph{bits1-hsmm} and \emph{bits3-hsmm} for female and male voices, respectively.
 
-\subsection{\Acl{gui}}
-\label{subsec:graphical_user_interface}
-
-The interaction of the user with the system is done via a web-based \ac{gui}.
-This \ac{gui} consists of a navigation bar and four areas:
-a chat area, where the dialogue is shown (see \cref{subsubsec:chat_area}),
-an interaction area where the user input is recorded (see \cref{subsubsec:interaction_area}),
-a graph area where the tracked features are visualized and analyzed (see \cref{subsubsec:graph_area}),
-and a notification area where prompts for the user can be shown.
-
-\subsubsection{Chat area}
-\label{subsubsec:chat_area}
-
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=\linewidth]{plot_area}
-	\caption[Real-time visualization of phonetic changes]{A screenshot of the plot area showing the states of the feature \textipa{[E:]}~vs.~\textipa{[e:]} during an interaction.
-		The system's internal convergence model (orange, bottom right) gradually adapts to the user's (blue, upper left) detected realizations.
-		A prediction of the feature's current realization is given for both interlocutors.
-		The text box annotates a turn in which the system's realization changes.}
-	\label{fig:plot}
-	\todo[inline]{make a better screenshot of this area, maybe also with more interesting interactions}
-\end{figure}
-
-The interaction between the user and the system is shown in a chat-like representation (see example in \cref{app:dialogue_example}).
-Each turn's utterance appears inside a chat bubble with different colors for the user and the system.
-The turns are also numbered, to better track the dialogue progress and analysis shown in the plots in the graph area.
-The history of the chat is kept under the \emph{Turns} drop-down in the navigation bar, and it is possible to reset the interaction to start a new session.
-%Beside the chat bubbles, the system can also insert general-purpose messages to the users, which are not part of the dialogue's flow.
-
-\subsubsection{Interaction area}
-\label{subsubsec:interaction_area}
-
-The user can interact with the system with written or spoken input using the controls in this area.
-Text-based interactions progress through the dialogue (if applicable) and trigger any subsequent domain model, but will not affect convergence-related models, since there is no audio input to process.
-Spoken input can be provided either by speaking into the microphone or via audio files with pre-recorded speech.
-The latter option is especially useful for simulating specific user input, or for reproducing a previous experiment with the exact same input, as done in \cref{subsec:validation}.
-
-\subsubsection{Graph area}
-\label{subsubsec:graph_area}
-
-Each of the tracked features is visualized in a separate plot, and new datapoints are automatically added whenever applicable.
-These plots are generated using the Plotly library\footnote{\url{https://plot.ly}}, which provides some interactive functionalities.
-For example, hovering over a datapoint in a graph reveals additional information, such as the turn in which it was added, or the realized variant of the feature produced in that turn as predicted by its classifier.
-\Cref{fig:plot} shows a graph with several accumulated datapoints.
-
-%\subsubsection{Settings and help}
-%\label{subsubsec:settings_and_help}
-%
-%An additional modal window can be called, in which various settings can be changed, and some usage information is provided.
-%Configurable settings include the convergence model parameters, domain file, \ac{gui} tweaks, and more.
-%These settings can be modified at any point during the interaction, so that it is possible to experiment with different configurations in real-time.
-%For persistent changes, it is also possible to edit the configuration file itself, which is loaded when the system starts.
-%The usage tab explains the various functionalities of the system and how each area of the \ac{gui} works.
-%It also lists special commands that can be executed from text field (used for simulating the user's input, as mentioned in \cref{subsubsec:interaction_area}).
-%These commands include printing a short or detailed summary of the phonetic changes throughout the interaction, extracting the data from the features' plots (e.g., for further analysis), and more.
-%\todo{screenshot with the settings tab}
-
 \section{Online and Offline paths}
 \label{sec:online_and_offline_paths}
 
@@ -260,14 +232,15 @@ For example, hovering over a datapoint in a graph reveals additional information
 \section{Showcase: simulating a shadowing experiment}
 \label{sec:showcase}
 
-To demonstrate the capabilities of the system, we utilized it to replicate a convergence experiment.
+To demonstrate the capabilities of the system, it was utilized to replicate a convergence experiment.
 For that, the shadowing experiment carried out by \citet{Gessinger2017Interspeech} was chosen.
 The experiment is designed to trigger and analyze phonetic convergence by confronting the participants with stimuli, in which certain phonetic features are realized in a way different from their own.
+This demonstrates how the system can be used to automate an experiment otherwise conducted completely manually.
 
-For this simulation, the original stimuli and participants' utterances were used.
-However, all of the analyses that were done ex post facto, and to some extent manually, in the original experiment, like detecting the realized variant, measuring the features, etc., are done automatically in the simulated experiment.
-This results in an automated, reproducible execution, and also offers additional insights via classification of feature realizations and dynamic visualizations in the web \ac{gui}.
-Finally, using the system, the experiments becomes dialogue-based, which enhances its \ac{hci} nature.
+The replicated experiment is described in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices}, using the original stimuli and participants' utterances.
+However, all of the analyses done ex post facto and to different extents manually in the original experiment, like detecting the realized variant, measuring the features, etc., are now done automatically.
+This results in an automated, reproducible execution, and also offers additional insights via classification of feature realizations and dynamic visualizations in the web \ac{gui} (\cref{subsec:graphical_user_interface}).
+Finally, using the system, the experiments becomes dialogue-based (rather than a mere experimental setting), which enhances its \ac{hci} nature.
 
 \subsection{Target features and stimuli}
 \label{subsec:target_features_and_stimuli}
@@ -285,7 +258,7 @@ Although these feature may pass as light dialectical markers \citep{Mitterer2013
 
 The experiment's stimuli consist of these features embedded into 15 short carrier sentences (see examples in \cref{tab:target_features}) and 25 filler sentences, in which none of the features occur.
 Although the features' underlying values are gradual, they are perceived as two-way categorical variations.
-To map these underlying values to a specific variant, the system associates a classifier with each feature, as explained in \cref{subsec:training_and_classification}.
+To map these underlying values to a specific variant, the system associates a classifier with each feature, as explained in \cref{subsec:classification_training}.
 
 \begin{table}[t]
 	\centering
@@ -323,8 +296,8 @@ Finally, in the \emph{post} phase, the participant once again read out the stimu
 The purpose of this phase was to examine whether any convergence remained in effect even in the absence of non-preferred input.
 A shortened example of the shadowing phase's flow is shown in \cref{app:dialogue_example}.
 
-\subsection{Training and classification}
-\label{subsec:training_and_classification}
+\subsection{Classification training}
+\label{subsec:classification_training}
 
 The validation stays faithful to the original experiment in every possible aspect.
 Therefore, the training data used for each classifier contains only the productions of the corresponding target feature from a single stimulus set, since these are the productions to which the participants were exposed during the experiment.
@@ -350,14 +323,14 @@ Each turn's predictions, as well as other details, are added as interactive anno
 	\label{fig:validation}
 \end{figure}
 
-We simulated the shadowing experiment by configuring the domain file with a definition of the transition between the phases, as well as the flow within each phase.
+The shadowing experiment was simulated by configuring the domain file with a definition of the transition between the phases, as well as the flow within each phase.
 This automates the procedure and adapts it to the participant's pace.
 Additional variables are defined and handled as well, helping the system to track the experiment's flow and state.
 Participants were simulated by using their recorded speech from the original experiment.
 After each turn, any relevant \ac{sds} module was triggered based on the simulated participant's input.
 The stimulus order from the original experiment was preserved.
 Since the \emph{post} phase is effectively the same as the \emph{baseline} phase, it was considered redundant and excluded from the simulation.
-In this section, we focus on the validation for the feature \textipa{[E:]}~vs.~\textipa{[e:]} as a representative example for the phonetic adaptation capability of the system.
+The validation for the feature \textipa{[E:]}~vs.~\textipa{[e:]} is shown here as a representative example for the phonetic adaptation capability of the system.
 
 For the baseline phase, the validation examined the degree to which the underlying convergence model accumulated enough data to adopt the user's variant of the feature.
 Stronger and quicker adoption indicates a more stable and precise preferred variant of the participant.
@@ -384,10 +357,10 @@ The participants were grouped based on their convergence behavior:
 One group of participants showing low to no tendency to converge (\SI{\le 10}{\percent} of their utterances),
 the second, with varying degrees of convergence (\SIrange{10}{90}{\percent}),
 and a third group of participants who were very sensitive to the stimuli's variation (\SI{\ge 90}{\percent} of their utterances).
-We refer to these groups as \emph{Low} (\SI{23}{\percent} of participants), \emph{Mid} (\SI{50}{\percent}), and \emph{High} (\SI{27}{\percent}), respectively.
+These groups are labeled \emph{Low} (\SI{23}{\percent} of participants), \emph{Mid} (\SI{50}{\percent}), and \emph{High} (\SI{27}{\percent}), respectively.
 The feature's classifier was determined on the fly, so that the prediction for each utterance was decided based on the stimulus type to which the participant was listening (e.g., a classifier trained on synthetic stimuli was used for participants listening to such stimuli).
 
-For the purpose of the validation, we regard the shadowing phase as an annotation task of the realized variation in the utterances.
+For the purpose of the validation, the shadowing phase is evaluated as an annotation task of the realized variation in the utterances.
 The three annotation sets are the stimuli themselves (\emph{Stim}), the system's online classification of the participants' production (\emph{Sys}), and the labels obtained as additional references for the participants' productions (\emph{Ref}).
 Note that \SI{100}{\percent} would mean complete convergence to every stimulus, which cannot be reasonably expected \citep[cf.][]{Gessinger2017Interspeech}.
 The same holds for the Cohen's kappa ($\kappa$) values\footnote{as calculated by the \emph{kappa2} command of the \emph{irr} R package, v0.84, \url{https://cran.r-project.org/package=irr}}, which are expected to be lower for \emph{Low}, as a lower degree of convergence was found among these participants.
@@ -478,7 +451,7 @@ Task completion rate, performance accuracy, and completion time metrics can be u
 
 \section{Dialogue example}
 \label{app:dialogue_example}
-\todo{Put a relevant and interesting chat example (if that's even necessary here)}
+\todo{Put a relevant and interesting chat example (if that's even necessary here). or make several examples and put them all in an appendix}
 %\begin{figure}[h!]
 %	\centering
 %	\adjustbox{max width=\linewidth}{\input{figures/chat_example.tikz}}
