@@ -10,14 +10,12 @@
 
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=\linewidth]{web-based_architecture}
-	\caption[Architecture of a web-based system with convergence capabilities] {
-		The architecture of the web-based spoken dialogue system with convergence capabilities.
-		The background colors distinguish between client components, server components, and external resources that can be customized.
-		This separation makes it possible to run multiple clients on different machines at the same time with a single server collecting the data from all of them at the same time.
-	}
+	\includegraphics[width=\linewidth]{web-based_architecture_no-ajax}
+	\caption[Architecture of a web-based responsive spoken dialogue system]
+		{The architecture of the web-based responsive spoken dialogue system.
+		The background colors distinguish between client components, server components, and customizable external resources.
+		The dashed line indicates that the feature predictions may or may not be passed from the model to the system depending on the feature definition and update parameter.}
 	\label{fig:web-based_architecture}
-	\todo[inline]{replace this by version without AJAX node}
 \end{figure}
 
 For deepening the experimental possibilities and automating some aspects of the processes convergence-related experiments include, a dedicated systems with high degree of customizability was developed.
@@ -70,6 +68,7 @@ Ultimately, it offers a platform for studying and experimenting with phonetic co
 \label{subsec:architecture}
 
 As the system aims to offer a customizable playground for experimenting and studying phonetic convergence in \ac{hci}, a key aspect of its architecture is the separation between client-side, server-side, and external resources (see \cref{fig:web-based_architecture}).
+This separation makes it possible to run multiple clients on different machines at the same time with a single server collecting the data from all of them at the same time.
 The server, ideally located on dedicated machine, is operated by an a person responsible of designing and configuring the interactions, e.g., an experimenter.
 It has an overview over all of the interactions with the system and collects all of the audio recordings, analyses, and any other data in one place.
 This separation of the server grants the experimenter a lot of freedom and flexibility, since resources like feature configurations and dialogue domain can be modified independently of specific machines interacting with the system.
