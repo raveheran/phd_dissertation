@@ -82,52 +82,80 @@ The \ac{nlu} and \ac{nlg} modules are built using an OpenDial's domain file, as 
 \subsection{\Acl{gui}}
 \label{subsec:graphical_user_interface}
 
-\todo[inline]{add a screenshot of the entire GUI (landscape)? have some in presentations etc.}
-
-The interaction of the user with the system is done via a web-based \ac{gui}.
-This \ac{gui} consists of a navigation bar and four areas:
-a chat area, where the dialogue is shown (see \cref{subsubsec:chat_area}),
-an interaction area where the user input is recorded (see \cref{subsubsec:interaction_area}),
-a graph area where the tracked features are visualized and analyzed (see \cref{subsubsec:graph_area}),
+The user interacts with the system via an in-browser \ac{gui} (see \cref{fig:gui}).
+At the top of the screen is a control bar, which offers the user overview and easy access to some main functions.
+On the left side of the bar, the user can view the list of the interaction's turn history and jump to any of them.
+It is also possible to see the list of tracked features and their current state.
+Both lists can be reset using the Reset button (in red), which starts a new interaction using the current configurations (which may be changed before pressing the button).
+On the other side of the bar, there are buttons for viewing on-screen how-to-use information and changing the settings of the system.
+The rest of the \ac{gui} is divided into four areas:
+A chat area, where the dialogue is shown,
+an interaction area where the user provides input to the systems,
+a plot area with interactive dynamic visualization of the tracked features,
 and a notification area where prompts for the user can be shown.
+The functionality of each is described in \crefrange{subsubsec:chat_area}{subsubsec:notification_area}
 
 \subsubsection{Chat area}
 \label{subsubsec:chat_area}
 
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=\linewidth]{plot_area}
-	\caption[Real-time visualization of phonetic changes]{A screenshot of the plot area showing the states of the feature \textipa{[E:]}~vs.~\textipa{[e:]} during an interaction.
-		The system's internal convergence model (orange, bottom right) gradually adapts to the user's (blue, upper left) detected realizations.
-		A prediction of the feature's current realization is given for both interlocutors.
-		The text box annotates a turn in which the system's realization changes.}
-	\label{fig:plot}
-\end{figure}
-
-The interaction between the user and the system is shown in a chat-like representation (see example in \cref{app:dialogue_example}).
-Each turn's utterance appears inside a chat bubble with different colors for the user and the system.
-The turns are also numbered, to better track the dialogue progress and analysis shown in the plots in the graph area.
-The history of the chat is kept under the \emph{Turns} drop-down in the navigation bar, and it is possible to reset the interaction to start a new session.
-%Beside the chat bubbles, the system can also insert general-purpose messages to the users, which are not part of the dialogue's flow.
+The interaction between the user and the system is shown in a chat-like format at the upper left part of the screen.
+Each turn's utterance appears inside a chat bubble with different colors representing the two interlocutors, the user and the system.
+The bubbles always contain single utterances, even if the other interlocutor has not spoken between them.
+A turn can be replayed at any time using the Play button next to the turn number, corresponding to the turn order on the list accessible from the control bar.
+Beside utterance bubbles, the system can also display general-purpose messages in this area, which do not progress the dialogue flow and do count as system utterances.
+These messages can be used,
+%
+\begin{landscape}
+	\begin{figure}[t]
+		\centering
+		\vspace*{-2cm}
+		\hspace*{-2cm}
+		\includegraphics[width=1.6\textwidth]{gui}
+		\caption[Web system in-browser \acs{gui}]
+			{}
+		\label{fig:gui}
+	\end{figure}
+\end{landscape}
+\noindent
+for example, to give the user additional information or instructions regarding the interaction.
 
 \subsubsection{Interaction area}
 \label{subsubsec:interaction_area}
 
-The user can interact with the system with written or spoken input using the controls in this area.
-Text-based interactions progress through the dialogue (if applicable) and trigger any subsequent domain model, but will not affect convergence-related models, since there is no audio input to process.
-Spoken input can be provided either by speaking into the microphone or via audio files with pre-recorded speech.
-The latter option is especially useful for simulating specific user input, or for reproducing a previous experiment with the exact same input, as done in \cref{subsec:validation}.
+The user can interact with the system either with either written or spoken input using the controls at the bottom left part of the screen.
+Spoken input can be provided either by speaking live into the microphone or via audio files with pre-recorded speech.
+These are typically useful for online and offline usage, respectively (\cref{sec:online_and_offline_paths}), but pre-recorded utterances can also be useful for or reproducing previous experiments or comparing different accommodation configurations with the exact same user input.
+Text-based interactions progress through the dialogue (if applicable) and trigger any subsequent domain model, but will not affect the tracked features, as no vocal input was provided.
+This can be useful for quickly going through specific parts of an experiment (e.g., instructions or setup) or for continuing the dialogue without changing the system's representation of the tracked features.
 
-\subsubsection{Graph area}
-\label{subsubsec:graph_area}
+\subsubsection{Plot area}
+\label{subsubsec:plot_area}
 
-Each of the tracked features is visualized in a separate plot, and new datapoints are automatically added whenever applicable.
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\linewidth]{plot_area}
+	\caption[Real-time dynamic visualization of phonetic changes]
+		{The plot area showing the states of the feature \textipa{[E:]}~vs.~\textipa{[e:]} during an interaction.
+		The system's (orange, bottom right) gradually adapts to the user's (blue, upper left) detected realizations.
+		A prediction of the feature's current realization is given for both interlocutors.
+		The text box shows the mouse-over annotation of the turn in which the system's realization changes vowel category.}
+	\label{fig:plot}
+\end{figure}
+
+Visualization of the tracked features' changes over the course of the interaction are displayed in the upper right part of the screen.
+Each feature is visualized separately, and new datapoints are dynamically added whenever applicable.
+The type of a feature's plot can also change based on its characteristics, e.g., bars for one-dimensional features and lined scatter plots for two-dimensional features.
 These plots are generated using the Plotly library\footnote{\url{https://plot.ly}}, which provides some interactive functionalities.
-For example, hovering over a datapoint in a graph reveals additional information, such as the turn in which it was added, or the realized variant of the feature produced in that turn as predicted by its classifier.
-\Cref{fig:plot} shows a graph with several accumulated datapoints.
+Hovering over a datapoint in the plot reveals additional information, such as the turn in which it was added, or the realized variant of the feature produced in that turn as predicted by its classifier.
+\Cref{fig:plot} shows an example of such plot with several accumulated datapoints.
 
 \subsubsection{Notification area}
 \label{subsubsec:notification_area}
+
+Whenever a message outside the content of the interaction needs to reach the user, it can be shown at the bottom right part of the screen.
+Such messages may include indications of the system's activity, e.g., successful initialization of the interaction, warning and errors while uploading files, or any other prompt the experimenter might want the user to see, like additional instructions to consider during the experiment.
+However, the latter is better achieved using the non-speaker turns in the chat area.
+The notifications can be colored blue, green, orange, and red to differentiate different types of messages.
 
 %\subsubsection{Settings and help}
 %\label{subsubsec:settings_and_help}
@@ -309,7 +337,7 @@ such as, every time the convergence model is updated.
 
 A \ac{smo} \citep{Platt1999fast, Platt1998sequential} implementation of the \ac{svm} classifier \citep{Vapnik1998support} was using for training.
 Depending on the target feature, this may also be a multivariate \ac{svm} classification \citep[e.g.,][]{Joachims2005support}.
-Each turn's predictions, as well as other details, are added as interactive annotations to the dynamic graph of the relevant features, as shown in \cref{fig:plot}.
+Each turn's predictions, as well as other details, are added as interactive annotations to the dynamic plot of the relevant features, as shown in \cref{fig:plot}.
 
 \subsection{Validation}
 \label{subsec:validation}
