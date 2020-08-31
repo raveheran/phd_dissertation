@@ -30,7 +30,7 @@ The implementations of the pipeline's steps will be explained using the followin
 			\textbf{minimum}: 0 
 			\textbf{maximum}: 80
 			\textbf{measure}: duration
-			\textbf{calculation}: decaying average
+			\textbf{calculation}: average
 			\textbf{sensitivity}: 0.5
 \end{Verbatim}
 %
@@ -135,19 +135,10 @@ A function $g$ is defined so that it maps a vector to a scalar (i.e., one featur
 	\mathcal{G}: \mathbb{Q}^{n \times m} \longrightarrow \mathbb{Q}^{m}, \qquad g: \mathbb{Q}^{m} \longrightarrow \mathbb{Q}.
 \end{equation}
 %
-\textit{Decaying average} is used here as a simple way to simulate the effect on the exemplars in the pool.
-This measure is similar to the regular average, only that in this variation each value contributes exponentially less to the overall average, so that the last (newest) value contributes the most.
-Adding such property to the measure gives more weight to new exemplars that were received chronologically closer to the current turn and thus makes the change more strongly influenced by the productions closer to the accommodation change.
-%Using this measure comes to support the analogy of the exemplar pool to short-term memory, which remembers recent event better than older ones.
-Decaying average is defined here as
-\begin{equation}
-	\label{eq:decaying_average}
-	\mu_n = \frac{1}{n}\sum_{i = 2}^{n}(\eta v_i + (1 - \eta )\mu_{i-1}),
-\end{equation}
-\eqname{Decaying average}
-%
-with $n$ being the number of elements in a row of the transposed feature matrix (\cref{eq:transposed_feature_matrix}), $v_i$ is the value of the $i$-th element, $\eta$ is the decay rate, and $\mu_{i-1}$ the previously calculated decaying average of the previous elements.
+\noindent
 Importantly, any function that maps vectors to scalars can be used to experiment with different methods.
+For the demonstration in \cref{sec:showcase} decaying average is used (see \cref{subsubsec:tracked_features} for details).
+
 Before setting the updated value as the feature's value, the balance between the feature's current value and its calculated pool value needs to be set.
 This is defined by the \texttt{sensitivity} (convergence rate), which determines the sensitivity of this feature (see \cref{sec:parameters}) and is implemented as
 %
@@ -370,7 +361,7 @@ Finally, The original signal was used as the source and was filtered by the mani
 % for the first method, it is also necessary to re-synthesize the audio (overlap-add Moulines & Charpentier (1990), who called it Time-Domain Pitch-Synchronous Overlap-and-Add (TD-PSOLA))
 The neural-based manipulation is based on Tacotron\footnote{Tacotron2 architecture based on the implementation in the repository \url{https://github.com/NVIDIA/tacotron2}} \citep{Shen2018natural}, which is trained to generate spectral information directly from textual input.
 To capture the categorical phoneme variance of the feature \emph{\textipa{[\c{c}]} vs.\ \textipa{[k]}}, the system was trained on \emph{phoneme} input (as opposed to orthographic forms).
-For this, the neutral voice subset of the PAVOQUE dataset\footnote{\url{https://github.com/marytts/pavoque-data}} \citep{Steiner2013pavoque} was used ($\sim$\SI{5.8}{\hour} of speech).
+For this, the neutral voice subset of the PAVOQUE dataset\footnote{\url{https://github.com/marytts/pavoque-data}} \citep{Steiner2013pavoque} was used, which comprises $\sim$\SI{5.8}{\hour} of speech.
 The phonetic transcriptions were done automatically based on the transcriptions provided with the dataset and were manually verified and corrected.
 \todo{need more details?}
 After training, the model was able to generate synthesized speech based on an input of an arbitrary phoneme sequence.
@@ -386,7 +377,7 @@ It is important to note that the other-category variant of a word was not includ
 		\includegraphics[width=1.5\textwidth]{ic_ik_manipulation}
 		\caption[Oscillograms and spectrograms of categorical manipulation comparison]
 			{Oscillograms and spectrograms of the word \emph{\enquote{König}} (king) and \emph{\enquote{wichtig}} (important) pronounced originally with \textipa{[\c{c}]} sounds, which were changed into \textipa{[k]} sounds.
-			The x-axis shows the chronological phonetic transcription over time (\SI{2.3375}{\second} in total) and the spectrograms' y-axes show the frequencies up to \SI{5000}{\hertz}.
+			The x-axis shows the chronological phonetic transcription over time (\SI{2.34}{\second} in total) and the spectrograms' y-axes show the frequencies up to \SI{5000}{\hertz}.
 			The segments of the modified phonemes are marked with red circles.
 			The purple arrows at the end of the \textipa{[k]} segments show that the model even captured the voicing assimilation to the following vowel.
 			The vertical lines show the phoneme segmentation.
