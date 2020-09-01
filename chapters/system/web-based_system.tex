@@ -70,7 +70,7 @@ As shown in \cref{fig:web-based_architecture}, the main components of the system
 \label{subsec:dialogue_system}
 
 The core of the system is the dialogue system component (see \cref{fig:web-based_architecture}), which controls the flow of the interaction, processes user's inputs, and generates the system's responses.
-It uses the extended architecture presented in \cref{subsec:extended_sds}, which consists of typical \ac{sds} components such as \ac{nlu} and a \ac{dm}, but also contains the \ac{asp}  module that adds accommodation support \citep{Raveh2017SemDial}.
+It uses the extended architecture presented in \cref{subsec:extended_sds}, which consists of typical \ac{sds} components such as \ac{nlu} and a \ac{dm}, but also contains the \ac{asp} module that adds accommodation support \citep{Raveh2017SemDial}.
 The implementation of this module in the system is as described in \cref{fig:adaptation_module_architecture}.
 While the \ac{nlu} component uses merely the transcription provided by the \ac{asr}, the \ac{asp} module analyzes the speech signal itself.
 Concretely, it tracks occurrences of the defined features and passes their measured values to the convergence model, as explained in \cref{subsubsec:tracked_features}, which, in turn, forwards the tracked feature parameters to the \ac{tts} synthesis component.
@@ -224,15 +224,24 @@ As a showcase of the system capabilities, it was utilized to replicate the shado
 The experiment is designed to trigger and analyze phonetic convergence by confronting the participants with stimuli, in which certain phonetic features are realized in a way different from their own.
 This was done using the offline path of the system, to can simulate a real experiment and automate certain parts of it that would otherwise be performed manually.
 The replication used the original stimuli and utterances of one of the participants.
-However, analyses originally done post facto (and to different extents manually), like detecting the realized variant, measuring the features' values, etc., were now done automatically.
+However, analyses originally done post facto (and to different extents manually), like detecting the realized variant, measuring the features' values, etc., can be now done automatically.
 This demonstrates an automated, reproducible execution, and also offers additional insights via classification of feature realizations and dynamic visualizations in the web \ac{gui} (\cref{subsec:graphical_user_interface}).
 Finally, using the system, the experiments becomes dialogue-based rather than a mere experimental setting, which enhances its \ac{hci} nature.
 
-\subsection{Target features and stimuli}
-\label{subsec:target_features_and_stimuli}
+\subsection{Setup adjustments}
+\label{subsec:setup_adjustments}
 
-For the experiment simulation, two of the three features in the original experiment (\cref{chap:shadowing_experiment_with_natural_and_synthetic_voices}) were used.
-In addition to the \textipa{@}-length featured shown in \cref{subsec:computational_model}, the showcase in \cref{sec:showcase} uses also the following definition for the feature \textipa{[E:]}~vs.~\textipa{[e:]} (see \cref{subsec:target_features_HCIConv}):
+%\subsection{Target features and stimuli}
+%\label{subsec:target_features_and_stimuli}
+
+\todo[inline]{consider only mention the eE feature in the showcase, because in the validation only this one is treated}
+
+For the experiment simulation, two of the three features investigated in the original experiment (\cref{chap:shadowing_experiment_with_natural_and_synthetic_voices}) were used.
+In addition to the \textipa{@}-length feature shown in \cref{subsec:computational_model} the definition of the feature \textipa{[E:]}~vs.~\textipa{[e:]} below was included.
+Both features are described in detail in \cref{subsec:target_features_HCIConv} and \cref{tab:target_features} shows example stimuli containing them.
+As in the original experiment, the word containing the target features were embedded into 15 short carrier sentences and 25 filler sentences, in which none of the features occur (see \cref{app:shadow_experiment_stimul} for the list of all stimuli).
+Although the features' underlying values are gradual, they are perceived as two-way categorical variations.
+To map these underlying values to a specific variant, the system associates a classifier with each feature, as explained in \cref{subsec:classifiers_training}.
 %
 %\begin{description}[labelindent=1.5cm, labelwidth=\widthof{\quad \bfseries calculation}]
 %	\item[name]	ee\_E
@@ -250,20 +259,21 @@ In addition to the \textipa{@}-length featured shown in \cref{subsec:computation
 	- \textbf{`e\_E\_vowel'}:
 			\textbf{phoneme}: EHH
 			\textbf{context}: '.* EHH .*'
-			\textbf{initial}: 450, 2100
-			\textbf{minimum}: 300, 1500
-			\textbf{maximum}: 750, 2900
+			\textbf{initial}: 450 2100
+			\textbf{minimum}: 300 1500
+			\textbf{maximum}: 750 2900
 			\textbf{measure}: formants
 			\textbf{calculation}: decaying average
 			\textbf{sensitivity}: 0.3
 \end{Verbatim}
+\todo[inline]{make sure the verbatim doesn't get split by the table in the next page}
 %
 %The value of the key \emph{measure} is \enquote{formants}, which means that this feature is evaluated by the segment's formant values (as specified in the corresponding signal processing script).
 %The values of the \emph{minimum} and \emph{maximum} keys stand for the acceptable value range for this feature.
 %This avoids distorted values due to \ac{asr} error and lets the user put their phonetic expertise to use.
 \noindent
-The three values of these keys set the first two formant frequencies.
-The calculation method for this feature is decaying average, which is similar to the regular average but with each value contributing exponentially less to the final value, so that the last (newest) exemplar contributes the most.
+The values of the keys \texttt{minimum}, \texttt{maximum}, and \texttt{initial} stand for the first two formant frequencies.
+The \texttt{calculation} method for this feature is \emph{decaying average}, which is similar to the regular average but with each value contributing exponentially less to the final value, so that the last (newest) exemplar contributes the most.
 Adding such property to the measure gives more weight to new exemplars that were received chronologically closer to the current turn and thus makes the change more strongly influenced by the productions closer to the accommodation change.
 Using this measure comes to support the analogy of the exemplar pool to short-term memory, which remembers recent event better than older ones.
 Decaying average is defined here as
@@ -283,11 +293,6 @@ where $n$ is the number of exemplars in memory, $\eta$ is the decay rate (here, 
 %	\item [\textipa{[\s{n}]}~vs.~\textipa{[@n]}] in word-final $\langle$-en$\rangle$
 %\end{description}
 %\noindent
-
-As in the original experiment, the stimuli consist of these features embedded into 15 short carrier sentences and 25 filler sentences, in which none of the features occur.
-Although the features' underlying values are gradual, they are perceived as two-way categorical variations.
-To map these underlying values to a specific variant, the system associates a classifier with each feature, as explained in \cref{subsec:classifiers_training}.
-\cref{tab:target_features} shows an example for each feature (see \cref{app:shadow_experiment_stimul} for more examples).
 %
 \begin{table}[t]
 	\centering
@@ -295,7 +300,7 @@ To map these underlying values to a specific variant, the system associates a cl
 		\toprule
 		
 		War          	& das          			& Ger\textbf{\underline{ä}}t	& sehr          	& teuer? \\
-		\emph{Was} 		& \emph{the} 			& \emph{device}           		& \emph{very} 		& \emph{expensive?} \\[0.1cm]
+		\emph{Was} 		& \emph{the} 			& \emph{device}           		& \emph{very} 		& \emph{expensive?} \\[0.3cm]
 		
 %		Ich          	& bin         			& sücht\textbf{\underline{ig}}	& nach				& Schokolade. \\
 %		\emph{I}   		& \emph{am} 			& \emph{addicted}				& \emph{to} 		& \emph{chocolate.} \\[0.1cm]
@@ -308,77 +313,37 @@ To map these underlying values to a specific variant, the system associates a cl
 	\label{tab:target_features}
 \end{table}
 
-\subsection{Experimental procedure}
-\label{subsec:experimental_procedure}
+%\subsection{Experimental procedure}
+%\label{subsec:experimental_procedure}
 
-% put this entence somewhere
-The domain file use in \cref{sec:showcase} was designed to replicate the role of the experimenter in \cref{subsubsec:procedure_hci}, i.e., presenting the next stimulus to the participant in a semi-randomized order.
-%%%%%%%%%%%%%
+The experimental procedure stayed as faithful as possible to the procedure of the original experiment, even though more aspects of it could be automated.
 
-Only those parts of the experiment are explained here that are relevant to its simulation in the dialogue system.
-For validation purposes, the experimental procedure stayed as faithful as possible to the procedure of the original experiment, even though more aspects of it could be automated.
-The entire experimental procedure, as well as more information regarding its setup, is detailed in \citet{Gessinger2017Interspeech}.
+The domain file created for this showcase was designed to substitute the role of the experimenter in the shadowing phase (cf.\ \cref{fig:HCIConvFlow}), i.e., presenting -- and speaking -- the next stimulus to the participant.
+The stimulus order from the original experiment's baseline phase was preserved and semi-randomized (using the same logic) in the shadowing phase.
+It was also configured to perform the transitions between the phases.
+Although it should be assumed that the user indeed repeats presented utterance, the system nonetheless verifies that the user's utterance matches the current stimulus using the customized language model described in \cref{subsubsec:speech_processing}
 
-The experiment consists of three phases: \emph{baseline} production, \emph{shadowing} task, and \emph{post} production (see \cref{fig:HCIConvFlow}).
-In the \emph{baseline} phase, the participants were asked to read out the stimuli from a monitor.
-The participant's most frequent variant in this phase is configured into the system.
-Then, in the \emph{shadowing} task, the participants produced the stimuli sequentially, each after listening to another voice (either natural or synthetic, both male and female) producing the opposite category of the relevant target feature.
-Based on the production in this phase, the participant's tendency, pace, and degree of convergence were analyzed.
-Finally, in the \emph{post} phase, the participant once again read out the stimuli from a screen.
-The purpose of this phase was to examine whether any convergence remained in effect even in the absence of non-preferred input.
-A shortened example of the shadowing phase's flow is shown in \cref{app:dialogue_example}.
+% A shortened example of the shadowing phase's flow is shown in \cref{app:dialogue_example}.
 
 \subsection{Classifiers training}
 \label{subsec:classifiers_training}
 
-% text from feature definition:
-\todo[inline]{need to put a sentence pointing here where the feature definitions are described?}
-\todo[inline]{somewhere say the real-time classification saves the time the experimenter needed to judge the participants' productions either during the experiment or afterwards. In other applications, it can also be used to provide feedback while the interaction is still going.}
+The automation the system offers can also be used to provide additional information regarding the realizations of the tracked features, i.e., which category each instance of the feature belongs to.
+This automates the annotation otherwise done manually by the experimenter during or after the experiment.
+In the shadowing experiment in question, this includes both the determination of the participants' preference in the baseline phase and the annotation of the participants' realizations in the shadowing phase.
+To that end, a classifier can be associated with each feature to provide real-time classification for both the user's and the system's realizations of that features.
+With this information available, more meaningful insights can be gained into the variation dynamics over the course of the interaction.
+In other applications, like \acp{capt}, this information be taken into account when deciding on the system's next turn.
+The classifiers for the simulated experiment were trained on a two datasets corresponding to the target features' ranges.
+The \textipa{@}-length classifier trained to separate segments shorter and long than \SI{30}{\milli\second}, and the \textipa{e:/E:} classifier was trained on F1 and F2 values of these vowels produced by a set of female speakers.
+While training prior to the interactions is sufficient, online fine-tuning is also possible to update a feature's classifier whenever requested by the user, e.g., every time the accommodation model is updated.
 
-Since the system's main focus is on phonetic convergence, it is essential to also provide useful information regarding the realizations of the tracked features.
-To that end, a classifier can be associated with each feature to provide real-time predictions for both the user's and the system's realizations of that features, as demonstrated in \cref{fig:plot}.
-With this information available, more meaningful insights can be gained into the variation dynamics in the dialogue.
-
-The validation stays faithful to the original experiment in every possible aspect.
-Therefore, the training data used for each classifier contains only the productions of the corresponding target feature from a single stimulus set, since these are the productions to which the participants were exposed during the experiment.
-This provides relatively few -- but at the same time very precise -- datapoints for each classifier,
-which were obtained using the same signal processing technique as the data collected in the experiment.
-The classifiers were trained offline on these datapoints.
-However, the system also supports incremental, online re-training whenever requested by the user,
-such as, every time the convergence model is updated.
-
-A \ac{smo} \citep{Platt1999fast, Platt1998sequential} implementation of the \ac{svm} classifier \citep{Vapnik1998support} was using for training.
-Depending on the target feature, this may also be a multivariate \ac{svm} classification \citep[e.g.,][]{Joachims2005support}.
-Each turn's predictions, as well as other details, are added as interactive annotations to the dynamic plot of the relevant features, as shown in \cref{fig:plot}.
+Training was performed with a \ac{smo} \citep{Platt1999fast, Platt1998sequential} implementation of the \ac{svm} classifier \citep{Vapnik1998support}.
+For multi-dimensional features, multivariate \ac{svm} classification \citep[e.g.,][]{Joachims2005support} was used.
+Each turn's predictions dynamically added as interactive annotations to the visualization of the relevant features, as illustrated in \cref{fig:plot}.
 
 \subsection{Validation}
 \label{subsec:validation}
-
-\begin{figure}[t]
-	\centering
-%	\includegraphics[width=\linewidth]{web-based_architecture}
-	\missingfigure{bull's eye figure and bars figure}
-	\caption[]
-		{}
-	\label{fig:validation}
-\end{figure}
-
-The shadowing experiment was simulated by configuring the domain file with a definition of the transition between the phases, as well as the flow within each phase.
-This automates the procedure and adapts it to the participant's pace.
-Additional variables are defined and handled as well, helping the system to track the experiment's flow and state.
-Participants were simulated by using their recorded speech from the original experiment.
-After each turn, any relevant \ac{sds} module was triggered based on the simulated participant's input.
-The stimulus order from the original experiment was preserved.
-Since the \emph{post} phase is effectively the same as the \emph{baseline} phase, it was considered redundant and excluded from the simulation.
-The validation for the feature \textipa{[E:]}~vs.~\textipa{[e:]} is shown here as a representative example for the phonetic adaptation capability of the system.
-
-For the baseline phase, the validation examined the degree to which the underlying convergence model accumulated enough data to adopt the user's variant of the feature.
-Stronger and quicker adoption indicates a more stable and precise preferred variant of the participant.
-The user's and model's preferred variants were determined based on the majority vote at the end of this phase.
-For example, if the user realized one variant twice and another three times, the latter is considered to be preferred.
-\Cref{tab:validation_baseline} shows the degree of the model's adoption of the user's preferred variant, according to their majority votes, using different values of the \emph{sensitivity} parameter.
-Interestingly, higher values do not necessarily result in higher percentages.
-The value 0.3 provided the highest results, and was therefore used through the rest of the simulation.
 
 \begin{table}[t]
 	\centering
@@ -388,81 +353,138 @@ The value 0.3 provided the highest results, and was therefore used through the r
 		adoption (\si{\percent})      & 79   & 86   & 75   & 69   \\
 		\bottomrule
 	\end{tabularx}
-	\caption{Model's convergence coverage with different parameters.}
+	\caption{The system's convergence degree with different degrees of sensitivity.}
 	\label{tab:validation_baseline}
 \end{table}
 
+%%%%%%%%%%%%%
+% text from above. insert somewhere
+The validation stays faithful to the original experiment in every possible aspect.
+Therefore, the training data used for each classifier contains only the productions of the corresponding target feature from a single stimulus set, since these are the productions to which the participants were exposed during the experiment.
+This provides relatively few -- but at the same time very precise -- datapoints for each classifier,
+which were obtained using the same signal processing technique as the data collected in the experiment.
+%%%%%%%%%%%%%
+
+%The validation for the feature \textipa{[E:]}~vs.~\textipa{[e:]} is shown here as a representative example for the phonetic adaptation capability of the system.
+For the baseline phase, the validation examined the degree to which the underlying convergence model accumulated enough data to adopt the user's variant of the feature.
+Stronger and quicker adoption indicates a more stable and precise preferred variant of the participant.
+The preferred variants of the participant and the system were determined based on the majority vote at the end of this phase, as in the original experiment.
+For example, if the user realized one variant twice and another three times, the latter was considered the preferred one.
+\Cref{tab:validation_baseline} shows the degree of the model's adoption of the user's preferred variant (translated into percentages of the mean preferred variant) using different values of the \emph{convergence rate} parameter (see \cref{sec:parameters}).
+Interestingly, higher values do not necessarily result in higher percentages, due to systematic over-accommodation.
+The value 0.3 provided the highest results.% and was therefore used through the rest of the simulation.
+%
+\begin{figure}[t]
+	\centering
+	\subfigure[The effect of different convergence rates on the gradual change of
+			   the system's representation of a two-dimensional feature \textipa{[e:]} vs.\ \textipa{[E:]} using decaying average ($\mu = 0.3$).
+			   The points represent the calculation steps of the rates 0.1 (red circles), 0.5 (yellow tiranlges), and 0.9 (green rectangles).
+			   Each point is the new value calculated after accummulating a single exemplar.
+			   The first points at the top right are the common initial value.
+			   The the ellipses represent confidence levels of \SI{90}{\percent}, \SI{50}{\percent}, and \SI{10}{\percent}, respectively.]
+		{\includegraphics[width=0.47\textwidth]{ee_E_decaying_0.3}
+	\label{fig:e_E_bullseye}}
+	\hfill
+%	\vspace{-1cm}\hfill\hspace{-1cm}{\hbox{\LARGE $\Longrightarrow$}}\hfill
+	\subfigure[The effect of different convergence rates with the calculation method set to simple average.
+			   The bars' height represent the value of the one-dimensional feature \textipa{@}-length
+			   and the numbers on the x-axis are the updates of the feature's representation on each turn.
+			   The \emph{exemplar} bar shows the feature’s last exemplar, and the \emph{average} bar
+			   is the value of the feature after adding the last exemplar to the pool.
+			   Note that the first turn appears empty since the initial value of the feature is 0.]
+		{\includegraphics[width=0.47\textwidth]{schwa_comp_010509}
+	\label{fig:schwa_length_bars}}
+	\caption[Influence of difference convergence rates on the system's accommodation]
+		{Illustration of the effect of different convergence rates on the updates of the system's  realization of a two-dimensional feature (left) and a one-dimensional feature (right).}
+	\label{fig:validation_sensitivity}
+	\todo[inline]{refer to this figure in 1-2 places (probably when talking about calculation method. say that higher convergence is likely to converge too quickly and overshoot if the user's input is not stable (as can be shown in \cref{tab:validation_baseline}))}
+\end{figure}
+%
 After obtaining the preference of each participant, the degree of convergence was examined per utterance in the shadowing phase.
-The participants were grouped based on their convergence behavior:
-One group of participants showing low to no tendency to converge (\SI{\le 10}{\percent} of their utterances),
-the second, with varying degrees of convergence (\SIrange{10}{90}{\percent}),
-and a third group of participants who were very sensitive to the stimuli's variation (\SI{\ge 90}{\percent} of their utterances).
-These groups are labeled \emph{Low} (\SI{23}{\percent} of participants), \emph{Mid} (\SI{50}{\percent}), and \emph{High} (\SI{27}{\percent}), respectively.
-The feature's classifier was determined on the fly, so that the prediction for each utterance was decided based on the stimulus type to which the participant was listening (e.g., a classifier trained on synthetic stimuli was used for participants listening to such stimuli).
+The participants were grouped based on their convergence behavior in the original experiment:
+One group of participants showed low to no tendency to converge (converged in \SI{\le 10}{\percent} of their utterances),
+the second had varying degrees of convergence (\SIrange{10}{90}{\percent}),
+and a third group of participants who were very sensitive to the stimuli (\SI{\ge 90}{\percent}).
+This grouping enables analyses based on collective vocal behaviors instead of individual differences.
+The groups are labeled \emph{Low} (\SI{23}{\percent} of participants), \emph{Mid} (\SI{50}{\percent}), and \emph{High} (\SI{27}{\percent}), respectively.
+The classifier was determined on the fly, so that the prediction for each utterance was decided based on the stimulus type to which the participant was listening (for instance, a classifier trained on synthetic stimuli was used for participants listening to such stimuli).
+For validation purposes, the shadowing phase was treated as an annotation task of the realized variation in the participants' utterances.
+The three \enquote{annotators} are the stimuli themselves (\emph{Stim}), the online classification of system's representation of the feature (\emph{Sys}), and additional labels from the training dataset used as references (\emph{Ref}).
 
-For the purpose of the validation, the shadowing phase is evaluated as an annotation task of the realized variation in the utterances.
-The three annotation sets are the stimuli themselves (\emph{Stim}), the system's online classification of the participants' production (\emph{Sys}), and the labels obtained as additional references for the participants' productions (\emph{Ref}).
-Note that \SI{100}{\percent} would mean complete convergence to every stimulus, which cannot be reasonably expected \citep[cf.][]{Gessinger2017Interspeech}.
-The same holds for the Cohen's kappa ($\kappa$) values\footnote{as calculated by the \emph{kappa2} command of the \emph{irr} R package, v0.84, \url{https://cran.r-project.org/package=irr}}, which are expected to be lower for \emph{Low}, as a lower degree of convergence was found among these participants.
-As \cref{tab:validation_shadow_similarity} shows, convergence was found in \SI{48}{\percent} of the utterances for \emph{Sys-Stim} and \emph{Ref-Stim}.
-However, the \emph{Ref-Sys} similarity is only \SI{66}{\percent}, which means that convergence was found in different instances.
-The $\kappa$ values in \cref{tab:validation_shadow_kappa} give an additional view on these results.
-The \emph{Ref-Sys} agreement is around 0.2 (fair agreement) for \emph{Mid}, but much lower for the other two groups,
-confirming that more differences are expected to be found between \emph{Sys-Stim} and \emph{Ref-Stim} in the \emph{Low} and \emph{High} groups.
-Moreover, \emph{Sys-Stim} shows greater variation of $\kappa$ values across the three groups, indicating higher separation between the three categories of convergence behavior.
-This provides a more meaningful overview of the participants' convergence patterns.
+The Cohen's kappa ($\kappa$) values\footnote{calculated by the \texttt{kappa2} command of the \texttt{irr} R package v0.84, \url{https://cran.r-project.org/package=irr}} for \emph{Low} are expected to be lower, as a lower degree of convergence was found among these participants.
+%As \cref{tab:showcase_results} shows, convergence was found in \SI{48}{\percent} of the utterances for \emph{Sys-Stim} and \emph{Ref-Stim} but only in \SI{66}{\percent} for \emph{Ref-Sys}, which means that convergence was found in different instances.
+%\todo{not clear what the sentence above wants to say}
+\cref{tab:showcase_results} shows that \emph{Ref-Sys} has $\kappa = 0.2$ (fair agreement) for the \emph{Mid} group, but lower for the other two groups.
+This indicates that the reference values, which supposedly represent some universal average of the feature, indeed match the production of the participants that didn't deviate too greatly from their base production values, which reinforces the fact that the stimuli's influence on them was limited to either direction.
+The $\kappa$ values for \emph{Sys-Stim} describe how the system's representations matched the stimuli presented to the participants.
+Since the system accommodates to the participants' performance, these values exhibit how similarly to the participants of each group the system behaved.
+The \emph{High} group achieved $\kappa = 0.81$ (strong agreement), showing that the system became very similar to the users sensitive to changes.
+Contrarily, the $\kappa$ value for the \emph{Low} group is -0.57 (moderate \emph{negative} agreement), showing that the system, like the participants, did not converge to -- and potentially diverged from -- the experiment's stimuli.
 % kappa itepratation classes taken from http://www.statisticshowto.com/cohens-kappa-statistic/
-
-\section{Conclusion and future work}
-\label{sec:conclusion}
-
-We have introduced a \acf{sds} with phonetic convergence capabilities.
-The system is able to track the state of configured phonetic features and change its \acf{tts} output accordingly, based on an internal convergence model.
-This combines work done in the fields of phonetic convergence and adaptive \acp{sds}.
-Many aspects of the system are customizable, which makes it flexible in terms of possible supported scenarios.
-This includes multiple parameters defining the target phonetic features, which allows experimentation with different features.
-The system can run on a separate server, which makes it easier to scale its use.
-
-In addition, we replicated a shadowing experiment, which examined phonetic convergence regarding certain features, showcasing the \ac{sds}'s performance and simulation capabilities.
-Running the experiment in this way not only saved time by automating the annotation and phonetic analysis, but also offered additional insight such as visualization and on-the-fly classification.
-
-By validating the system in this way, we are confident that phonetic convergence can be studied using our \ac{sds} in a more objective way, focused on \ac{hci}.
-We firmly believe that this is one step forward toward personalized, phonetically aware \acp{sds}, which are likely to enable more natural and efficient interaction.
-
+%
 \begin{table}[t]
 	\centering
-		\begin{tabularx}{\linewidth}{X*{3}{S[table-format=2.0]}}
-			\toprule
-			Group & {\emph{Sys}-\emph{Stim}} & {\emph{Ref}-\emph{Stim}} & {\emph{Ref}-\emph{Sys}} \\
-			\midrule
-			\emph{Low}  & {<1} &  7 & 16 \\
-			\emph{Mid}  &  22  & 23 & 32 \\
-			\emph{High} &  26  & 18 & 18 \\
-			All   		&  48  & 48 & 66 \\
-			\bottomrule
-		\end{tabularx}
-%		\caption{Similarity (\si{\percent})}
-		\label{tab:validation_shadow_similarity}
+	\caption[Cohen's Kappa scores of system's validation]
+		{Percent of convergence cases and $\kappa$ scores of comparisons between the three criteria for each of the participant groups.
+		Positive $\kappa$ scores show to agreement between the annotations (here, the feature's realization category) of the two \enquote{annotators}.
+		Negative scores indicate disagreement, and scores close to zero point to a random-like relation.}
+	\label{tab:showcase_results}
+	\begin{tabularx}{\linewidth}{X
+								 *{3}{S[table-format=2.0]}
+								 @{\hskip 1.4cm}
+								 *{3}{S[table-format=1.2, table-space-text-pre={$-$}, table-space-text-post={\,***}]}}
+		\toprule
+		\multirow{2}{*}{Group} &
+		\multicolumn{3}{c}{Convergence cases (\si{\percent})} &
+		\multicolumn{3}{c}{Cohen's Kappa ($\kappa$)}\\[0.2cm]
+		&
+		{\emph{Sys}-\emph{Stim}} & {\emph{Ref}-\emph{Stim}} & {\emph{Ref}-\emph{Sys}} &
+		{\emph{Sys}-\emph{Stim}} & {\emph{Ref}-\emph{Stim}} & {\emph{Ref}-\emph{Sys}}\\
+		\midrule
+		Low		& {<1} &  7 & 16 & -0.57\,*** & -0.08		& 0.17		\\
+		Mid		&  22  & 23 & 32 & -0.15\,*   & -0.15\,*	& 0.27\,***	\\
+		High	&  26  & 18 & 18 &  0.81\,*** & -0.04		& 0.03		\\[0.1cm]
+		All		&  48  & 48 & 66 & -0.11\,*   & -0.13\,**	& 0.21\,***	\\
+		\bottomrule
+	\end{tabularx}
 \end{table}
-\begin{table}
-		\begin{tabularx}{\linewidth}{X*{3}{S[table-format=2.2]}@{\quad}}
-			\toprule
-			Group & {\emph{Sys}-\emph{Stim}} & {\emph{Ref}-\emph{Stim}} & {\emph{Ref}-\emph{Sys}} \\
-			\midrule
-			\emph{Low}  & -0.57*** & -0.08   & 0.17    \\
-			\emph{Mid}  & -0.15*   & -0.15*  & 0.27*** \\
-			\emph{High} &  0.81*** & -0.04   & 0.03    \\
-			All   		& -0.11*   & -0.13** & 0.21*** \\
-			\bottomrule
-		\end{tabularx}
-%		\caption{Agreement (Cohen's $\kappa$).
-%			\enquote*{*} means $p$~value $<0.05$, \enquote*{**} means $p$~value $<0.005$, and \enquote*{***} means $p$~value $<0.0005$}
-		\label{tab:validation_shadow_kappa}
-	\caption[Similarity and agreement evaluation of system and stimulus sets]{A summary of the similarity and agreement between the system's (\emph{Sys}), references (\emph{Ref}), and stimuli (\emph{Stim}) annotations of the shadowing phase productions.}
-	\label{tab:validation_shadow}
-\end{table}
-	\todo{somehow combine these tables. or maybe replace it with a better analysis}
+%
+%\begin{table}[t]
+%	\centering
+%		\begin{tabularx}{\linewidth}{X*{3}{S[table-format=2.0]}}
+%			\toprule
+%			Group & {\emph{Sys}-\emph{Stim}} & {\emph{Ref}-\emph{Stim}} & {\emph{Ref}-\emph{Sys}} \\
+%			\midrule
+%			\emph{Low}  & {<1} &  7 & 16 \\
+%			\emph{Mid}  &  22  & 23 & 32 \\
+%			\emph{High} &  26  & 18 & 18 \\
+%			All   		&  48  & 48 & 66 \\
+%			\bottomrule
+%		\end{tabularx}
+%%		\caption{Similarity (\si{\percent})}
+%		\label{tab:validation_shadow_similarity}
+%\end{table}
+%\begin{table}
+%		\begin{tabularx}{\linewidth}{X*{3}{S[table-format=2.2]}@{\quad}}
+%			\toprule
+%			Group & {\emph{Sys}-\emph{Stim}} & {\emph{Ref}-\emph{Stim}} & {\emph{Ref}-\emph{Sys}} \\
+%			\midrule
+%			\emph{Low}  & -0.57*** & -0.08   & 0.17    \\
+%			\emph{Mid}  & -0.15*   & -0.15*  & 0.27*** \\
+%			\emph{High} &  0.81*** & -0.04   & 0.03    \\
+%			All   		& -0.11*   & -0.13** & 0.21*** \\
+%			\bottomrule
+%		\end{tabularx}
+%%		\caption{Agreement (Cohen's $\kappa$).
+%%			\enquote*{*} means $p$~value $<0.05$, \enquote*{**} means $p$~value $<0.005$, and \enquote*{***} means $p$~value $<0.0005$}
+%		\label{tab:validation_shadow_kappa}
+%	\caption[Similarity and agreement evaluation of system and stimulus sets]{A summary of the similarity and agreement between the system's (\emph{Sys}), references (\emph{Ref}), and stimuli (\emph{Stim}) annotations of the shadowing phase productions.}
+%	\label{tab:validation_shadow}
+%	\todo{combine into one table. add \% sign to upper}
+%\end{table}
 
+
+\todo[inline]{put this in general discussion}
 Future work will pursue two independent directions:
 regarding phonetic convergence, supporting more features will make the system more comprehensive and useful for studying a wider range of phenomena.
 Specifically, adding support for supra-segmental (i.e., prosodic) features will enable replication of experiments similar to, e.g., \citet{Levitan2014acoustic, Levitan2016implementing} in the same manner as in \cref{sec:showcase}.
@@ -473,24 +495,6 @@ The second research question can be investigated by comparing the users' speech 
 Additionally, to test the system's influence on users' speech, the users can train with an intelligent \acf{call} or \acf{capt} system, which will change its learner model based on their input.
 Task completion rate, performance accuracy, and completion time metrics can be used to evaluate how helpful the system is.
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\linewidth]{pipeline}
-	\caption[Phonetic convergence algorithm pipeline]{Overview of the phonetic convergence pipeline used in the computational model.
-		Rectangles represent steps where an action is performed, round rectangles are inputs (either for external resources or from the system), and diamonds stand for decision points.
-		When a decision node does not have a \enquote{no} outcome it means that the process is terminated (and therefore no convergence occurs) if the condition is not met.
-		The pipeline can only be successfully completed at the \enquote{Set feature's new value} node.
-		However, if the \enquote{Add exemplar} action was performed prior to termination, the exemplar is not removed and will be taken into consideration the next time the pipeline is triggered for the feature with which it is associated.
-		The \enquote{feature definitions} come from the configuration file and can be changed by the user.}
-	\label{fig:adaptation_module_pipeline}
-	\todo{fix in figure: two ``yes''es are going out of the Convergence Limited block}
-	\todo{use colors to associate each shape (excluding arrows) to a step in the pipeline (maybe same colors as in stripes figure?)}
-\end{figure}
-
-\todo[inline]{somewhere in the thesis where evaluation of an actual system is discussed, talk in detail about the challenge that there is no absolute correct answer regarding how and how much to converge (user dependent, etc.) and for the same reasons there is no gold standard to compare against. so need to find other criteria for evaluation.}
-
-\section{Dialogue example}
-\label{app:dialogue_example}
 \todo{Put a relevant and interesting chat example (if that's even necessary here). or make several examples and put them all in an appendix}
 %\begin{figure}[h!]
 %	\centering
