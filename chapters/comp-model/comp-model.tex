@@ -171,11 +171,25 @@ It is also important that the features are distinguishable and clearly defined b
 \begin{figure}
 	\centering
 	\includegraphics[width=0.85\textwidth]{synthesis}
-	\caption
-	[Manipulated features on a synthesized waveform]
-	{An illustration of a manipulated output audio waveform.
+	\caption[Manipulated features on a synthesized waveform (illustration)]
+		{An illustration of a manipulated output audio waveform.
 		Each colored pin marks a phonetic features captured and processed by the pipeline.}
 	\label{fig:adapted_synthesis_output}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{pipeline}
+	\caption[Phonetic convergence algorithm pipeline]{Overview of the phonetic convergence pipeline used in the computational model.
+		Rectangles represent steps where an action is performed, round rectangles are inputs (either for external resources or from the system), and diamonds stand for decision points.
+		When a decision node does not have a \enquote{no} outcome it means that the process is terminated (and therefore no convergence occurs) if the condition is not met.
+		The pipeline can only be successfully completed at the \enquote{Set feature's new value} node.
+		However, if the \enquote{Add exemplar} action was performed prior to termination, the exemplar is not removed and will be taken into consideration the next time the pipeline is triggered for the feature with which it is associated.
+		The \enquote{feature definitions} come from the configuration file and can be changed by the user.}
+	\label{fig:adaptation_module_pipeline}
+	\todo[inline]{add 2-3 reference to this figure in text (also in other chapters?)}
+	\todo[inline]{fix in figure: two ``yes''es are going out of the Convergence Limited block}
+	\todo[inline]{use colors to associate each shape (excluding arrows) to a step in the pipeline (maybe same colors as in stripes figure?)}
 \end{figure}
 
 \section{Parameters}

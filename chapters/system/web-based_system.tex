@@ -1,245 +1,161 @@
 \chapter{Web-Based Responsive Spoken Dialogue System}
 \label{chap:web-based_responsive_spoken_dialogue_system}
 
-\lettrine{I}{introduction} to this chapter\ldots
+\lettrine{I}{ntroduction} to this chapter\ldots
+% complete, web-based \ac{sds} with focus on vocal adaptation.
 
 \pagebreak
 
-\section{Architecture}
-\label{sec:architecture_web-based}
+\section{Overview and key aspects}
+\label{sec:overview_and_key_aspects}
 
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=\linewidth]{web-based_architecture}
-	\caption[Architecture of a web-based system with convergence capabilities] {
-		The architecture of the web-based spoken dialogue system with convergence capabilities.
-		The background colors distinguish between client components, server components, and external resources that can be customized.
-		This separation makes it possible to run multiple clients on different machines at the same time with a single server collecting the data from all of them at the same time.
-	}
-	\label{fig:web-based_architecture}
-	\todo[inline]{replace this by version without AJAX node}
-\end{figure}
-
-For deepening the experimental possibilities and automating some aspects of the processes convergence-related experiments include, a dedicated systems with high degree of customizability was developed.
-The system introduced tracks the states and changes of segment-level and suprasegmental-level phonetic features during a dialogue.
-All of the analyses are automated and run in real-time, which not only saves a lot of time and manual work typically needed in convergence studies, but also makes the system more suitable for integration into other applications.
-In \cref{sec:showcase} we demonstrate a possible use of the system by simulating a convergence study previously run entirely by hand.
-
-% par about simulating
-Simulating and triggering convergence on the phonetic level, as found in \ac{hhi}, may contribute a lot to the naturalness of the dialogue.
-Our primary focus is on changes on the phonetic level, and more specifically variation in pronunciation and prosody, with no influence on the voice's overall acoustics.
-\Acp{sds} with such personalized speech style may offer more natural and efficient interactions, as shown by \citet{Porzel2006entrainment}, and advance one more step away from the \emph{interface metaphor} \citep{Edlund2006twofaces} toward the \emph{human metaphor} \citep{Carlson2006humanlike}, which describe different user approaches when interacting with \ac{hci} systems.
-
-% par about 
-
-\putref{sds architecture}
-\putref{computational model}
-\putref{sds module}
-
-\section{Background and related work}
-\label{sec:background_and_related_work}
-
-\ac{cat} \citep{Gallois2015CAT, Giles2007CAT, Shepard2001CAT} describes possible reasons for behavioral changes of interlocutors during interaction on various levels.
-According to \citet{Weise2017towards}, integrating such changes into computer systems will enhanced \ac{hci} and provide improved tools for studying convergence in \ac{hci}.
-\citet{Oviatt2004adaptive} discusses the advantages of systems that dynamically adapt their speech output to that of the user, and the challenges involved in developing and using these systems.
-
-\section{System}
-\label{sec:system}
-
-The system introduced here is an end-to-end, web-based \ac{sds} with focus on phonetic convergence.
-Besides placing convergence in the spotlight, it is designed to be flexible and to meet the researcher's needs by offering a wide range of component customizations (see \cref{subsec:models_and_cusomizations}).
-Its online access via a web browser makes it scalable and simple for the end-user to operate.
-The system's architecture and functionality are described in \cref{subsec:architecture},
-its \ac{gui} and operation in \cref{subsec:graphical_user_interface},
-and a real-world example of its utilization is demonstrated in \cref{sec:showcase}.
-
-Ultimately, it offers a platform for studying and experimenting with phonetic convergence, with emphasis on the following:
-
+Simulating and triggering accommodation effects occurring in \ac{hhi} like those found in \cref{chap:conv_analysis} in \acp{sds} takes them one step further toward human-like communication.
+The system presented in this chapter encapsulates the knowledge acquired from the experiments in \cref{part:experiments}, the behavior designs developed in \cref{part:modeling}, and the module introduced in \cref{chap:convergence_module_for_sdss} which enables the vocal changes.
+It contains mechanisms to track the states and changes of segment-level and suprasegmental-level phonetic features during a dialogue.
+All the analyses are automated and run in real-time, which not only saves a lot of time and manual work typically needed in convergence studies, but also makes the system more suitable for integration into other applications.
+It holds the following key principles:
+%
 \begin{description}
-	\item[Focus~on~convergence] -- 
-	offering an interface for general-purpose \acp{sds} with tools for analyzing and visualizing phonetic convergence.
+	\item[Focus on adaptation] --
+	the main goal of the system is to offer a tool for investigating vocal accommodation in \ac{hci} for both online experiments and offline analyses.
+	Putting vocal accommodation under the spotlight is the core novel contribution of the system, as very few systems offer such capabilities at all, and with control over the accommodative behavior in particular.
 	
-	\item[Customizability] -- 
-	allowing the user to experiment with different scenarios by configuring parameters and definitions in many of the system's components.
+	\item[Customizability] --
+	the system includes several components that can be modified, either for changing the accommodation behavior itself (features, parameters, etc.) or changing the setting (e.g., for different experiments).
+	This allows experimenting with different scenarios and configurations and easily compare them in a controlled, reproducible environment.
 	
-	\item[Online~scalability] -- 
-	connecting multiple web clients to a server, allowing users to use it anywhere without installation, and helping experimenters to collect data remotely.
+	\item[Online scalability] --
+	the system can run in a web browser without any installations or additional files\footnote{some features need to be enabled in the browser, like JavaScript and microphone access.
+	However, any modern browser should not have any problem supporting all the necessary requirements.
+	To increase performance, all speech analyses and processing are done on the server side.}.
+	Since the system itself runs on a single server, it is also possible to operate multiple instances, each with its own configurations and parameters.
+	This makes it easy to distribute, e.g., for remotely conducting an experiment where each participant may receive a different configuration.
 \end{description}
+%
+Ultimately, this customizable system could help to deepen the experimental possibilities and automating some aspects of the processes convergence-related experiments typically comprises.
+The system's architecture, and \ac{gui}, and functionality are described in \cref{sec:architecture,sec:online_and_offline_paths}.
+The experiment presented in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices} is replicated in \cref{sec:showcase} to demonstrate the system's utilization.
 
-\subsection{Architecture}
-\label{subsec:architecture}
+\section{Architecture}
+\label{sec:architecture}
 
-As the system aims to offer a customizable playground for experimenting and studying phonetic convergence in \ac{hci}, a key aspect of its architecture is the separation between client-side, server-side, and external resources (see \cref{fig:web-based_architecture}).
-The server, ideally located on dedicated machine, is operated by an a person responsible of designing and configuring the interactions, e.g., an experimenter.
-It has an overview over all of the interactions with the system and collects all of the audio recordings, analyses, and any other data in one place.
+As the system aims to offer a customizable playground for experimenting and studying phonetic adaptation in \ac{hci}, a key aspect of its architecture is the separation between client-side, server-side, and external resources (see \cref{fig:web-based_architecture}).
+This separation makes it possible to run multiple clients on different machines at the same time with a single server collecting the data from all of them at the same time.
+The server, ideally running on a dedicated machine, is operated by an a person responsible of designing and configuring the interactions, e.g., an experimenter.
+It collects information and audio recordings from all interactions with the system (which can be deleted afterwards for privacy purposes).
 This separation of the server grants the experimenter a lot of freedom and flexibility, since resources like feature configurations and dialogue domain can be modified independently of specific machines interacting with the system.
-These changes are transparent to the users, and no effort is required from them aside from restarting the interaction to apply them.
-As the server is also responsible for the connection to the client, it is also possible to defined different configuration to different users based on some characteristics, like their gender, native language, phonetic preferences etc.
-This flexibility makes it easier and quicker to create new scenarios of interaction and to experiment with different features and parameters, without the need to create a dedicated system for each experiment.
+Additionally, multiple configurations can be prepared in advance (e.g., for different participant groups), regardless of the device the experiment will be performed on and before summoning the participants.
+Configurations can even be changed mid-interaction.
+These configurations are transparent to the users, and no effort is required from them (aside from start a new interaction in the case of some specific configurations).
+This flexibility makes it easier and quicker to create new scenarios of interaction and to experiment with different features and parameters.
 
 In addition to the technical advantages, letting users interact with the system on a separate machine broadens the usage possibilities.
 For example, an experiment can be carried out remotely, without the need to invite participants to the recording studio one by one.
 Furthermore, as the connection to the server is done via a web browser, participants can connect use the system with their own computers wherever and whenever it suits them, without any additional installation or technical configurations.
-And most importantly, multiple users can connect to the system simultaneously.
 All of these makes it possible to collect data from many users rapidly and easily.
+%
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\linewidth]{web-based_architecture_no-ajax}
+	\caption[Architecture of a web-based responsive spoken dialogue system]
+		{The architecture of the web-based responsive spoken dialogue system.
+		The background colors distinguish between client components, server components, and customizable external resources.
+		The dashed line indicates that the feature predictions may or may not be passed from the model to the system depending on the feature definition and update parameter.}
+	\label{fig:web-based_architecture}
+\end{figure}
+%
+As shown in \cref{fig:web-based_architecture}, the main components of the system are the \ac{sds} itself (including the accommodation module; \cref{subsec:dialogue_system}), the \ac{gui} (\cref{subsec:graphical_user_interface}), and the external resources and configuration (\cref{subsec:models_and_cusomizations}).
 
-\subsubsection{Dialogue System}
-\label{subsubsec:dialogue_system}
+\subsection{Dialogue system}
+\label{subsec:dialogue_system}
 
-The \emph{Dialogue System} component is the core of the system (see \cref{fig:web-based_architecture}).
-It controls the flow of the interaction, processes the user's input, and generates the system's responses.
-As shown in \cref{fig:adaptation_module_architecture}, it consists of typical \ac{sds} components such as \ac{nlu} and a \ac{dm}, but contains an \ac{asp} module as well \citep{Raveh2017SemDial}.
-This module is responsible for processing the audio\footnote{\label{foot:praatver}using Praat, v6.0.35, \url{http://praat.org/}, \citep{Boersma2018praat} as the signal processing back-end} and extracts the features required by the convergence model (\cref{subsubsec:convergence_model}).
+The core of the system is the dialogue system component (see \cref{fig:web-based_architecture}), which controls the flow of the interaction, processes user's inputs, and generates the system's responses.
+It uses the extended architecture presented in \cref{subsec:extended_sds}, which consists of typical \ac{sds} components such as \ac{nlu} and a \ac{dm}, but also contains the \ac{asp} module that adds accommodation support \citep{Raveh2017SemDial}.
+The implementation of this module in the system is as described in \cref{fig:adaptation_module_architecture}.
 While the \ac{nlu} component uses merely the transcription provided by the \ac{asr}, the \ac{asp} module analyzes the speech signal itself.
-More specifically, it tracks occurrences of the defined features and passes the measured values to the convergence model, as explained in \cref{subsubsec:tracked_features}, which, in turn, forwards the tracked feature parameters to the \ac{tts} synthesis component.
-Finally, the \ac{tts} engine takes the text generated by the \ac{nlg} component, and, if phonetic-level manipulation is supported, synthesizes the utterance using the values specified by the convergence model.
-The \emph{OpenDial} dialogue framework \citep{Lison2016opendial} is used in the \ac{sds} component of the system.
-The \ac{asr} module uses CMUSphinx \citep{Lamere2003sphinx} with additional customized functionality required for the \ac{asp} module, and the \ac{tts} is driven by MaryTTS \citep{LeMaguer2017uprooted, Schroeder2003mary}.
-The rule-based implementation of the \ac{nlu} and \ac{nlg} modules is described in \cref{subsubsec:dialogue_domain}.
-
-\subsection{Models and customizations}
-\label{subsec:models_and_cusomizations}
-
-The system aims to offer a platform for \acp{sds} with convergence support that can be modified and customized according to the user's needs.
-All of the aforementioned system components can be customized to some extent.
-This also includes the phonetic convergence model, the features tracked by the system, and the dialogue domain.
-
-\subsubsection{Convergence model}
-\label{subsubsec:convergence_model}
-
-The computational model for phonetic convergence used in our system is derived from the one introduced in \citet{Raveh2017Interspeech}.
-Different behavioral patterns with respect to phonetic convergence that were observed in \ac{hhi} and \ac{hci} experiments \citep{Cohen2017converging, Gessinger2017Interspeech, Schweitzer2016exemplar, Babel2010dialect} can be simulated by combinations of the model's parameters presented in \cref{tab:comp_model_parameters}.
-For example, the parameter \emph{allowed range} describes the segments that would be perceived as instances of a feature by the interlocutor.
-The number of instances of a feature which the interlocutor can hold in his or her short-term memory is defined by the parameter \emph{history size} (or \emph{exemplar pool size}).
-Similarly, the parameter \emph{convergence rate} determines how quickly the system converges to the human interlocutor with respect to the tracked features.
-This comes to characterize the sensitivity of a speaker to other pronunciation variants.
-\emph{Calculation method} specifies how the feature's new value is obtained from the instances in the exemplar pool.
-This can be a simple average, some smoothing function, or any other function defined by the user.
-All of the model's parameters can be modified in the configuration file.
-The responsiveness algorithm's pipeline is summarized in \cref{fig:adaptation_module_pipeline} and is described in detail in \citet{Raveh2017Interspeech}.
-\todo{here create an algorithm block version of the figure to not repeat it twice}
-
-\subsubsection{Tracked features}
-\label{subsubsec:tracked_features}
-
-\todo[inline]{this section (and maybe other parts in this chapter are pretty much redundant to the pipeline implementation in the module chapter. make sure such parts are removed and refer to the relevant place there.)}
-
-The entire convergence process is based on the phonetic features that are defined as \enquote{convergeable}, i.e., phonetic features that are prone to variation, and is triggered whenever the \ac{asr} component detects a segment containing a phoneme associated with one or more of these features.
-These feature definitions aim to capture phonological rules.
-For instance, the German phonological \textipa{/@/} elision rule in word-final syllables $\langle$-en$\rangle$ is defined by \citep[adapted from][pp.\,142--143]{Benware1986phonetics}
-%
-\begin{equation}
-\text{\textipa{@n}}\longrightarrow \varnothing \text{\textipa{\s{n}}} \diagup
-%	\left[\text{$-$son}\right] \ \_\_ \ \{\text{\#}, \left[\text{+const}\right]\} .
-\text{+consonantal} \ \_\_ \ \ \text{\#} .
-\label{eq:elision_rule}
-\end{equation}
-\eqname{Rule implementation: Schwa elision in German}
-%
-Each feature is represented by a key-value map of parameters in the editable configuration file.
-The target phoneme (here \textipa{/@/}) is defined in the feature definition's \emph{phoneme} key in the configuration file.
-However, merely defining the target phoneme is not enough, because the rule should only be triggered in the context specified on its right-hand side.
-This is done using the \emph{context} parameter.
-%Finally, since the target feature definitions are simply machine-readable phoneme sequences, it is easy to define new features -- even in another language (provided a phoneme-emitting \ac{asr} component for that language is available).
-As an example, the parameter map of the feature \textipa{[E:]}~vs.~\textipa{[e:]} might look as follows:
-
-\begin{description}[labelindent=1.5cm, labelwidth=\widthof{\quad \bfseries calculation}]
-	\item[name]	ee\_E
-	\item[phoneme] EHH
-	\item[context] .* EHH .*
-	\item[initial] 451, 2116, 2763
-	\item[minimum] 300, 1500, 2500
-	\item[maximum] 750, 2900, 4800
-	\item[measure] formants
-	\item[calculation] decaying average
-	\item[sensitivity] 0.3
-\end{description}
-%
-The value of the key \emph{measure} is \enquote{formants}, which means that this feature is evaluated by the segment's formant values (as specified in the corresponding signal processing script).
-The values of the \emph{minimum} and \emph{maximum} keys stand for the acceptable value range for this feature.
-This avoids distorted values due to \ac{asr} error and lets the user put their phonetic expertise to use.
-\todo{what?}
-In this case, the three values of these keys set the first three formant frequencies.
-Furthermore, the initial value of this feature in the model is also specified in the \emph{initial} key.
-This determines the variation of the feature with which the model starts.
-In this example, the convergence rate (\emph{sensitivity} key) is set to 0.3, and the \emph{calculation} method, to \enquote{decaying average}, which is a recursive weighted average measure defined as,
-%
-\begin{equation} 
-\label{eq:decaying_average} 
-\mu_n = \frac{1}{n}\sum_{i = 2}^{n}(\eta v_i + (1 - \eta )\mu_{i-1}), 
-\end{equation} 
-\eqname{Decaying average}
-%
-where $n$ is the number of exemplars in memory, $\eta$ is the decay rate (here, 0.5), $\mu_{i-1}$ is the accumulated decaying average from the previous exemplar, and $v_i$ is the value of the $i$-th exemplar. 
-
-Since the system's main focus is on phonetic convergence, it is essential to also provide useful information regarding the realizations of the tracked features.
-To that end, a classifier can be associated with each feature to provide real-time predictions for both the user's and the system's realizations of that features, as demonstrated in \cref{fig:plot}.
-With this information available, more meaningful insights can be gained into the variation dynamics in the dialogue.
-
-\subsubsection{Dialogue domain}
-\label{subsubsec:dialogue_domain}
-
-The dialogue's flow is specified in \emph{OpenDial}'s \citep{Lison2015developing} XML-based format\footnote{\url{http://www.opendial-toolkit.net/user-manual/dialogue-domains}}.
-%This format offers a structure for building models, rules, and conditions, which define the dialogue script.
-Additional parameters are introduced for triggering models or rules, or for processing by external modules of the \ac{sds}, as in the case of the \ac{asp} module.
-%More details on how to build a domain file can be found in \citet{Lison/Kennington:2015}.
-The format of the domain file makes it easy to define new scenarios for the system,
-such as a task-specific dialogue, general-purpose chat, or an experimental setup.
-
-\subsubsection{Speech processing}
-\label{subsubsec:speech_processing}
-
-Multiple components of the system deal with different aspects of speech processing.
-The \ac{asr} component uses CMUSphinx\footnote{Sphinx4 version 5prealpha, \url{https://cmusphinx.github.io/}} \citep{Lamere2003sphinx}.
-The acoustic model and pronunciation dictionary were taken from CMUSphinx models on SourceForge\footnote{\url{https://sourceforge.net/projects/cmusphinx/files/Acoustic\%20and\%20Language\%20Models/German/}}, and a customized language model was created with SRILM \citep{Stolcke2002SRILM}).
-All of the phonetic analysis is done using Praat \citep{Boersma2018praat}.
-MaryTTS \citep{LeMaguer2017uprooted} is used as the \ac{tts} engine, with \emph{bits1-hsmm} and \emph{bits3-hsmm} for female and male voices, respectively.
+Concretely, it tracks occurrences of the defined features and passes their measured values to the convergence model, as explained in \cref{subsubsec:tracked_features}, which, in turn, forwards the tracked feature parameters to the \ac{tts} synthesis component.
+The \ac{tts} engine then takes the text generated by the \ac{nlg} component, and, if phonetic-level manipulation is supported, synthesizes the utterance using the values specified by the convergence model.
+The connection between the dialogue system's modules is managed by the \emph{OpenDial} framework \citep{Lison2016opendial, Lison2015developing}.
+The \ac{asr} module uses CMUSphinx \citep{Lamere2003sphinx} with additional customized functionality for obtaining the phonetic information required for the \ac{asp} module, and the \ac{tts} is driven by MaryTTS \citep{LeMaguer2017uprooted, Schroeder2003mary}.
+The \ac{nlu} and \ac{nlg} modules are built using an OpenDial's domain file, as described in \cref{subsubsec:dialogue_domain}.
 
 \subsection{\Acl{gui}}
 \label{subsec:graphical_user_interface}
 
-The interaction of the user with the system is done via a web-based \ac{gui}.
-This \ac{gui} consists of a navigation bar and four areas:
-a chat area, where the dialogue is shown (see \cref{subsubsec:chat_area}),
-an interaction area where the user input is recorded (see \cref{subsubsec:interaction_area}),
-a graph area where the tracked features are visualized and analyzed (see \cref{subsubsec:graph_area}),
+The user interacts with the system via an in-browser \ac{gui} (see \cref{fig:gui}).
+At the top of the screen is a control bar, which offers the user overview and easy access to some main functions.
+On the left side of the bar, the user can view the list of the interaction's turn history and jump to any of them.
+It is also possible to see the list of tracked features and their current state.
+Both lists can be reset using the Reset button (in red), which starts a new interaction using the current configurations (which may be changed before pressing the button).
+On the other side of the bar, there are buttons for viewing on-screen how-to-use information and changing the settings of the system.
+The rest of the \ac{gui} is divided into four areas:
+A chat area, where the dialogue is shown,
+an interaction area where the user provides input to the systems,
+a plot area with interactive dynamic visualization of the tracked features,
 and a notification area where prompts for the user can be shown.
+The functionality of each is described in \crefrange{subsubsec:chat_area}{subsubsec:notification_area}
 
 \subsubsection{Chat area}
 \label{subsubsec:chat_area}
 
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=\linewidth]{plot_area}
-	\caption[Real-time visualization of phonetic changes]{A screenshot of the plot area showing the states of the feature \textipa{[E:]}~vs.~\textipa{[e:]} during an interaction.
-		The system's internal convergence model (orange, bottom right) gradually adapts to the user's (blue, upper left) detected realizations.
-		A prediction of the feature's current realization is given for both interlocutors.
-		The text box annotates a turn in which the system's realization changes.}
-	\label{fig:plot}
-	\todo[inline]{make a better screenshot of this area, maybe also with more interesting interactions}
-\end{figure}
-
-The interaction between the user and the system is shown in a chat-like representation (see example in \cref{app:dialogue_example}).
-Each turn's utterance appears inside a chat bubble with different colors for the user and the system.
-The turns are also numbered, to better track the dialogue progress and analysis shown in the plots in the graph area.
-The history of the chat is kept under the \emph{Turns} drop-down in the navigation bar, and it is possible to reset the interaction to start a new session.
-%Beside the chat bubbles, the system can also insert general-purpose messages to the users, which are not part of the dialogue's flow.
+The interaction between the user and the system is shown in a chat-like format at the upper left part of the screen.
+Each turn's utterance appears inside a chat bubble with different colors representing the two interlocutors, the user and the system.
+The bubbles always contain single utterances, even if the other interlocutor has not spoken between them.
+A turn can be replayed at any time using the Play button next to the turn number, corresponding to the turn order on the list accessible from the control bar.
+Beside utterance bubbles, the system can also display general-purpose messages in this area, which do not progress the dialogue flow and do count as system utterances.
+These messages can be used,
+%
+\begin{landscape}
+	\begin{figure}[t]
+		\centering
+		\vspace*{-2cm}
+		\hspace*{-2cm}
+		\includegraphics[width=1.6\textwidth]{gui}
+		\caption[Web system in-browser \acs{gui}]
+			{}
+		\label{fig:gui}
+	\end{figure}
+\end{landscape}
+\noindent
+for example, to give the user additional information or instructions regarding the interaction.
 
 \subsubsection{Interaction area}
 \label{subsubsec:interaction_area}
 
-The user can interact with the system with written or spoken input using the controls in this area.
-Text-based interactions progress through the dialogue (if applicable) and trigger any subsequent domain model, but will not affect convergence-related models, since there is no audio input to process.
-Spoken input can be provided either by speaking into the microphone or via audio files with pre-recorded speech.
-The latter option is especially useful for simulating specific user input, or for reproducing a previous experiment with the exact same input, as done in \cref{subsec:validation}.
+The user can interact with the system either with either written or spoken input using the controls at the bottom left part of the screen.
+Spoken input can be provided either by speaking live into the microphone or via audio files with pre-recorded speech.
+These are typically useful for online and offline usage, respectively (\cref{sec:online_and_offline_paths}), but pre-recorded utterances can also be useful for or reproducing previous experiments or comparing different accommodation configurations with the exact same user input.
+Text-based interactions progress through the dialogue (if applicable) and trigger any subsequent domain model, but will not affect the tracked features, as no vocal input was provided.
+This can be useful for quickly going through specific parts of an experiment (e.g., instructions or setup) or for continuing the dialogue without changing the system's representation of the tracked features.
 
-\subsubsection{Graph area}
-\label{subsubsec:graph_area}
+\subsubsection{Plot area}
+\label{subsubsec:plot_area}
 
-Each of the tracked features is visualized in a separate plot, and new datapoints are automatically added whenever applicable.
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\linewidth]{plot_area}
+	\caption[Real-time dynamic visualization of phonetic changes]
+		{The plot area showing the states of the feature \textipa{[E:]}~vs.~\textipa{[e:]} during an interaction.
+		The system's (orange, bottom right) gradually adapts to the user's (blue, upper left) detected realizations.
+		A prediction of the feature's current realization is given for both interlocutors.
+		The text box shows the mouse-over annotation of the turn in which the system's realization changes vowel category.}
+	\label{fig:plot}
+\end{figure}
+
+Visualization of the tracked features' changes over the course of the interaction are displayed in the upper right part of the screen.
+Each feature is visualized separately, and new datapoints are dynamically added whenever applicable.
+The type of a feature's plot can also change based on its characteristics, e.g., bars for one-dimensional features and lined scatter plots for two-dimensional features.
 These plots are generated using the Plotly library\footnote{\url{https://plot.ly}}, which provides some interactive functionalities.
-For example, hovering over a datapoint in a graph reveals additional information, such as the turn in which it was added, or the realized variant of the feature produced in that turn as predicted by its classifier.
-\Cref{fig:plot} shows a graph with several accumulated datapoints.
+Hovering over a datapoint in the plot reveals additional information, such as the turn in which it was added, or the realized variant of the feature produced in that turn as predicted by its classifier.
+\Cref{fig:plot} shows an example of such plot with several accumulated datapoints.
+
+\subsubsection{Notification area}
+\label{subsubsec:notification_area}
+
+Whenever a message outside the content of the interaction needs to reach the user, it can be shown at the bottom right part of the screen.
+Such messages may include indications of the system's activity, e.g., successful initialization of the interaction, warning and errors while uploading files, or any other prompt the experimenter might want the user to see, like additional instructions to consider during the experiment.
+However, the latter is better achieved using the non-speaker turns in the chat area.
+The notifications can be colored blue, green, orange, and red to differentiate different types of messages.
 
 %\subsubsection{Settings and help}
 %\label{subsubsec:settings_and_help}
@@ -253,115 +169,181 @@ For example, hovering over a datapoint in a graph reveals additional information
 %These commands include printing a short or detailed summary of the phonetic changes throughout the interaction, extracting the data from the features' plots (e.g., for further analysis), and more.
 %\todo{screenshot with the settings tab}
 
+\subsection{Models and customizations}
+\label{subsec:models_and_cusomizations}
+
+The system aims to offer a platform for \acp{sds} with convergence support that can be modified and customized according to the user's needs.
+All of the aforementioned system components can be customized to some extent.
+This also includes the phonetic convergence model, the features tracked by the system, and the dialogue domain.
+
+\subsubsection{Tracked features}
+\label{subsubsec:tracked_features}
+
+The accommodation process is initiated by the phonetic features defined in the configuration file.
+There are phonetic features that are prone to variation, and are triggered whenever the \ac{asr} component detects a segment containing a phoneme associated with one or more of these features.
+The feature definitions may capture general tendencies or specific phonological rules, like schwa elision in German (see \cref{eq:elision_rule}).
+As explained in \cref{subsec:computational_model}, each feature is detected and filtered based on its definition.
+This definition can be easily changed to experiment with different accommodation effects.
+
+\subsubsection{Dialogue domain}
+\label{subsubsec:dialogue_domain}
+
+The dialogue's flow is specified using OpenDial's XML-based format\footnote{\url{http://www.opendial-toolkit.net/user-manual/dialogue-domains}}.
+This format offers a structure for building models, rules, and conditions, which define the \ac{dm} logic.
+The rules connect between intents provided by the \ac{nlu} module to textual output generated by the \ac{nlg} module.
+Additional parameters are introduced for triggering processing for other modules of the \ac{sds}, like the \ac{asp} module in the system discussed here.
+More details about building a domain file can be found in \citet{Lison2016opendial}.
+The format of the domain file makes it easy to define new scenarios for the system, like different experiment scenarios.
+Rules are written mostly using regular expressions, which makes it possible for non-technical users to design most of the system's logic.
+Since the \ac{dm} keeps track of parameters from all modules, the system's output can even be influenced by the state of the accommodation state in the \ac{asp} module (if such information is provided).
+
+\subsubsection{Speech processing}
+\label{subsubsec:speech_processing}
+
+Multiple components of the system deal with different aspects of speech processing.
+As each module in the system can be replaced independently, different engines and models can be used.
+For example, the \ac{asr} engine can be replaced for improving performance or adding support for more languages (that is, all time the same functionality is offered by that engine and the phonemeset used by the system is updated accordingly).
+The \ac{tts} component can be replaced as well, e.g., for changing the voice of the system.
+Importantly, also the tool used for the phonetic analysis can be changed to improve accuracy or performance.
+The models and tools described here are those that were used specifically for the showcase presented in \cref{sec:showcase}.
+The \ac{asr} component uses CMUSphinx\footnote{Sphinx4 version 5prealpha, \url{https://cmusphinx.github.io/}} \citep{Lamere2003sphinx}, with an extension to the phoneme emission functionality to provide the \ac{asp} module the input it needs (see \cref{subsec:computational_model}).
+The acoustic model and pronunciation dictionary were taken from online CMUSphinx models\footnote{\url{https://sourceforge.net/projects/cmusphinx/files/Acoustic\%20and\%20Language\%20Models/German/}}.
+A customized \ac{asr} language model was created with SRILM \citep{Stolcke2002SRILM}).
+All the segmental and suprasegmental analyses required for the measuring accommodation were done using Praat \citep{Boersma2018praat}.
+MaryTTS \citep{LeMaguer2017uprooted} was used as the \ac{tts} engine of the system, with \texttt{bits1-hsmm} and \texttt{bits3-hsmm} for its female and male voices, respectively.
+
+\section{Online and Offline paths}
+\label{sec:online_and_offline_paths}
+
+\missingfigure{online and offline paths}
+
 \section{Showcase: simulating a shadowing experiment}
 \label{sec:showcase}
 
-To demonstrate the capabilities of the system, we utilized it to replicate a convergence experiment.
-For that, the shadowing experiment carried out by \citet{Gessinger2017Interspeech} was chosen.
+As a showcase of the system capabilities, it was utilized to replicate the shadowing experiment described in \cref{chap:shadowing_experiment_with_natural_and_synthetic_voices}.
 The experiment is designed to trigger and analyze phonetic convergence by confronting the participants with stimuli, in which certain phonetic features are realized in a way different from their own.
+This was done using the offline path of the system, to can simulate a real experiment and automate certain parts of it that would otherwise be performed manually.
+The replication used the original stimuli and utterances of one of the participants.
+However, analyses originally done post facto (and to different extents manually), like detecting the realized variant, measuring the features' values, etc., can be now done automatically.
+This demonstrates an automated, reproducible execution, and also offers additional insights via classification of feature realizations and dynamic visualizations in the web \ac{gui} (\cref{subsec:graphical_user_interface}).
+Finally, using the system, the experiments becomes dialogue-based rather than a mere experimental setting, which enhances its \ac{hci} nature.
 
-For this simulation, the original stimuli and participants' utterances were used.
-However, all of the analyses that were done ex post facto, and to some extent manually, in the original experiment, like detecting the realized variant, measuring the features, etc., are done automatically in the simulated experiment.
-This results in an automated, reproducible execution, and also offers additional insights via classification of feature realizations and dynamic visualizations in the web \ac{gui}.
-Finally, using the system, the experiments becomes dialogue-based, which enhances its \ac{hci} nature.
+\subsection{Setup adjustments}
+\label{subsec:setup_adjustments}
 
-\subsection{Target features and stimuli}
-\label{subsec:target_features_and_stimuli}
+%\subsection{Target features and stimuli}
+%\label{subsec:target_features_and_stimuli}
 
-The experiment deals with three segment-level phonetic features that show variation across native speakers of German:
+\todo[inline]{consider only mention the eE feature in the showcase, because in the validation only this one is treated}
 
-\begin{description}[labelindent=1.3cm, labelwidth=\widthof{\quad \textipa{[I\c{c}]}~vs.~\textipa{[Ik]}}]
-	\item [\textipa{[E:]}~vs.~\textipa{[e:]}] in word-medial $\langle$ä$\rangle$
-	\item [\textipa{[I\c{c}]}~vs.~\textipa{[Ik]}] in word-final $\langle$-ig$\rangle$
-	\item [\textipa{[\s{n}]}~vs.~\textipa{[@n]}] in word-final $\langle$-en$\rangle$
-\end{description}
-
-\noindent
-Although these feature may pass as light dialectical markers \citep{Mitterer2013regional}, they do not carry any difference in meaning, and are generally ascribed to personal preference of speaking style.
-
-The experiment's stimuli consist of these features embedded into 15 short carrier sentences (see examples in \cref{tab:target_features}) and 25 filler sentences, in which none of the features occur.
+For the experiment simulation, two of the three features investigated in the original experiment (\cref{chap:shadowing_experiment_with_natural_and_synthetic_voices}) were used.
+In addition to the \textipa{@}-length feature shown in \cref{subsec:computational_model} the definition of the feature \textipa{[E:]}~vs.~\textipa{[e:]} below was included.
+Both features are described in detail in \cref{subsec:target_features_HCIConv} and \cref{tab:target_features} shows example stimuli containing them.
+As in the original experiment, the word containing the target features were embedded into 15 short carrier sentences and 25 filler sentences, in which none of the features occur (see \cref{app:shadow_experiment_stimul} for the list of all stimuli).
 Although the features' underlying values are gradual, they are perceived as two-way categorical variations.
-To map these underlying values to a specific variant, the system associates a classifier with each feature, as explained in \cref{subsec:training_and_classification}.
+To map these underlying values to a specific variant, the system associates a classifier with each feature, as explained in \cref{subsec:classifiers_training}.
+%
+%\begin{description}[labelindent=1.5cm, labelwidth=\widthof{\quad \bfseries calculation}]
+%	\item[name]	ee\_E
+%	\item[phoneme] EHH
+%	\item[context] .* EHH .*
+%	\item[initial] 451, 2116, 2763
+%	\item[minimum] 300, 1500, 2500
+%	\item[maximum] 750, 2900, 4800
+%	\item[measure] formants
+%	\item[calculation] decaying average
+%	\item[sensitivity] 0.3
+%\end{description}
+%
+\begin{Verbatim}[tabsize=4, commandchars=\\\{\}]
+	- \textbf{`e\_E\_vowel'}:
+			\textbf{phoneme}: EHH
+			\textbf{context}: '.* EHH .*'
+			\textbf{initial}: 450 2100
+			\textbf{minimum}: 300 1500
+			\textbf{maximum}: 750 2900
+			\textbf{measure}: formants
+			\textbf{calculation}: decaying average
+			\textbf{sensitivity}: 0.3
+\end{Verbatim}
+\todo[inline]{make sure the verbatim doesn't get split by the table in the next page}
+%
+%The value of the key \emph{measure} is \enquote{formants}, which means that this feature is evaluated by the segment's formant values (as specified in the corresponding signal processing script).
+%The values of the \emph{minimum} and \emph{maximum} keys stand for the acceptable value range for this feature.
+%This avoids distorted values due to \ac{asr} error and lets the user put their phonetic expertise to use.
+\noindent
+The values of the keys \texttt{minimum}, \texttt{maximum}, and \texttt{initial} stand for the first two formant frequencies.
+The \texttt{calculation} method for this feature is \emph{decaying average}, which is similar to the regular average but with each value contributing exponentially less to the final value, so that the last (newest) exemplar contributes the most.
+Adding such property to the measure gives more weight to new exemplars that were received chronologically closer to the current turn and thus makes the change more strongly influenced by the productions closer to the accommodation change.
+Using this measure comes to support the analogy of the exemplar pool to short-term memory, which remembers recent event better than older ones.
+Decaying average is defined here as
+%
+\begin{equation} 
+	\label{eq:decaying_average} 
+	\mu_n = \frac{1}{n}\sum_{i = 2}^{n}(\eta v_i + (1 - \eta )\mu_{i-1}), 
+\end{equation} 
+\eqname{Decaying average}
+%
+\noindent
+where $n$ is the number of exemplars in memory, $\eta$ is the decay rate (here, 0.5), $\mu_{i-1}$ is the accumulated decaying average from the previous exemplar, and $v_i$ is the value of the $i$-th exemplar. 
 
+%\begin{description}[labelindent=1.3cm, labelwidth=\widthof{\quad \textipa{[I\c{c}]}~vs.~\textipa{[Ik]}}]
+%	\item [\textipa{[E:]}~vs.~\textipa{[e:]}] in word-medial $\langle$ä$\rangle$
+%	\item [\textipa{[I\c{c}]}~vs.~\textipa{[Ik]}] in word-final $\langle$-ig$\rangle$
+%	\item [\textipa{[\s{n}]}~vs.~\textipa{[@n]}] in word-final $\langle$-en$\rangle$
+%\end{description}
+%\noindent
+%
 \begin{table}[t]
 	\centering
 	\begin{tabularx}{\linewidth}{@{}*{5}{l}}
 		\toprule
 		
 		War          	& das          			& Ger\textbf{\underline{ä}}t	& sehr          	& teuer? \\
-		\emph{Was} 		& \emph{the} 			& \emph{device}           		& \emph{very} 		& \emph{expensive?} \\[0.1cm]
+		\emph{Was} 		& \emph{the} 			& \emph{device}           		& \emph{very} 		& \emph{expensive?} \\[0.3cm]
 		
-		Ich          	& bin         			& sücht\textbf{\underline{ig}}	& nach				& Schokolade. \\
-		\emph{I}   		& \emph{am} 			& \emph{addicted}				& \emph{to} 		& \emph{chocolate.} \\[0.1cm]
+%		Ich          	& bin         			& sücht\textbf{\underline{ig}}	& nach				& Schokolade. \\
+%		\emph{I}   		& \emph{am} 			& \emph{addicted}				& \emph{to} 		& \emph{chocolate.} \\[0.1cm]
 		
 		Wir         	& besuch\textbf{\underline{en}} 						& euch				& bald          & wieder. \\
 		\emph{We} 		& \emph{will visit}		& \emph{you} 					& \emph{soon} 		& \emph{again.} \\
-		
 		\bottomrule
 	\end{tabularx}
 	\caption[Example sentence for selected phonetic features]{Examples of stimuli containing the target features. Each stimulus contains only one feature.}
 	\label{tab:target_features}
 \end{table}
 
-\subsection{Experimental procedure}
-\label{subsec:experimental_procedure}
+%\subsection{Experimental procedure}
+%\label{subsec:experimental_procedure}
 
-Only those parts of the experiment are explained here that are relevant to its simulation in the dialogue system.
-For validation purposes, the experimental procedure stayed as faithful as possible to the procedure of the original experiment, even though more aspects of it could be automated.
-The entire experimental procedure, as well as more information regarding its setup, is detailed in \citet{Gessinger2017Interspeech}.
+The experimental procedure stayed as faithful as possible to the procedure of the original experiment, even though more aspects of it could be automated.
 
-The experiment consists of three phases: \emph{baseline} production, \emph{shadowing} task, and \emph{post} production (see \cref{fig:HCIConvFlow}).
-In the \emph{baseline} phase, the participants were asked to read out the stimuli from a monitor.
-The participant's most frequent variant in this phase is configured into the system.
-Then, in the \emph{shadowing} task, the participants produced the stimuli sequentially, each after listening to another voice (either natural or synthetic, both male and female) producing the opposite category of the relevant target feature.
-Based on the production in this phase, the participant's tendency, pace, and degree of convergence were analyzed.
-Finally, in the \emph{post} phase, the participant once again read out the stimuli from a screen.
-The purpose of this phase was to examine whether any convergence remained in effect even in the absence of non-preferred input.
-A shortened example of the shadowing phase's flow is shown in \cref{app:dialogue_example}.
+The domain file created for this showcase was designed to substitute the role of the experimenter in the shadowing phase (cf.\ \cref{fig:HCIConvFlow}), i.e., presenting -- and speaking -- the next stimulus to the participant.
+The stimulus order from the original experiment's baseline phase was preserved and semi-randomized (using the same logic) in the shadowing phase.
+It was also configured to perform the transitions between the phases.
+Although it should be assumed that the user indeed repeats presented utterance, the system nonetheless verifies that the user's utterance matches the current stimulus using the customized language model described in \cref{subsubsec:speech_processing}
 
-\subsection{Training and classification}
-\label{subsec:training_and_classification}
+% A shortened example of the shadowing phase's flow is shown in \cref{app:dialogue_example}.
 
-The validation stays faithful to the original experiment in every possible aspect.
-Therefore, the training data used for each classifier contains only the productions of the corresponding target feature from a single stimulus set, since these are the productions to which the participants were exposed during the experiment.
-This provides relatively few -- but at the same time very precise -- datapoints for each classifier,
-which were obtained using the same signal processing technique as the data collected in the experiment.
-The classifiers were trained offline on these datapoints.
-However, the system also supports incremental, online re-training whenever requested by the user,
-such as, every time the convergence model is updated.
+\subsection{Classifiers training}
+\label{subsec:classifiers_training}
 
-A \ac{smo} \citep{Platt1999fast, Platt1998sequential} implementation of the \ac{svm} classifier \citep{Vapnik1998support} was using for training.
-Depending on the target feature, this may also be a multivariate \ac{svm} classification \citep[e.g.,][]{Joachims2005support}.
-Each turn's predictions, as well as other details, are added as interactive annotations to the dynamic graph of the relevant features, as shown in \cref{fig:plot}.
+The automation the system offers can also be used to provide additional information regarding the realizations of the tracked features, i.e., which category each instance of the feature belongs to.
+This automates the annotation otherwise done manually by the experimenter during or after the experiment.
+In the shadowing experiment in question, this includes both the determination of the participants' preference in the baseline phase and the annotation of the participants' realizations in the shadowing phase.
+To that end, a classifier can be associated with each feature to provide real-time classification for both the user's and the system's realizations of that features.
+With this information available, more meaningful insights can be gained into the variation dynamics over the course of the interaction.
+In other applications, like \acp{capt}, this information be taken into account when deciding on the system's next turn.
+The classifiers for the simulated experiment were trained on a two datasets corresponding to the target features' ranges.
+The \textipa{@}-length classifier trained to separate segments shorter and long than \SI{30}{\milli\second}, and the \textipa{e:/E:} classifier was trained on F1 and F2 values of these vowels produced by a set of female speakers.
+While training prior to the interactions is sufficient, online fine-tuning is also possible to update a feature's classifier whenever requested by the user, e.g., every time the accommodation model is updated.
+
+Training was performed with a \ac{smo} \citep{Platt1999fast, Platt1998sequential} implementation of the \ac{svm} classifier \citep{Vapnik1998support}.
+For multi-dimensional features, multivariate \ac{svm} classification \citep[e.g.,][]{Joachims2005support} was used.
+Each turn's predictions dynamically added as interactive annotations to the visualization of the relevant features, as illustrated in \cref{fig:plot}.
 
 \subsection{Validation}
 \label{subsec:validation}
-
-\begin{figure}[t]
-	\centering
-%	\includegraphics[width=\linewidth]{web-based_architecture}
-	\missingfigure{bull's eye figure and bars figure}
-	\caption[]
-		{}
-	\label{fig:validation}
-\end{figure}
-
-We simulated the shadowing experiment by configuring the domain file with a definition of the transition between the phases, as well as the flow within each phase.
-This automates the procedure and adapts it to the participant's pace.
-Additional variables are defined and handled as well, helping the system to track the experiment's flow and state.
-Participants were simulated by using their recorded speech from the original experiment.
-After each turn, any relevant \ac{sds} module was triggered based on the simulated participant's input.
-The stimulus order from the original experiment was preserved.
-Since the \emph{post} phase is effectively the same as the \emph{baseline} phase, it was considered redundant and excluded from the simulation.
-In this section, we focus on the validation for the feature \textipa{[E:]}~vs.~\textipa{[e:]} as a representative example for the phonetic adaptation capability of the system.
-
-For the baseline phase, the validation examined the degree to which the underlying convergence model accumulated enough data to adopt the user's variant of the feature.
-Stronger and quicker adoption indicates a more stable and precise preferred variant of the participant.
-The user's and model's preferred variants were determined based on the majority vote at the end of this phase.
-For example, if the user realized one variant twice and another three times, the latter is considered to be preferred.
-\Cref{tab:validation_baseline} shows the degree of the model's adoption of the user's preferred variant, according to their majority votes, using different values of the \emph{sensitivity} parameter.
-Interestingly, higher values do not necessarily result in higher percentages.
-The value 0.3 provided the highest results, and was therefore used through the rest of the simulation.
 
 \begin{table}[t]
 	\centering
@@ -371,81 +353,138 @@ The value 0.3 provided the highest results, and was therefore used through the r
 		adoption (\si{\percent})      & 79   & 86   & 75   & 69   \\
 		\bottomrule
 	\end{tabularx}
-	\caption{Model's convergence coverage with different parameters.}
+	\caption{The system's convergence degree with different degrees of sensitivity.}
 	\label{tab:validation_baseline}
 \end{table}
 
+%%%%%%%%%%%%%
+% text from above. insert somewhere
+The validation stays faithful to the original experiment in every possible aspect.
+Therefore, the training data used for each classifier contains only the productions of the corresponding target feature from a single stimulus set, since these are the productions to which the participants were exposed during the experiment.
+This provides relatively few -- but at the same time very precise -- datapoints for each classifier,
+which were obtained using the same signal processing technique as the data collected in the experiment.
+%%%%%%%%%%%%%
+
+%The validation for the feature \textipa{[E:]}~vs.~\textipa{[e:]} is shown here as a representative example for the phonetic adaptation capability of the system.
+For the baseline phase, the validation examined the degree to which the underlying convergence model accumulated enough data to adopt the user's variant of the feature.
+Stronger and quicker adoption indicates a more stable and precise preferred variant of the participant.
+The preferred variants of the participant and the system were determined based on the majority vote at the end of this phase, as in the original experiment.
+For example, if the user realized one variant twice and another three times, the latter was considered the preferred one.
+\Cref{tab:validation_baseline} shows the degree of the model's adoption of the user's preferred variant (translated into percentages of the mean preferred variant) using different values of the \emph{convergence rate} parameter (see \cref{sec:parameters}).
+Interestingly, higher values do not necessarily result in higher percentages, due to systematic over-accommodation.
+The value 0.3 provided the highest results.% and was therefore used through the rest of the simulation.
+%
+\begin{figure}[t]
+	\centering
+	\subfigure[The effect of different convergence rates on the gradual change of
+			   the system's representation of a two-dimensional feature \textipa{[e:]} vs.\ \textipa{[E:]} using decaying average ($\mu = 0.3$).
+			   The points represent the calculation steps of the rates 0.1 (red circles), 0.5 (yellow tiranlges), and 0.9 (green rectangles).
+			   Each point is the new value calculated after accummulating a single exemplar.
+			   The first points at the top right are the common initial value.
+			   The the ellipses represent confidence levels of \SI{90}{\percent}, \SI{50}{\percent}, and \SI{10}{\percent}, respectively.]
+		{\includegraphics[width=0.47\textwidth]{ee_E_decaying_0.3}
+	\label{fig:e_E_bullseye}}
+	\hfill
+%	\vspace{-1cm}\hfill\hspace{-1cm}{\hbox{\LARGE $\Longrightarrow$}}\hfill
+	\subfigure[The effect of different convergence rates with the calculation method set to simple average.
+			   The bars' height represent the value of the one-dimensional feature \textipa{@}-length
+			   and the numbers on the x-axis are the updates of the feature's representation on each turn.
+			   The \emph{exemplar} bar shows the feature’s last exemplar, and the \emph{average} bar
+			   is the value of the feature after adding the last exemplar to the pool.
+			   Note that the first turn appears empty since the initial value of the feature is 0.]
+		{\includegraphics[width=0.47\textwidth]{schwa_comp_010509}
+	\label{fig:schwa_length_bars}}
+	\caption[Influence of difference convergence rates on the system's accommodation]
+		{Illustration of the effect of different convergence rates on the updates of the system's  realization of a two-dimensional feature (left) and a one-dimensional feature (right).}
+	\label{fig:validation_sensitivity}
+	\todo[inline]{refer to this figure in 1-2 places (probably when talking about calculation method. say that higher convergence is likely to converge too quickly and overshoot if the user's input is not stable (as can be shown in \cref{tab:validation_baseline}))}
+\end{figure}
+%
 After obtaining the preference of each participant, the degree of convergence was examined per utterance in the shadowing phase.
-The participants were grouped based on their convergence behavior:
-One group of participants showing low to no tendency to converge (\SI{\le 10}{\percent} of their utterances),
-the second, with varying degrees of convergence (\SIrange{10}{90}{\percent}),
-and a third group of participants who were very sensitive to the stimuli's variation (\SI{\ge 90}{\percent} of their utterances).
-We refer to these groups as \emph{Low} (\SI{23}{\percent} of participants), \emph{Mid} (\SI{50}{\percent}), and \emph{High} (\SI{27}{\percent}), respectively.
-The feature's classifier was determined on the fly, so that the prediction for each utterance was decided based on the stimulus type to which the participant was listening (e.g., a classifier trained on synthetic stimuli was used for participants listening to such stimuli).
+The participants were grouped based on their convergence behavior in the original experiment:
+One group of participants showed low to no tendency to converge (converged in \SI{\le 10}{\percent} of their utterances),
+the second had varying degrees of convergence (\SIrange{10}{90}{\percent}),
+and a third group of participants who were very sensitive to the stimuli (\SI{\ge 90}{\percent}).
+This grouping enables analyses based on collective vocal behaviors instead of individual differences.
+The groups are labeled \emph{Low} (\SI{23}{\percent} of participants), \emph{Mid} (\SI{50}{\percent}), and \emph{High} (\SI{27}{\percent}), respectively.
+The classifier was determined on the fly, so that the prediction for each utterance was decided based on the stimulus type to which the participant was listening (for instance, a classifier trained on synthetic stimuli was used for participants listening to such stimuli).
+For validation purposes, the shadowing phase was treated as an annotation task of the realized variation in the participants' utterances.
+The three \enquote{annotators} are the stimuli themselves (\emph{Stim}), the online classification of system's representation of the feature (\emph{Sys}), and additional labels from the training dataset used as references (\emph{Ref}).
 
-For the purpose of the validation, we regard the shadowing phase as an annotation task of the realized variation in the utterances.
-The three annotation sets are the stimuli themselves (\emph{Stim}), the system's online classification of the participants' production (\emph{Sys}), and the labels obtained as additional references for the participants' productions (\emph{Ref}).
-Note that \SI{100}{\percent} would mean complete convergence to every stimulus, which cannot be reasonably expected \citep[cf.][]{Gessinger2017Interspeech}.
-The same holds for the Cohen's kappa ($\kappa$) values\footnote{as calculated by the \emph{kappa2} command of the \emph{irr} R package, v0.84, \url{https://cran.r-project.org/package=irr}}, which are expected to be lower for \emph{Low}, as a lower degree of convergence was found among these participants.
-As \cref{tab:validation_shadow_similarity} shows, convergence was found in \SI{48}{\percent} of the utterances for \emph{Sys-Stim} and \emph{Ref-Stim}.
-However, the \emph{Ref-Sys} similarity is only \SI{66}{\percent}, which means that convergence was found in different instances.
-The $\kappa$ values in \cref{tab:validation_shadow_kappa} give an additional view on these results.
-The \emph{Ref-Sys} agreement is around 0.2 (fair agreement) for \emph{Mid}, but much lower for the other two groups,
-confirming that more differences are expected to be found between \emph{Sys-Stim} and \emph{Ref-Stim} in the \emph{Low} and \emph{High} groups.
-Moreover, \emph{Sys-Stim} shows greater variation of $\kappa$ values across the three groups, indicating higher separation between the three categories of convergence behavior.
-This provides a more meaningful overview of the participants' convergence patterns.
+The Cohen's kappa ($\kappa$) values\footnote{calculated by the \texttt{kappa2} command of the \texttt{irr} R package v0.84, \url{https://cran.r-project.org/package=irr}} for \emph{Low} are expected to be lower, as a lower degree of convergence was found among these participants.
+%As \cref{tab:showcase_results} shows, convergence was found in \SI{48}{\percent} of the utterances for \emph{Sys-Stim} and \emph{Ref-Stim} but only in \SI{66}{\percent} for \emph{Ref-Sys}, which means that convergence was found in different instances.
+%\todo{not clear what the sentence above wants to say}
+\cref{tab:showcase_results} shows that \emph{Ref-Sys} has $\kappa = 0.2$ (fair agreement) for the \emph{Mid} group, but lower for the other two groups.
+This indicates that the reference values, which supposedly represent some universal average of the feature, indeed match the production of the participants that didn't deviate too greatly from their base production values, which reinforces the fact that the stimuli's influence on them was limited to either direction.
+The $\kappa$ values for \emph{Sys-Stim} describe how the system's representations matched the stimuli presented to the participants.
+Since the system accommodates to the participants' performance, these values exhibit how similarly to the participants of each group the system behaved.
+The \emph{High} group achieved $\kappa = 0.81$ (strong agreement), showing that the system became very similar to the users sensitive to changes.
+Contrarily, the $\kappa$ value for the \emph{Low} group is -0.57 (moderate \emph{negative} agreement), showing that the system, like the participants, did not converge to -- and potentially diverged from -- the experiment's stimuli.
 % kappa itepratation classes taken from http://www.statisticshowto.com/cohens-kappa-statistic/
-
-\section{Conclusion and future work}
-\label{sec:conclusion}
-
-We have introduced a \acf{sds} with phonetic convergence capabilities.
-The system is able to track the state of configured phonetic features and change its \acf{tts} output accordingly, based on an internal convergence model.
-This combines work done in the fields of phonetic convergence and adaptive \acp{sds}.
-Many aspects of the system are customizable, which makes it flexible in terms of possible supported scenarios.
-This includes multiple parameters defining the target phonetic features, which allows experimentation with different features.
-The system can run on a separate server, which makes it easier to scale its use.
-
-In addition, we replicated a shadowing experiment, which examined phonetic convergence regarding certain features, showcasing the \ac{sds}'s performance and simulation capabilities.
-Running the experiment in this way not only saved time by automating the annotation and phonetic analysis, but also offered additional insight such as visualization and on-the-fly classification.
-
-By validating the system in this way, we are confident that phonetic convergence can be studied using our \ac{sds} in a more objective way, focused on \ac{hci}.
-We firmly believe that this is one step forward toward personalized, phonetically aware \acp{sds}, which are likely to enable more natural and efficient interaction.
-
+%
 \begin{table}[t]
 	\centering
-		\begin{tabularx}{\linewidth}{X*{3}{S[table-format=2.0]}}
-			\toprule
-			Group & {\emph{Sys}-\emph{Stim}} & {\emph{Ref}-\emph{Stim}} & {\emph{Ref}-\emph{Sys}} \\
-			\midrule
-			\emph{Low}  & {<1} &  7 & 16 \\
-			\emph{Mid}  &  22  & 23 & 32 \\
-			\emph{High} &  26  & 18 & 18 \\
-			All   		&  48  & 48 & 66 \\
-			\bottomrule
-		\end{tabularx}
-%		\caption{Similarity (\si{\percent})}
-		\label{tab:validation_shadow_similarity}
+	\caption[Cohen's Kappa scores of system's validation]
+		{Percent of convergence cases and $\kappa$ scores of comparisons between the three criteria for each of the participant groups.
+		Positive $\kappa$ scores show to agreement between the annotations (here, the feature's realization category) of the two \enquote{annotators}.
+		Negative scores indicate disagreement, and scores close to zero point to a random-like relation.}
+	\label{tab:showcase_results}
+	\begin{tabularx}{\linewidth}{X
+								 *{3}{S[table-format=2.0]}
+								 @{\hskip 1.4cm}
+								 *{3}{S[table-format=1.2, table-space-text-pre={$-$}, table-space-text-post={\,***}]}}
+		\toprule
+		\multirow{2}{*}{Group} &
+		\multicolumn{3}{c}{Convergence cases (\si{\percent})} &
+		\multicolumn{3}{c}{Cohen's Kappa ($\kappa$)}\\[0.2cm]
+		&
+		{\emph{Sys}-\emph{Stim}} & {\emph{Ref}-\emph{Stim}} & {\emph{Ref}-\emph{Sys}} &
+		{\emph{Sys}-\emph{Stim}} & {\emph{Ref}-\emph{Stim}} & {\emph{Ref}-\emph{Sys}}\\
+		\midrule
+		Low		& {<1} &  7 & 16 & -0.57\,*** & -0.08		& 0.17		\\
+		Mid		&  22  & 23 & 32 & -0.15\,*   & -0.15\,*	& 0.27\,***	\\
+		High	&  26  & 18 & 18 &  0.81\,*** & -0.04		& 0.03		\\[0.1cm]
+		All		&  48  & 48 & 66 & -0.11\,*   & -0.13\,**	& 0.21\,***	\\
+		\bottomrule
+	\end{tabularx}
 \end{table}
-\begin{table}
-		\begin{tabularx}{\linewidth}{X*{3}{S[table-format=2.2]}@{\quad}}
-			\toprule
-			Group & {\emph{Sys}-\emph{Stim}} & {\emph{Ref}-\emph{Stim}} & {\emph{Ref}-\emph{Sys}} \\
-			\midrule
-			\emph{Low}  & -0.57*** & -0.08   & 0.17    \\
-			\emph{Mid}  & -0.15*   & -0.15*  & 0.27*** \\
-			\emph{High} &  0.81*** & -0.04   & 0.03    \\
-			All   		& -0.11*   & -0.13** & 0.21*** \\
-			\bottomrule
-		\end{tabularx}
-%		\caption{Agreement (Cohen's $\kappa$).
-%			\enquote*{*} means $p$~value $<0.05$, \enquote*{**} means $p$~value $<0.005$, and \enquote*{***} means $p$~value $<0.0005$}
-		\label{tab:validation_shadow_kappa}
-	\caption[Similarity and agreement evaluation of system and stimulus sets]{A summary of the similarity and agreement between the system's (\emph{Sys}), references (\emph{Ref}), and stimuli (\emph{Stim}) annotations of the shadowing phase productions.}
-	\label{tab:validation_shadow}
-\end{table}
-	\todo{somehow combine these tables. or maybe replace it with a better analysis}
+%
+%\begin{table}[t]
+%	\centering
+%		\begin{tabularx}{\linewidth}{X*{3}{S[table-format=2.0]}}
+%			\toprule
+%			Group & {\emph{Sys}-\emph{Stim}} & {\emph{Ref}-\emph{Stim}} & {\emph{Ref}-\emph{Sys}} \\
+%			\midrule
+%			\emph{Low}  & {<1} &  7 & 16 \\
+%			\emph{Mid}  &  22  & 23 & 32 \\
+%			\emph{High} &  26  & 18 & 18 \\
+%			All   		&  48  & 48 & 66 \\
+%			\bottomrule
+%		\end{tabularx}
+%%		\caption{Similarity (\si{\percent})}
+%		\label{tab:validation_shadow_similarity}
+%\end{table}
+%\begin{table}
+%		\begin{tabularx}{\linewidth}{X*{3}{S[table-format=2.2]}@{\quad}}
+%			\toprule
+%			Group & {\emph{Sys}-\emph{Stim}} & {\emph{Ref}-\emph{Stim}} & {\emph{Ref}-\emph{Sys}} \\
+%			\midrule
+%			\emph{Low}  & -0.57*** & -0.08   & 0.17    \\
+%			\emph{Mid}  & -0.15*   & -0.15*  & 0.27*** \\
+%			\emph{High} &  0.81*** & -0.04   & 0.03    \\
+%			All   		& -0.11*   & -0.13** & 0.21*** \\
+%			\bottomrule
+%		\end{tabularx}
+%%		\caption{Agreement (Cohen's $\kappa$).
+%%			\enquote*{*} means $p$~value $<0.05$, \enquote*{**} means $p$~value $<0.005$, and \enquote*{***} means $p$~value $<0.0005$}
+%		\label{tab:validation_shadow_kappa}
+%	\caption[Similarity and agreement evaluation of system and stimulus sets]{A summary of the similarity and agreement between the system's (\emph{Sys}), references (\emph{Ref}), and stimuli (\emph{Stim}) annotations of the shadowing phase productions.}
+%	\label{tab:validation_shadow}
+%	\todo{combine into one table. add \% sign to upper}
+%\end{table}
 
+
+\todo[inline]{put this in general discussion}
 Future work will pursue two independent directions:
 regarding phonetic convergence, supporting more features will make the system more comprehensive and useful for studying a wider range of phenomena.
 Specifically, adding support for supra-segmental (i.e., prosodic) features will enable replication of experiments similar to, e.g., \citet{Levitan2014acoustic, Levitan2016implementing} in the same manner as in \cref{sec:showcase}.
@@ -456,27 +495,7 @@ The second research question can be investigated by comparing the users' speech 
 Additionally, to test the system's influence on users' speech, the users can train with an intelligent \acf{call} or \acf{capt} system, which will change its learner model based on their input.
 Task completion rate, performance accuracy, and completion time metrics can be used to evaluate how helpful the system is.
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\linewidth]{pipeline}
-	\caption[Phonetic convergence algorithm pipeline]{Overview of the phonetic convergence pipeline used in the computational model.
-		Rectangles represent steps where an action is performed, round rectangles are inputs (either for external resources or from the system), and diamonds stand for decision points.
-		When a decision node does not have a \enquote{no} outcome it means that the process is terminated (and therefore no convergence occurs) if the condition is not met.
-		The pipeline can only be successfully completed at the \enquote{Set feature's new value} node.
-		However, if the \enquote{Add exemplar} action was performed prior to termination, the exemplar is not removed and will be taken into consideration the next time the pipeline is triggered for the feature with which it is associated.
-		The \enquote{feature definitions} come from the configuration file and can be changed by the user.}
-	\label{fig:adaptation_module_pipeline}
-\end{figure}
-
-\todo{fix in figure: two ``yes''es are going out of the Convergence Limited block}
-
-\todo{put this figures somewhere where the model is presented, and then put a reference to it.}
-
-\todo[inline]{somewhere in the thesis where evaluation of an actual system is discussed, talk in detail about the challenge that there is no absolute correct answer regarding how and how much to converge (user dependent, etc.) and for the same reasons there is no gold standard to compare against. so need to find other criteria for evaluation.}
-
-\section{Dialogue example}
-\label{app:dialogue_example}
-\todo{Put a relevant and interesting chat example (if that's even necessary here)}
+\todo{Put a relevant and interesting chat example (if that's even necessary here). or make several examples and put them all in an appendix}
 %\begin{figure}[h!]
 %	\centering
 %	\adjustbox{max width=\linewidth}{\input{figures/chat_example.tikz}}

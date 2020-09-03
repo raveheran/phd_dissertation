@@ -13,14 +13,14 @@ The implementation and integration details as well as a demonstration of manipul
 An implementation of the pipeline introduced in \cref{sec:pipeline_representation} is presented here as an independent module for \acp{sds}.
 It is shown how the statistical components from \cref{chap:statistical_model} can be added to it to take advantage of the capabilities of both approaches.
 This suggested implementation is an example of how the model works while keeping the complexity of each step to a minimum.
-While supra-segmental features can be handled as well, only segmental features are discussed here, as they are less represented in accommodation modeling for computer-based systems and they require additional considerations, like segment context and local manipulation, as demonstrated in this chapter.
-See \citet{Raveh2017SemDial} for further motivation and explanations.
-The \ac{asp} module described here is integrated into the \ac{e2e} \ac{sds} presented in \cref{chap:web-based_responsive_spoken_dialogue_system} (and cf.\ \cref{fig:adaptation_module_pipeline}).
+While supra-segmental features can be handled as well, only segmental features are discussed here, as they are less represented in accommodation modeling for computer-based systems and they require additional considerations, like segment context and local manipulation, as demonstrated in this chapter (and see \citet{Raveh2017SemDial}).
+Thanks to the independence of this module, it can be added into any existing system that can provide the user's speech signal as input and a \ac{tts} module that can receive its output.
+The \ac{sds} presented in \cref{chap:web-based_responsive_spoken_dialogue_system} has the \ac{asp} module integrated into it.
 
 \subsection{Computational model}
 \label{subsec:computational_model}
 
-The implementations of the pipeline's steps will be explained using the following feature definition example, which describes the feature \textit{@\_length}, i.e., length of a segment containing the phoneme schwa (\textipa{[@]}, and cf.\ \cref{subsec:target_features_HCIConv}):
+The implementations of the pipeline's steps will be explained using the following feature definition example, which describes the feature \emph{@\_length}, i.e., length of a segment containing the phoneme schwa (\textipa{[@]}, and cf.\ \cref{subsec:target_features_HCIConv}):
 %
 \begin{Verbatim}[tabsize=4, commandchars=\\\{\}]
 	- \textbf{`@\_length'}:
@@ -30,7 +30,7 @@ The implementations of the pipeline's steps will be explained using the followin
 			\textbf{minimum}: 0 
 			\textbf{maximum}: 80
 			\textbf{measure}: duration
-			\textbf{calculation}: decaying average
+			\textbf{calculation}: average
 			\textbf{sensitivity}: 0.5
 \end{Verbatim}
 %
@@ -46,7 +46,7 @@ For that, an \ac{asr} engine that emits phoneme times is required.
 Here, CMU Sphinx\footnote{\url{https://cmusphinx.github.io/}} was used, with extended functionality to support the emission of phoneme-level information.
 This additional functionality was built specifically for this purpose (and as part of the system described in \cref{chap:web-based_responsive_spoken_dialogue_system}), with an emphasis on phoneme-boundary accuracy.
 Each feature is represented by a YAML\footnote{YAML Ain't Markup Language \url{http://yaml.org/}} dictionary entry, which in turn contains a dictionary itself, where each key-value pair refers to a property of that feature that is relevant for the system's accommodation.
-Concretely, the phoneme \textipa{[@]} is labeled as \textit{AX} in the German CMU phonemeset, which was the phonemeset used in CMU Sphinx.
+Concretely, the phoneme \textipa{[@]} is labeled as \emph{AX} in the German CMU phonemeset, which was the phonemeset used in CMU Sphinx.
 This is defined by the \texttt{phoneme} key in the feature definition above.
 The key \texttt{measure} sets the measure by which this feature is evaluated; here, its duration.
 Other measures are \enquote{formants} (for vowel quality), \enquote{category} (for categorical differences), and more.
@@ -58,7 +58,7 @@ Phonemes not ascribed to any defined feature are ignored.
 \label{subsubsec:filtering_exemplars}
 
 Seeing that segmental features are detected merely based on a phoneme in which they \emph{may} occur, additional filtering is required to retain only those instances where they do.
-For example, the target feature \textit{@\_length} introduced in \cref{subsubsec:detecting segment exemplars} aims to capture the German phonological process of elision or epenthesis of \textipa{@} in word-final \textit{<-en>}.
+For example, the target feature \emph{@\_length} introduced in \cref{subsubsec:detecting segment exemplars} aims to capture the German phonological process of elision or epenthesis of \textipa{@} in word-final \emph{<-en>}.
 %
 %(simplified version adapted from \citet[pp.\,142--143]{Benware1986phonetics}):
 %
@@ -72,7 +72,7 @@ For example, the target feature \textit{@\_length} introduced in \cref{subsubsec
 %
 This filtering step comes to add any linguistic considerations related to the phonetic feature in question beside the phoneme itself.
 Such considerations can be phonemic context, defined as a phoneme regular expression in the \texttt{context} property, a range of acceptable values, defined by the \texttt{minimum} and \texttt{maximum} keys, or both.
-In the case of \textit{@\_length} feature above, only segments appearing in the phonemic context corresponds to a (simplified) context of the phonological rule described in \cref{eq:schwa_elision_rule} are considered, and the feature's representation cannot go above 80 (\si{\milli\second}).
+In the case of \emph{@\_length} feature above, only segments appearing in the phonemic context corresponds to a (simplified) context of the phonological rule described in \cref{eq:schwa_elision_rule} are considered, and the feature's representation cannot go above 80 (\si{\milli\second}).
 The range's role is to filter out segments with unrealistic values (extremely long segment, unreliable formant values, etc.).
 For example, a schwa segment longer than \SI{80}{\milli\second} would sound very unnatural.
 Any linguistic knowledge about the feature nature can be reflected in this step.
@@ -99,7 +99,7 @@ For instance, the matrix in
 \noindent
 %
 the value $v_{21}$ is the first dimension of the second exemplar of the feature.
-The model also defines a \textit{pool size}, which determines how many exemplars are kept for each feature.
+The model also defines a \emph{pool size}, which determines how many exemplars are kept for each feature.
 This parameter aims to represent short-term mental memory of a feature's pronunciation.
 When a new exemplar is stored, it is added to the pool (a memory matrix).
 When a feature's pool is reached its maximal size, the oldest exemplar is removed (forgotten) to make space for the newest one.
@@ -125,7 +125,7 @@ where each row refers to a single \emph{dimension} of the feature, rather than a
 
 The new value of a feature is calculated based on its exemplar pool.
 The way the values in the pool are used to determine the change in the system's representation of the feature is a key aspect of the accommodation process.
-A \textit{calculation method} is needed to define this relationship.
+A \emph{calculation method} is needed to define this relationship.
 Different calculation methods can represent different types of relations and approaches.
 For example, it can be simulated that people are more likely to converge to utterances they heard recently than to something they heard before.
 A function $g$ is defined so that it maps a vector to a scalar (i.e., one feature dimension) and a function $\mathcal{G}$ which maps a matrix to a vector (the entire feature) by applying $g$ to all the row vectors in $\mathcal{F}$:
@@ -135,19 +135,10 @@ A function $g$ is defined so that it maps a vector to a scalar (i.e., one featur
 	\mathcal{G}: \mathbb{Q}^{n \times m} \longrightarrow \mathbb{Q}^{m}, \qquad g: \mathbb{Q}^{m} \longrightarrow \mathbb{Q}.
 \end{equation}
 %
-\textit{Decaying average} is used here as a simple way to simulate the effect on the exemplars in the pool.
-This measure is similar to the regular average, only that in this variation each value contributes exponentially less to the overall average, so that the last (newest) value contributes the most.
-Adding such property to the measure gives more weight to new exemplars that were received chronologically closer to the current turn and thus makes the change more strongly influenced by the productions closer to the accommodation change.
-%Using this measure comes to support the analogy of the exemplar pool to short-term memory, which remembers recent event better than older ones.
-Decaying average is defined here as
-\begin{equation}
-	\label{eq:decaying_average}
-	\mu_n = \frac{1}{n}\sum_{i = 2}^{n}(\eta v_i + (1 - \eta )\mu_{i-1}),
-\end{equation}
-\eqname{Decaying average}
-%
-with $n$ being the number of elements in a row of the transposed feature matrix (\cref{eq:transposed_feature_matrix}), $v_i$ is the value of the $i$-th element, $\eta$ is the decay rate, and $\mu_{i-1}$ the previously calculated decaying average of the previous elements.
+\noindent
 Importantly, any function that maps vectors to scalars can be used to experiment with different methods.
+For the demonstration in \cref{sec:showcase} decaying average is used (see \cref{subsubsec:tracked_features} for details).
+
 Before setting the updated value as the feature's value, the balance between the feature's current value and its calculated pool value needs to be set.
 This is defined by the \texttt{sensitivity} (convergence rate), which determines the sensitivity of this feature (see \cref{sec:parameters}) and is implemented as
 %
@@ -190,10 +181,10 @@ By reflecting the users' utterance with diverged pronunciation (instead of expli
 
 The final step is to set the newly calculated value as the new value for the feature in the system's representation.
 After this step, this new value will be used whenever this feature is used by a system using this model (as shown in \cref{subsec:extended_sds}).
-Although this step is fairly straight forward, there is still an important issue to take into consideration here, namely \textit{user imitation}.
+Although this step is fairly straight forward, there is still an important issue to take into consideration here, namely \emph{user imitation}.
 After some turns, it might happen that the model calculated a value very close to the user's input and then continues to follow the user's production values, resulting in imitation of the user.
 To avoid imitation, the new value is limited in how close it is allowed to get to the exemplars.
-This is done by the global property \texttt{ConvergenceThreshold}, which defines the maximally allowed proximity (in percentage) the new value is allowed to have:
+This is done by the global property \emph{ConvergenceThreshold}, which defines the maximally allowed proximity (in percentage) the new value is allowed to have:
 Setting this property to 0.8 (\SI{80}{\percent} means that the new value is not allowed to be changed more than (\SI{80}{\percent} of the difference between the current value and the pool's value (and be set to (\SI{80}{\percent} in case it exceeded this threshold).
 Of course, the limitation can also be set to 1 to allow the new value to be as similar as \SI{100}{\percent} to the pool's value -- i.e., not limiting it.
 The maximal value allowed by the limitation is defined by
@@ -370,7 +361,7 @@ Finally, The original signal was used as the source and was filtered by the mani
 % for the first method, it is also necessary to re-synthesize the audio (overlap-add Moulines & Charpentier (1990), who called it Time-Domain Pitch-Synchronous Overlap-and-Add (TD-PSOLA))
 The neural-based manipulation is based on Tacotron\footnote{Tacotron2 architecture based on the implementation in the repository \url{https://github.com/NVIDIA/tacotron2}} \citep{Shen2018natural}, which is trained to generate spectral information directly from textual input.
 To capture the categorical phoneme variance of the feature \emph{\textipa{[\c{c}]} vs.\ \textipa{[k]}}, the system was trained on \emph{phoneme} input (as opposed to orthographic forms).
-For this, the neutral voice subset of the PAVOQUE dataset\footnote{\url{https://github.com/marytts/pavoque-data}} \citep{Steiner2013pavoque} was used ($\sim$\SI{5.8}{\hour} of speech).
+For this, the neutral voice subset of the PAVOQUE dataset\footnote{\url{https://github.com/marytts/pavoque-data}} \citep{Steiner2013pavoque} was used, which comprises $\sim$\SI{5.8}{\hour} of speech.
 The phonetic transcriptions were done automatically based on the transcriptions provided with the dataset and were manually verified and corrected.
 \todo{need more details?}
 After training, the model was able to generate synthesized speech based on an input of an arbitrary phoneme sequence.
@@ -386,7 +377,7 @@ It is important to note that the other-category variant of a word was not includ
 		\includegraphics[width=1.5\textwidth]{ic_ik_manipulation}
 		\caption[Oscillograms and spectrograms of categorical manipulation comparison]
 			{Oscillograms and spectrograms of the word \emph{\enquote{König}} (king) and \emph{\enquote{wichtig}} (important) pronounced originally with \textipa{[\c{c}]} sounds, which were changed into \textipa{[k]} sounds.
-			The x-axis shows the chronological phonetic transcription over time (\SI{2.3375}{\second} in total) and the spectrograms' y-axes show the frequencies up to \SI{5000}{\hertz}.
+			The x-axis shows the chronological phonetic transcription over time (\SI{2.34}{\second} in total) and the spectrograms' y-axes show the frequencies up to \SI{5000}{\hertz}.
 			The segments of the modified phonemes are marked with red circles.
 			The purple arrows at the end of the \textipa{[k]} segments show that the model even captured the voicing assimilation to the following vowel.
 			The vertical lines show the phoneme segmentation.
