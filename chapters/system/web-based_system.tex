@@ -215,7 +215,31 @@ MaryTTS \citep{LeMaguer2017uprooted} was used as the \ac{tts} engine of the syst
 \section{Online and Offline paths}
 \label{sec:online_and_offline_paths}
 
-\missingfigure{online and offline paths}
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.85\linewidth]{online_offline_small}
+	\caption[Online (orange) and offline (blue) paths of the responsive \acl{sds}]
+		{Online and offline paths of the system.}
+	\label{fig:online_offline_paths}
+\end{figure}
+
+The system can operate in two modes, as shown in \cref{fig:online_offline_paths}:
+Online -- turn-based real-time interaction via the \ac{gui} (\cref{subsec:graphical_user_interface}); and offline -- on-demand analysis of already existing interaction data, either from a recorded online sessions or any other dataset.
+The accommodation-related parts of the system (roughly corresponding to the \emph{server} and \emph{resources} blocks in \cref{fig:web-based_architecture}) are common to the two paths, which makes it easy to switch between the two.
+The differences are in how the data is fed to the system and how the output is processed and visualized.
+The main difference is that in the online path the process recurrent and both the user's input and the system's current state are used in the processing of the next turn.
+Depending on the scenario defined in the domain file, there could always be another turn, either of the user or the system, to continue the interaction.
+In the offline path the data scope is, naturally, pre-defined and finite.
+Technically, the dataset is represented and processed the same way as an online interaction, but there is no need to output the system's state to a user.
+The common representation also makes it easy to compare pre-recorded interactions with live ones.
+The output of the accommodation model after each turn is handled differently in both paths as well.
+In online interactions, the output is sent on a turn-by-turn basis to both the web-based \ac{gui} for the different visualizations (as in \cref{fig:plot}) and back to the user for auditory response.
+The offline path doesn't need to interact with a user, so the entire analysis is saved together, along with some additional analysis.
+This output can then be used for further statistical analysis and be visualized separately using other tools (as in \cref{fig:hds_dds_time_comparisons}).
+For using the online mode, the system needs to run as a server and be accessed via a web browser.
+The offline mode can be used either directly from the command line or programmatically from another application.
+As explained in \cref{subsubsec:interaction_area}, pre-recorded files can also be used from the \ac{gui}.
+Using this option for all user inputs would effectively be the same as using the offline path, but would require much more time due to the human manual operation.
 
 \section{Showcase: simulating a shadowing experiment}
 \label{sec:showcase}
@@ -230,11 +254,6 @@ Finally, using the system, the experiments becomes dialogue-based rather than a 
 
 \subsection{Setup adjustments}
 \label{subsec:setup_adjustments}
-
-%\subsection{Target features and stimuli}
-%\label{subsec:target_features_and_stimuli}
-
-\todo[inline]{consider only mention the eE feature in the showcase, because in the validation only this one is treated}
 
 For the experiment simulation, two of the three features investigated in the original experiment (\cref{chap:shadowing_experiment_with_natural_and_synthetic_voices}) were used.
 In addition to the \textipa{@}-length feature shown in \cref{subsec:computational_model} the definition of the feature \textipa{[E:]}~vs.~\textipa{[e:]} below was included.
@@ -266,7 +285,6 @@ To map these underlying values to a specific variant, the system associates a cl
 			\textbf{calculation}: decaying average
 			\textbf{sensitivity}: 0.3
 \end{Verbatim}
-\todo[inline]{make sure the verbatim doesn't get split by the table in the next page}
 %
 %The value of the key \emph{measure} is \enquote{formants}, which means that this feature is evaluated by the segment's formant values (as specified in the corresponding signal processing script).
 %The values of the \emph{minimum} and \emph{maximum} keys stand for the acceptable value range for this feature.
@@ -286,6 +304,14 @@ Decaying average is defined here as
 %
 \noindent
 where $n$ is the number of exemplars in memory, $\eta$ is the decay rate (here, 0.5), $\mu_{i-1}$ is the accumulated decaying average from the previous exemplar, and $v_i$ is the value of the $i$-th exemplar. 
+
+Even though more aspects of it could be automated, the experimental procedure stayed as faithful as possible to the procedure of the original experiment.
+The domain file created for the showcase was designed to substitute the role of the experimenter in the shadowing phase (cf.\ \cref{fig:HCIConvFlow}), i.e., presenting -- and speaking -- the next stimulus to the participant.
+The stimulus order from the original experiment's baseline phase was preserved and semi-randomized (using the same logic) in the shadowing phase.
+It was also configured to perform the transitions between the phases.
+Although it should be assumed that the user indeed repeats presented utterance, the system nonetheless verifies that the user's utterance matches the current stimulus using the customized language model described in \cref{subsubsec:speech_processing}
+
+% A shortened example of the shadowing phase's flow is shown in \cref{app:dialogue_example}.
 
 %\begin{description}[labelindent=1.3cm, labelwidth=\widthof{\quad \textipa{[I\c{c}]}~vs.~\textipa{[Ik]}}]
 %	\item [\textipa{[E:]}~vs.~\textipa{[e:]}] in word-medial $\langle$ä$\rangle$
@@ -312,18 +338,6 @@ where $n$ is the number of exemplars in memory, $\eta$ is the decay rate (here, 
 	\caption[Example sentence for selected phonetic features]{Examples of stimuli containing the target features. Each stimulus contains only one feature.}
 	\label{tab:target_features}
 \end{table}
-
-%\subsection{Experimental procedure}
-%\label{subsec:experimental_procedure}
-
-The experimental procedure stayed as faithful as possible to the procedure of the original experiment, even though more aspects of it could be automated.
-
-The domain file created for this showcase was designed to substitute the role of the experimenter in the shadowing phase (cf.\ \cref{fig:HCIConvFlow}), i.e., presenting -- and speaking -- the next stimulus to the participant.
-The stimulus order from the original experiment's baseline phase was preserved and semi-randomized (using the same logic) in the shadowing phase.
-It was also configured to perform the transitions between the phases.
-Although it should be assumed that the user indeed repeats presented utterance, the system nonetheless verifies that the user's utterance matches the current stimulus using the customized language model described in \cref{subsubsec:speech_processing}
-
-% A shortened example of the shadowing phase's flow is shown in \cref{app:dialogue_example}.
 
 \subsection{Classifiers training}
 \label{subsec:classifiers_training}
@@ -397,7 +411,6 @@ The value 0.3 provided the highest results.% and was therefore used through the 
 	\caption[Influence of difference convergence rates on the system's accommodation]
 		{Illustration of the effect of different convergence rates on the updates of the system's  realization of a two-dimensional feature (left) and a one-dimensional feature (right).}
 	\label{fig:validation_sensitivity}
-	\todo[inline]{refer to this figure in 1-2 places (probably when talking about calculation method. say that higher convergence is likely to converge too quickly and overshoot if the user's input is not stable (as can be shown in \cref{tab:validation_baseline}))}
 \end{figure}
 %
 After obtaining the preference of each participant, the degree of convergence was examined per utterance in the shadowing phase.
@@ -482,18 +495,6 @@ Contrarily, the $\kappa$ value for the \emph{Low} group is -0.57 (moderate \emph
 %	\label{tab:validation_shadow}
 %	\todo{combine into one table. add \% sign to upper}
 %\end{table}
-
-
-\todo[inline]{put this in general discussion}
-Future work will pursue two independent directions:
-regarding phonetic convergence, supporting more features will make the system more comprehensive and useful for studying a wider range of phenomena.
-Specifically, adding support for supra-segmental (i.e., prosodic) features will enable replication of experiments similar to, e.g., \citet{Levitan2014acoustic, Levitan2016implementing} in the same manner as in \cref{sec:showcase}.
-
-Regarding user acceptance, it would be interesting to examine whether users show any preference toward an \ac{sds} that converges to their speech on the phonetic level, and whether they would change their speaking style based on the system's output, forming an interaction with mutual and dynamic convergence.
-The first research question can be tested by comparing user interaction with a baseline system and one with convergence capabilities, and evaluating the users' performance and satisfaction.
-The second research question can be investigated by comparing the users' speech when interacting with either system configuration.
-Additionally, to test the system's influence on users' speech, the users can train with an intelligent \acf{call} or \acf{capt} system, which will change its learner model based on their input.
-Task completion rate, performance accuracy, and completion time metrics can be used to evaluate how helpful the system is.
 
 \todo{Put a relevant and interesting chat example (if that's even necessary here). or make several examples and put them all in an appendix}
 %\begin{figure}[h!]

@@ -29,7 +29,7 @@ As these parts of the process are, by definition, dependent on each other, the c
 
 As accommodation  happens automatically and seamlessly in human interlocutors' cognition, it is hard to say what are the exact steps this process comprises.
 Some key properties stand out when examining many occurrences in different interactions.
-The pipeline presented here aims to capture these properties and offer a defined process of describing the changes.
+The pipeline presented here aims to capture these properties and offer a defined process of describing the changes (see more details in \citet{Raveh2017Interspeech}).
 The advantages of representing this process as a pipeline (as opposed to, e.g., a one-step, end-to-end conversion) is that each facet of the process can be interpreted and controlled separately (see \cref{subsec:computational_model,fig:adaptation_module_pipeline}).
 This enables combining different methods and implementations while keeping the steps independent of each other.
 Therefore, only the \emph{order} of execution is important, which does not introduce any limitation, as long as it is consistent.
@@ -203,6 +203,7 @@ As shown in \cref{sec:convergence_to_natural_and_synthetic_stimuli}, not all par
 Here, sensitivity refers to the degree of overall change toward external speech input.
 Additionally, when one does converge, the sensitivity to changes (i.e., the \enquote{amount of differentiation}) toward a single stimulus might differ as well.
 These two aspects are controlled by the parameter \textit{convergence rate}, which represents the balance between the current and the new speech style.
+Generally, low rate may lead to a slow (and potentially unnoticeable) change, while a high value might lead to a abrupt changes and constant overshooting from the system's side (see \cref{\cref{tab:validation_baseline},fig:validation_sensitivity}).
 For simulating the case where a speaker is not influenced by external speech input (the exemplars in the pool) at all, this rate can be set to zero.
 In that case, the model will ignore the other interlocutor's speech and stick to the current speech style.
 Another difference found among the participants was the total overall convergence degree toward the stimuli, i.e., where does the convergence process stop.
