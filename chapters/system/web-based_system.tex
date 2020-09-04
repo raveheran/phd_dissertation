@@ -238,6 +238,8 @@ The offline path doesn't need to interact with a user, so the entire analysis is
 This output can then be used for further statistical analysis and be visualized separately using other tools (as in \cref{fig:hds_dds_time_comparisons}).
 For using the online mode, the system needs to run as a server and be accessed via a web browser.
 The offline mode can be used either directly from the command line or programmatically from another application.
+As explained in \cref{subsubsec:interaction_area}, pre-recorded files can also be used from the \ac{gui}.
+Using this option for all user inputs would effectively be the same as using the offline path, but would require much more time due to the human manual operation.
 
 \section{Showcase: simulating a shadowing experiment}
 \label{sec:showcase}
@@ -252,11 +254,6 @@ Finally, using the system, the experiments becomes dialogue-based rather than a 
 
 \subsection{Setup adjustments}
 \label{subsec:setup_adjustments}
-
-%\subsection{Target features and stimuli}
-%\label{subsec:target_features_and_stimuli}
-
-\todo[inline]{consider only mention the eE feature in the showcase, because in the validation only this one is treated}
 
 For the experiment simulation, two of the three features investigated in the original experiment (\cref{chap:shadowing_experiment_with_natural_and_synthetic_voices}) were used.
 In addition to the \textipa{@}-length feature shown in \cref{subsec:computational_model} the definition of the feature \textipa{[E:]}~vs.~\textipa{[e:]} below was included.
@@ -288,7 +285,6 @@ To map these underlying values to a specific variant, the system associates a cl
 			\textbf{calculation}: decaying average
 			\textbf{sensitivity}: 0.3
 \end{Verbatim}
-\todo[inline]{make sure the verbatim doesn't get split by the table in the next page}
 %
 %The value of the key \emph{measure} is \enquote{formants}, which means that this feature is evaluated by the segment's formant values (as specified in the corresponding signal processing script).
 %The values of the \emph{minimum} and \emph{maximum} keys stand for the acceptable value range for this feature.
@@ -308,6 +304,14 @@ Decaying average is defined here as
 %
 \noindent
 where $n$ is the number of exemplars in memory, $\eta$ is the decay rate (here, 0.5), $\mu_{i-1}$ is the accumulated decaying average from the previous exemplar, and $v_i$ is the value of the $i$-th exemplar. 
+
+Even though more aspects of it could be automated, the experimental procedure stayed as faithful as possible to the procedure of the original experiment.
+The domain file created for the showcase was designed to substitute the role of the experimenter in the shadowing phase (cf.\ \cref{fig:HCIConvFlow}), i.e., presenting -- and speaking -- the next stimulus to the participant.
+The stimulus order from the original experiment's baseline phase was preserved and semi-randomized (using the same logic) in the shadowing phase.
+It was also configured to perform the transitions between the phases.
+Although it should be assumed that the user indeed repeats presented utterance, the system nonetheless verifies that the user's utterance matches the current stimulus using the customized language model described in \cref{subsubsec:speech_processing}
+
+% A shortened example of the shadowing phase's flow is shown in \cref{app:dialogue_example}.
 
 %\begin{description}[labelindent=1.3cm, labelwidth=\widthof{\quad \textipa{[I\c{c}]}~vs.~\textipa{[Ik]}}]
 %	\item [\textipa{[E:]}~vs.~\textipa{[e:]}] in word-medial $\langle$ä$\rangle$
@@ -334,18 +338,6 @@ where $n$ is the number of exemplars in memory, $\eta$ is the decay rate (here, 
 	\caption[Example sentence for selected phonetic features]{Examples of stimuli containing the target features. Each stimulus contains only one feature.}
 	\label{tab:target_features}
 \end{table}
-
-%\subsection{Experimental procedure}
-%\label{subsec:experimental_procedure}
-
-The experimental procedure stayed as faithful as possible to the procedure of the original experiment, even though more aspects of it could be automated.
-
-The domain file created for this showcase was designed to substitute the role of the experimenter in the shadowing phase (cf.\ \cref{fig:HCIConvFlow}), i.e., presenting -- and speaking -- the next stimulus to the participant.
-The stimulus order from the original experiment's baseline phase was preserved and semi-randomized (using the same logic) in the shadowing phase.
-It was also configured to perform the transitions between the phases.
-Although it should be assumed that the user indeed repeats presented utterance, the system nonetheless verifies that the user's utterance matches the current stimulus using the customized language model described in \cref{subsubsec:speech_processing}
-
-% A shortened example of the shadowing phase's flow is shown in \cref{app:dialogue_example}.
 
 \subsection{Classifiers training}
 \label{subsec:classifiers_training}
@@ -419,7 +411,6 @@ The value 0.3 provided the highest results.% and was therefore used through the 
 	\caption[Influence of difference convergence rates on the system's accommodation]
 		{Illustration of the effect of different convergence rates on the updates of the system's  realization of a two-dimensional feature (left) and a one-dimensional feature (right).}
 	\label{fig:validation_sensitivity}
-	\todo[inline]{refer to this figure in 1-2 places and cite Interspeech 2017 (probably when talking about calculation method. say that higher convergence is likely to converge too quickly and overshoot if the user's input is not stable (as can be shown in \cref{tab:validation_baseline}))}
 \end{figure}
 %
 After obtaining the preference of each participant, the degree of convergence was examined per utterance in the shadowing phase.
