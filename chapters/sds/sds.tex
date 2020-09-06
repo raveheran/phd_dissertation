@@ -141,6 +141,7 @@ In addition to being used as \ac{e2e} \ac{tts} pipelines, these systems can also
 \label{sec:types_of_sdss}
 
 By and large, \acp{sds} can be divided into two main categories, which determine the communication style and behavior of the system: task-oriented systems \citep[e.g.,][]{Wen2016network, Zhao2016towards} and chatbots systems \citep[e.g.,][]{Vinyals2015neural, Li2016deep}.
+The former has a well-defined scope and aims to achieve a specific goal, while the latter is often open-ended with no specific task in mind other than sustaining the conversation with the user.
 \Cref{tab:sds_types} compares these two main categories.
 Vocal accommodation is relevant for both these system categories, but in different ways.
 Task-oriented systems may need to accommodate faster and potentially introduce changes on every turn, leading to sharper, possibly unpleasant changes.
@@ -293,10 +294,30 @@ A roadmap towards such systems is discussed in \cref{subsec:suggested roadmap} a
 \subsection{Dialogue is hard}
 \label{subsec:dialogue_is_hard}
 
-\todo[inline]{talk in detail about the challenge that there is no absolute correct answer regarding how and how much to converge (user dependent, etc.) and for the same reasons there is no gold standard to compare against. so need to find other criteria for evaluation. this is also true for a system that simulates accommodation capabilities (reference to chapter System)}
+As described in \cref{sec:linguistic_accommodation}, accommodation occurs naturally in \ac{hhi} as an integral part of dialogues.
+The social conventions and and unwritten rules of dialogue are implicitly learned by humans, who intuitively know how to apply them and when they can be altered.
+This is an automatic process that is still too complex for integrating into computers.
+Therefore, the way we interact with computers is often immensely different from the communication with other human beings (\cref{subsec:verbal_interaction}).
+Another reason dialogue is hard is the infinitely many possible trajectories of each measured aspect.
+It is always possible to create a dialogue than hasn't been produced before, even with respect to a single aspect like chosen words, floor change, vocal properties, length, or any feature of any modality.
+As if language understanding isn't a hard enough task for computers, the relations between of all these aspects and their influence on one another make this task even more complex.
 
-\citep{Turing1950computing}\ldots
-\todo[inline]{points from Milica's slides}
+The complexity of this task is long acknowledged and it was posed by \citet{Turing1950computing} as an \acs{ai}-complete problem.
+Therefore, it is assumed that substantial, maybe human-like, intelligence is required to addresses its unexpected circumstance, and no specific algorithm or \ac{ml} method is able to solve it \citep[see further reasoning and examples in][pp.\~54-57]{Shapiro1992encyclopedia}.
+Notably, many aspects need to be explicitly split into separate steps and rules for the computer, although human process them as one concept (or at least don't consciously divide it into smaller sub-tasks).
+One example for this is that humans don't strictly distinct between task oriented and chitchat dialogues (\cref{tab:sds_types}), whereas modeling approaches do (although recent hybrid models have the two intertwined to some extent).
+\todo{if need a reference for that, take from page 3 of Milica's slides}
+By extension, humans often switch between the two, as they use both as part of one dynamic dialogue.
+For example, people are good at having an off-topic small-talk at the beginning of a business meeting before switching, gradually or not, to the goal topic (cf.\ discussion about conversation structure and speaker role in \cref{subsec:conversation_intelligence}).
+Furthermore, humans intuitively know how to behave based on the situational context, like when to take the floor, when to stop talking, when to barge in, etc., without the need for explicit signals from the other interlocutor.
+Although there are approaches for teaching computers these dynamic changes \citep[e.g.,][]{Skantze2009incremental}, the gap is still substantial.
+
+As a process that happens as part of a dialogue, accommodation involves some of these challenges (e.g., there may always a pattern never seen before), but within a limited scope.
+Moreover, accommodation entails the additional challenge of no \enquote{correct answer}, i.e., there is no measure of good or bad accommodation in a dialogue.
+Humans might be able to point out if an interlocutor uses accommodation in a terribly wrong way (for example, continuously perfectly imitating or demonstratively attempting to talk differently), but probably wouldn't notice how and whether their conversation partners accommodate to them.
+This poses difficulties on both evaluation and training, because it is not possible to put labels on accommodation measures without making a lot of assumptions.
+Therefore, the modeling approaches present in this work (\cref{chap:computational_model,chap:statistical_model}) concentrate on the \emph{behavior} of a speaker within a conversation (and compared to the behaviors observed in other speakers) rather than modeling how well accommodation was utilized.
+The approach suggested in \cref{subsec:suggested roadmap} can be taken as a general scheme for any kind of mutual dynamics in \ac{hci}, which is applied to vocal properties in this work.
 
 \subsection{Suggested roadmap}
 \label{subsec:suggested roadmap}
