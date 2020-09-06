@@ -79,7 +79,6 @@ such requests are mostly recognizable by pre-defined keywords the system can loo
 Other requests, like inquiring information about a place or booking a flight, require the system to be able to withdraw -- and properly formulate -- information from some source.
 Such tasks require further information (e.g., flight origin and destination, date, price range, etc.) to be completed, or, if said information not provided by the user, additional turns where the system asks for the missing bits.
 This process is called slot-filling.
-\putref{need example reference for slot filling?}
 More complex reactions, and especially in the case of chatbots, demands deeper semantic analysis, as the intention might not be explicitly articulated and in some cases, such a defined intention may not even exist.
 
 %\subsubsection{Tools}
@@ -99,8 +98,6 @@ One commonly used technique is reinforcement learning, which is suitable for mak
 All these conditions determine how flexible and elaborate the system is, and specifically how large is the domain -- or domains -- it can handle.
 
 \putref{references for rule-based system, RL-based system (Milica?), and adapting DM (add sentence about that at the end)}
-
-\todo[inline]{if it helps, can add a graph like the one from Milica's slide: breadth vs.\ depth of domain in SDS (variety vs.\ complexity). replicate the graph Milica showed in her talk (x-axis is breadth and y-axis depth, with some examples along combinations of the axes.}
 
 %\subsubsection{Tools}
 %\label{subsubsec:tools_dm}
@@ -148,7 +145,7 @@ Task-oriented systems may need to accommodate faster and potentially introduce c
 It might also be required to reset the system's speech for each interaction if it's used by more than one user or for different purposes.
 Chatbots, on the other hand, might be able to exploit the fact that they are usually involved in longer conversations, giving them more time to learn the user's speech.
 This could lead to a slower, smoother, and probably less apparent process, which should gradually improve the personalization of the system.
-Another category is voice-activated \ac{cnc} systems, which are arguably not \acp{sds} per se, since they only rarely engage in conversation  or trigger a multi-turn dialogue.
+Another category is voice-activated \ac{cnc} systems, which are arguably not \acp{sds} per se, since they only rarely engage in conversation or trigger a multi-turn dialogue.
 Therefore, such systems do not leave any room for accommodation to occur.
 Nevertheless, \ac{cnc} systems are considered a simple kind of task-oriented \ac{sds} in this work, as ultimately they are designed to achieve a specific task, even if a dialogue is not necessarily required for that.
 Indeed, task-oriented systems like \acp{pa} often offer \ac{cnc} commands as well.
@@ -231,18 +228,16 @@ Social robots gather information in different modalities, like eye gaze and hand
 Accommodation towards embodied interlocutors is especially interesting, as it is closest to face-to-face \ac{hhi}.
 Vocal accommodation has been found in human-robot interaction, e.g., by \citet{Ibrahim2019fundamental}.
 
-\todo[inline]{would it bring any added value to put an image of interaction with NAO and/or Furhat?}
-
 \subsection{Virtual humans and avatars}
 \label{subsec:virtual_humans}
 
 Though commonly used interchangeably in the literature, \acp{vh} and avatars refer to two similar yet distinct concepts.
 On-screen representations of an interlocutor (sometimes of the user) are largely referred to as \emph{avatars}.
-Those can be static images associated with specific speakers,\putref{put Michelle's Interspeech 2020 paper as an example if accepted} but nowadays normally include at least some basic facial expressions and animations.
+Those can be static images associated with specific speakers \citep[as in][]{Cohn2020Interspeech}, but nowadays normally include at least some basic facial expressions and animations.
 In addition, avatars are also used sometimes as a general term for any virtual, graphically rendered interlocutor (including a \ac{vh}).
 \Acp{vh}, on the other hand, are fully depicted humanoids that aim to portray a real human being as closely as possible.
 This typically entails characters with full bodies, but partial figures are used as well, depending on the application.
-Similar to agents with a physical embodiment (\cref{subsec:embodied_agents}), these conversational agents are capable  of multimodal communication.
+Similar to agents with a physical embodiment (\cref{subsec:embodied_agents}), these conversational agents are capable of multimodal communication.
 They can be used in various interactive activities, like language assessment \citep{Peterson2005learning} and therapy \citep{Devault2014simsensei}.
 Experiments have shown vocal accommodation effects in interactions with \acp{vh} with respect to features like speech rate and \ac{f0} \citep{Gijssels2016speech, Staum2010virtually}.
 
@@ -331,15 +326,13 @@ This includes both empiric experimental data and integrable models.
 Furthermore, the technical capability to control the speech output on demand is essential for introducing flexibility in the system's base voice.
 This also includes a mechanism for accumulating phonetic evidence from the user's input relevant for the feature representations used for the accommodation process.
 As these manipulations must be applied in real-time, re-training the \ac{tts} model to capture every change is not only insufficient, but not practical as well.
-This means that the manipulations are done on top of the existing \ac{tts} model, either by modifying the outputted waveform directly or by training a model that can take specific changes in feature description into consideration.
-\putref{if chapter about those methods comes to life, refer to them}
+This means that the manipulations are done on top of the existing \ac{tts} model, either by modifying the outputted waveform directly or by training a model that can take specific changes in feature description into consideration (see \cref{subsec:speech_manipulation}).
 To link between the modeled theoretical knowledge and the audio processing engineering implementations, an additional component must be introduced in the system.
 The role of this component is to feed the system's flexible voice parameters result from the models to express vocal changes, which are ultimately conveyed to the user.
 This emphasizes the notion of the \ac{nlg} module decides \emph{what} the system says while the \ac{tts} module determines \emph{how} it will say it.
 This is further explained and illustrated in \cref{chap:convergence_module_for_sdss,fig:adaptation_module_architecture}.
 
-This work addresses each of those facets.
-\putref{when parts are more final, briefly refer to them here}
+This work addresses each of those facets (see outline on pages \cpagerefrange{outline}{outline_end}).
 These aspects make the task of integrating flexible vocal characteristics into \acp{sds} an involved task, each with its own challenges that requires a profound work to investigate.
 %
 \begin{figure}[t]
@@ -420,15 +413,9 @@ These terms seek to distinguish between the different capabilities that can be i
 \end{description}
 %
 
-% ----------
-% REVIEW: Only mention in case some statistical model is include in the thesis that deals with that (a time-series one or variational autoencoder). in that case briefly say what it means and refer to the relevant chapter
-
-%This work concentrates on facets concerning the properties \emph{characterized} and \emph{variable}, which have been given little attention in \ac{sds} research.
-%Together, these two properties results in a flexible, non-deterministic output derived from a defined core behavior (that might itself vary).
-%Added to the responsive output creates a system that changes with respect to the user according to its own base behavior and probabilistic variations.
-%The balance between the influences from the user input and the system's profile can be defined as well, similarly to the bias utilized in speech adaptation, in the form of \putref{reference to this method)}
-%\todo{sentence about balance might be unnecessary}
-% ----------
+This work concentrates on facets concerning the properties \emph{responsive} (\cref{chap:computational_model}), \emph{characterized}, and \emph{variable} (\cref{chap:statistical_model}), which have been given little attention in \ac{sds} research.
+Together, these properties results in a flexible, non-deterministic output derived from a defined core behavior (that might vary itself).
+Added to the responsive output creates a system that changes with respect to the user according to its own base behavior and probabilistic variations.
 
 \subsection{Systems with accommodation capabilities}
 \label{subsec:systems_with_accommodation_capabilities}
