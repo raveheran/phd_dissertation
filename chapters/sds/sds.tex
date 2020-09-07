@@ -420,17 +420,31 @@ Added to the responsive output creates a system that changes with respect to the
 \subsection{Systems with accommodation capabilities}
 \label{subsec:systems_with_accommodation_capabilities}
 
-\citet{Levitan2016implementing} % the system that (linearly?) entraining. read the deatils again and then say how this differs from the architecture in this paper. also, find references there for more such systems.
+With the advancement of speech and \ac{nlp} technologies, the development of \acp{sds} has been accelerated in recent years.
+These technologies are closing the gaps between computer and human speech quality, and therefore help investigating vocal accommodation in \ac{hci} with system that can more closely simulate human performance.
+Particularly, the overall quality and dynamic manipulation of modern \ac{tts} methods make is possible to change certain aspects in a system's voice (see \cref{subsec:speech_manipulation} for further details and examples).
+\Acp{sds} with vocal accommodation capabilities typically focus on a few phonetic features at most, and sometimes only a single one.
+Even tough this does not over a comprehensive coverage of all vocal changes that can be introduced in a conversation, the method of tracking and adapting the one feature can often be applied to others (similarly to the way features are defined in \cref{sec:parameters}).
+An overview of the development process of adaptive \acp{sds} and relevant methods is given by \citet{Levitan2020developing, Bernsen1998designing}.
 
-
-\todo[inline]{take 2-3 systems from Weise's paper Section 2.3 to show how systems handle accommodation nowadays}
-
-\citet{Bernsen1998designing}
-\todo[inline]{this book (which I have) has a broad and detailed information about this topic. can take some hints from there}
-
-%Studying convergence in speech in an \ac{hci} context is made possible with more natural synthesis technology, which gives more fine-grained control over parameters of the system's spoken output.
-
-% A technical overview of the development of adaptive \acp{sds} is given by \citet{Levitan2016implementing, Bernsen1998designing}.
+\citet{Suzuki2003effects} introduces a system with pure prosodic vocal capabilities with no lexical content.
+In an experiment, it communicated with the participants used hummed sounds with different \ac{f0}, intensity, and \enquote{speech} rate values.
+The system was adapting to the participants to different degrees over the several interactions, after which the participants rated the system on different communication aspects, like cooperation and friendliness.
+It was found that interaction series in which the system converged to the users with some degree of independence rather than cases where the system directly changed toward the user or completely mimicked the user's vocal behavior.
+This is an important insight, since this is also not likely to happen in \ac{hhi} as each speaker has a different general speaking style and also change different if and when accommodation to an interlocutor (and see definitions in \cref{subsec:accommodation_levels}).
+The system presented in \citet{Acosta2011achieving} does explicitly use mimicking for conveying emotions.
+The assumption was that if participants use certain vocal characteristics to convey specific emotions, they would also perceive the same emotions from an interlocutor producing the same characteristics.
+\citet{Lubold2015naturalness} investigated pitch accommodation in \ac{hci} with a system that supports different accommodation patterns.
+One of these patterns was used while participants interacted with the system over multiple short tutoring sessions.
+Ratings of perceived rapport showed that the method using pitch shifting of the system's pitch towards the user while keeping the original intonation was most successful.
+Like before, these results are in line with the approach of converging with respect to some concrete features while retaining more general behavioral patterns.
+Tackling accommodation from a different direction, \citet{Ward2004automatic} developed a system that predicts the speech rate of phones operators based on their interlocutors' speech.
+While the method was somewhat simplistic and was applied on monotonic conversations with predictable content, it nonetheless shows that some general tendencies can be found based on vocal behavior in a conversation.
+As for implementation and integration, \citet{Levitan2016implementing} uses a modular way for adding accommodation capabilities to a \ac{sds} while separating the technical methods from the modeling details.
+This approach is similar to the one used in this work.
+Specifically, \cref{chap:computational_model,chap:statistical_model} discuss ways for modeling accommodation and define system behaviors while module presented in \cref{chap:convergence_module_for_sdss} shows how to integrate those into a system.
+A major difference between this system and this work is the temporal and non-linear aspects of the accommodation process.
+While the system in \citet{Levitan2016implementing} always directly converges towards the user at a defined rate (and till a perfect match), the modeling in this work aim to give a system an individual way to \emph{respond} to the user's behavior based on some core profile, as explained in \cref{subsec:accommodation_levels,fig:incr_gen_models}.
 
 %\section{Evaluating spoken dialogue systems}
 %\label{sec:evaluation_of_sdss}
