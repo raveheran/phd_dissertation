@@ -17,7 +17,7 @@ The main difference between them and many other ways to communicate with compute
 This offers benefits to the users, like begin able to perform tasks while keeping their hands free, contrary to systems that require textual input from a keyboard or haptic touch on a screen.
 We are witnessing an ever-growing presence of voice-activated devices, like speech-activated cars, hands-free medical assistants, and \acp{its}.
 These devices support more and more functionalities in a way that is more comfortable and intuitive for users.
-It can be expected that in the near future such devices will be used not only by individuals, but also in more social contexts, including interactions where multiple humans are involved.
+It can be expected that in the near future such devices will be used not only by individuals but also in more social contexts, including interactions where multiple humans are involved.
 This makes the understanding and improvement of social skills in \acp{sds} all the more important.
 
 The common architecture of \acp{sds} is explained in \cref{sec:architecture_sds}, along with details about each component and free tools for building them.
@@ -269,8 +269,8 @@ Many experiments have shown that vocal accommodation occurs in \ac{hhi} (and see
 However, while in \ac{hhi} the accommodation is, in its nature, mutual, in \ac{hci} only the human speaker could adjust voice characteristics (due to the same \ac{cat}-related motivations).
 This typically results in one-sided, weaker effects, as there is no counterpart to reinforce the process.
 A major next step would be, therefore, to add accommodation capabilities to \acp{sds} and make it mutual in \ac{hci}, too.
-According to \citet{Weise2017towards}, integrating these capabilities into computer systems will enhanced \ac{hci} and provide improved tools for studying accommodation also from the computers' side.
-He also notes that accommodating dialogue systems could offer an additional layer of interaction, namely responding to user's behavior. -- Either by observing user's behavior and use it as additional information for some analyses, or by actively making use of accommodation to encourage the user to speak in a specific way.
+According to \citet{Weise2017towards}, integrating these capabilities into computer systems will enhance \ac{hci} and provide improved tools for studying accommodation also from the computers' side.
+He also notes that accommodating dialogue systems could offer an additional layer of interaction, namely responding to user's behavior. -- Either by observing user's behavior and use it as additional information for some analyses or by actively making use of accommodation to encourage the user to speak in a specific way.
 Though done in a more planned and direct way than in \ac{hhi}, this offers another level of dynamics from the system's side without changing the interaction's content.
 \citet{Oviatt2004adaptive} discusses the advantages of systems that dynamically adapt their speech output to that of the user, and the challenges involved in developing and using these systems.
 \todo[inline]{expand points from Oviatt}
@@ -280,37 +280,37 @@ A voice-activated device always talks the same way, regardless of how the user s
 This capability, which comes naturally to humans in social interactions, involves several steps of (partially unaware) decisions, which together form the overall effect of becoming behaviorally more or less similar to an interlocutor, as explained in \cref{sec:communication_accommodation_theory}.
 These include both situational and knowledge-related facets like how it is expected to behave in certain situations and which vocal changes fit those, as well as the physiological ability to apply these matches.
 Humans can perform all of these steps as one conduct.
-For computers, however, these steps must be broken down, as they lack the common social background knowledge and the intuition as for how to match their voice to the situation.
+For computers, however, these steps must be broken down, as they lack the common social background knowledge and the intuition as to how to match their voice to the situation.
 Ultimately, \Acp{sds} with such personalized speech style may offer more natural and efficient interactions, as shown by \citet{Porzel2006entrainment}, and advance one more step away from the \emph{interface metaphor} \citep{Edlund2006twofaces} toward the \emph{human metaphor} \citep{Carlson2006humanlike}, which describe different user approaches when interacting with \ac{hci} systems.
 
 Examples of accommodating \acp{sds} are presented in \cref{subsec:systems_with_accommodation_capabilities}.
-A roadmap towards such systems is discussed in \cref{subsec:suggested roadmap} and a terminology describing the different levels and ways to achieve accommodative vocal behavior in machines is introduced in \cref{subsec:accommodation_levels}.
+A roadmap towards such systems is discussed in \cref{subsec:suggested roadmap} and terminology describing the different levels and ways to achieve accommodative vocal behavior in machines is introduced in \cref{subsec:accommodation_levels}.
 
 \subsection{Dialogue is hard}
 \label{subsec:dialogue_is_hard}
 
 As described in \cref{sec:linguistic_accommodation}, accommodation occurs naturally in \ac{hhi} as an integral part of dialogues.
-The social conventions and and unwritten rules of dialogue are implicitly learned by humans, who intuitively know how to apply them and when they can be altered.
+The social conventions and unwritten rules of dialogue are implicitly learned by humans, who intuitively know how to apply them and when they can be altered.
 This is an automatic process that is still too complex for integrating into computers.
-Therefore, the way we interact with computers is often immensely different from the communication with other human beings (\cref{subsec:verbal_interaction}).
+Therefore, the way we interact with computers is often immensely different from communication with other human beings (\cref{subsec:verbal_interaction}).
 Another reason dialogue is hard is the infinitely many possible trajectories of each measured aspect.
-It is always possible to create a dialogue than hasn't been produced before, even with respect to a single aspect like chosen words, floor change, vocal properties, length, or any feature of any modality.
-As if language understanding isn't a hard enough task for computers, the relations between of all these aspects and their influence on one another make this task even more complex.
+It is always possible to create a dialogue that hasn't been produced before, even concerning a single aspect like chosen words, floor change, vocal properties, length, or any feature of any modality.
+As if language understanding isn't a hard enough task for computers, the relations between all these aspects and their influence on one another make this task even more complex.
 
 The complexity of this task is long acknowledged and it was posed by \citet{Turing1950computing} as an \acs{ai}-complete problem.
-Therefore, it is assumed that substantial, maybe human-like, intelligence is required to addresses its unexpected circumstance, and no specific algorithm or \ac{ml} method is able to solve it \citep[see further reasoning and examples in][pp.\~54-57]{Shapiro1992encyclopedia}.
+Therefore, it is assumed that substantial, maybe human-like, intelligence is required to address its unexpected circumstance, and no specific algorithm or \ac{ml} method can solve it \citep[see further reasoning and examples in][pp.\~54-57]{Shapiro1992encyclopedia}.
 Notably, many aspects need to be explicitly split into separate steps and rules for the computer, although human process them as one concept (or at least don't consciously divide it into smaller sub-tasks).
-One example for this is that humans don't strictly distinct between task oriented and chitchat dialogues (\cref{tab:sds_types}), whereas modeling approaches do (although recent hybrid models have the two intertwined to some extent).
+One example of this is that humans don't strictly distinguish between task-oriented and chitchat dialogues (\cref{tab:sds_types}), whereas modeling approaches do (although recent hybrid models have the two intertwined to some extent).
 \todo{if need a reference for that, take from page 3 of Milica's slides}
 By extension, humans often switch between the two, as they use both as part of one dynamic dialogue.
 For example, people are good at having an off-topic small-talk at the beginning of a business meeting before switching, gradually or not, to the goal topic (cf.\ discussion about conversation structure and speaker role in \cref{subsec:conversation_intelligence}).
 Furthermore, humans intuitively know how to behave based on the situational context, like when to take the floor, when to stop talking, when to barge in, etc., without the need for explicit signals from the other interlocutor.
 Although there are approaches for teaching computers these dynamic changes \citep[e.g.,][]{Skantze2009incremental}, the gap is still substantial.
 
-As a process that happens as part of a dialogue, accommodation involves some of these challenges (e.g., there may always a pattern never seen before), but within a limited scope.
+As a process that happens as part of a dialogue, accommodation involves some of these challenges (e.g., there may always occur pattern never seen before), but within a limited scope.
 Moreover, accommodation entails the additional challenge of no \enquote{correct answer}, i.e., there is no measure of good or bad accommodation in a dialogue.
-Humans might be able to point out if an interlocutor uses accommodation in a terribly wrong way (for example, continuously perfectly imitating or demonstratively attempting to talk differently), but probably wouldn't notice how and whether their conversation partners accommodate to them.
-This poses difficulties on both evaluation and training, because it is not possible to put labels on accommodation measures without making a lot of assumptions.
+Humans might be able to point out if an interlocutor uses accommodation in an undoubtedly wrong way (for example, continuously perfectly imitating or demonstratively attempting to talk differently), but probably wouldn't notice how and whether their conversation partners accommodate to them.
+This poses difficulties in both evaluation and training, because it is not possible to put labels on accommodation measures without making a lot of assumptions.
 Therefore, the modeling approaches present in this work (\cref{chap:computational_model,chap:statistical_model}) concentrate on the \emph{behavior} of a speaker within a conversation (and compared to the behaviors observed in other speakers) rather than modeling how well accommodation was utilized.
 The approach suggested in \cref{subsec:suggested roadmap} can be taken as a general scheme for any kind of mutual dynamics in \ac{hci}, which is applied to vocal properties in this work.
 
@@ -325,14 +325,14 @@ This includes both empiric experimental data and integrable models.
 % 1-2 sentence that at the moment there are many ways to measure accommodation and existing models are limited (reference? or at least point to terminology part)
 Furthermore, the technical capability to control the speech output on demand is essential for introducing flexibility in the system's base voice.
 This also includes a mechanism for accumulating phonetic evidence from the user's input relevant for the feature representations used for the accommodation process.
-As these manipulations must be applied in real-time, re-training the \ac{tts} model to capture every change is not only insufficient, but not practical as well.
-This means that the manipulations are done on top of the existing \ac{tts} model, either by modifying the outputted waveform directly or by training a model that can take specific changes in feature description into consideration (see \cref{subsec:speech_manipulation}).
+As these manipulations must be applied in real-time, re-training the \ac{tts} model to capture every change is not only insufficient but not practical as well.
+This means that the manipulations are done on top of the existing \ac{tts} model, either by modifying the outputted waveform directly or by training a model that can consider specific changes in feature description (see \cref{subsec:speech_manipulation}).
 To link between the modeled theoretical knowledge and the audio processing engineering implementations, an additional component must be introduced in the system.
 The role of this component is to feed the system's flexible voice parameters result from the models to express vocal changes, which are ultimately conveyed to the user.
 This emphasizes the notion of the \ac{nlg} module decides \emph{what} the system says while the \ac{tts} module determines \emph{how} it will say it.
 This is further explained and illustrated in \cref{chap:convergence_module_for_sdss,fig:adaptation_module_architecture}.
 
-This work addresses each of those facets (see outline on pages \cpagerefrange{outline}{outline_end}).
+This work addresses each of those facets (see the outline on pages \cpagerefrange{outline}{outline_end}).
 These aspects make the task of integrating flexible vocal characteristics into \acp{sds} an involved task, each with its own challenges that requires a profound work to investigate.
 %
 \begin{figure}[t]
@@ -347,7 +347,7 @@ These aspects make the task of integrating flexible vocal characteristics into \
 %
 For a \ac{sds} to accommodate with its speech, it would not only need to support dynamic, on-demand changes of its \ac{tts} component's output, but would also need its \ac{asr} component to be able to identify and track specific features in the user's speech to update its representation of those features.
 Completing the cycle, these representations can then be used as additional input for the \ac{tts} components to determine how those would influence the system's speech output.
-This process is individual for each speaker (see \cref{fig:static_vs_adaptive_speech_output}) and may occur over long periods of time or multiple interactions, depending on the desired degree and characteristics of accommodation.
+This process is individual for each speaker (see \cref{fig:static_vs_adaptive_speech_output}) and may occur over long periods or multiple interactions, depending on the desired degree and characteristics of accommodation.
 Furthermore, this process may involve other components of the \ac{sds} as well (cf.\ \cref{fig:sds_architecture}).
 For instance, the Dialogue Manager might consider changes in the user's speech when making decisions, e.g., based on apparent mood and calmness.
 The \ac{nlg} component could make alterations to its output to better fit the vocal changes of the system and the user's dynamic state, such as shortening sentences and omit additional information if phonetic indicators of hurry or urgency (like those shown by \citet{Edworthy2003acoustic}) are detected in the speech input.
@@ -358,7 +358,7 @@ The \ac{nlg} component could make alterations to its output to better fit the vo
 In addition to all the above, another design choice for accommodative \acp{sds}, which is not explicitly required in human speech, concerns the overall \emph{level of accommodation} the system introduces.
 This determines the fundamental behavior and form of variation in the system's speech, regardless of specific phonetic features, utterance contents, etc.
 The variation levels (or properties) described below can potentially be combined in different ways to achieve the desired system behavior.
-They are, at least to some extent, analogous to aforementioned processes conducted by humans in social interactions, with the key difference that humans don't need to defined and think about them separately, if at all.
+They are, at least to some extent, analogous to the aforementioned processes conducted by humans in social interactions, with the key difference that humans don't need to defined and think about them separately, if at all.
 The utilization of these levels is demonstrated in the context of phonetic accommodation, which is one case of dynamic change of speech \citep[as in][to name a few]{Weise2019individual, Schweitzer2016exemplar, Bevnuvs2014social}.
 \Cref{chap:web-based_responsive_spoken_dialogue_system} further discusses and demonstrates the integration of such properties into a \ac{sds}.
 
@@ -369,7 +369,7 @@ These terms seek to distinguish between the different capabilities that can be i
 %
 \begin{description}
 	\item[Adaptive] -- the vocal behavior evolves between and/or during interactions.\\
-	This property refers to the system's use of any mean to \emph{dynamically} change it speech-related behavior, regardless of the source of influence, the goal or direction, or specific realizations.
+	This property refers to the system's use of any mean to \emph{dynamically} change its speech-related behavior, regardless of the source of influence, the goal or direction, or specific realizations.
 %	Here, adapting means shifting the overall behaviors by updating a subset of the other properties.
 	That means, for example, modifying the base behavior, extending the variability, or reflecting the system's changes earlier.
 	This can happen between interactions or within a single, usually longer, interaction.
@@ -400,51 +400,51 @@ These terms seek to distinguish between the different capabilities that can be i
 	In the context of accommodation, that would include, for example, the degree of accommodation, its timing, or how strongly the system will try to influence the user's speech.
 	This property represents the fact that a human being has a certain -- however complex -- personality.
 	More specifically, a vocal identity, which will be expressed in spoken interactions.
-	This idea is the basis for the simulations presented \cref{chap:statistical_model}, where each generative model can be seen as a core behavior.
+	This idea is the basis for the simulations presented in \cref{chap:statistical_model}, where each generative model can be seen as a core behavior.
 	
 	\item[Variable] -- variations on top of the base behavior are yielded.\\
 	Some variations can be introduced based on the base profile.
 	These are relatively minor differences that deviate from the voice's characteristics or enhance them in some way.
 	From a system's point of view, the main purpose of such variations is to make the output style non-deterministic and therefore less repetitive and predictable.
 	From the human point of view, this coincides with the difficulty to reproduce identical utterances in exactly the same way every time.
-	Moreover, people, though having their own individual personality, would speak differently based on various factors outside a conversation like their mood, the environmental conditions, time constraints, etc.
+	Moreover, people, though having their individual personality, would speak differently based on various factors outside a conversation like their mood, the environmental conditions, time constraints, etc.
 	This property comes, therefore, to grant some smaller-scale dynamics to the voice, in particular when its base behavior is deterministic.
 	\Cref{chap:statistical_model} explains in details an approach to achieve such variational behaviors with examples provided in \cref{sec:clustering_and_incremental_generation,tab:generated_symbol_sequences}.
 \end{description}
 %
 
 This work concentrates on facets concerning the properties \emph{responsive} (\cref{chap:computational_model}), \emph{characterized}, and \emph{variable} (\cref{chap:statistical_model}), which have been given little attention in \ac{sds} research.
-Together, these properties results in a flexible, non-deterministic output derived from a defined core behavior (that might vary itself).
-Added to the responsive output creates a system that changes with respect to the user according to its own base behavior and probabilistic variations.
+Together, these properties result in a flexible, non-deterministic output derived from a defined core behavior (that might vary itself).
+Added to the responsive output creates a system that adapts to the user according to its own base behavior and probabilistic variations.
 
 \subsection{Systems with accommodation capabilities}
 \label{subsec:systems_with_accommodation_capabilities}
 
 With the advancement of speech and \ac{nlp} technologies, the development of \acp{sds} has been accelerated in recent years.
-These technologies are closing the gaps between computer and human speech quality, and therefore help investigating vocal accommodation in \ac{hci} with system that can more closely simulate human performance.
-Particularly, the overall quality and dynamic manipulation of modern \ac{tts} methods make is possible to change certain aspects in a system's voice (see \cref{subsec:speech_manipulation} for further details and examples).
+These technologies are closing the gaps between computer and human speech quality and therefore help to investigate vocal accommodation in \ac{hci} with systems that can more closely simulate human performance.
+Particularly, the overall quality and dynamic manipulation of modern \ac{tts} methods make it possible to change certain aspects in a system's voice (see \cref{subsec:speech_manipulation} for further details and examples).
 \Acp{sds} with vocal accommodation capabilities typically focus on a few phonetic features at most, and sometimes only a single one.
-Even tough this does not over a comprehensive coverage of all vocal changes that can be introduced in a conversation, the method of tracking and adapting the one feature can often be applied to others (similarly to the way features are defined in \cref{sec:parameters}).
+Even though this does not cover a comprehensive coverage of all vocal changes that can be introduced in a conversation, the method of tracking and adapting the one feature can often be applied to others (similarly to the way features are defined in \cref{sec:parameters}).
 An overview of the development process of adaptive \acp{sds} and relevant methods is given by \citet{Levitan2020developing, Bernsen1998designing}.
 
-\citet{Suzuki2003effects} introduces a system with pure prosodic vocal capabilities with no lexical content.
+\citet{Suzuki2003effects} introduce a system with pure prosodic vocal capabilities with no lexical content.
 In an experiment, it communicated with the participants used hummed sounds with different \ac{f0}, intensity, and \enquote{speech} rate values.
 The system was adapting to the participants to different degrees over the several interactions, after which the participants rated the system on different communication aspects, like cooperation and friendliness.
 It was found that interaction series in which the system converged to the users with some degree of independence rather than cases where the system directly changed toward the user or completely mimicked the user's vocal behavior.
-This is an important insight, since this is also not likely to happen in \ac{hhi} as each speaker has a different general speaking style and also change different if and when accommodation to an interlocutor (and see definitions in \cref{subsec:accommodation_levels}).
+This is an important insight, since this is also not likely to happen in \ac{hhi} as each speaker has a different general speaking style and also change differently if and when accommodation to an interlocutor (and see definitions in \cref{subsec:accommodation_levels}).
 The system presented in \citet{Acosta2011achieving} does explicitly use mimicking for conveying emotions.
 The assumption was that if participants use certain vocal characteristics to convey specific emotions, they would also perceive the same emotions from an interlocutor producing the same characteristics.
 \citet{Lubold2015naturalness} investigated pitch accommodation in \ac{hci} with a system that supports different accommodation patterns.
 One of these patterns was used while participants interacted with the system over multiple short tutoring sessions.
 Ratings of perceived rapport showed that the method using pitch shifting of the system's pitch towards the user while keeping the original intonation was most successful.
 Like before, these results are in line with the approach of converging with respect to some concrete features while retaining more general behavioral patterns.
-Tackling accommodation from a different direction, \citet{Ward2004automatic} developed a system that predicts the speech rate of phones operators based on their interlocutors' speech.
-While the method was somewhat simplistic and was applied on monotonic conversations with predictable content, it nonetheless shows that some general tendencies can be found based on vocal behavior in a conversation.
-As for implementation and integration, \citet{Levitan2016implementing} uses a modular way for adding accommodation capabilities to a \ac{sds} while separating the technical methods from the modeling details.
+Tackling accommodation from a different direction, \citet{Ward2004automatic} developed a system that predicts the speech rate of phone operators based on their interlocutors' speech.
+While the method was somewhat simplistic and was applied to monotonic conversations with predictable content, it nonetheless shows that some general tendencies can be found based on vocal behavior in a conversation.
+As for implementation and integration, \citet{Levitan2016implementing} use a modular way for adding accommodation capabilities to a \ac{sds} while separating the technical methods from the modeling details.
 This approach is similar to the one used in this work.
-Specifically, \cref{chap:computational_model,chap:statistical_model} discuss ways for modeling accommodation and define system behaviors while module presented in \cref{chap:convergence_module_for_sdss} shows how to integrate those into a system.
+Specifically, \cref{chap:computational_model,chap:statistical_model} discuss ways for modeling accommodation and define system behaviors while the module presented in \cref{chap:convergence_module_for_sdss} shows how to integrate those into a system.
 A major difference between this system and this work is the temporal and non-linear aspects of the accommodation process.
-While the system in \citet{Levitan2016implementing} always directly converges towards the user at a defined rate (and till a perfect match), the modeling in this work aim to give a system an individual way to \emph{respond} to the user's behavior based on some core profile, as explained in \cref{subsec:accommodation_levels,fig:incr_gen_models}.
+While the system in \citet{Levitan2016implementing} always directly converges towards the user at a defined rate (and till a perfect match), the modeling in this work aims to give a system an individual way to \emph{respond} to the user's behavior based on some core profile, as explained in \cref{subsec:accommodation_levels,fig:incr_gen_models}.
 
 %\section{Evaluating spoken dialogue systems}
 %\label{sec:evaluation_of_sdss}
