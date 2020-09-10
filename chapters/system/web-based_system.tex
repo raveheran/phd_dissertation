@@ -18,7 +18,7 @@ It holds the following key principles:
 \begin{description}
 	\item[Focus on adaptation] --
 	the main goal of the system is to offer a tool for investigating vocal accommodation in \ac{hci} for both online experiments and offline analyses.
-	Putting vocal accommodation under the spotlight is the core novel contribution of the system, as very few systems offer such capabilities at all, and with control over the accommodative behavior in particular.
+	Putting vocal accommodation under the spotlight is the core novel contribution of the system, since very few systems offer such capabilities at all, and with control over the accommodative behavior in particular.
 	
 	\item[Customizability] --
 	the system includes several components that can be modified, either for changing the accommodation behavior itself (features, parameters, etc.) or changing the setting (e.g., for different experiments).
@@ -41,18 +41,18 @@ The experiment presented in \cref{chap:shadowing_experiment_with_natural_and_syn
 
 As the system aims to offer a customizable playground for experimenting and studying phonetic adaptation in \ac{hci}, a key aspect of its architecture is the separation between client-side, server-side, and external resources (see \cref{fig:web-based_architecture}).
 This separation makes it possible to run multiple clients on different machines at the same time with a single server collecting the data from all of them at the same time.
-The server, ideally running on a dedicated machine, is operated by an a person responsible of designing and configuring the interactions, e.g., an experimenter.
+The server, ideally running on a dedicated machine, is operated by a person responsible for designing and configuring the interactions, e.g., an experimenter.
 It collects information and audio recordings from all interactions with the system (which can be deleted afterwards for privacy purposes).
 This separation of the server grants the experimenter a lot of freedom and flexibility, since resources like feature configurations and dialogue domain can be modified independently of specific machines interacting with the system.
 Additionally, multiple configurations can be prepared in advance (e.g., for different participant groups), regardless of the device the experiment will be performed on and before summoning the participants.
 Configurations can even be changed mid-interaction.
-These configurations are transparent to the users, and no effort is required from them (aside from start a new interaction in the case of some specific configurations).
+These configurations are transparent to the users, and no effort is required from them (aside from starting a new interaction in the case of some specific configurations).
 This flexibility makes it easier and quicker to create new scenarios of interaction and to experiment with different features and parameters.
 
 In addition to the technical advantages, letting users interact with the system on a separate machine broadens the usage possibilities.
 For example, an experiment can be carried out remotely, without the need to invite participants to the recording studio one by one.
 Furthermore, as the connection to the server is done via a web browser, participants can connect use the system with their own computers wherever and whenever it suits them, without any additional installation or technical configurations.
-All of these makes it possible to collect data from many users rapidly and easily.
+All of these make it possible to collect data from many users rapidly and easily.
 %
 \begin{figure}[t]
 	\centering
@@ -69,7 +69,7 @@ As shown in \cref{fig:web-based_architecture}, the main components of the system
 \subsection{Dialogue system}
 \label{subsec:dialogue_system}
 
-The core of the system is the dialogue system component (see \cref{fig:web-based_architecture}), which controls the flow of the interaction, processes user's inputs, and generates the system's responses.
+The core of the system is the dialogue system component (see \cref{fig:web-based_architecture}), which controls the flow of the interaction, processes users' inputs, and generates the system's responses.
 It uses the extended architecture presented in \cref{subsec:extended_sds}, which consists of typical \ac{sds} components such as \ac{nlu} and a \ac{dm}, but also contains the \ac{asp} module that adds accommodation support \citep{Raveh2017SemDial}.
 The implementation of this module in the system is as described in \cref{fig:adaptation_module_architecture}.
 While the \ac{nlu} component uses merely the transcription provided by the \ac{asr}, the \ac{asp} module analyzes the speech signal itself.
@@ -99,10 +99,10 @@ The functionality of each is described in \crefrange{subsubsec:chat_area}{subsub
 \label{subsubsec:chat_area}
 
 The interaction between the user and the system is shown in a chat-like format at the upper left part of the screen.
-Each turn's utterance appears inside a chat bubble with different colors representing the two interlocutors, the user and the system.
+Each turn's utterance appears inside a chat bubble with different colors representing the two interlocutors, user and system.
 The bubbles always contain single utterances, even if the other interlocutor has not spoken between them.
 A turn can be replayed at any time using the Play button next to the turn number, corresponding to the turn order on the list accessible from the control bar.
-Beside utterance bubbles, the system can also display general-purpose messages in this area, which do not progress the dialogue flow and do count as system utterances.
+Besides utterance bubbles, the system can also display general-purpose messages in this area, which do not progress the dialogue flow and do count as system utterances.
 These messages can be used,
 %
 \begin{landscape}
@@ -123,7 +123,7 @@ for example, to give the user additional information or instructions regarding t
 \label{subsubsec:interaction_area}
 
 The user can interact with the system either with either written or spoken input using the controls at the bottom left part of the screen.
-Spoken input can be provided either by speaking live into the microphone or via audio files with pre-recorded speech.
+Spoken input can be provided either by speaking \enquote{live} into the microphone or via audio files with pre-recorded speech.
 These are typically useful for online and offline usage, respectively (\cref{sec:online_and_offline_paths}), but pre-recorded utterances can also be useful for or reproducing previous experiments or comparing different accommodation configurations with the exact same user input.
 Text-based interactions progress through the dialogue (if applicable) and trigger any subsequent domain model, but will not affect the tracked features, as no vocal input was provided.
 This can be useful for quickly going through specific parts of an experiment (e.g., instructions or setup) or for continuing the dialogue without changing the system's representation of the tracked features.
@@ -142,18 +142,18 @@ This can be useful for quickly going through specific parts of an experiment (e.
 	\label{fig:plot}
 \end{figure}
 
-Visualization of the tracked features' changes over the course of the interaction are displayed in the upper right part of the screen.
+Visualizations of the tracked features' changes over the course of the interaction are displayed in the upper right part of the screen.
 Each feature is visualized separately, and new datapoints are dynamically added whenever applicable.
 The type of a feature's plot can also change based on its characteristics, e.g., bars for one-dimensional features and lined scatter plots for two-dimensional features.
 These plots are generated using the Plotly library\footnote{\url{https://plot.ly}}, which provides some interactive functionalities.
 Hovering over a datapoint in the plot reveals additional information, such as the turn in which it was added, or the realized variant of the feature produced in that turn as predicted by its classifier.
-\Cref{fig:plot} shows an example of such plot with several accumulated datapoints.
+\Cref{fig:plot} shows an example of such a plot with several accumulated datapoints.
 
 \subsubsection{Notification area}
 \label{subsubsec:notification_area}
 
 Whenever a message outside the content of the interaction needs to reach the user, it can be shown at the bottom right part of the screen.
-Such messages may include indications of the system's activity, e.g., successful initialization of the interaction, warning and errors while uploading files, or any other prompt the experimenter might want the user to see, like additional instructions to consider during the experiment.
+Such messages may include indications of the system's activity, e.g., successful initialization of the interaction, warnings and errors while uploading files, or any other prompt the experimenter might want the user to see, like additional instructions to consider during the experiment.
 However, the latter is better achieved using the non-speaker turns in the chat area.
 The notifications can be colored blue, green, orange, and red to differentiate different types of messages.
 
@@ -180,7 +180,7 @@ This also includes the phonetic convergence model, the features tracked by the s
 \label{subsubsec:tracked_features}
 
 The accommodation process is initiated by the phonetic features defined in the configuration file.
-There are phonetic features that are prone to variation, and are triggered whenever the \ac{asr} component detects a segment containing a phoneme associated with one or more of these features.
+There are phonetic features prone to variation that are triggered whenever the \ac{asr} component detects a segment containing a phoneme associated with one or more of these features.
 The feature definitions may capture general tendencies or specific phonological rules, like schwa elision in German (see \cref{eq:elision_rule}).
 As explained in \cref{subsec:computational_model}, each feature is detected and filtered based on its definition.
 This definition can be easily changed to experiment with different accommodation effects.
@@ -224,16 +224,16 @@ MaryTTS \citep{LeMaguer2017uprooted} was used as the \ac{tts} engine of the syst
 \end{figure}
 
 The system can operate in two modes, as shown in \cref{fig:online_offline_paths}:
-Online -- turn-based real-time interaction via the \ac{gui} (\cref{subsec:graphical_user_interface}); and offline -- on-demand analysis of already existing interaction data, either from a recorded online sessions or any other dataset.
+Online -- turn-based real-time interaction via the \ac{gui} (\cref{subsec:graphical_user_interface}); and offline -- on-demand analysis of already existing interaction data, either from a recorded online session or any other dataset.
 The accommodation-related parts of the system (roughly corresponding to the \emph{server} and \emph{resources} blocks in \cref{fig:web-based_architecture}) are common to the two paths, which makes it easy to switch between the two.
 The differences are in how the data is fed to the system and how the output is processed and visualized.
 The main difference is that in the online path the process recurrent and both the user's input and the system's current state are used in the processing of the next turn.
 Depending on the scenario defined in the domain file, there could always be another turn, either of the user or the system, to continue the interaction.
-In the offline path the data scope is, naturally, pre-defined and finite.
-Technically, the dataset is represented and processed the same way as an online interaction, but there is no need to output the system's state to a user.
+In the offline path, the data scope is, naturally, pre-defined and finite.
+Technically, the dataset is represented and processed the same way as online interactions, but there is no need to output the system's state to a user.
 The common representation also makes it easy to compare pre-recorded interactions with live ones.
 The output of the accommodation model after each turn is handled differently in both paths as well.
-In online interactions, the output is sent on a turn-by-turn basis to both the web-based \ac{gui} for the different visualizations (as in \cref{fig:plot}) and back to the user for auditory response.
+In online interactions, the output is sent on a turn-by-turn basis to both the web-based \ac{gui} for the different visualizations (as in \cref{fig:plot}) and back to the user for an auditory response.
 The offline path doesn't need to interact with a user, so the entire analysis is saved together, along with some additional analysis.
 This output can then be used for further statistical analysis and be visualized separately using other tools (as in \cref{fig:hds_dds_time_comparisons}).
 For using the online mode, the system needs to run as a server and be accessed via a web browser.
@@ -250,7 +250,7 @@ This was done using the offline path of the system, to can simulate a real exper
 The replication used the original stimuli and utterances of one of the participants.
 However, analyses originally done post facto (and to different extents manually), like detecting the realized variant, measuring the features' values, etc., can be now done automatically.
 This demonstrates an automated, reproducible execution, and also offers additional insights via classification of feature realizations and dynamic visualizations in the web \ac{gui} (\cref{subsec:graphical_user_interface}).
-Finally, using the system, the experiments becomes dialogue-based rather than a mere experimental setting, which enhances its \ac{hci} nature.
+Finally, using the system, the experiment becomes dialogue-based rather than a mere experimental setting, which enhances its \ac{hci} nature.
 
 \subsection{Setup adjustments}
 \label{subsec:setup_adjustments}
@@ -293,7 +293,7 @@ To map these underlying values to a specific variant, the system associates a cl
 The values of the keys \texttt{minimum}, \texttt{maximum}, and \texttt{initial} stand for the first two formant frequencies.
 The \texttt{calculation} method for this feature is \emph{decaying average}, which is similar to the regular average but with each value contributing exponentially less to the final value, so that the last (newest) exemplar contributes the most.
 Adding such property to the measure gives more weight to new exemplars that were received chronologically closer to the current turn and thus makes the change more strongly influenced by the productions closer to the accommodation change.
-Using this measure comes to support the analogy of the exemplar pool to short-term memory, which remembers recent event better than older ones.
+Using this measure comes to support the analogy of the exemplar pool to short-term memory, which remembers recent events better than older ones.
 Decaying average is defined here as
 %
 \begin{equation} 
@@ -309,7 +309,7 @@ Even though more aspects of it could be automated, the experimental procedure st
 The domain file created for the showcase was designed to substitute the role of the experimenter in the shadowing phase (cf.\ \cref{fig:HCIConvFlow}), i.e., presenting -- and speaking -- the next stimulus to the participant.
 The stimulus order from the original experiment's baseline phase was preserved and semi-randomized (using the same logic) in the shadowing phase.
 It was also configured to perform the transitions between the phases.
-Although it should be assumed that the user indeed repeats presented utterance, the system nonetheless verifies that the user's utterance matches the current stimulus using the customized language model described in \cref{subsubsec:speech_processing}
+Although it should be assumed that the user indeed repeats the presented utterance, the system nonetheless verifies that the user's utterance matches the current stimulus using the customized language model described in \cref{subsubsec:speech_processing}.
 
 % A shortened example of the shadowing phase's flow is shown in \cref{app:dialogue_example}.
 
@@ -345,14 +345,14 @@ Although it should be assumed that the user indeed repeats presented utterance, 
 The automation the system offers can also be used to provide additional information regarding the realizations of the tracked features, i.e., which category each instance of the feature belongs to.
 This automates the annotation otherwise done manually by the experimenter during or after the experiment.
 In the shadowing experiment in question, this includes both the determination of the participants' preference in the baseline phase and the annotation of the participants' realizations in the shadowing phase.
-To that end, a classifier can be associated with each feature to provide real-time classification for both the user's and the system's realizations of that features.
+To that end, a classifier can be associated with each feature to provide real-time classifications for both the user's and the system's realizations of that feature.
 With this information available, more meaningful insights can be gained into the variation dynamics over the course of the interaction.
-In other applications, like \acp{capt}, this information be taken into account when deciding on the system's next turn.
-The classifiers for the simulated experiment were trained on a two datasets corresponding to the target features' ranges.
-The \textipa{@}-length classifier trained to separate segments shorter and long than \SI{30}{\milli\second}, and the \textipa{e:/E:} classifier was trained on F1 and F2 values of these vowels produced by a set of female speakers.
+In other applications, like \acp{capt}, this information may be taken into account when deciding on the system's next turn.
+The classifiers for the simulated experiment were trained on datasets corresponding to the target features' ranges.
+The \textipa{@}-length classifier trained to separate segments shorter and longer than \SI{30}{\milli\second}, and the \textipa{e:/E:} classifier was trained on F1 and F2 values of these vowels produced by a set of female speakers.
 While training prior to the interactions is sufficient, online fine-tuning is also possible to update a feature's classifier whenever requested by the user, e.g., every time the accommodation model is updated.
 
-Training was performed with a \ac{smo} \citep{Platt1999fast, Platt1998sequential} implementation of the \ac{svm} classifier \citep{Vapnik1998support}.
+The training was performed with a \ac{smo} \citep{Platt1999fast, Platt1998sequential} implementation of the \ac{svm} classifier \citep{Vapnik1998support}.
 For multi-dimensional features, multivariate \ac{svm} classification \citep[e.g.,][]{Joachims2005support} was used.
 Each turn's predictions dynamically added as interactive annotations to the visualization of the relevant features, as illustrated in \cref{fig:plot}.
 
@@ -417,12 +417,12 @@ After obtaining the preference of each participant, the degree of convergence wa
 The participants were grouped based on their convergence behavior in the original experiment:
 One group of participants showed low to no tendency to converge (converged in \SI{\le 10}{\percent} of their utterances),
 the second had varying degrees of convergence (\SIrange{10}{90}{\percent}),
-and a third group of participants who were very sensitive to the stimuli (\SI{\ge 90}{\percent}).
+and the third group of participants who were very sensitive to the stimuli (\SI{\ge 90}{\percent}).
 This grouping enables analyses based on collective vocal behaviors instead of individual differences.
 The groups are labeled \emph{Low} (\SI{23}{\percent} of participants), \emph{Mid} (\SI{50}{\percent}), and \emph{High} (\SI{27}{\percent}), respectively.
 The classifier was determined on the fly, so that the prediction for each utterance was decided based on the stimulus type to which the participant was listening (for instance, a classifier trained on synthetic stimuli was used for participants listening to such stimuli).
 For validation purposes, the shadowing phase was treated as an annotation task of the realized variation in the participants' utterances.
-The three \enquote{annotators} are the stimuli themselves (\emph{Stim}), the online classification of system's representation of the feature (\emph{Sys}), and additional labels from the training dataset used as references (\emph{Ref}).
+The three \enquote{annotators} are the stimuli themselves (\emph{Stim}), the online classification of the system's representation of the feature (\emph{Sys}), and additional labels from the training dataset used as references (\emph{Ref}).
 
 The Cohen's kappa ($\kappa$) values\footnote{calculated by the \texttt{kappa2} command of the \texttt{irr} R package v0.84, \url{https://cran.r-project.org/package=irr}} for \emph{Low} are expected to be lower, as a lower degree of convergence was found among these participants.
 %As \cref{tab:showcase_results} shows, convergence was found in \SI{48}{\percent} of the utterances for \emph{Sys-Stim} and \emph{Ref-Stim} but only in \SI{66}{\percent} for \emph{Ref-Sys}, which means that convergence was found in different instances.
