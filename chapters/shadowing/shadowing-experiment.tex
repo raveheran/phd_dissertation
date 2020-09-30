@@ -91,7 +91,7 @@ The latter two are global properties and were determined based on an entire prod
 Two lullabies were used in the study: The first is \enquote{Tune for the Yakinton}\footnote{Pizmon LaYakinton
 % (\emph{Hebrew:}\hebrewtext{פזמון ליקינטון})
 , written by Leah Goldberg in 1940. \emph{Yakinton} is the Hebrew name of the Hyacinth plant.} (hereafter \enquote{Yakinton}, see \cref{snippet:yakinton}), which is a famous Israeli children song.
-The second is a neutral lullaby composed for experimental purposes \citep[][pp.~22-47, and see \cref{snippet:uni-lullaby}]{Twig2016universal}, which contains \emph{cross-cultural similarities} such as repetitiveness, simple melody, and a limited inventory of tonal and rhythmic elements \citep{Unyk1992lullabies, Trehub1993maternal}.
+The second is a neutral lullaby composed for experimental purposes \citep[][pp.~22-47, and see \cref{snippet:uni-lullaby}]{Twig2016universal}, which contains \emph{cross-cultural similarities} such as repetitiveness, simple melody, and a limited inventory of tonal and rhythmic patterns \citep{Unyk1992lullabies, Trehub1993maternal}.
 Therefore, while the first one is assumed to be known to the participants, they could not be familiar with the second one.
 Both lullabies are short (13 bars at \musQuarter~=~61 ($\approx$\SI{26.5}{\second}) and 16 bars at \musQuarterDotted~=~33 ($\approx$\SI{58}{\second}), respectively) and in major keys.
 Both songs were recorded a cappella by a trained female singer in the same age group as the participants in a professional recording studio at \SI{44.1}{\kilo\hertz} sampling rate and 16~bit resolution.
@@ -156,7 +156,14 @@ As explained in \cref{subsubsec:material_participants_music}, this song was spec
 \subsection{Analyses and results}
 \label{subsec:results_music}
 
-\begin{figure}[t]
+Since the participants aimed to produce specific musical notes (as opposed to non-specific absolute frequencies in speech production), tones were used for measuring pitch instead of raw Hertz values.
+For that, quarter tones (\acfp{qt}) were used instead of semitones to increase the tonal resolution, 
+This enables a more fine-grained analysis that can capture more subtle off-key singing and differentiate the performances better.
+%The performances were manually transcribed in Sibelius 6
+%\todo{version footnote}
+%and were verified using the corresponding MIDI output against the recordings.
+%
+\begin{figure}[t!]
 	\centering
 	\includegraphics[width=\linewidth]{violin_facet_dev}
 	\caption[Summary of within-participant interval deviation distribution]
@@ -164,9 +171,10 @@ As explained in \cref{subsubsec:material_participants_music}, this song was spec
 		The numbers on the x-axis are the number of \acp{qt} above or below the correct interval.}
 	\label{fig:violin_facet_dev}
 	\todo[inline]{caption seems to be wrong. also, refer to this figure in text (was not in original paper)}
+	\todo[inline]{refer to this in text and explain what it shows}
 \end{figure}
-
-\begin{figure}[t]
+%
+\begin{figure}[t!]
 	\centering
 	\includegraphics[width=\linewidth]{barplot_QT_distances}
 	\caption[Distribution of interval deviations]
@@ -174,57 +182,50 @@ As explained in \cref{subsubsec:material_participants_music}, this song was spec
 		The numbers on the x-axis are the number of \acp{qt} above or below the correct interval.}
 	\label{fig:barplot_QT_distances}
 \end{figure}
-
-Since the participants aimed to produce specific musical notes (as opposed to non-specific absolute frequency while speaking), tones were used for measuring pitch instead of raw \si{\hertz} values.
-To increase the pitch resolution, quarter tones (\acp{qt}) were used instead of semitones.
-This enables a more fine-grade analysis, which can capture more subtle off-key singing to differentiate the performances better.
-%The performances were manually transcribed in Sibelius 6
-%\todo{version footnote}
-%and were verified using the corresponding MIDI output against the recordings.
-Furthermore, segmentation of the performance into individual tones was done manually.
+%
+The segmentation of the performances into individual tones was done manually by a trained musician.
 Silences, non-singing, breaths between phrases, etc.\ were segmented as well.
 The tone frequencies were determined by the median of the measured frequencies during this tone's duration, excluding the first and last \SI{10}{\percent} of the tone duration.
-This excludes transitions between tones and smooths out vibrato and \textit{ad lib} ornaments.
-These values were extracted using Praat \citep{Boersma2001praat} and manually verified.
+This excludes transitions between tones and smooths out vibrato and ad lib ornaments.
+These values were extracted using Praat \citep{Boersma2001praat} with manual corrections where necessary.
 Subsequently, the note assigned to each singing segment was determined by selecting the closest \ac{qt} to the measured frequency in the corresponding segment.
+This stands in line with the assumption that people sing with a specific tone in mind rather time a frequency.
 The mapping between tone frequencies and \acp{qt} (relative to middle A) was done using the formula
-
+%
 \begin{equation}
 	\label{eq:quarter_tones_formula}
 	frequency(QT_n) = 440 \cdot \sqrt[24]{2}^n,
 \end{equation}
 \eqname{\Acl{qt} frequency calculation (equal temperament)}\noindent
 %
-where $n$ is the number of \acp{qt} away from the middle A key \citep[cf.][]{DeKlerk1979equal} and \SI{440}{\hertz} is the frequency of middle A.
-This formula is based on the equal temperament.
+where $n$ is the number of \acp{qt} away from the middle A tone \citep[cf.][]{DeKlerk1979equal} and \SI{440}{\hertz} is the frequency of the middle A based on the equal temperament.
 %, which can be assumed to be the tuning system with which the participants grew up.
 QTs are denoted here with the symbols \hspace{-0.18cm}
 $\vcenter{\hbox{\includegraphics[height=15pt]{qt_c-cih}}}$ and 
 $\vcenter{\hbox{\includegraphics[height=15pt]{qt_c-cisih}}}$ for one \ac{qt} and three \acp{qt} above a note, respectively.
 Ultimately, tonal deviations were measured per interval, rather than per tone, as the latter would depend on the key the participants chose, while the former measures tonal accuracy independently of key.
-
-Tempo was measured for an entire performance, taking into account only singing segments (similar to articulation rate in speech).
-This ensures that pauses between phrases do not influence the perceived singing tempo, and that occasional, non-scripted lengthenings (e.g., short ritardandi and fermate at the end of phrases) do not mark a specific note as being out of rhythm.
-Tempo was measured in \ac{bpm}, which is directly derived from the standard musical notation \musQuarter~=, using the formula
-
+Tempo was measured for an entire performance, taking into account only singing segments (similarly to measuring \ac{ar} in speech).
+This ensures that pauses between phrases do not influence the perceived singing tempo and that occasional, non-written lengthenings (e.g., short ritardandi and fermate at the end of phrases) do not mark a specific note as being out of rhythm.
+Tempo was measured in \acf{bpm}, which is directly derived from the standard musical notation \musQuarter~=, using the formula
+%
 \begin{equation}
 	\label{eq:bpm}
 	BPM = \frac{N + \delta}{overall\ duration} \cdot 60,
 \end{equation}
 \eqname{\Acf{bpm}}\noindent
 %
-where $N$ is the number of beats in the song and $\delta$ is the number of beats added in a specific performance.
+where $N$ is the number of beats in the song and $\delta$ is the number of beats, if any, added by a participant.
 Such additions occurred exclusively at the end of phrases (bars 3, 6, 10, and 13 in \cref{snippet:yakinton}), but are not present in the pre-recorded stimulus.
 The Yakinton lullaby (\cref{snippet:yakinton}) and the neutral lullaby (\cref{snippet:uni-lullaby}) have 26 quarter beats and 32 dotted quarter beats, respectively.
 
-As expected, the participants could, for the most part, accurately produce the Yakinton lullaby (\cref{snippet:yakinton}) based merely on their mental representation of it in the baseline phase.
+As expected, the participants could, for the most part, accurately produce the Yakinton lullaby (\cref{snippet:yakinton}) based merely on their memory in the baseline phase.
 However, as \cref{fig:barplot_QT_distances} shows, these performances included several large deviations of two tones or more, which are not likely to be caused by coincidental imprecise singing.
-In the shadowing condition, in comparison, there was only one such large deviation.
+In the shadowing phase, in comparison, there was only one such large deviation.
 This adjustment of obviously wrong tones was apparently driven by the exposure to a correctly sung version.
-Other than these corrections, the deviation distributions shown in \cref{fig:barplot_QT_distances} are roughly symmetric and equal to baseline in shadowing conditions.
-Surprisingly, the baseline performances had more tones within~$\pm$1 \ac{qt} (which for the participants' western ear would still sound correct).
-It seems, therefore, that the reference version helped the participants to sing within a more accurate range of tones, but also to show more variation within this range.
-
+Other than these corrections, the deviation distributions shown in \cref{fig:barplot_QT_distances} are roughly symmetric and similar in both phases.
+Surprisingly, the baseline performances had more correct tones as a whole.
+It seems, therefore, that the reference version helped the participants to sing within a more accurate range of tones, but somewhat eroded their precision in some notes.
+%
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=\linewidth]{barplot_facet_tone_diff}
@@ -235,29 +236,24 @@ It seems, therefore, that the reference version helped the participants to sing 
 		The labels \enquote{A}~to~\enquote{C} mark the different parts of the song (and correspond to the same labels in \cref{snippet:yakinton}).}
 	\label{fig:barplot_facet_tone_diff}
 \end{figure}
-
+%
 The tone-by-tone comparison presented in \cref{fig:barplot_facet_tone_diff} sheds more light on these differences.
-It is evident that except for the very first interval, the participants showed greater consecutive variation in the second part of the bridge (label \enquote{B} in \cref{snippet:yakinton}, notes 34 to 42), while in the shadowing condition the first phrase (first seven intervals) show a similar tendency.
-Although the bridge moves to a new tonal center, it is not clear why only the second part of it would cause the singers to be less precise.
+It is evident that except for the very first interval, the participants showed greater consecutive variation in the second part of the bridge (label \enquote{B} in \cref{snippet:yakinton}, notes 34 to 42), while in the shadowing condition the first phrase (first seven intervals) showed a similar tendency.
+Although the bridge moves to a new tonal center, it is not clear why only its second part would cause the singers to be less precise.
 As for the higher variation at the beginning of the shadowing performances, this points to the process of re-finding the right tones in the participants' key of preference.
 This explanation is supported by the key comparisons in \cref{tab:bpm_and_keys}, which show that there was virtually no key change between the baseline and shadowing performances by any of the participants.
 Despite that, the unstable beginning of the shadowing performances indicates that listening to the recorded version influenced the participants' tonal accuracy.
-They needed about one whole phrase to overcome the influence of the different tonal center in the recorded version and go back to their key of preference.
+This stands in line with the claim that also in speech, the beginning of a conversation is most prone to inter-speaker influences \citep[e.g.][]{Orlob2018nine}.
+Participants needed about one whole phrase to overcome this influence and enter their preferred tonal center anew.
 Interestingly, the only participant who sang in the same key as the recording did change key in the second performance.
-
-The tempo of the recorded version was \SI{61}{\ac{bpm}}.
-In the baseline performance, three participants sang faster than that and three more slowly (see \cref{tab:bpm_and_keys}).
-All participants changed their tempo so that it was closer to the recorded version.
-Moreover, the absolute distance from the recording's tempo decreased in all cases but one.
-
-%\begin{figure*}[t]
-%	\centering
-%	\includegraphics[width=\linewidth]{violin_facet_dev}
-%	\caption{Comparison between the distribution of deviations from the correct intervals in baseline (red) and shadowing (blue) performances.
-%		The numbers on the x-axis are the number of \acp{qt} above or below the correct interval.}
-%	\label{fig:violin_facet_dev}
-%\end{figure*}
-
+The accuracy of tonal replication was measured in two ways, viz.\ directionality and quantity.
+First, the correctness of the contour direction in each interval was evaluated (higher tone, lower tone, or same tone).
+Second, the size of each interval was compared with the correct interval.
+The participants correctly produced the contour direction in \SI{70}{\percent} of the intervals they replicated.
+The intervals themselves, however, were correct only in \SI{44}{\percent} of the times.
+This suggests that overall contours of the song are more easily recalled than the specific intervals.
+\cref{snippet:deviation_example} shows a few specific examples of tonal and rhythmic deviations.
+%
 \begin{table}
 	\caption[Key and \acs{bpm} deviation summary]
 			{Comparison between the singing tempo and key in baseline and shadowing performances of each participant.
@@ -277,29 +273,25 @@ Moreover, the absolute distance from the recording's tempo decreased in all case
 		LIIT82					& F$\sharp$  |  F$\sharp$	& 59  |  66					&  7 ($+$3)						\\
 		DIHAR83					& F$\sharp$  |  F$\sharp$	& 62  |  61					&  1 ($-$1)						\\
 		\rule{0pt}{0.5cm}% 
-		recording				& B | (B)					& 61 | (61)					&								\\
+		recording				& (B) | B					& (61) | 61					&								\\
 		\bottomrule
 	\end{tabularx}
 	\todo[inline]{any numeric values that can be put for key (e.g., difference in quartertones)}
 \end{table}
-
-In contrast to the first song, it was not expected that participants would be able to completely replicate all rhythmic elements in the second song.
-Two participants managed to replicate part A (cf.\ \cref{snippet:uni-lullaby}), part B was replicated by three participants, and one participant replicated both part A and B.
-The replication rate of each rhythmic element was measured separately instead of the overall tempo.
-\cref{tab:neutral_rhythm_key} summarizes the occurrences of each rhythmic pattern R1--R4 (corresponding to the rhythmic patterns in bars 1, 9, 15, and 16 in \cref{snippet:uni-lullaby}, respectively) in the original and replicated versions.
-The proportion of each pattern within a part was almost completely preserved in the replication, with the exception of a small difference between R2 and R3 in part A.
+%
+The tempo of the recorded version is \SI{61}{\ac{bpm}}.
+In their baseline performances, three participants sang faster than that and three more slowly.
+All participants changed their tempo so that it was closer to the recorded version (see \cref{tab:bpm_and_keys}).
+Moreover, the absolute distance from the recording's tempo decreased in all cases but one, which shows an alignment effect.
+In contrast to the first song, it was not expected that participants would be able to completely replicate all rhythmic patterns in the second song (\cref{snippet:uni-lullaby}).
+Two participants managed to replicate part A, part B was replicated by three participants, and one participant replicated both parts.
+The replication rate of each rhythmic pattern was measured separately.
+\Cref{tab:neutral_rhythm_key} summarizes the occurrences of the rhythmic patterns (R1--R4, corresponding to the rhythmic patterns in bars 5, 9, 15, and 16 in \cref{snippet:uni-lullaby}, respectively) in the original and replicated versions.
+The proportion of each pattern within a part was generally preserved in the participants' performances, with the expected occasional confusions between R2 and R3 in part A due to their difference only in the last third beat that may be interpreted as a stylistic choice.
 It is also evident that R1 and R4 were replicated more accurately.
-An explanation for that is that they appear at the beginning and end of the song, making them easier to remember.
-They are also technically easier to produce, since they contain fewer tones (and intervals) than R2 and R3.
-
-The accuracy of tonal replication was measured in two ways, viz.\ directionality and quantity.
-First, the correctness of the contour direction in each interval was evaluated (higher tone, lower tone, or same tone).
-Second, the size of each interval was compared with the correct interval.
-The participants correctly produced the contour direction in \SI{70}{\percent} of the intervals they replicated.
-The intervals themselves, however, were correct only in \SI{44}{\percent} of the times.
-This suggests that overall contours of the song are more easily recalled than the specific intervals.
-\cref{snippet:deviation_example} shows a few specific examples of tonal and rhythmic deviations.
-
+An explanation for that is their their simplicity compared to R2 and R3 and that they appear at the beginning and end of every phrase, making them easier to remember.
+They contain fewer tones (and thus intervals) than R2 and R3.
+%
 \begin{table}
 	\caption[Percentages of rhythmic pattern replications]
 		{Comparison between the percentage of occurrences of each rhythmic pattern in the original and replicated versions in all bar-level patterns.
@@ -319,70 +311,39 @@ This suggests that overall contours of the song are more easily recalled than th
 		\bottomrule
 	\end{tabularx}
 \end{table}
-
+%
 \todo[inline]{from here on are things originally from the discussion/conclusion section of the paper. see if fit better somewhere else or indeed as part of the results}
 
-The experimental results presented in this paper show that convergence occurs in singing, more so with respect to temporal features than to tonal ones.
-This stands in contrast to findings in interactive speech \citep[e.g.,][]{Raveh2019InterspeechAlexa}).
-Even so, the results emphasize the similarity between the two oral capabilities, viz.\ speech and singing, which are both used in human communication.
-They are therefore also prone to influence each other and can potentially be related and enhance one another.
-For example, \citet[][p. 216]{Nardo2009musicality} explain that \emph{tonal} and \emph{rhythmic} abilities are measures of musicality and also related to phonetic talent.
-This idea is also supported by \citet{Tsang2018musical}, who found a correlation between musical experience and sensitivity to convergence.
-Similarly, pitch has been found to correlate with the level of agreement between interlocutors in dyadic conversation \citep{Okada2012interpreting}.
-We therefore suggest that speech and music are two domains where certain common effects, and in particular convergence, occur with respect to shared prosodic features.
-Establishing this connection between music and speech offers a wide variety of further interdisciplinary experimentation that combine linguistic and musical analysis methods.
-Specifically for convergence, the influence of listening to people with different social and vocal characteristics can be examined.
-The manner in which distances in vocal behavior decrease, or increase, can depend on further aspects of the social environment and auditory context, as suggested by \citet{Noy1999psychoanalysis}.
 
-\begin{figure}[t]
-	\centering
-	\subfigure[]
-		{\includegraphics[width=0.44\textwidth]{deviation_example_1}
-	\label{fig:deviation_example_1}}
+
+\begin{snippet}[t]
+%	\centering
+	\begin{minipage}{.40\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{deviation_example_1}
+		\label{fig:deviation_example_1}
+	\end{minipage}%
 	\hfill
-%	\vspace{-1cm}\hfill\hspace{-1cm}{\hbox{\LARGE $\Longrightarrow$}}\hfill
-	\subfigure[]
-		{\includegraphics[width=0.50\textwidth]{deviation_example_2}
-	\label{fig:deviation_example_2}}
-	\caption[Influence of difference convergence rates on the system's accommodation]
-		{Illustration of the effect of different convergence rates on the updates of the system's  realization of a two-dimensional feature (left) and a one-dimensional feature (right).}
-	\label{fig:deviation_examples}
-\end{figure}
-
-%\begin{figure}
-%	\centering
-%	\begin{subfigure}{0.4\linewidth}
-%	\centering
-%	\includegraphics[width=\textwidth]{deviation_example_1}
-%		\caption{Example 1}
-%		\label{fig:deviation_example_1}
-%	\end{subfigure}
-%	\hfill
-%	\begin{subfigure}{0.6\linewidth}
-%		\centering
-%		\includegraphics[width=\textwidth]{deviation_example_2}
-%		\caption{Example 1}
-%		\label{fig:deviation_example_2}
-%	\end{subfigure}
-%\end{figure}
+	\begin{minipage}{.50\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{deviation_example_2}
+		\label{fig:deviation_example_2}
+	\end{minipage}%
+	\caption{Examples of tonal (top staff) and rhythmic (bottom staff) deviations in bar 10 (left score) and bars 15-16 (right score) of the universal lullaby.
+				Smaller, stemless notes mark the correct notes where deviation occurred.
+				Crossed-head notes mark those that deviate from the correct rhythmic pattern.}
+	\addcontentsline{lof}{section}{Snippet: examples of tonal and rhythmic deviations}
+\end{snippet}
 
 \begin{snippet}[t]
 	\centering
-	\includegraphics[width=0.8\linewidth]{deviation_example_2_mixed}
+	\includegraphics[width=0.65\linewidth]{deviation_example_2_mixed}
 	\caption{Example of tonal (top staff) and rhythmic (bottom staff) deviations in the second lullaby.
 			Smaller, stemless notes mark the correct notes where deviation occurred.
 			Crossed-head notes mark those that deviate from the correct rhythmic pattern.}
 	\label{snippet:deviation_example}
-	\addcontentsline{lof}{section}{Snippet: example of tonal and rhythmic deviations}
+	\addcontentsline{lof}{section}{Snippet: average tonal and rhythmic deviations}
 \end{snippet}
-
-
-In conclusion, the first hypothesis -- convergence to perceived musical stimuli -- was satisfied, but not in the same way for pitch and tempo.
-While tempo became globally closer to the recorded version in absolute terms, the tones were produced more precisely but within the same tonal range.
-Additionally, the secondary expectation was only partially met, with fewer large deviations occurring in the shadowing performances, but otherwise the tones in the baseline production were slightly more accurate as a whole.
-Finally, the third hypothesis was fulfilled, as the simpler, frequent rhythmic patterns were replicated more correctly.
-Furthermore, with one exception, participants were not able to replicate the entire song.
-%Interestingly, they remembered either part A or B, but didn't mix bars from both.
 
 \section{Segmental convergence to natural and synthetic stimuli}
 \label{sec:convergence_to_natural_and_synthetic_stimuli}
@@ -594,3 +555,30 @@ It goes without saying, however, that the generated contours were not \emph{comp
 
 \section{Conclusion}
 \label{sec:conclusion_shadowing}
+
+% Music %%%%%%%%%%%%%%%%%%%%%
+
+The experimental results presented in this paper show that convergence occurs in singing, more so with respect to temporal features than to tonal ones.
+This stands in contrast to findings in interactive speech \citep[e.g.,][]{Raveh2019InterspeechAlexa}).
+Even so, the results emphasize the similarity between the two oral capabilities, viz.\ speech and singing, which are both used in human communication.
+They are therefore also prone to influence each other and can potentially be related and enhance one another.
+For example, \citet[][p. 216]{Nardo2009musicality} explain that \emph{tonal} and \emph{rhythmic} abilities are measures of musicality and also related to phonetic talent.
+This idea is also supported by \citet{Tsang2018musical}, who found a correlation between musical experience and sensitivity to convergence.
+Similarly, pitch has been found to correlate with the level of agreement between interlocutors in dyadic conversation \citep{Okada2012interpreting}.
+We therefore suggest that speech and music are two domains where certain common effects, and in particular convergence, occur with respect to shared prosodic features.
+Establishing this connection between music and speech offers a wide variety of further interdisciplinary experimentation that combine linguistic and musical analysis methods.
+Specifically for convergence, the influence of listening to people with different social and vocal characteristics can be examined.
+The manner in which distances in vocal behavior decrease, or increase, can depend on further aspects of the social environment and auditory context, as suggested by \citet{Noy1999psychoanalysis}.
+
+In conclusion, the first hypothesis -- convergence to perceived musical stimuli -- was satisfied, but not in the same way for pitch and tempo.
+While tempo became globally closer to the recorded version in absolute terms, the tones were produced more precisely but within the same tonal range.
+Additionally, the secondary expectation was only partially met, with fewer large deviations occurring in the shadowing performances, but otherwise the tones in the baseline production were slightly more accurate as a whole.
+Finally, the third hypothesis was fulfilled, as the simpler, frequent rhythmic patterns were replicated more correctly.
+Furthermore, with one exception, participants were not able to replicate the entire song.
+%Interestingly, they remembered either part A or B, but didn't mix bars from both.
+
+%%%%%%%%%%%%%%%
+
+% HCI %%%%%%%%%%
+
+%%%%%%%%%%%%%%%%
