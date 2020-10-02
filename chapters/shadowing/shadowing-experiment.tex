@@ -9,14 +9,34 @@ Some of them were designed to determine human behavior in \acl{hhi} and \ac{hci}
 \section{Shadowing paradigm}
 \label{sec:shadowing_paradigm}
 
-shadowing experiments \citep{Goldinger1998echoes}\\
+In a shadowing task, are participant are instructed to provide vocal productions as a reaction to pre-determined stimuli.
+It is often used in empirical experiments \citep[e.g.,][]{Goldinger1998echoes} to examine how certain properties of these stimuli influence -- or do not influence -- participants' productions.
+A shadowing task is typically preceded by a baseline phase, where the participants provide the same productions without listening to the stimuli.
+The stimuli used in the shadowing phase can be determined based on the baseline production, e.g., for intentionally introducing a contrast between with respect to the participants' productions, as done in \cref{subsubsec:procedure_hci}.
+A comparison between the production in these two phases indicates whether and to what extent the stimuli had an effect on the participants' productions.
+Sometimes a third, post-shadowing phase is added to examine whether the effect -- or lack thereof -- found in the shadowing phase persist when the external inputs are absent.
+\Cref{fig:HCIConvFlow} shows a complete flow of the shadowing paradigm used in an experiment.
+It is important to note that the baseline for change is not \SI{50}{\percent} (randomly retaining preferred realization or adopting stimulus' form).
+Since people are not likely to spontaneously change their speech, the assumption here is that the probability of change represents the influence of the stimulus on the speaker.
+More generally, the degree of accommodation can be seen as a speaker's tendency to converge to an interlocutor (cf.\ \emph{sensitivity} property in \cref{sec:parameters}).
+\todo{need to say that though it might occur, 100\% convergence cannot be realistically expected}
 
-Shadowing -- here, delayed, non-immediate shadowing -- is a common methodology in convergence studies \citep[e.g.,][]{Pardo2018comparison}.
+Shadowing is a common methodology in vocal accommodation studies \citep[e.g.,][]{Pardo2018comparison, Babel2014novelty, Shockley2004imitation, Walker2015repeat, Dias2016visibilivty}.
+% and take references (with very short explanations from line 402 on in shadow article)
+The ability to present specific contrasts and measure production differences in a controlled fashion makes it suitable for such studies.
+However, this method also has some disadvantages.
+One drawback is that while it is suitable for a controlled experimental, it only loosely represents a real-world conversation, due to the lack of utterance unpredictability, turn-taking, defined common goal, and more.
+Another potential hindrance is that participants might tend, intentionally or not, to imitate the stimuli, which may lead to a false effect of high convergence that does not represent the participants' natural behavior.
+This should be addressed in the experimental design and the instructions given to the participants, e.g., by not making the target features too obvious and by not using wordings like \enquote{repeat}, \enquote{mimic}, or \enquote{like you heard} in the instructions.
 
-\todo[inline]{general explanation what experimental setting is (with references)}
-\todo[inline]{why is it good for accommodation experiments.}
-\todo[inline]{explain different between online and offline shadowing (better terms?)}
-\todo[inline]{briefly say that both experiments here are offline shadowing}
+A distinction can be made between two types of shadowing:
+In \emph{Close shadowing}, participants start their production while a stimulus is still being played.
+This means that they need to deal both with generation and processing at the same time.
+\emph{Consecutive shadowing}, on the contrary, requires participants to listen a stimulus in its entirety after it is finished.
+This becomes harder the longer the a stimulus is, merely due to the increasing difficulty to remember long segments.
+Both of the experiments presented in this chapter use consecutive shadowing.
+The simulated \ac{hci} experiment (\cref{sec:convergence_to_natural_and_synthetic_stimuli}) uses short sentence with which the participants are already familiar from the baseline phase. 
+In the sung music experiment (\cref{sec:alignment_in_novel_and_familiar_sung_music}) the musical pieces are relatively long, and the analyses accounted also for parts that the participants did not produce (due to memorizing difficulties or otherwise).
 
 \section{Prosodic alignment in novel and familiar sung music}
 \label{sec:alignment_in_novel_and_familiar_sung_music}
@@ -196,7 +216,7 @@ The mapping between tone frequencies and \acp{qt} (relative to middle A) was don
 %
 where $n$ is the number of \acp{qt} away from the middle A tone \citep[cf.][]{DeKlerk1979equal} and \SI{440}{\hertz} is the frequency of the middle A based on the equal temperament.
 %, which can be assumed to be the tuning system with which the participants grew up.
-QTs are denoted here with the symbols \hspace{-0.18cm}
+QTs are denoted here with the symbols \hspace{-0.26cm}
 $\vcenter{\hbox{\includegraphics[height=15pt]{qt_c-cih}}}$ and 
 $\vcenter{\hbox{\includegraphics[height=15pt]{qt_c-cisih}}}$ for one \ac{qt} and three \acp{qt} above a note, respectively.
 Ultimately, tonal deviations were measured per interval, rather than per tone, as the latter would depend on the key the participants chose, while the former measures tonal accuracy independently of key.
@@ -346,9 +366,11 @@ They contain fewer tones (and thus intervals) than R2 and R3.
 \section{Segmental convergence to natural and synthetic stimuli}
 \label{sec:convergence_to_natural_and_synthetic_stimuli}
 
-something\ldots
 
-As always in accommodation studies, \SI{100}{\percent} would mean complete convergence to every stimulus, which cannot be reasonably expected.
+The present study uses a shadowing paradigm. 
+However, unlike most shadowing experiments  investigating accommodation, participants shadow full sentences instead of single, often mono- or bisyllabic (non-)words. 
+
+As always in phonetic accommodation studies, \SI{100}{\percent} would mean complete convergence to every stimulus, which cannot be reasonably expected.
 
 \subsection{Experimental design}
 \label{subsec:design_HCIConv}
