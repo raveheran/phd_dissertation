@@ -17,6 +17,8 @@
 \usepackage{multirow} % enable multi-rows text
 %\usepackage[style=numeric,backend=biber]{biblatex}
 \usepackage{lettrine} % for using drop-down letters
+\usepackage{calligra} % caligraphy font (to apply, use \calligra)
+\usepackage{emerald}
 %\usepackage{draftwatermark} % put ``draft'' water mark on all pages
 \usepackage[inline, shortlabels]{enumitem}
 %\usepackage{enumerate} % for using enumerations
@@ -52,7 +54,8 @@
 \usepackage{setspace} % for more control over spacing configurations
 \usepackage{graphicx} % extended graphic capabilities
 \usepackage{float} % more control over floats
-\usepackage{musicography} % music symbo
+\usepackage{newfloat} % enable defining new float environments
+\usepackage{musicography} % music symbols
 \usepackage{eso-pic} % for some special images layouts (e.g., for cover page)
 %\usepackage{chngcntr} % control over coutner (e.g., for footnotes), only required for pre-2018 LaTeX 
 \usepackage[cc]{titlepic} % for putting picture in cover page
@@ -94,6 +97,16 @@
 % 				CONFIGURATIONS
 % ==========================================
 
+% for writing in Hebrew and German
+%\usepackage{polyglossia} % for writing in multiple languages
+%\setdefaultlanguage{english}
+%\setotherlanguage{german}
+%\setotherlanguage[numerals=hebrew]{hebrew}
+%%\setotherlanguage[numerals=hebrew]{hebrew}
+%\newfontfamily\hebrewfont[Script=Hebrew,Scale=1]{Times New Roman}
+%%\usepackage{bidi} % needed, but should be loaded automatically once Hebrew is defined for use
+%\newcommand{\hebrewtext}[1]{\begin{hebrew}\RL{#1}\end{hebrew}}
+
 \counterwithout{footnote}{chapter} % cross-chapter continuous footnote numbering
 
 % month-year date format definition
@@ -103,10 +116,8 @@
 % font definitions
 % ----------------
 % (font information and examples on http://www.tug.dk/FontCatalogue/allfonts.html)
-\usepackage{calligra} % caligraphy font (to apply, use \calligra)
 \input AnnSton.fd
 \newcommand*\stonefont{\usefont{U}{AnnSton}{xl}{n}} % use \stonefone for stone-like capital blocks
-\usepackage{emerald}
 \renewcommand\theadfont{\bfseries}
 
 %\DeclareMathSizes{30}{20}{10}{8} % set font sizes of math environments
@@ -145,9 +156,8 @@
 \DeclareMathOperator*{\argmax}{\mathit{argmax}}
 
 % define snippet environments for music sheet samples
-\usepackage{newfloat}
 \DeclareFloatingEnvironment[
-	fileext=snp,
+	fileext=snp, % save as a separate list. use `lof` to put in list of figures
 	listname={List of Snippets},
 	name=Snippet,
 	placement=tbhp,
