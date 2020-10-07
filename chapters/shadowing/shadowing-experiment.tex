@@ -1,19 +1,378 @@
-\chapter{Shadowing Experiments with Natural and Synthetic Voices}
-\label{chap:shadowing_experiment_with_natural_and_synthetic_voices}
+\chapter{Shadowing in Sung Music and Human-Computer Interaction}
+\label{chap:shadowing_in_sung_music_and_human_computer_interaction}
 
 \lettrine{A} series of experiments is described in this chapter.
 Some of them were designed to determine human behavior in \acl{hhi} and \ac{hci} as a mean of modeling interactions, and others examined the change in reactions of subjects to different adaptation strategies of implemented system as a subjective evaluation method.
 
 \pagebreak
 
-\section{Convergence to natural and synthetic stimuli}
+\section{Shadowing paradigm}
+\label{sec:shadowing_paradigm}
+
+In a shadowing task, are participant are instructed to provide vocal productions as a reaction to pre-determined stimuli.
+It is often used in empirical experiments \citep[e.g.,][]{Goldinger1998echoes} to examine how certain properties of these stimuli influence -- or do not influence -- participants' productions.
+A shadowing task is typically preceded by a baseline phase, where the participants provide the same productions without listening to the stimuli.
+The stimuli used in the shadowing phase can be determined based on the baseline production, e.g., for intentionally introducing a contrast between with respect to the participants' productions, as done in \cref{subsubsec:procedure_hci}.
+A comparison between the production in these two phases indicates whether and to what extent the stimuli had an effect on the participants' productions.
+Sometimes a third, post-shadowing phase is added to examine whether the effect -- or lack thereof -- found in the shadowing phase persist when the external inputs are absent.
+\Cref{fig:HCIConvFlow} shows a complete flow of the shadowing paradigm used in an experiment.
+It is important to note that the baseline for change is not \SI{50}{\percent} (randomly retaining preferred realization or adopting stimulus' form).
+Since people are not likely to spontaneously change their speech, the assumption here is that the probability of change represents the influence of the stimulus on the speaker.
+More generally, the degree of accommodation can be seen as a speaker's tendency to converge to an interlocutor (cf.\ \emph{sensitivity} property in \cref{sec:parameters}).
+\todo{need to say that though it might occur, 100\% convergence cannot be realistically expected}
+
+Shadowing is a common methodology in vocal accommodation studies \citep[e.g.,][]{Pardo2018comparison, Babel2014novelty, Shockley2004imitation, Walker2015repeat, Dias2016visibilivty}.
+% and take references (with very short explanations from line 402 on in shadow article)
+The ability to present specific contrasts and measure production differences in a controlled fashion makes it suitable for such studies.
+However, this method also has some disadvantages.
+One drawback is that while it is suitable for a controlled experimental, it only loosely represents a real-world conversation, due to the lack of utterance unpredictability, turn-taking, defined common goal, and more.
+Another potential hindrance is that participants might tend, intentionally or not, to imitate the stimuli, which may lead to a false effect of high convergence that does not represent the participants' natural behavior.
+This should be addressed in the experimental design and the instructions given to the participants, e.g., by not making the target features too obvious and by not using wordings like \enquote{repeat}, \enquote{mimic}, or \enquote{like you heard} in the instructions.
+
+A distinction can be made between two types of shadowing:
+In \emph{Close shadowing}, participants start their production while a stimulus is still being played.
+This means that they need to deal both with generation and processing at the same time.
+\emph{Consecutive shadowing}, on the contrary, requires participants to listen a stimulus in its entirety after it is finished.
+This becomes harder the longer the a stimulus is, merely due to the increasing difficulty to remember long segments.
+Both of the experiments presented in this chapter use consecutive shadowing.
+The simulated \ac{hci} experiment (\cref{sec:convergence_to_natural_and_synthetic_stimuli}) uses short sentence with which the participants are already familiar from the baseline phase. 
+In the sung music experiment (\cref{sec:alignment_in_novel_and_familiar_sung_music}) the musical pieces are relatively long, and the analyses accounted also for parts that the participants did not produce (due to memorizing difficulties or otherwise).
+
+\section{Prosodic alignment in novel and familiar sung music}
+\label{sec:alignment_in_novel_and_familiar_sung_music}
+
+\todo[inline]{motivation to do this experiment. relation and differences to linguistic accommodation}
+\todo[inline]{specifically, see if there is something that can be taken from the abstract}
+
+\todo[inline]{reference to music paper in 2-3 places}
+
+% how relates to vocal accommodationa in general and HHI experiment. -- gives the aspect of accommodation occuring not only in speech, but other vocal communications as well.
+% things common to music and speech
+
+As speaking and singing are used in social contexts, external factors may potentially affect them.
+This enables, among other things, convergence effects between people productions.
+In the case of music, convergence can be expressed in different aspects than in speech, like singing more accurately, shifting the musical key, adapting to a different tempo, etc.
+%Furthermore, seeing that the tonal targets in singing are pre-defined, there are precise targets for production -- either from a heard example or from one's mental memory -- in an experimental setting.
+%Therefore, the participants' productions can be directly compared with some \enquote{ground truth}.
+
+The rhetorical aspects of music and spoken language can be described in musical terms.
+These two vocal capabilities share some properties in both production and perception.
+Such common properties include articulation rate, intensity, timbre, and others.
+Moreover, intonation, pitch, timbre, rhythm and tempo are all common in descriptions of music, as they are in speech \citep{Molino2000toward, Jackendoff2009parallels}.
+Similarly, \citet{Day2013speech} also shows how some phenomena related to spoken language can also be described using musical means.
+Another important aspect is that both have a temporal dimension and evolve over time.
+However, music usually consists of defined \emph{absolute} pitch and rhythmic targets.
+This is even more salient when dealing with familiar musical materials, as both the singer and the listener are already primed as to what they expect to hear before listening \citep{Meyer2008emotion}.
+In speech, on the other hand, the phonetic features of a specific utterance are not expected to match specific absolute values.
+These similarities and differences between spoken language and music raise the question whether vocal convergence occurs in music production as well.
+Since the focus here is on vocal changes, sung music was examined in the study.
+However, to prevent influences due to phonetic production of specific words, the singing was performed without lyrics (see \cref{subsubsec:procedure_music}).
+
+The main research question of the study presented here is whether convergence occurs in singing as well, and, if so, whether specific parts of the musical piece are prone to undergo changes.
+%Our hypothesis is that convergence will be found in the participants' performances with respect to the pre-recorded stimuli.
+Convergence can be realized on the absolute level, meaning that the participants shift their overall pitch range (the \emph{key}) and tempo to be closer to the recording, or relative to their own singing by making the pitch and temporal intervals between the target notes more precise after listening to the recording.
+A secondary research question is how the familiarity with the musical material affects reproduction.
+The expectation here is that the participants' performances of the familiar lullaby will be accurate even before listening to a version of it in terms of deviation from the target intervals, but even more so afterwards.
+When reproducing an unfamiliar melody, it is not expected that the participants will remember it in its entirety, but rather that they would stick to repeating segments or parts with smaller intervals and simpler rhythms.
+Additional background and motivations can be found in \citet{Raveh2020SpeechProsody}.
+
+\todo[inline]{is it necessary to have this outline?}
+%The experimental procedures and materials are described in \cref{sec:method}.
+%\cref{sec:analysis_music} presents the methods applied to analyze the prosodic properties \emph{pitch}, \emph{tempo}, and \emph{rhythm}.
+%%These are the two main features that are directly noted in musical sheets, and play an important role in both speech and music and have been studied in speech convergence studies \citep{Schweitzer2013convergence}.
+%Results are presented in \cref{sec:results}, along with some representative examples from the participants' performances.
+%Finally, interpretations and additional observations are discussed in \cref{sec:discussion_and_conclusion}, which also concludes the paper.
+
+\subsection{Experimental design}
+\label{subsec:design_music}
+
+\subsubsection{Target features}
+\label{subsubsec:target_features_music}
+
+Phonetic convergence in speech has been studied with respect to various prosodic features, such as speech rate \citep{Schweitzer2013convergence, Pardo2012phonetic}, \ac{f0} \citep{Babel2012role, Collins1998convergence}, intonation \citep{DImperio2014phonetic, Simonet2011intonational}, rhythm \citep{Krivokapic2013rhythm}, and more.
+The study presented here deals with the musical prosodic features \emph{tonal deviation} (perceived \ac{f0} difference), \emph{rhythmic precision} (with respect to specific rhythmic patterns), and overall tempo and key choice.
+The latter two are global properties and were determined based on an entire performance.
+In \cref{subsec:results_music} it is explained how these features were measured in music, where the tonal and rhythmic targets are defined based on a musical theoretical framework.
+
+\subsubsection{Material and participants}
+\label{subsubsec:material_participants_music}
+
+\begin{snippet}[t]
+	\centering
+	\includegraphics[width=0.8\linewidth]{yakinton}
+	\caption[Yakinton lullaby]
+		{The Yakinton lullaby transposed to B major.
+		The square labels \enquote{A}, \enquote{B}, and \enquote{C} mark the \emph{theme}, \emph{bridge} (or \emph{development}), and \emph{recapitulation} sections of the lullaby.
+		The breath marks are placed where the participants are expected to make a brief break and/or lengthen the ending of a phrase.
+		The first sixteenth note in bar six is in brackets since it is not present in the original melody and was therefore also excluded in the recorded version played to the participants.
+		However, it is common to add it, and indeed all participants included it in both performances.}
+	\label{snippet:yakinton}
+	\addcontentsline{lof}{section}{Snippet \thesnippet: Yakinton lullaby}
+\end{snippet}
+%
+Sung lullabies were chosen in this work, as they are more memorable than other musical genres and than instrumental pieces \citep{Weiss2012something, Trehub1991music}, especially among mother to small babies, as those that took part in the study (see below).
+Two lullabies were used in the study, one for each experiment: The first is \enquote{Tune for the Yakinton}\footnote{Pizmon LaYakinton
+% (\emph{Hebrew:}\hebrewtext{פזמון ליקינטון})
+, written by Leah Goldberg in 1940. \emph{Yakinton} is the Hebrew name of the Hyacinth plant.} (hereafter \enquote{Yakinton}, see \cref{snippet:yakinton}), which is a famous Israeli children lullaby.
+The second is a culturally universal lullaby composed for experimental purposes \citep[][pp.~22-47, and see \cref{snippet:uni-lullaby}]{Twig2016universal}, which contains \emph{cross-cultural characteristics}, like repetitiveness, simple melody, and a limited inventory of tonal and rhythmic patterns \citep{Unyk1992lullabies, Trehub1993maternal}.
+Therefore, while the first one is assumed to be known to the participants, they could not be familiar with the second one.
+Both lullabies are short (13 bars at \musQuarter~=~61 ($\approx$\SI{26.5}{\second}) and 16 bars at \musQuarterDotted~=~33 ($\approx$\SI{58}{\second}), respectively) and in major keys.
+The lullabies were recorded a cappella by a trained female singer in the same age group as the participants in a professional recording studio at \SI{44.1}{\kilo\hertz} sampling rate and 16~bit resolution.
+To avoid changes in voice production, decrease vibrato, and limit the singing effort, they were both transposed and recorded in B major, which is relatively low for female voices.
+\todo{need a footnote here to explain why the transposition helped with these things?}
+This also prevents influences originating from the use of a different key in each lullaby recording.
+The syllable \textipa{[na]} was used throughout the lullabies in both recorded version instead of any lyrics to eliminate biases due to their lyrics or the realizations of specific sounds.
+This way, the possibility that participants would hesitate in their performances because they know the melody but not the lyrics was avoided as well.
+%
+\begin{snippet}[t]
+	\centering
+	\includegraphics[width=0.8\linewidth]{lullaby}
+	\caption[Universal lullaby]
+		{The universal lullaby.
+		The square labels \enquote{A} and \enquote{B} mark the structural parts.
+		The grace notes in bars 2, 6, and 12 were included in the recording but due to their secondary melodic role did not penalize performances that lacked them.}
+	\label{snippet:uni-lullaby}
+	\addcontentsline{lof}{section}{Snippet \thesnippet: Universal lullaby}
+\end{snippet}
+% next line is empty to create separate paragraph for participants
+
+Six participants took part in the study, all of which are mothers to recently born babies and with no hearing impairments.
+For three of the mothers this was the first child.
+Their age ranged from 29 to 37 years (mean 35.5~$\pm$3.25) and the age of their babies ranged from one to seven months (mean 4.5~$\pm$3.5).
+To further homogenize the participants' characteristics, their musical education and experience were controlled as well.
+None had any professional-level musical background and four disclosed they have been singing or playing an instrument recreationally.
+Since singing is a skill that can be methodically improved, it was required to find participants with no professional-level singing skills on the one hand, but still sing regularly in a social context \emph{without the direct goal of improving their singing quality}.
+To that end, mothers who reported that they sing to their new-born babies were selected.
+In the pre-verbal phase, parents often sing to their babies.
+When communicating with infants, adults tend to use exaggerated prosody with elevated melodic pitch and distinct rhythmic patterns \citep{Fernald1991prosody}.
+The increased use of singing as well as its function as a means of communication with their babies \citep[see][]{Street2003mothers,Papouvsek1991meanings} made mothers of small babies suitable for this study.
+Since the participants' singing capabilities are essential for their performances in the experiments, it was also confirmed that they regularly sing lullabies for their babies.
+Furthermore, as we are dealing with a specific lullaby in the first experiment, their familiarity with it was confirmed.
+All the participants reported that they know the Yakinton lullaby well enough to spontaneously sing it from memory.
+
+\subsubsection{Procedure}
+\label{subsubsec:procedure_music}
+
+The study consists of two shadowing experiments (see \cref{sec:shadowing_paradigm}).
+The first experiment examined convergence effects between two performances of the participants.
+The participants were first asked to sing the familiar Yakinton's melody with the syllable \textipa{[na]} instead of its lyrics (regardless of whether the participant could, in fact, recall the lyrics).
+Beside that, no specific instructions were given, e.g., regarding the tempo, the key, or any other musical preference.
+Subsequently, the participants listened to the pre-recorded version of the lullaby via wired over-ear headphones. %(Phillips SHL3060).
+Following that, they sung the lullaby once more and answered some questions regarding the recorded version of the lullaby, to determine how much it differs from the one in their mental memory.
+Importantly, no reference to either their previous production or the recorded version was made by using wordings like \enquote{repeat}, \enquote{mimic}, \enquote{like before}, etc.
+The second experiment comprised only a shadowing performance, as the participants were intentionally unfamiliar with the universal lullaby.
+This experiment tests which prosodic features would be replicated more accurately when it is not likely that the participants would remember all aspects of the musical material.
+After listening to the pre-recorded version of the lullaby, they were instructed to sing it themselves to the best of their ability.
+This required not only their singing capabilities, but also their musical memory.
+As explained above, this lullaby was composed with universal characteristics of the genre in mind and should therefore contain similar melodic and harmonic contents to the lullaby in the first experiment.
+The two experiments were carried out consecutively.
+In addition to the short questions in the first experiment, the participants also answered a personal questionnaire before starting the second experiment and a closing questionnaire at the end.
+The entire procedure lasted \SIrange{15}{20}{\minute} in total per participant.
+
+\subsection{Analyses and results}
+\label{subsec:results_music}
+
+Since the participants aimed to produce specific musical notes (as opposed to non-specific absolute frequencies in speech production), tones were used for measuring pitch instead of raw Hertz values.
+For that, quarter tones (\acfp{qt}) were used instead of semitones to increase the tonal resolution, 
+This enables a more fine-grained analysis that can capture more subtle off-key singing and differentiate the performances better.
+%The performances were manually transcribed in Sibelius 6
+%\todo{version footnote}
+%and were verified using the corresponding MIDI output against the recordings.
+%
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=\linewidth]{violin_facet_dev}
+	\caption[Summary of within-participant interval deviation distribution]
+		{Comparison between the distribution of deviations from the correct intervals in baseline (red) and shadowing (blue) performances.
+		The numbers on the x-axis are the number of \acp{qt} above or below the correct interval.}
+	\label{fig:violin_facet_dev}
+	\todo[inline]{caption seems to be wrong. also, refer to this figure in text (was not in original paper)}
+	\todo[inline]{refer to this in text and explain what it shows}
+\end{figure}
+%
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=\linewidth]{barplot_QT_distances}
+	\caption[Distribution of interval deviations]
+	{Comparison between the distribution of deviations from the correct intervals in baseline (red) and shadowing (blue) performances.
+		The numbers on the x-axis are the number of \acp{qt} above or below the correct interval.}
+	\label{fig:barplot_QT_distances}
+\end{figure}
+%
+The segmentation of the performances into individual tones was done manually by a trained musician.
+Silences, non-singing, breaths between phrases, etc.\ were segmented as well.
+The tone frequencies were determined by the median of the measured frequencies during this tone's duration, excluding the first and last \SI{10}{\percent} of the tone duration.
+This excludes transitions between tones and smooths out vibrato and ad lib ornaments.
+These values were extracted using Praat \citep{Boersma2001praat} with manual corrections where necessary.
+Subsequently, the note assigned to each singing segment was determined by selecting the closest \ac{qt} to the measured frequency in the corresponding segment.
+This stands in line with the assumption that people sing with a specific tone in mind rather time a frequency.
+The mapping between tone frequencies and \acp{qt} (relative to middle A) was done using the formula
+%
+\begin{equation}
+	\label{eq:quarter_tones_formula}
+	frequency(QT_n) = 440 \cdot \sqrt[24]{2}^n,
+\end{equation}
+\eqname{\Acl{qt} frequency calculation (equal temperament)}\noindent
+%
+where $n$ is the number of \acp{qt} away from the middle A tone \citep[cf.][]{DeKlerk1979equal} and \SI{440}{\hertz} is the frequency of the middle A based on the equal temperament.
+%, which can be assumed to be the tuning system with which the participants grew up.
+QTs are denoted here with the symbols \hspace{-0.26cm}
+$\vcenter{\hbox{\includegraphics[height=15pt]{qt_c-cih}}}$ and 
+$\vcenter{\hbox{\includegraphics[height=15pt]{qt_c-cisih}}}$ for one \ac{qt} and three \acp{qt} above a note, respectively.
+Ultimately, tonal deviations were measured per interval, rather than per tone, as the latter would depend on the key the participants chose, while the former measures tonal accuracy independently of key.
+Tempo was measured for an entire performance, taking into account only singing segments (similarly to measuring \ac{ar} in speech).
+This ensures that pauses between phrases do not influence the perceived singing tempo and that occasional, non-written lengthenings (e.g., short ritardandi and fermate at the end of phrases) do not mark a specific note as being out of rhythm.
+Tempo was measured in \acf{bpm}, which is directly derived from the standard musical notation \musQuarter~=, using the formula
+%
+\begin{equation}
+	\label{eq:bpm}
+	BPM = \frac{N + \delta}{overall\ duration} \cdot 60,
+\end{equation}
+\eqname{\Acf{bpm}}\noindent
+%
+where $N$ is the number of beats in the lullaby and $\delta$ is the number of beats, if any, added by a participant.
+Such additions occurred exclusively at the end of phrases (bars 3, 6, 10, and 13 in \cref{snippet:yakinton}), but are not present in the pre-recorded stimulus.
+The Yakinton lullaby (\cref{snippet:yakinton}) and the universal lullaby (\cref{snippet:uni-lullaby}) have 26 quarter beats and 32 dotted quarter beats, respectively.
+
+As expected, the participants could, for the most part, accurately produce the Yakinton lullaby (\cref{snippet:yakinton}) based merely on their memory in the baseline phase.
+However, as \cref{fig:barplot_QT_distances} shows, these performances included several large deviations of two tones or more, which are not likely to be caused by coincidental imprecise singing.
+In the shadowing phase, in comparison, there was only one such large deviation.
+This adjustment of obviously wrong tones was apparently driven by the exposure to a correctly sung version.
+Other than these corrections, the deviation distributions shown in \cref{fig:barplot_QT_distances} are roughly symmetric and similar in both phases.
+Surprisingly, the baseline performances had more correct tones as a whole.
+It seems, therefore, that the reference version helped the participants to sing within a more accurate range of tones, but somewhat eroded their precision in some notes.
+%
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\linewidth]{barplot_facet_tone_diff}
+	\caption[Comparison of interval deviation between baseline and shadowing performances]
+		{Comparison between the deviation distribution of each interval in baseline (top) and shadowing (bottom) conditions.
+		The numbers on the x-axis are the interval indices representing the 53 intervals in the Yakinton lullaby.
+		The distances between the intervals sang by the participants and the correct intervals are shown on the y-axis (outliers are omitted).
+		The labels \enquote{A}~to~\enquote{C} mark the different parts of the lullaby (and correspond to the same labels in \cref{snippet:yakinton}).}
+	\label{fig:barplot_facet_tone_diff}
+\end{figure}
+%
+The tone-by-tone comparison presented in \cref{fig:barplot_facet_tone_diff} sheds more light on these differences.
+It is evident that except for the very first interval, the participants showed greater consecutive variation in the second part of the bridge (label \enquote{B} in \cref{snippet:yakinton}, notes 34 to 42), while in the shadowing condition the first phrase (first seven intervals) showed a similar tendency.
+Although the bridge moves to a new tonal center, it is not clear why only its second part would cause the singers to be less precise.
+As for the higher variation at the beginning of the shadowing performances, this points to the process of re-finding the right tones in the participants' key of preference.
+This explanation is supported by the key comparisons in \cref{tab:bpm_and_keys}, which show that there was virtually no key change between the baseline and shadowing performances by any of the participants.
+Despite that, the unstable beginning of the shadowing performances indicates that listening to the recorded version influenced the participants' tonal accuracy.
+This stands in line with the claim that also in speech, the beginning of a conversation is most prone to inter-speaker influences \citep[e.g.][]{Orlob2018nine}.
+Participants needed about one whole phrase to overcome this influence and enter their preferred tonal center anew.
+Interestingly, the only participant who sang in the same key as the recording did change key in the second performance.
+The accuracy of tonal replication was measured in two ways, viz.\ directionality and quantity.
+First, the correctness of the contour direction in each interval was evaluated (higher tone, lower tone, or same tone).
+Second, the size of each interval was compared with the correct interval.
+The participants correctly produced the contour direction in \SI{70}{\percent} of the intervals they replicated.
+The intervals themselves, however, were correct only in \SI{44}{\percent} of the times.
+This suggests that overall contours of the lullaby are more easily recalled than the specific intervals.
+\cref{snippet:deviation_example} shows a few specific examples of tonal and rhythmic deviations.
+%
+\begin{table}
+	\caption[Key and \acs{bpm} deviation summary]
+			{Comparison between the singing tempo and key in baseline and shadowing performances of each participant.
+			The values on the left and right under the key and \acs{bpm} columns are for baseline and shadowing performances, respectively.
+			\acs{bpm}$\Delta$ shows the \acs{bpm} difference between baseline and shadowing, with the value in parentheses standing for the change in the difference from the recording's tempo.
+			A negative value means that the participant decreased the distance to the recording.}
+	\label{tab:bpm_and_keys}
+	\centering
+	\begin{tabularx}{\linewidth}{Xccc}
+		\toprule
+		\bfseries{Participant}	& \bfseries{Key}			& \bfseries{\acs{bpm}}		& \bfseries{\acs{bpm}$\Delta$}	\\
+		\midrule
+		RITRAF85				& F  |  F$\sharp$			& 76  |  70					&  6 ($-$6)						\\
+		TALHAR82				& B  |  B$\flat$			& 57  |  63					&  6 ($-$2)						\\
+		RANVI88					& A  |  A					& 59  |  63					&  4 (\phantom{$-$}0)			\\
+		ONKASH82				& F$\sharp$  |  F$\sharp$	& 76  |  69					&  7 ($-$7)						\\
+		LIIT82					& F$\sharp$  |  F$\sharp$	& 59  |  66					&  7 ($+$3)						\\
+		DIHAR83					& F$\sharp$  |  F$\sharp$	& 62  |  61					&  1 ($-$1)						\\
+		\rule{0pt}{0.5cm}% 
+		recording				& (B) | B					& (61) | 61					&								\\
+		\bottomrule
+	\end{tabularx}
+	\todo[inline]{any numeric values that can be put for key (e.g., difference in quartertones)}
+\end{table}
+%
+The tempo of the recorded version is \SI{61}{\ac{bpm}}.
+In their baseline performances, three participants sang faster than that and three more slowly.
+All participants changed their tempo so that it was closer to the recorded version (see \cref{tab:bpm_and_keys}).
+Moreover, the absolute distance from the recording's tempo decreased in all cases but one, which shows an alignment effect.
+In contrast to the first lullaby, it was not expected that participants would be able to completely replicate all rhythmic patterns in the second lullaby (\cref{snippet:uni-lullaby}).
+Two participants managed to replicate part A, part B was replicated by three participants, and one participant replicated both parts.
+The replication rate of each rhythmic pattern was measured separately.
+\Cref{tab:neutral_rhythm_key} summarizes the occurrences of the rhythmic patterns (R1--R4, corresponding to the rhythmic patterns in bars 5, 9, 15, and 16 in \cref{snippet:uni-lullaby}, respectively) in the original and replicated versions.
+The proportion of each pattern within a part was generally preserved in the participants' performances, with the expected occasional confusions between R2 and R3 in part A due to their difference only in the last third beat that may be interpreted as a stylistic choice.
+It is also evident that R1 and R4 were replicated more accurately.
+An explanation for that is their their simplicity compared to R2 and R3 and that they appear at the beginning and end of every phrase, making them easier to remember.
+They contain fewer tones (and thus intervals) than R2 and R3.
+%
+\begin{table}
+	\caption[Percentages of rhythmic pattern replications]
+		{Comparison between the percentage of occurrences of each rhythmic pattern in the original and replicated versions in all bar-level patterns.
+		Parts A and B refer to the labels with the same letters in \cref{snippet:uni-lullaby}.
+		Each replication row refers to the average over all participants who replicated that part.}
+	\label{tab:neutral_rhythm_key}  
+	\centering
+	\begin{tabularx}{\linewidth}{XSSSS}
+		\toprule
+						& \bfseries{R1}		& \bfseries{R2}		& \bfseries{R3}		& \bfseries{R4}\\
+		\midrule
+		original part A	& 50				& 12.5				& 12.5				& 25\\
+		replications A	& 54				& 18				& 7					& 21\\
+		\rule{0pt}{0.5cm}%
+		original part B	& 25				& 37.5				& 12.5				& 25\\
+		replications B	& 25				& 42				& 8					& 25\\		
+		\bottomrule
+	\end{tabularx}
+\end{table}
+%
+\todo[inline]{from here on are things originally from the discussion/conclusion section of the paper. see if fit better somewhere else or indeed as part of the results}
+
+
+
+\begin{snippet}[t]
+%	\centering
+	\begin{minipage}{.41\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{deviation_example_1}
+		\label{fig:deviation_example_1}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}{.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{deviation_example_2}
+		\label{fig:deviation_example_2}
+	\end{minipage}%
+	\caption[Examples of tonal and rhythmic deviations]
+		{Examples of tonal (top staff) and rhythmic (bottom staff) deviations in bar 10 (left score) and bars 15-16 (right score) of the universal lullaby.
+		Smaller, stemless notes mark the correct notes where deviation occurred.
+		Crossed-head notes mark those that deviate from the correct rhythmic pattern.}
+	\addcontentsline{lof}{section}{Snippet \thesnippet: Examples of tonal and rhythmic deviations}
+\end{snippet}
+
+\begin{snippet}[t]
+	\centering
+	\includegraphics[width=0.65\linewidth]{deviation_example_2_mixed}
+	\caption[Average tonal and rhythmic deviations]
+		{Average deviations in the participants' performances in the universal lullaby.
+		Smaller, stemless notes mark the correct notes where deviation occurred.
+		Crossed-head notes mark those that deviate from the correct rhythmic pattern.}
+	\label{snippet:deviation_example}
+	\addcontentsline{lof}{section}{Snippet \thesnippet: Average tonal and rhythmic deviations}
+\end{snippet}
+
+\section{Segmental convergence to natural and synthetic stimuli}
 \label{sec:convergence_to_natural_and_synthetic_stimuli}
 
-something\ldots
 
-As always in accommodation studies, \SI{100}{\percent} would mean complete convergence to every stimulus, which cannot be reasonably expected.
+The present study uses a shadowing paradigm. 
+However, unlike most shadowing experiments  investigating accommodation, participants shadow full sentences instead of single, often mono- or bisyllabic (non-)words. 
 
-\subsection{Design}
+As always in phonetic accommodation studies, \SI{100}{\percent} would mean complete convergence to every stimulus, which cannot be reasonably expected.
+
+\subsection{Experimental design}
 \label{subsec:design_HCIConv}
 
 Phonetic convergence is often examined in the scope of shadowing experiments, in which the participants are asked to repeat utterances spoken by an interlocutor \citep[e.g.,][]{Pardo2017phonetic, Dias2016visibilivty, Walker2015repeat, Shockley2004imitation}.
@@ -115,7 +474,7 @@ Although these feature may pass as light dialectical markers \citep{Mitterer2013
 \todo{also talk a bit the differences between the nature of the features, i.e. categorical vs. gradual, vs. mostly perceptual + gradual length + realization of length of next nasal}
 
 \subsubsection{Stimuli and participants}
-\label{subsubsection:stimuli_participant_hci}
+\label{subsubsec:stimuli_participant_hci}
 
 \todo{what was the age of the participants? how many males and females?}
 \todo{mention how many stimuli in total, how many fillers, how many for each feature etc.}
@@ -173,7 +532,7 @@ Its functionality was tailored for the setup and the phases described above.
 This includes test sentences for setting up output volumes (participant's headset, experimenters' speaker, etc.), auto shuffling the stimuli into a balanced list, convenient way of choosing the correct stimuli from the database (correct set plus considering the participant's pronunciation preferences), logging the times and stimulus order, playing and replaying stimuli, and more.
 \todo[inline]{screenshot of the program or at least a more detailed description (semi-randomization etc.)}
 
-\subsection{Results}
+\subsection{Analyses and results}
 \label{subsec:results_hci}
 
 \begin{figure}[!t]
@@ -213,3 +572,33 @@ These values were extracted from the annotations of the natural stimuli (see \ci
 The segment durations were directly taken from the annotations, and the f$_0$ contours were acquired by first interpolating the contour of the natural stimuli, and then record the f$_0$ value at the beginning and at the middle of each segment.
 These two values per segment were used in the synthesis.
 It goes without saying, however, that the generated contours were not \emph{completely} identical to those of the corresponding natural stimuli, but no substantial differences in overall sentence intonation or stress were introduced.
+
+\section{Conclusion}
+\label{sec:conclusion_shadowing}
+
+% Music %%%%%%%%%%%%%%%%%%%%%
+
+The experimental results presented in this paper show that convergence occurs in singing, more so with respect to temporal features than to tonal ones.
+This stands in contrast to findings in interactive speech \citep[e.g.,][]{Raveh2019InterspeechAlexa}).
+Even so, the results emphasize the similarity between the two oral capabilities, viz.\ speech and singing, which are both used in human communication.
+They are therefore also prone to influence each other and can potentially be related and enhance one another.
+For example, \citet[][p. 216]{Nardo2009musicality} explain that \emph{tonal} and \emph{rhythmic} abilities are measures of musicality and also related to phonetic talent.
+This idea is also supported by \citet{Tsang2018musical}, who found a correlation between musical experience and sensitivity to convergence.
+Similarly, pitch has been found to correlate with the level of agreement between interlocutors in dyadic conversation \citep{Okada2012interpreting}.
+We therefore suggest that speech and music are two domains where certain common effects, and in particular convergence, occur with respect to shared prosodic features.
+Establishing this connection between music and speech offers a wide variety of further interdisciplinary experimentation that combine linguistic and musical analysis methods.
+Specifically for convergence, the influence of listening to people with different social and vocal characteristics can be examined.
+The manner in which distances in vocal behavior decrease, or increase, can depend on further aspects of the social environment and auditory context, as suggested by \citet{Noy1999psychoanalysis}.
+
+In conclusion, the first hypothesis -- convergence to perceived musical stimuli -- was satisfied, but not in the same way for pitch and tempo.
+While tempo became globally closer to the recorded version in absolute terms, the tones were produced more precisely but within the same tonal range.
+Additionally, the secondary expectation was only partially met, with fewer large deviations occurring in the shadowing performances, but otherwise the tones in the baseline production were slightly more accurate as a whole.
+Finally, the third hypothesis was fulfilled, as the simpler, frequent rhythmic patterns were replicated more correctly.
+Furthermore, with one exception, participants were not able to replicate the entire lullaby.
+%Interestingly, they remembered either part A or B, but didn't mix bars from both.
+
+%%%%%%%%%%%%%%%
+
+% HCI %%%%%%%%%%
+
+%%%%%%%%%%%%%%%%
