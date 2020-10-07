@@ -21,8 +21,8 @@ Since people are not likely to spontaneously change their speech, the assumption
 More generally, the degree of accommodation can be seen as a speaker's tendency to converge to an interlocutor (cf.\ \emph{sensitivity} property in \cref{sec:parameters}).
 \todo{need to say that though it might occur, 100\% convergence cannot be realistically expected}
 
-Shadowing is a common methodology in vocal accommodation studies \citep[e.g.,][]{Pardo2018comparison, Babel2014novelty, Shockley2004imitation, Walker2015repeat, Dias2016visibilivty}.
-% and take references (with very short explanations from line 402 on in shadow article)
+Vocal accommodation is often studied using shadowing tasks, in which participants are asked to produce themselves utterances spoken by an interlocutor \citep[e.g.,][]{Pardo2018comparison, Babel2014novelty, Shockley2004imitation, Walker2015repeat, Dias2016visibilivty, Dias2016visibilivty}.
+\todo[inline]{need anything else from shadow article (lines 402 on)?}
 The ability to present specific contrasts and measure production differences in a controlled fashion makes it suitable for such studies.
 However, this method also has some disadvantages.
 One drawback is that while it is suitable for a controlled experimental, it only loosely represents a real-world conversation, due to the lack of utterance unpredictability, turn-taking, defined common goal, and more.
@@ -203,7 +203,7 @@ The segmentation of the performances into individual tones was done manually by 
 Silences, non-singing, breaths between phrases, etc.\ were segmented as well.
 The tone frequencies were determined by the median of the measured frequencies during this tone's duration, excluding the first and last \SI{10}{\percent} of the tone duration.
 This excludes transitions between tones and smooths out vibrato and ad lib ornaments.
-These values were extracted using Praat \citep{Boersma2001praat} with manual corrections where necessary.
+These values were extracted using Praat \citep{Boersma2018praat} with manual corrections where necessary.
 Subsequently, the note assigned to each singing segment was determined by selecting the closest \ac{qt} to the measured frequency in the corresponding segment.
 This stands in line with the assumption that people sing with a specific tone in mind rather time a frequency.
 The mapping between tone frequencies and \acp{qt} (relative to middle A) was done using the formula
@@ -367,22 +367,21 @@ They contain fewer tones (and thus intervals) than R2 and R3.
 \label{sec:convergence_to_natural_and_synthetic_stimuli}
 
 
-The present study uses a shadowing paradigm. 
-However, unlike most shadowing experiments  investigating accommodation, participants shadow full sentences instead of single, often mono- or bisyllabic (non-)words. 
-
-As always in phonetic accommodation studies, \SI{100}{\percent} would mean complete convergence to every stimulus, which cannot be reasonably expected.
+After finding accommodation effects in \ac{hhi} (\cref{chap:conv_analysis}) and other vocal productions (\cref{sec:alignment_in_novel_and_familiar_sung_music}), the next step on the way to accommodation in \ac{hci} is to test whether similar effects can be found when humans interact with synthetic voices.
+\todo[inline]{sentence about we do it here using a simulated system and pre-defined stimuli}
+\todo[inline]{can connect here to a few points from SDS chapter and/or CAT, and mention CASA and why it's relevant here.}
+\todo[inline]{mention the automatic replication of the experiment in System chapter}
 
 \subsection{Experimental design}
 \label{subsec:design_HCIConv}
 
-Phonetic convergence is often examined in the scope of shadowing experiments, in which the participants are asked to repeat utterances spoken by an interlocutor \citep[e.g.,][]{Pardo2017phonetic, Dias2016visibilivty, Walker2015repeat, Shockley2004imitation}.
-This is typically done with single words as targets.
-The experiment showcasing our system in \cref{sec:showcase} uses whole sentences as stimuli, in which the target features are embedded, making it a semi-conversational \ac{hci} setting.
-
 \subsubsection{Target features}
-\label{subsec:target_features_HCIConv}
+\label{subsubsec:target_features_HCIConv}
 
 \todo{little intro}
+
+
+\todo{also talk a bit the differences between the nature of the features, i.e. categorical vs. gradual, vs. mostly perceptual + gradual length + realization of length of next nasal}
 
 Although these feature may pass as light dialectical markers \citep{Mitterer2013regional}, they do not carry any difference in meaning, and are generally ascribed to personal preference of speaking style.
 
@@ -395,19 +394,19 @@ Although these feature may pass as light dialectical markers \citep{Mitterer2013
 	This \enquote{neutrality} makes this feature a good candidate, since change in pronunciation should not occur due to the liking of one dialect or the other, or as an attempt to match a certain social status.
 	It is noteworthy that the \textipa{[\c{c}]} variation is considered to be more standard, but still, both of the variations are accepted and people typically do not even notice which variation they and their interlocutors are using.
 	In this experiment, we treat this feature as bi-categorical in nature.
-	The very few instances of other fricatives (such as \textipa{[S]} and \textipa{[J]}) were counted as \textipa{[\c{c}]} as well, making the distinction practically between fricative and plosive realization.
+	The very few instances of other fricatives, such as \textipa{[S]} and \textipa{[J]}, were counted as \textipa{[\c{c}]} as well, making the distinction practically between fricative and plosive realization.
 	Here are two examples of sentences with this features that were used as material for the experiment's stimuli (for the full list of stimulus materials, see \autoref{app:shadow_experiment_stimul}):
 	
 	\begin{enumerate}[label=\arabic{enumi}\alph*), ref=\arabic{enumi}\alph*.)]
 		\item 
-		\begin{tabulary}{\linewidth}{LLL}
-			Der & köni\textbf{\underline{g}} & hält eine Rede.\\
-			\textit{The} & \textit{king} & \textit{spoke}.\\
+		\begin{tabulary}{\linewidth}{LLLLL}
+			Der				& köni\textbf{\underline{g}} & hält				& 	eine	& Rede.\\
+			\textit{The}	& \textit{king} 			 & \textit{held}	& \emph{a}  & \emph{speech}.\\
 		\end{tabulary}
 		\item
 		\begin{tabulary}{\linewidth}{LLLLL}
-			Ich & bin & süchti\textbf{\underline{g}} & nach & Schokolade.\\
-			\textit{I} & \textit{am} & \textit{addicted} & \textit{to} & \textit{chocolate}.\\
+			Ich 		& bin		  & süchti\textbf{\underline{g}} & nach 		& Schokolade.\\
+			\textit{I}  & \textit{am} & \textit{addicted} 			 & \textit{to}  & \textit{chocolate}.\\
 		\end{tabulary}
 	\end{enumerate}
 	
@@ -427,13 +426,13 @@ Although these feature may pass as light dialectical markers \citep{Mitterer2013
 	\begin{enumerate}[label=\arabic{enumi}\alph*), ref=\arabic{enumi}\alph*.)]
 		\item 
 		\begin{tabulary}{\linewidth}{LLLLL}
-			War & das & Ger\textbf{\underline{ä}}t & sehr & teuer?\\
-			\textit{was} & \textit{the} & \textit{device} & \textit{very} & \textit{expensive}?\\
+			War 		 & das 			& Ger\textbf{\underline{ä}}t & sehr			 & teuer?\\
+			\textit{was} & \textit{the} & \textit{device}			 & \textit{very} & \textit{expensive}?\\
 		\end{tabulary}
 		\item
 		\begin{tabulary}{\linewidth}{LLLLLL}
-			Ich & mag & die & Qualit\textbf{\underline{ä}}t & deiner & Tasche.\\
-			\textit{I} & \textit{like} & \textit{the} & \textit{quality} & \textit{of your} & \textit{bag}.\\
+			Ich		   & mag 			& die 			& Qualit\textbf{\underline{ä}}t & deiner		   & Tasche.\\
+			\textit{I} & \textit{like}  & \textit{the}  & \textit{quality} 				& \textit{of your} & \textit{bag}.\\
 		\end{tabulary}
 	\end{enumerate}
 	
@@ -451,127 +450,337 @@ Although these feature may pass as light dialectical markers \citep{Mitterer2013
 	\end{equation}
 	\eqname{Phonological process: Schwa elision in German}
 	%	
-	Here are two examples of sentences with this features that were used as material for the experiment's stimuli (for the full list of stimulus materials, see \autoref{app:shadow_experiment_stimul}):
+	Here are two examples of sentences with this features that were used as material for the experiment's stimuli (for the full list of stimulus materials, see \cref{app:shadow_experiment_stimul}):
 	
 	\begin{enumerate}[label=\arabic{enumi}\alph*), ref=\arabic{enumi}\alph*.)]
 		\item 
 		\begin{tabulary}{\linewidth}{LLLLL}
-			Wir & besuch\textbf{\underline{en}} & euch & bald & wieder.\\
-			\textit{We} & \textit{will visit} & \textit{you} & \textit{soon} & \textit{again}.\\
+			Wir 		& besuch\textbf{\underline{en}} & euch 		   & bald 		   & wieder.\\
+			\textit{We} & \textit{will visit} 			& \textit{you} & \textit{soon} & \textit{again}.\\
 		\end{tabulary}
 		\item
 		\begin{tabulary}{\linewidth}{LLLLLL}
-			Sind & die & Küch\textbf{\underline{en}} & immer & so & groß?\\
-			\textit{Are} & \textit{the} & \textit{kitchens} & \textit{always} & \textit{so} & \textit{big}?\\
+			Sind 		 & die 			& Küch\textbf{\underline{en}} & immer		    & so 		  & groß?\\
+			\textit{Are} & \textit{the} & \textit{kitchens} 		  & \textit{always} & \textit{so} & \textit{big}?\\
 		\end{tabulary}
 	\end{enumerate}
 \end{enumerate}
 
-
-
-\todo{say that there were some filler whose purpose was to check the they can pronounce these sounds at all}
-
-\todo{also talk a bit the differences between the nature of the features, i.e. categorical vs. gradual, vs. mostly perceptual + gradual length + realization of length of next nasal}
+It is important to note, that although speakers may have their preferred variants in the contexts given in this study, \textipa{[E:]}, \textipa{[e:]}, \textipa{[Ik]}, \textipa{[\s n]}, and \textipa{[@n]} are all part of the phonetic inventory of native speakers of German and are used by all speakers in other contexts. 
 
 \subsubsection{Stimuli and participants}
 \label{subsubsec:stimuli_participant_hci}
 
-\todo{what was the age of the participants? how many males and females?}
-\todo{mention how many stimuli in total, how many fillers, how many for each feature etc.}
+\todo[inline]{little intro}
+%%%
+This is typically done with single words as targets.
+Unlike most shadowing experiments investigating accommodation, participants shadow full sentences instead of single, typically mono- or bisyllabic (non-)words.
+%%%%
+
+%%%%%
+The sentences were all in grammatical German and relatively short (5-7 words), with some being declarative and some interrogative.
+%%%%%
+
+
+Each of the three target features was represented in five sentences, three declarative and two interrogative.
+Additionally, 25 filler sentences, in which none of the target features occur, were introduced as a control mechanism and to not make the target features too obvious.
+At the beginning of the baseline phase, five additional filler sentences were shown to let the participant get use to the task and the setting.
+Three sets of stimuli were created (one natural and two synthetic), leading to a total of 270 stimuli ((3 features $\times$ 5 sentences + 25 fillers + 5 warm-ups) $\times$ 3 sets $\times$ 2 genders).
+One set of stimuli was created with natural speech of one female and one male native German speakers from the same age group of most participants -- 25 and 23 years old, respectively.
+As for the synthetic stimuli, there are multiple synthesis methods to choose from:
+Formant synthesis \citep[e.g.,][]{Burkhardt2000verification}, unit selection \citep{Hunt1996unit,Black2003unit}), diphone synthesis \citep[e.g.,][]{Dutoit1996mbrola}, and probabilistic (e.g., using \acp{hmm} as described in \citet{Zen2005overview} and in \citet{Zen2009statistical}), to name some.
+Diphone synthesis using \acl{mbrola} \citep[\acs{mbrola};][]{Dutoit1996mbrola} and probabilistic \ac{hmm} synthesis were selected for creating this experiment's stimuli, due to their combination of control over pronunciation and overall quality.
+One stimulus set including both male and female voices was created with each of these methods.
+These three sets were stored in a database that was used in the shadowing phase of the experiment (see \cref{fig:HCIConvFlow}).
+A more advanced technique, like the neural \ac{s2s} used in \cref{subsec:speech_manipulation}, was not selected due to its lack of direct control over specific segments and to avoid voices resembling natural too much natural voices.
+To better focus on segmental differences, suprasegmental properties in the synthetic stimuli were fixed to match those of the natural utterances.
+This was done separately for male and female voices with the respective human speakers.
+The \ac{f0} contour (and by extension also stresses) and segment lengths (and by extension also speech rate) of each sentence of the natural stimuli were imposed on the synthetic stimuli in both synthesis methods \citep[and see][]{Raveh2017ESSV}).
+With \ac{mbrola} this process is straightforward, as the duration and pitch values can be directly passed as input.
+For the \ac{hmm} synthesis, the process was more complex.
+To predict voiceness, the mel-generalized cepstra and band aperiodicity coefficients were first extracted from the spectrum of the output signal of the regular HTS process.
+Subsequently, A neural network with hidden layer of 128 neurons was used to predict the voicing property from the cepstra coefficients.
+Then, a voicing mask was applied on the imposed \ac{f0} contour to obtain the final \ac{f0} coefficients.
+Finally, All the coefficients were used to generate the output signal in a standard synthesis chain with a mel log spectrum approximation filter and the STRAIGHT vocoder \citep{Kawahara2006straight}.
+%The descriptive features and question sets used to build the decision tree followed the standard English set proposed in [17] with adapted part-of-speech tags and phonemes for German. 
+%These values were extracted from the annotations of the natural stimuli (see \citet{Gessinger2016PundP}):
+The segment lengths were directly taken from the annotations, and the \ac{f0} contours were acquired by first interpolating the contour of the natural stimuli and then record the \ac{f0} value at the beginning and at the middle of each segment.
+It goes without saying, however, that due to the limitations of the synthesis techniques, the generated contours were not always \emph{completely} identical to those of the corresponding natural stimuli, as shown in \cref{fig:momel-comparison}.
+Nevertheless, no substantial differences in overall sentence intonation or stress were introduced.
+%
+\begin{figure}[t]
+	\centering
+	\subfigure[\ac{f0} contour of the natural production]
+		{\includegraphics[width=\textwidth]{momel-natural}
+	\label{fig:momel-natural}}
+	\subfigure[synthetic stimulus with imposed \ac{f0} from the natural production]
+		{\includegraphics[width=\textwidth]{momel-synthetic}
+	\label{fig:momel-synthetic}}
+	\caption[MOMEL comparison of natural \acs{f0} contour imposition on a synthetic stimulus]
+		{MOMEL-INTSINT contours of the natural stimulus (top) and its corresponding MBROLA synthetic stimulus (bottom) for the sentence \emph{\enquote{Wir reden ohne Unterbrechung}} with corresponding SAMPA transcriptions.
+		The numeric and alphanumeric values to the right are the absolute pitch frequencies and their corresponding musical tone.
+		The scale to the left displays one octave around the median pitch of the signal.}
+	\label{fig:momel-comparison}
+\end{figure}
+
+56 native German speakers from ten difference states in Germany took part in the experiment.
+Three non-overlapping subgroups listened to the three stimulus sets.
+In a post-experiment questionnaire, \SI{80}{\percent} of the participants indicated that change the way they speak depending on their interlocutor, \SI{50}{\percent} believed they would converge to an interlocutor of the same dialectal background, and \SI{15}{\percent} claimed they would converge to an interlocutor from a different dialectal background.
+Each participant was presented with only one of the three stimulus type.
+\Cref{tab:participants_hci} shows a detailed overview on the participants.
+Importantly, the age of the human speakers that recorded the natural stimuli match the mean age all participants.
+As explained in \cref{subsubsec:procedure_hci}, the participants' preference for each of the target features was obtained in the baseline phase.
+These preferences are summarized in \cref{tab:preference_hci}.
+At the end of the experiment, the participants were asked which realization of each feature they believe to produce themselves and what they think of the other version of it.
+About \SI{75}{\percent} reported a positive attitude towards the version they \emph{do not} believe to produce themselves.
+Only a minority of participants showed a negative attitude towards the other variation.
+Based on the results (see \cref{subsec:results_hci}, it seems therefore plausible that a positive attitude towards the features entails a higher probability of converging to them.
+%
+\begin{table}[t]
+	\centering
+	\caption[Summary of participant in the \acs{hci} experiment]
+		{Summary of participant characteristics listening to each stimulus set.}
+	\label{tab:participants_hci}
+	\begin{tabulary}{\linewidth}{LSLSS}
+		\toprule
+		\textbf{condition} & \multicolumn{2}{c}{\textbf{no.\ of participants}} & \textbf{age range} & \textbf{mean age}\\
+		\midrule
+		\multirow{2}{*}{Natural} & 17 & female & \numrange{19}{33} & 26 \\
+	 			& 4  & male   & \numrange{23}{34} & 30 \\
+		\rule{0pt}{0.4cm}%
+		\multirow{2}{*}{Diphone} & 14 & female & \numrange{19}{50} & 26 \\
+	 			& 4  & male   & \numrange{23}{34} & 27 \\
+		\rule{0pt}{0.4cm}%
+		\multirow{2}{*}{HMM} 	& 13 & female & \numrange{18}{51} & 28 \\
+	 			& 4  & male   & \numrange{22}{37} & 25 \\
+		\bottomrule
+	\end{tabulary}
+\end{table}
+%
+\begin{table}[t]
+	\centering
+	\caption[Summary of participants' preference in the \acs{hci} experiment]
+		{Summary of participants' preferred realization of each target feature based on productions in the baseline phase.}
+	\label{tab:preference_hci}
+	\begin{tabulary}{\linewidth}{LSSSSSS[table-format=1.0]}
+		\toprule
+		\textbf{condition} &
+		\multicolumn{2}{l}{\textbf{\textipa{[E:]} vs.\ \textipa{[e:]}}} &
+		\multicolumn{2}{l}{\textbf{\textipa{[I\c{c}]} vs.\ \textipa{[Ik]}}} &
+		\multicolumn{2}{l}{\textbf{\textipa{[\s{n}]} vs.\ \textipa{[@n]}}}\\
+		\midrule
+		Natural & 11 & 10 & 12 &  9 & 21 & 0 \\
+		Diphone & 14 &  4 &  9 &  9 & 17 & 1 \\
+		HMM     & 10 &  7 &  6 & 11 & 16 & 1 \\
+		\bottomrule
+	\end{tabulary}
+\end{table}
 
 \subsubsection{Procedure}
 \label{subsubsec:procedure_hci}
 
-\todo{probably better to put the more graphical version, but the existing one file size is too big}
-\begin{figure}[!t]
-	\centering
-	\includegraphics[width=\linewidth]{flow_experiment}
-	\caption[\acs{hci} convergence experiment workflow]{Workflow of the experiment, showing its four phases. The stimuli presented in the shadowing task are selected based on feature realization in the baseline production.}
-	\label{fig:HCIConvFlow}
-\end{figure}
-
-The experiment was carried out in a sound-proof booth located inside a recording studio.
-Seeing that the experiment dealt with the way people change their way of speaking based on speech of others, conversation with participants was generally kept as minimal as possible.
-It goes without saying, however, that it was not realistic to try and control for any kind of conversation the participants might have had during the day prior to the experiment.
-
-%%%%%%%%%%%%
-% text taken originally from System chapter
-
-The experiment consists of three phases: \emph{baseline} production, \emph{shadowing} task, and \emph{post} production (see \cref{fig:HCIConvFlow}).
-In the \emph{baseline} phase, the participants were asked to read out the stimuli from a monitor.
-The participant's most frequent variant in this phase is configured into the system.
-Then, in the \emph{shadowing} task, the participants produced the stimuli sequentially, each after listening to another voice (either natural or synthetic, both male and female) producing the opposite category of the relevant target feature.
+The experiment consisted of three production phases (see \cref{fig:HCIConvFlow}): \emph{baseline} production, \emph{shadowing} task, and \emph{post} production.
+In the baseline phase, the participants were asked to read out the stimuli from a monitor.
+Each stimulus was presented separately with nothing else on the screen.
+The participant's most frequent variant of each target feature (\cref{subsubsec:target_features_HCIConv}) was recorded.
+No instructions whatsoever were given regarding the pronunciation of the sentences.
+Then, in the shadowing task, the participants produced the stimuli sequentially, each after listening to another voice (either natural or synthetic, both male and female, see \cref{subsubsec:stimuli_participant_hci}) that used the opposite category of the relevant target feature.
+For example, if a participant mostly produced \textipa{[\c{c}]}, the stimuli's realization of the \textipa{[\c{c}]} vs.\ \textipa{[k]} contrast was \textipa{[k]}.
 Based on the production in this phase, the participant's tendency, pace, and degree of convergence were analyzed.
-Finally, in the \emph{post} phase, the participant once again read out the stimuli from a screen.
-The purpose of this phase was to examine whether any convergence remained in effect even in the absence of non-preferred input.
-%%%%%%%%%%%%%%%%%%%
-
-In the first phase of the experiment, the base natural production of the participants was observed.
-No instructions whatsoever were given regarding how they should speak.
-An overview of the workflow in presented in~\autoref{fig:HCIConvFlow}.
-The participants were to read 40 sentences from a monitor.
-\review{explain fillers etc.}
-The sentences were all in grammatical German and relatively short (5-7 words), with some being declarative and some interrogative.
-No signal was introduced to tell the participants to start reading (aside from the sentence to appear on the monitor after a blank \enquote{pause} screen), and the average pausing time between uttering two sentences was
-\todo{insert time}
-milliseconds.
-Utterances of sentences containing a target feature were examined on-the-fly, and the way they were produced by the participant was marked.
-
-The second phase was a short pause, about seven minutes long.
-Its purpose was to let the mental representation of the production to fade, so that the base production will not influence as much on the productions in the following parts.
+These analyses were are the basis for the model presented in \cref{chap:computational_model}.
+Finally, in the post phase, the participant once again read out the stimuli from a screen.
+The purpose of this phase was to examine whether a convergence effect was maintained when the external input is absent.
+Between the baseline and shadowing productions, the participants had a break of about seven minutes.
+Its purpose was to let the mental representation of the production fade, so that the base production will not influence as much on the productions in the following parts.
 To boost this process, the participants played a game with strong visual aspects and with non-verbal sounds only.
 Conversing with the participant was avoided as much possible as possible in order to prevent from other verbal input to influence their mental representations.
 The participants' performance in the game was not recorded and did not influence the next parts in any way.
 
-The third phase
-
-The fourth and final phase
-
-A Java-based program with \ac{gui} was developed exclusively for this experiment.
-Its functionality was tailored for the setup and the phases described above.
-This includes test sentences for setting up output volumes (participant's headset, experimenters' speaker, etc.), auto shuffling the stimuli into a balanced list, convenient way of choosing the correct stimuli from the database (correct set plus considering the participant's pronunciation preferences), logging the times and stimulus order, playing and replaying stimuli, and more.
-\todo[inline]{screenshot of the program or at least a more detailed description (semi-randomization etc.)}
+A program developed specifically for the purpose of this experiment was used for its execution.
+It included functionalities tailored for this experiment and a \ac{gui} the experimenter could use during the and between the phases to quickly record participants' performance and prepare the next phase.
+These include setting up the participants' audio streams (e.g., playback and recording volumes), extracting the appropriate stimuli from the database, semi-randomizing the stimuli into balanced groups, logging the times and participants' productions, and more.
+The experiment was carried out in a sound-proof booth located inside a recording studio.
+Seeing that the experiment dealt with the way people change their way of speaking based on speech of others, conversation with participants was kept to a minimum before the experiment and was avoided till the end of the experiment.
+%It goes without saying, however, that it was not realistic to try and control for any kind of conversation the participants might have had during the day prior to the experiment.
+%
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\linewidth]{HCI_flow}
+	\caption[\acs{hci} convergence experiment workflow]
+		{Flow of the experiment (from left to right).
+		Stimuli are read from a monitor in baseline and post phases, while heard over headphones in the shadowing task.
+		The participant's preferred variation recorded in the baseline productions are used to select those with the opposite realizations from the stimuli database for the shadowing task.
+		Each participant listened to both male and female voices of one of the stimulus types natural, diphone, or \acs{hmm}.}
+	\label{fig:HCIConvFlow}
+\end{figure}
 
 \subsection{Analyses and results}
 \label{subsec:results_hci}
 
-\begin{figure}[!t]
+The occurrences of each feature were analyzed separately.
+The feature \textipa{[E:]} vs.\ \textipa{[e:]} was evaluated as a continuum in the F1-F2 formant space.
+%Automatic annotations (WebMAUS, \cite{Kisler/etal:2017}) of all target vowel segments were manually corrected by a trained phonetician.
+The first and second formants of each target segment were measured at the temporal midpoint in all productions as well as in the stimuli using Praat \citep{Boersma2018praat}. 
+These values were used for calculating the Euclidean distance between the participants' and stimuli vowel realizations in each sentence using the formula
+%
+\begin{equation}
+	E_{dist}=\sqrt{(F1_{participant}-F1_{model})^2+(F2_{participant}-F2_{model})^2}.
+\end{equation}
+\eqname{Euclidean distance in F1-F2 space}
+\noindent
+%
+Smaller distance in the shadowing or post phases compared to the baseline phase points to a convergence effect.
+\Cref{fig:ee_E_space} illustrates the convergence effects as realized by one of the participants.
+The distances were measured using the mean values of all stimuli in the set to which the participant listened.
+These distances were used to fit linear mixed-effects models with phase as fixed effect, subject and target word as random effects (intercepts and slopes), and distance as the dependent variable.
+Models were fit for both preference groups compared by an ANOVA.
+The differences between baseline and shadow phases were found to be significant in the natural and \ac{hmm} groups, and between the baseline and post phases only in the natural group.
+\Cref{tab:lmm_ee_E} summarizes the results for this feature.
+\todo[inline]{write a few sentences about the too-similar vowel in the synthetic sets and refer to figure.}
+%
+\begin{table}[t]
+	\centering 
+	\caption[Convergence results for \textipa{[E:]} vs.\ \textipa{[e:]} with three stimuli sets]
+		{Summary of convergence effects between the three phases.} 
+	\label{tab:lmm_ee_E} 
+	\sisetup{table-format=3.2, parse-numbers=false}
+
+	\begin{tabularx}{\linewidth}{XSSS}
+		\toprule
+		\textbf{Natural} & \multicolumn{1}{c}{\textbf{base-shadow}} & \multicolumn{1}{c}{\textbf{base-post}} & \multicolumn{1}{c}{\textbf{shadow-post}}\\
+		\midrule
+		intercept           & 69.94\textsuperscript{***}		& 32.88    	& $-$33.67\textsuperscript{**} \\
+                         	& (14.89)  		& (17.53)  	& (11.44)     	\\
+		\textsc{preference}	& 33.79\textsuperscript{*}		&          	&             	\\
+                         	& (14.89)     	&          	&             	\\
+ 		\midrule
+		observations 		& 210 			& 210 		& 209 			\\ 
+		\bottomrule
+	\end{tabularx}	
+
+	\begin{tabularx}{\linewidth}{XSSS}
+		\toprule
+		\textbf{Diphone} & \multicolumn{1}{c}{\phantom{\textbf{base-shadow}}} &
+        \multicolumn{1}{c}{\phantom{\textbf{base-post}}} &
+        \multicolumn{1}{c}{\phantom{\textbf{shadow-post}}} \\
+		\midrule
+		intercept           & $-$1.68  	& $-$1.49  	& 0.44   \\
+                        	& (8.72)   	& (9.93)   	& (7.24) \\
+% 		\midrule
+%		observations 		& 177 		& 179 		& 178    \\ 
+		\bottomrule
+	\end{tabularx}
+	
+	\begin{tabularx}{\linewidth}{XSSS}
+		\toprule
+		\textbf{\ac{hmm}} & \multicolumn{1}{c}{\phantom{\textbf{base-shadow}}} &
+        \multicolumn{1}{c}{\phantom{\textbf{base-post}}} &
+        \multicolumn{1}{c}{\phantom{\textbf{shadow-post}}} \\
+		\midrule
+		intercept      	& 32.64\textsuperscript{*} 	& $-$2.12  	& $-$31.23 \\
+                       	& (13.61)  	&(12.38)  	& (15.86)  \\
+% 		\midrule
+%		observations 	& 134 		& 135 		& 133      \\ 
+		\bottomrule
+		\multicolumn{4}{l}{\small{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+	\end{tabularx} 
+	\todo[inline]{numbers in table are not perfectly aligned because of parentheses}
+\end{table} 
+%
+\begin{figure}[t]
 	\centering
-	\includegraphics[width=\textwidth]{formant-plot}
-	\caption[short caption]{long caption}
-	\label{fig:HCIConvFormants}
+	\begin{minipage}{.47\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{ee_E_space}
+		\caption[Example of vowel quality convergence towards a model speaker]
+			{An example of a participant's vowel quality convergence towards the stimuli.
+			The participant's preference is \textipa{[e:]} while the variation \textipa{[E:]} is used in the stimuli (and cf.\ \cref{fig:ee_E_circles}).
+			The colors of the circles represent the {\color{base-green}\textbf{base}}, {\color{shadow-red}\textbf{shadow}}, and {\color{post-blue}\textbf{post}} phases, and the model's formant values with $\pm1$ standard deviation from the bivariate mean.
+			The arrow shows the distance between one of the participant's production and the {\color{model-orange}\textbf{model mean}}.}
+		\label{fig:ee_E_space}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{.47\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{ee_E_circles}
+		\caption[F1 and F2 value areas of all stimulus groups]
+			{Values areas of the first two formants of the three stimulus sets' \textipa{[e:]} and \textipa{[E:]} instances.
+			 Each color represents both male and female ranges of on stimulus type (natural, diphone, or \ac{hmm}).
+			 The smaller a circle is, the more well-defined the mean target of this stimulus group is.
+			 Moreover, the further apart circles of the same color are, the more distinct the difference is within this set.}
+		\label{fig:ee_E_circles}
+	\end{minipage}	
 \end{figure}
 
-\fixme{how to put schwa and ic-ik next to each other?}
-
-\begin{figure}[!t]
+The \textipa{[I\c{c}]} vs.\ \textipa{[Ik]} was evaluated based on the percentage of same-category realizations of the participants with respect to the stimulus set they listened to.
+If the percentage increased, e.g., between baseline and shadow productions, the participant converged to the stimuli.
+\Cref{fig:ic_ik_results} summarizes the per-phase differences for each set.
+With all three data sets combined, the number of same-variant productions increased by about \SI{30}{\percent} from the baseline phase to the shadowing phase, and decreases again in the post phase, but to a lesser degree.
+That means that all in all, participants not only converged to the stimuli in the shadowing phase, but the effect lasted to some extent in the post phase as well.
+The statistical significance between the phases within each stimulus type was tested using a Gaussian linear mixed-effects model.
+For both the natural and diphone sets, the increases between the baseline and the shadowing phases were significant, \SI{10}{\percent} to \SI{39}{\percent} and (\SI{16}{\percent} to \SI{48}{\percent}, respectively.
+Moreover, in these sets the decreases in the post phase did not go all the way to the baseline level: \SI{39}{\percent} to \SI{23}{\percent} for natural and \SI{48}{\percent} to \SI{36}{\percent} for diphone.
+For the \ac{hmm} set, the increase between baseline and shadowing was \SI{8}{\percent} to \SI{40}{\percent} and did not reach the significance threshold.
+However, the decrease in the post phase reached the baseline level again and was significant, from \SI{40}{\percent} to \SI{12}{\percent}.
+%
+\begin{figure}[t]
 	\centering
-	\includegraphics[width=0.5\textwidth]{schwa-plot}
-	\caption[short caption]{long caption}
-	\label{fig:HCIConvSchwaPlot}
+	\includegraphics[width=\textwidth]{ic_ik_results}
+	\caption[Convergence results for \textipa{[I\c{c}]} vs.\ \textipa{[Ik]} with three stimuli sets]
+		{Percentage of same-variant and different-variant realization of participants with respect to the stimulus type they listened to in the shadowing phase.
+		An increase between the base and the shadow phases indicates convergence towards the stimuli.
+		Similarly, the decrease between the shadow and the post phases back towards the baseline level shows the degree to which the convergence effect remained when the stimuli were not present anymore.}
+	\label{fig:ic_ik_results}
+\end{figure}
+%
+
+The \textipa{[\s{n}]} vs.\ \textipa{[@n]} was measured based on the lengths of the potential schwa segments in the sentences.
+To decide whether schwa was present or absent in the participants' target word productions, the lengths of relevant segments between the preceding consonant -- \textipa{[d], [t], [\c{c}], [x], or [f]} -- and the final nasal were measured.
+A duration of \SI{30}{\milli\second} was established as the threshold of a perceived schwa segment.
+This decision is also supported by the fact that all schwas occurrences in the stimuli sets were at least \SI{30}{\milli\second} long.
+The segment length range of the natural stimuli along with the lengths variance of the participants' productions are shown in \cref{fig:schwa_conv_bars}.
+Note that only two participants showed preference toward the \textipa{[@n]} variant in their baseline productions (cf.\ \cref{tab:preference_hci}).
+This indicates that schwa does not commonly appear in the examined context, which might make it harder to trigger convergence among the participant.
+Seeing that a statistical analysis for a groups of two participant is likely to be misleading, these participants were excluded from the analysis of this feature.
+\Cref{tab:schwa_results} summarizes the percentage of schwa occurrences in the three phases.
+There was an increase of schwa occurrences between the baseline and shadowing phases all stimulus types, with the difference being significant for the natural and \ac{hmm} sets with changes of \SI{9}{\percent} and \SI{5}{\percent}, respectively.
+In the post production, the number of schwa occurrences decreased to approximately the baseline level for all conditions.
+Interestingly, while for the natural stimuli this decrease was still above the baseline percentage, for both the synthetic sets the percentage in the post phase was even lower than in the baseline phase.
+%
+\begin{figure}[t]
+	\begin{minipage}{.48\linewidth}
+			\centering
+			\includegraphics[width=\textwidth]{schwa-plot}
+			\caption[Illustration]
+				{Schwa segment lengths in the three phases.
+				 The height of each bar represents the average length in this phase, and the corresponding whiskers indicate the overall value range.
+				 The gray area shows the value range of the stimuli, with the mean length at the orange dashed line.}
+			\label{fig:schwa_conv_bars}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{.49\linewidth}
+			\centering
+			\captionsetup{type=table}
+			\caption[Convergence results for \textipa{[\s{n}]} vs.\ \textipa{[@n]} with three stimuli sets]
+				{Percentage of schwa occurrences in each phase and stimulus set.
+				 $N$ stands for the number of sentences with the target feature \textipa{[\s{n}]} vs.\ \textipa{[@n]}, which is derived from the number of participant with \textipa{[\s{n}]} preference (the shadowing phase always has double the number of sentences, because both male and female voices were used).}
+			\label{tab:schwa_results}
+			\begin{tabularx}{\linewidth}{lccc}
+				\toprule
+				& \textbf{base} & \textbf{shadow} & \textbf{post} \\
+				\midrule
+				\multirow{2}{1.4cm}{Natural}	& \SI{1.9}{\percent} & \SI{10.9}{\percent} & \SI{3.8}{\percent}  \\\vspace{0.3cm}
+											& $ N = 105 $ 		 & $ N = 210 $		   & $ N = 105 $		 \\
+				\multirow{2}{1.4cm}{Diphone} 	& \SI{2.4}{\percent} & \SI{4.1}{\percent}  & \SI{1.2}{\percent}  \\\vspace{0.3cm}
+											& $ N = 85 $ 		 & $ N = 170 $ 		   & $ N = 85 $			 \\
+				\multirow{2}{1.4cm}{\acs{hmm}} 	& \SI{2.5}{\percent} & \SI{7.5}{\percent}  & \SI{1.25}{\percent} \\
+											& $ N = 80 $ 		 & $ N = 160 $ 		   & $ N = 80 $			 \\
+				\bottomrule
+			\end{tabularx}
+	\end{minipage}
 \end{figure}
 
-\begin{figure}[!t]
-	\centering
-	\includegraphics[width=0.5\textwidth]{ich_ik-plot}
-	\caption[short caption]{long caption2}
-	\label{fig:HCIConvIcIkPlot}
-\end{figure}
-
-\subsection{Generation of the synthetic stimuli}
-\label{subsec:generation_stimuli_hci}
-
-After finding some convergence effect to the natural stimuli, the next step is to test whether the same convergence effect is present also occurs when presenting synthetic stimuli to the participants.
-For that, synthetic (i.e.\ computer generated) stimuli need to be created.
-There are multiple methods to synthesize speech:
-formant synthesis \citep[e.g.][]{Burkhardt2000verification}, unit selection \citep{Hunt1996unit,Black2003unit}), diphone synthesis \citep{Dutoit1996mbrola}, and probabilistic (e.g., using \acp{hmm} as described in \citet{Zen2005overview} and in \citet{Zen2009statistical}), to name some.
-
-Seeing that the experiment in question examines convergence in specific segment-level phonetic features, it is preferable to fix other speech characteristics like intonation and stress, in order to prevent from those to influence the perception of the sentences by the listeners.
-To achieve that, the f$_0$ contours and segment durations of the natural stimuli were imposed on the synthetic stimuli.
-These values were extracted from the annotations of the natural stimuli (see \citet{Gessinger2016PundP}):
-The segment durations were directly taken from the annotations, and the f$_0$ contours were acquired by first interpolating the contour of the natural stimuli, and then record the f$_0$ value at the beginning and at the middle of each segment.
-These two values per segment were used in the synthesis.
-It goes without saying, however, that the generated contours were not \emph{completely} identical to those of the corresponding natural stimuli, but no substantial differences in overall sentence intonation or stress were introduced.
+\todo[inline]{for both studies, put Procedure between Target Features and Stimuli}
 
 \section{Conclusion}
 \label{sec:conclusion_shadowing}
@@ -582,7 +791,7 @@ The experimental results presented in this paper show that convergence occurs in
 This stands in contrast to findings in interactive speech \citep[e.g.,][]{Raveh2019InterspeechAlexa}).
 Even so, the results emphasize the similarity between the two oral capabilities, viz.\ speech and singing, which are both used in human communication.
 They are therefore also prone to influence each other and can potentially be related and enhance one another.
-For example, \citet[][p. 216]{Nardo2009musicality} explain that \emph{tonal} and \emph{rhythmic} abilities are measures of musicality and also related to phonetic talent.
+For example, \citet[][p.\ 216]{Nardo2009musicality} explain that \emph{tonal} and \emph{rhythmic} abilities are measures of musicality and also related to phonetic talent.
 This idea is also supported by \citet{Tsang2018musical}, who found a correlation between musical experience and sensitivity to convergence.
 Similarly, pitch has been found to correlate with the level of agreement between interlocutors in dyadic conversation \citep{Okada2012interpreting}.
 We therefore suggest that speech and music are two domains where certain common effects, and in particular convergence, occur with respect to shared prosodic features.

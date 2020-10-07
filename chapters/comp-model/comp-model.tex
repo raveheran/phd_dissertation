@@ -71,7 +71,7 @@ Moreover, for the changes to register as a variation of that feature, the realiz
 In the case of computers, this means a way to measure the difference between realizations and classify their distance from one another.
 This difference can be categorical or continual, depending on the feature.
 In addition, which features introduce meaningful difference is language- and culture-dependent, and might also differ based on the specific situation in which the interaction takes place.
-For example, a segmental feature of a language where a phoneme can be realized in two alternative ways (as explained in \cref{subsec:target_features_HCIConv}) will probably be ignored by a speaker of a language where only one of these vowels exist in its repository.
+For example, a segmental feature of a language where a phoneme can be realized in two alternative ways (as explained in \cref{subsubsec:target_features_HCIConv}) will probably be ignored by a speaker of a language where only one of these vowels exist in its repository.
 In this case, the two vowels will simply be mentally merged into one, not causing any difficulties with comprehension.
 Suprasegmental features, like \ac{f0} contour and \ac{ar}, occur globally across the speech signal and are more often cross-lingual.
 Still, for a computer to be able to detect and track changes in those features, a way to measure and compare them is required.
@@ -87,7 +87,7 @@ A target phoneme serves as an anchor for a rule that aims to capture a phonetic 
 For example, the German phonological rule of \textipa{[@]} elision at words ending with \emph{-en} described in \cref{eq:schwa_elision_rule} can be captured by the phoneme sequence /C\textipa{@n}/, where C represents a consonant (although in practice only a subset of the German consonants can be replaced by it in this context).
 The anchor phoneme is \textipa{[@]}, since this is the segment that is subject to the change, namely the length -- or complete absence -- of it.
 For this phenomenon, the target phoneme would be \textipa{@} and the measured feature would be segment length.
-Another target feature described in \cref{subsec:target_features_HCIConv} is \textipa{[e:]} vs.\ \textipa{[E:]} realization of the mid-word grapheme \emph{ä}, which is captured by the target anchor phoneme \textipa{[E]} in a non-final position of a word.
+Another target feature described in \cref{subsubsec:target_features_HCIConv} is \textipa{[e:]} vs.\ \textipa{[E:]} realization of the mid-word grapheme \emph{ä}, which is captured by the target anchor phoneme \textipa{[E]} in a non-final position of a word.
 Any defined feature goes through two filters. First, it required context to be an instance of the desired phonological phenomenon (C\textipa{@n} and non-final position for the above-mentioned features);
 and secondly, the defined accepted value range that would make it an acceptable instance of that phenomenon (for example, \textipa{[@]} length between \SI{0}{\milli\second} and \SI{60}{\milli\second} and appropriate F$_1$ and F$_2$ values for the \textipa{[e:]} and \textipa{[E:]} vowels in the above-mentioned features).
 After applying these two filters, only those instances that truthfully capture the desired phonetic phenomenon are kept.

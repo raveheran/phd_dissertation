@@ -20,7 +20,7 @@ The \ac{sds} presented in \cref{chap:web-based_responsive_spoken_dialogue_system
 \subsection{Computational model}
 \label{subsec:computational_model}
 
-The implementations of the pipeline's steps will be explained using the following feature definition example, which describes the feature \emph{@\_length}, i.e., length of a segment containing the phoneme schwa (\textipa{[@]}, and cf.\ \cref{subsec:target_features_HCIConv}):
+The implementations of the pipeline's steps will be explained using the following feature definition example, which describes the feature \emph{@\_length}, i.e., length of a segment containing the phoneme schwa (\textipa{[@]}, and cf.\ \cref{subsubsec:target_features_HCIConv}):
 %
 \begin{Verbatim}[tabsize=4, commandchars=\\\{\}]
 	- \textbf{`@\_length'}:
@@ -326,7 +326,7 @@ For instance, the first two formants of an allophone's categorical variant are t
 Finally, the manipulated segment needs to be connected to the rest of the segment while minimizing the distortion.
 The way the latter two steps are executed depends on the technique used for the manipulation.
 This is demonstrated here by two examples:
-One for the \emph{\textipa{[e]} vs.\ \textipa{[E]}} feature, using an approach based on the source-filter theory \citep{Fant1970acoustic}; and one for the \emph{\textipa{[\c{c}]} vs.\ \textipa{[k]}} feature, using a neural approach (both features are described in \cref{subsec:target_features_HCIConv}).
+One for the \emph{\textipa{[e]} vs.\ \textipa{[E]}} feature, using an approach based on the source-filter theory \citep{Fant1970acoustic}; and one for the \emph{\textipa{[\c{c}]} vs.\ \textipa{[k]}} feature, using a neural approach (both features are described in \cref{subsubsec:target_features_HCIConv}).
 Note that the former feature varies on a continuum (the formant space), while the latter is a discrete change between two categories (a fricative or a plosive).
 The main difference between the two approaches is when the manipulation is done.
 In the former, the modifications are post-synthesis on an existing audio signal, while in the latter the desired modifications are sent to the synthesizer's as part of its input and can be directly taken into account.
