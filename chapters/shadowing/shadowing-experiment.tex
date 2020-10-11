@@ -94,6 +94,25 @@ The study presented here deals with the musical prosodic features \emph{tonal de
 The latter two are global properties and were determined based on an entire performance.
 In \cref{subsec:results_music} it is explained how these features were measured in music, where the tonal and rhythmic targets are defined based on a musical theoretical framework.
 
+\subsubsection{Procedure}
+\label{subsubsec:procedure_music}
+
+The study consists of two shadowing experiments (see \cref{sec:shadowing_paradigm}).
+The first experiment examined convergence effects between two performances of the participants.
+The participants were first asked to sing the familiar Yakinton's melody with the syllable \textipa{[na]} instead of its lyrics (regardless of whether the participant could, in fact, recall the lyrics).
+Beside that, no specific instructions were given, e.g., regarding the tempo, the key, or any other musical preference.
+Subsequently, the participants listened to the pre-recorded version of the lullaby via wired over-ear headphones. %(Phillips SHL3060).
+Following that, they sung the lullaby once more and answered some questions regarding the recorded version of the lullaby, to determine how much it differs from the one in their mental memory.
+Importantly, no reference to either their previous production or the recorded version was made by using wordings like \enquote{repeat}, \enquote{mimic}, \enquote{like before}, etc.
+The second experiment comprised only a shadowing performance, as the participants were intentionally unfamiliar with the universal lullaby.
+This experiment tests which prosodic features would be replicated more accurately when it is not likely that the participants would remember all aspects of the musical material.
+After listening to the pre-recorded version of the lullaby, they were instructed to sing it themselves to the best of their ability.
+This required not only their singing capabilities, but also their musical memory.
+As explained above, this lullaby was composed with universal characteristics of the genre in mind and should therefore contain similar melodic and harmonic contents to the lullaby in the first experiment.
+The two experiments were carried out consecutively.
+In addition to the short questions in the first experiment, the participants also answered a personal questionnaire before starting the second experiment and a closing questionnaire at the end.
+The entire procedure lasted \SIrange{15}{20}{\minute} in total per participant.
+
 \subsubsection{Material and participants}
 \label{subsubsec:material_participants_music}
 
@@ -134,7 +153,7 @@ This way, the possibility that participants would hesitate in their performances
 	\label{snippet:uni-lullaby}
 	\addcontentsline{lof}{section}{Snippet \thesnippet: Universal lullaby}
 \end{snippet}
-% next line is empty to create separate paragraph for participants
+%
 
 Six participants took part in the study, all of which are mothers to recently born babies and with no hearing impairments.
 For three of the mothers this was the first child.
@@ -149,25 +168,6 @@ The increased use of singing as well as its function as a means of communication
 Since the participants' singing capabilities are essential for their performances in the experiments, it was also confirmed that they regularly sing lullabies for their babies.
 Furthermore, as we are dealing with a specific lullaby in the first experiment, their familiarity with it was confirmed.
 All the participants reported that they know the Yakinton lullaby well enough to spontaneously sing it from memory.
-
-\subsubsection{Procedure}
-\label{subsubsec:procedure_music}
-
-The study consists of two shadowing experiments (see \cref{sec:shadowing_paradigm}).
-The first experiment examined convergence effects between two performances of the participants.
-The participants were first asked to sing the familiar Yakinton's melody with the syllable \textipa{[na]} instead of its lyrics (regardless of whether the participant could, in fact, recall the lyrics).
-Beside that, no specific instructions were given, e.g., regarding the tempo, the key, or any other musical preference.
-Subsequently, the participants listened to the pre-recorded version of the lullaby via wired over-ear headphones. %(Phillips SHL3060).
-Following that, they sung the lullaby once more and answered some questions regarding the recorded version of the lullaby, to determine how much it differs from the one in their mental memory.
-Importantly, no reference to either their previous production or the recorded version was made by using wordings like \enquote{repeat}, \enquote{mimic}, \enquote{like before}, etc.
-The second experiment comprised only a shadowing performance, as the participants were intentionally unfamiliar with the universal lullaby.
-This experiment tests which prosodic features would be replicated more accurately when it is not likely that the participants would remember all aspects of the musical material.
-After listening to the pre-recorded version of the lullaby, they were instructed to sing it themselves to the best of their ability.
-This required not only their singing capabilities, but also their musical memory.
-As explained above, this lullaby was composed with universal characteristics of the genre in mind and should therefore contain similar melodic and harmonic contents to the lullaby in the first experiment.
-The two experiments were carried out consecutively.
-In addition to the short questions in the first experiment, the participants also answered a personal questionnaire before starting the second experiment and a closing questionnaire at the end.
-The entire procedure lasted \SIrange{15}{20}{\minute} in total per participant.
 
 \subsection{Analyses and results}
 \label{subsec:results_music}
@@ -468,6 +468,44 @@ Although these feature may pass as light dialectical markers \citep{Mitterer2013
 
 It is important to note, that although speakers may have their preferred variants in the contexts given in this study, \textipa{[E:]}, \textipa{[e:]}, \textipa{[Ik]}, \textipa{[\s n]}, and \textipa{[@n]} are all part of the phonetic inventory of native speakers of German and are used by all speakers in other contexts. 
 
+\subsubsection{Procedure}
+\label{subsubsec:procedure_hci}
+
+The experiment consisted of three production phases (see \cref{fig:HCIConvFlow}): \emph{baseline} production, \emph{shadowing} task, and \emph{post} production.
+In the baseline phase, the participants were asked to read out the stimuli from a monitor.
+Each stimulus was presented separately with nothing else on the screen.
+The participant's most frequent variant of each target feature (\cref{subsubsec:target_features_HCIConv}) was recorded.
+No instructions whatsoever were given regarding the pronunciation of the sentences.
+Then, in the shadowing task, the participants produced the stimuli sequentially, each after listening to another voice (either natural or synthetic, both male and female, see \cref{subsubsec:stimuli_participant_hci}) that used the opposite category of the relevant target feature.
+For example, if a participant mostly produced \textipa{[\c{c}]}, the stimuli's realization of the \textipa{[\c{c}]} vs.\ \textipa{[k]} contrast was \textipa{[k]}.
+Based on the production in this phase, the participant's tendency, pace, and degree of convergence were analyzed.
+These analyses were are the basis for the model presented in \cref{chap:computational_model}.
+Finally, in the post phase, the participant once again read out the stimuli from a screen.
+The purpose of this phase was to examine whether a convergence effect was maintained when the external input is absent.
+Between the baseline and shadowing productions, the participants had a break of about seven minutes.
+Its purpose was to let the mental representation of the production fade, so that the base production will not influence as much on the productions in the following parts.
+To boost this process, the participants played a game with strong visual aspects and with non-verbal sounds only.
+Conversing with the participant was avoided as much possible as possible in order to prevent from other verbal input to influence their mental representations.
+The participants' performance in the game was not recorded and did not influence the next parts in any way.
+
+A program developed specifically for the purpose of this experiment was used for its execution.
+It included functionalities tailored for this experiment and a \ac{gui} the experimenter could use during the and between the phases to quickly record participants' performance and prepare the next phase.
+These include setting up the participants' audio streams (e.g., playback and recording volumes), extracting the appropriate stimuli from the database, semi-randomizing the stimuli into balanced groups, logging the times and participants' productions, and more.
+The experiment was carried out in a sound-proof booth located inside a recording studio.
+Seeing that the experiment dealt with the way people change their way of speaking based on speech of others, conversation with participants was kept to a minimum before the experiment and was avoided till the end of the experiment.
+%It goes without saying, however, that it was not realistic to try and control for any kind of conversation the participants might have had during the day prior to the experiment.
+%
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\linewidth]{HCI_flow}
+	\caption[\acs{hci} convergence experiment workflow]
+		{Flow of the experiment (from left to right).
+		Stimuli are read from a monitor in baseline and post phases, while heard over headphones in the shadowing task.
+		The participant's preferred variation recorded in the baseline productions are used to select those with the opposite realizations from the stimuli database for the shadowing task.
+		Each participant listened to both male and female voices of one of the stimulus types natural, diphone, or \acs{hmm}.}
+	\label{fig:HCIConvFlow}
+\end{figure}
+
 \subsubsection{Stimuli and participants}
 \label{subsubsec:stimuli_participant_hci}
 
@@ -575,44 +613,6 @@ Based on the results (see \cref{subsec:results_hci}, it seems therefore plausibl
 		\bottomrule
 	\end{tabulary}
 \end{table}
-
-\subsubsection{Procedure}
-\label{subsubsec:procedure_hci}
-
-The experiment consisted of three production phases (see \cref{fig:HCIConvFlow}): \emph{baseline} production, \emph{shadowing} task, and \emph{post} production.
-In the baseline phase, the participants were asked to read out the stimuli from a monitor.
-Each stimulus was presented separately with nothing else on the screen.
-The participant's most frequent variant of each target feature (\cref{subsubsec:target_features_HCIConv}) was recorded.
-No instructions whatsoever were given regarding the pronunciation of the sentences.
-Then, in the shadowing task, the participants produced the stimuli sequentially, each after listening to another voice (either natural or synthetic, both male and female, see \cref{subsubsec:stimuli_participant_hci}) that used the opposite category of the relevant target feature.
-For example, if a participant mostly produced \textipa{[\c{c}]}, the stimuli's realization of the \textipa{[\c{c}]} vs.\ \textipa{[k]} contrast was \textipa{[k]}.
-Based on the production in this phase, the participant's tendency, pace, and degree of convergence were analyzed.
-These analyses were are the basis for the model presented in \cref{chap:computational_model}.
-Finally, in the post phase, the participant once again read out the stimuli from a screen.
-The purpose of this phase was to examine whether a convergence effect was maintained when the external input is absent.
-Between the baseline and shadowing productions, the participants had a break of about seven minutes.
-Its purpose was to let the mental representation of the production fade, so that the base production will not influence as much on the productions in the following parts.
-To boost this process, the participants played a game with strong visual aspects and with non-verbal sounds only.
-Conversing with the participant was avoided as much possible as possible in order to prevent from other verbal input to influence their mental representations.
-The participants' performance in the game was not recorded and did not influence the next parts in any way.
-
-A program developed specifically for the purpose of this experiment was used for its execution.
-It included functionalities tailored for this experiment and a \ac{gui} the experimenter could use during the and between the phases to quickly record participants' performance and prepare the next phase.
-These include setting up the participants' audio streams (e.g., playback and recording volumes), extracting the appropriate stimuli from the database, semi-randomizing the stimuli into balanced groups, logging the times and participants' productions, and more.
-The experiment was carried out in a sound-proof booth located inside a recording studio.
-Seeing that the experiment dealt with the way people change their way of speaking based on speech of others, conversation with participants was kept to a minimum before the experiment and was avoided till the end of the experiment.
-%It goes without saying, however, that it was not realistic to try and control for any kind of conversation the participants might have had during the day prior to the experiment.
-%
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=\linewidth]{HCI_flow}
-	\caption[\acs{hci} convergence experiment workflow]
-		{Flow of the experiment (from left to right).
-		Stimuli are read from a monitor in baseline and post phases, while heard over headphones in the shadowing task.
-		The participant's preferred variation recorded in the baseline productions are used to select those with the opposite realizations from the stimuli database for the shadowing task.
-		Each participant listened to both male and female voices of one of the stimulus types natural, diphone, or \acs{hmm}.}
-	\label{fig:HCIConvFlow}
-\end{figure}
 
 \subsection{Analyses and results}
 \label{subsec:results_hci}
