@@ -42,9 +42,9 @@ In the sung music experiment (\cref{sec:alignment_in_novel_and_familiar_sung_mus
 \label{sec:alignment_in_novel_and_familiar_sung_music}
 
 \todo[inline]{motivation to do this experiment. relation and differences to linguistic accommodation}
-\todo[inline]{specifically, see if there is something that can be taken from the abstract}
+As further explained in \citet{Raveh2020SpeechProsody}, 
 
-\todo[inline]{reference to music paper in 2-3 places}
+\todo[inline]{specifically, see if there is something that can be taken from the abstract}
 
 % how relates to vocal accommodationa in general and HHI experiment. -- gives the aspect of accommodation occuring not only in speech, but other vocal communications as well.
 % things common to music and speech
@@ -76,7 +76,6 @@ The expectation here is that the participants' performances of the familiar lull
 When reproducing an unfamiliar melody, it is not expected that the participants will remember it in its entirety, but rather that they would stick to repeating segments or parts with smaller intervals and simpler rhythms.
 Additional background and motivations can be found in \citet{Raveh2020SpeechProsody}.
 
-\todo[inline]{is it necessary to have this outline?}
 %The experimental procedures and materials are described in \cref{sec:method}.
 %\cref{sec:analysis_music} presents the methods applied to analyze the prosodic properties \emph{pitch}, \emph{tempo}, and \emph{rhythm}.
 %%These are the two main features that are directly noted in musical sheets, and play an important role in both speech and music and have been studied in speech convergence studies \citep{Schweitzer2013convergence}.
@@ -111,7 +110,7 @@ This required not only their singing capabilities, but also their musical memory
 As explained above, this lullaby was composed with universal characteristics of the genre in mind and should therefore contain similar melodic and harmonic contents to the lullaby in the first experiment.
 The two experiments were carried out consecutively.
 In addition to the short questions in the first experiment, the participants also answered a personal questionnaire before starting the second experiment and a closing questionnaire at the end.
-The entire procedure lasted \SIrange{15}{20}{\minute} in total per participant.
+The entire procedure lasted \SIrange{15}{20}{\minute} in total per participant (and see \citet{Raveh2020SpeechProsody} for further details).
 
 \subsubsection{Material and participants}
 \label{subsubsec:material_participants_music}
@@ -328,10 +327,6 @@ They contain fewer tones (and thus intervals) than R2 and R3.
 	\end{tabularx}
 \end{table}
 %
-\todo[inline]{from here on are things originally from the discussion/conclusion section of the paper. see if fit better somewhere else or indeed as part of the results}
-
-
-
 \begin{snippet}[t]
 %	\centering
 	\begin{minipage}{.41\linewidth}
@@ -351,7 +346,7 @@ They contain fewer tones (and thus intervals) than R2 and R3.
 		Crossed-head notes mark those that deviate from the correct rhythmic pattern.}
 	\addcontentsline{lof}{section}{Snippet \thesnippet: Examples of tonal and rhythmic deviations}
 \end{snippet}
-
+%
 \begin{snippet}[t]
 	\centering
 	\includegraphics[width=0.65\linewidth]{deviation_example_2_mixed}
@@ -366,11 +361,11 @@ They contain fewer tones (and thus intervals) than R2 and R3.
 \section{Segmental convergence to natural and synthetic stimuli}
 \label{sec:convergence_to_natural_and_synthetic_stimuli}
 
-
 After finding accommodation effects in \ac{hhi} (\cref{chap:conv_analysis}) and other vocal productions (\cref{sec:alignment_in_novel_and_familiar_sung_music}), the next step on the way to accommodation in \ac{hci} is to test whether similar effects can be found when humans interact with synthetic voices.
-\todo[inline]{sentence about we do it here using a simulated system and pre-defined stimuli}
-\todo[inline]{can connect here to a few points from SDS chapter and/or CAT, and mention CASA and why it's relevant here.}
-\todo[inline]{mention the automatic replication of the experiment in System chapter}
+The motivation for such an experiment is boosted by the \ac{casa} paradigm \citep[][and cf.\ \cref{subsec:verbal_interaction}]{Nass1994computers, Nass2000machines}.
+That is, if computer-based interlocutors can be perceived as social functions in communicative interaction, the question arises, therefore, whether socially-oriented effect such as accommodation would occur in \ac{hci} as well.
+This assumption is made, whether explicitly or implicitly, in accommodative system like those surveyed in \cref{sec:adaptive_spoken_dialogue_systems}.
+A simplified version of this experiment using the same stimuli is replicated in \cref{sec:showcase} as a demonstration of an accommodative \ac{sds}.
 
 \subsection{Experimental design}
 \label{subsec:design_HCIConv}
@@ -378,12 +373,9 @@ After finding accommodation effects in \ac{hhi} (\cref{chap:conv_analysis}) and 
 \subsubsection{Target features}
 \label{subsubsec:target_features_HCIConv}
 
-\todo{little intro}
-
-
-\todo{also talk a bit the differences between the nature of the features, i.e. categorical vs. gradual, vs. mostly perceptual + gradual length + realization of length of next nasal}
-
-Although these feature may pass as light dialectical markers \citep{Mitterer2013regional}, they do not carry any difference in meaning, and are generally ascribed to personal preference of speaking style.
+Three features were examined in the study, as listed below.
+Their variations have been defined as a two-way categorical distinction, even if one of them can be modified on a gradual scale.
+Although these feature may pass as light dialectical markers \citep{Mitterer2013regional}, they do not carry any difference in meaning, and are generally ascribed to personal preference and speaking style.
 
 \begin{enumerate}    
 	\item \textbf{\textipa{[\c{c}]} vs.\ \textipa{[k]} at a word-final $\langle$-\textit{ig}$\rangle$} syllable
@@ -416,7 +408,6 @@ Although these feature may pass as light dialectical markers \citep{Mitterer2013
 	However, vowel quality, as opposed to the \textipa{[\c{c}]} vs.\ \textipa{[k]} feature, it is not categorical (fricative vs.\ plosive), but rather gradual.
 	That means that the actual realization can be anywhere between these two extremes.
 	Despite the gradual nature of vowel quality, native speakers still perceive this feature as categorical (either \textipa{[e]} or \textipa{[E]}, cf.\ \citet{Kuhl2004early, Kuhl1991human}).
-	\review{are these references relevant? is this really magnet effect?}
 	In this experiment, we treat this feature as categorical in the first phase (see \cref{subsubsec:procedure_hci}), but measure it as gradual for analysis purposes (see \cref{subsec:results_hci}).
 	This allows the detection of non-categorical changes over time, which are important for characterizing the convergence process.
 	The \textipa{[E]} variation is in general more typical for the southern federal states of Germany, while \textipa{[e]} is more common in the north.
@@ -509,18 +500,10 @@ Seeing that the experiment dealt with the way people change their way of speakin
 \subsubsection{Stimuli and participants}
 \label{subsubsec:stimuli_participant_hci}
 
-\todo[inline]{little intro}
-%%%
-This is typically done with single words as targets.
-Unlike most shadowing experiments investigating accommodation, participants shadow full sentences instead of single, typically mono- or bisyllabic (non-)words.
-%%%%
-
-%%%%%
-The sentences were all in grammatical German and relatively short (5-7 words), with some being declarative and some interrogative.
-%%%%%
-
-
-Each of the three target features was represented in five sentences, three declarative and two interrogative.
+As mentioned above, shadowing experiments are common practice in accommodation studies.
+However, this is typically done with single words as targets or with a repeating carrier sentence.
+Unlike those experiments, in the experiment presented here participants shadowed full sentences instead of single, typically mono- or bisyllabic (non-)words.
+Each of the three target features was represented in three declarative and two interrogative grammatical German sentences, five to seven words long.
 Additionally, 25 filler sentences, in which none of the target features occur, were introduced as a control mechanism and to not make the target features too obvious.
 At the beginning of the baseline phase, five additional filler sentences were shown to let the participant get use to the task and the setting.
 Three sets of stimuli were created (one natural and two synthetic), leading to a total of 270 stimuli ((3 features $\times$ 5 sentences + 25 fillers + 5 warm-ups) $\times$ 3 sets $\times$ 2 genders).
@@ -779,8 +762,6 @@ Interestingly, while for the natural stimuli this decrease was still above the b
 			\end{tabularx}
 	\end{minipage}
 \end{figure}
-
-\todo[inline]{for both studies, put Procedure between Target Features and Stimuli}
 
 \section{Conclusion}
 \label{sec:conclusion_shadowing}
