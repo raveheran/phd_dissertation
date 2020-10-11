@@ -785,9 +785,7 @@ Interestingly, while for the natural stimuli this decrease was still above the b
 \section{Conclusion}
 \label{sec:conclusion_shadowing}
 
-% Music %%%%%%%%%%%%%%%%%%%%%
-
-The experimental results presented in this paper show that convergence occurs in singing, more so with respect to temporal features than to tonal ones.
+The results found in the music experiment show that alignment occurs in singing, more so with respect to temporal features than to tonal ones.
 This stands in contrast to findings in interactive speech \citep[e.g.,][]{Raveh2019InterspeechAlexa}).
 Even so, the results emphasize the similarity between the two oral capabilities, viz.\ speech and singing, which are both used in human communication.
 They are therefore also prone to influence each other and can potentially be related and enhance one another.
@@ -798,16 +796,39 @@ We therefore suggest that speech and music are two domains where certain common 
 Establishing this connection between music and speech offers a wide variety of further interdisciplinary experimentation that combine linguistic and musical analysis methods.
 Specifically for convergence, the influence of listening to people with different social and vocal characteristics can be examined.
 The manner in which distances in vocal behavior decrease, or increase, can depend on further aspects of the social environment and auditory context, as suggested by \citet{Noy1999psychoanalysis}.
-
-In conclusion, the first hypothesis -- convergence to perceived musical stimuli -- was satisfied, but not in the same way for pitch and tempo.
+To sum up, the first hypothesis -- convergence to perceived musical stimuli -- was satisfied, but not in the same way for pitch and tempo.
 While tempo became globally closer to the recorded version in absolute terms, the tones were produced more precisely but within the same tonal range.
 Additionally, the secondary expectation was only partially met, with fewer large deviations occurring in the shadowing performances, but otherwise the tones in the baseline production were slightly more accurate as a whole.
 Finally, the third hypothesis was fulfilled, as the simpler, frequent rhythmic patterns were replicated more correctly.
 Furthermore, with one exception, participants were not able to replicate the entire lullaby.
-%Interestingly, they remembered either part A or B, but didn't mix bars from both.
+Interestingly, they remembered either part A or B, but didn't mix bars from both.
 
-%%%%%%%%%%%%%%%
+As for the \ac{hci} experiment, different degrees of convergence were found for each of the three target features.
+The feature \textipa{[E:]} vs.\ \textipa{[e:]} showed convergence effect in all stimulus sets, but only in the natural set this effect was significant.
+The areas covered by each vowel in \cref{fig:ee_E_circles} sheds light on possible reasons for the overall worse performance of the synthetic stimuli.
+First, the vowels of the same category from the male and female diphone voices occupy a much larger area than those from the male and female natural voices, which results in a less distinct convergence target.
+And second, all instances that are supposed to be \textipa{[E:]} in the female \ac{hmm} voice are located in the area of \textipa{[e:]}.
+Hence, in the \ac{hmm} condition, all participants with preference \textipa{[e:]} actually heard their preferred version of the vowel in half of the trials during the shadowing phase.
+These lead to the conclusion that the lack of a stronger effect could be due to the acoustic properties of the target vowels in the synthetic stimuli and not necessarily to the synthetic nature of the stimuli itself.
+The feature \textipa{[I\c{c}]} vs.\ \textipa{[Ik]} was found to be a consistent trigger of phonetic convergence.
+For all three stimulus types, the participants produced the opposite variant than their preference in roughly a third of the trials.
+These cases of convergence do not only stem from participants that already showed both target forms in the baseline production, but also from participants that produced only one of the two forms in the baseline phase.
+This a strong effect compared to the other two target features.
+It might be explained by the fact that this feature is categorical by definition, as opposed to the other feature which have two defined categories but are realized on a continuum (formant values and segment length).
+The feature \textipa{[\s{n}]} vs.\ \textipa{[@n]} showed a rather small convergence effect.
+This was expected, as schwa is not usually produced in the word-final sequence \textit{-en}.
+Nevertheless, in all three conditions more instances of schwa were produced during the shadowing phase than in the baseline and post phase.
+These productions are mostly attributable to one or two participants per condition who responded even to this unusual segmental feature.
+This leads us to observe that apart from the identified group differences, the overall degree of convergence varied considerably among the participants, with some being \enquote{resistant} to external influence and others responding strongly to them.
+In conclusion, it can be summarized that humans do indeed converge phonetically when interacting with synthesized speech. 
+However, the degree of convergence depends on the nature of the target feature.   
+Perceptibility of the target feature in the stimuli is proposed as a possible explanation for the fact that one of the examined features did not show the same extent of convergence for the synthetic stimuli as for the natural ones.
 
-% HCI %%%%%%%%%%
-
-%%%%%%%%%%%%%%%%
+The two shadowing studies presented here show that vocal accommodation can also be found in a controlled experimental environment as part of a quasi-conversational scenario.
+As a continuation of the effects found in \cref{chap:conv_analysis}, these results demonstrate that vocal accommodation occurs also in non-speech and human-computer settings.
+These -- and especially the latter -- prove that accommodation effects are not exclusive to \acp{hhi} and thus lay the foundations for further investigation in \ac{hci}.
+In chapter \cref{chap:speech_variations_in_hhci}, accommodation toward a computer-based interlocutor is examined in conversational, goal-oriented tasks.
+The great individual differences found in these experiments inspired part of the parameters and approaches used in \crefrange{chap:computational_model}{chap:statistical_model}.
+Their importance lies in the ability to give different \enquote{characters} (or \emph{profiles}, see \cref{subsec:accommodation_levels}) based on different human behavior, rather than letting a system behave the same in every interaction.
+Furthermore, showing that convergence can occur in segmental features as well emphasizes the importance of control over such properties in synthetic speech for triggering vocal accommodation, which is attributed mostly to \ac{hhi}.
+The segmental manipulations demonstrated in \cref{subsec:speech_manipulation} show how such differences can be achieved.
