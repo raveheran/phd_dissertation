@@ -270,7 +270,7 @@ Second, the size of each interval was compared with the correct interval.
 The participants correctly produced the contour direction in \SI{70}{\percent} of the intervals they replicated.
 The intervals themselves, however, were correct only in \SI{44}{\percent} of the times.
 This suggests that overall contours of the lullaby are more easily recalled than the specific intervals.
-\cref{snippet:deviation_example} shows a few specific examples of tonal and rhythmic deviations.
+\cref{snippet:deviation_examples} shows concrete examples of tonal and rhythmic deviations, and \cref{snippet:deviation_example} shows the average deviations of all productions
 %
 \begin{table}
 	\caption[Key and \acs{bpm} deviation summary]
@@ -297,20 +297,7 @@ This suggests that overall contours of the lullaby are more easily recalled than
 	\todo[inline]{any numeric values that can be put for key (e.g., difference in quartertones)}
 \end{table}
 %
-The tempo of the recorded version is \SI{61}{\ac{bpm}}.
-In their baseline performances, three participants sang faster than that and three more slowly.
-All participants changed their tempo so that it was closer to the recorded version (see \cref{tab:bpm_and_keys}).
-Moreover, the absolute distance from the recording's tempo decreased in all cases but one, which shows an alignment effect.
-In contrast to the first lullaby, it was not expected that participants would be able to completely replicate all rhythmic patterns in the second lullaby (\cref{snippet:uni-lullaby}).
-Two participants managed to replicate part A, part B was replicated by three participants, and one participant replicated both parts.
-The replication rate of each rhythmic pattern was measured separately.
-\Cref{tab:neutral_rhythm_key} summarizes the occurrences of the rhythmic patterns (R1--R4, corresponding to the rhythmic patterns in bars 5, 9, 15, and 16 in \cref{snippet:uni-lullaby}, respectively) in the original and replicated versions.
-The proportion of each pattern within a part was generally preserved in the participants' performances, with the expected occasional confusions between R2 and R3 in part A due to their difference only in the last third beat that may be interpreted as a stylistic choice.
-It is also evident that R1 and R4 were replicated more accurately.
-An explanation for that is their their simplicity compared to R2 and R3 and that they appear at the beginning and end of every phrase, making them easier to remember.
-They contain fewer tones (and thus intervals) than R2 and R3.
-%
-\begin{table}
+\begin{table}[b]
 	\caption[Percentages of rhythmic pattern replications]
 		{Comparison between the percentage of occurrences of each rhythmic pattern in the original and replicated versions in all bar-level patterns.
 		Parts A and B refer to the labels with the same letters in \cref{snippet:uni-lullaby}.
@@ -330,27 +317,39 @@ They contain fewer tones (and thus intervals) than R2 and R3.
 	\end{tabularx}
 \end{table}
 %
+The tempo of the recorded version is \SI{61}{\ac{bpm}}.
+In their baseline performances, three participants sang faster than that and three more slowly.
+All participants changed their tempo so that it was closer to the recorded version (see \cref{tab:bpm_and_keys}).
+Moreover, the absolute distance from the recording's tempo decreased in all cases but one, which shows an alignment effect.
+In contrast to the first lullaby, it was not expected that participants would be able to completely replicate all rhythmic patterns in the second lullaby (\cref{snippet:uni-lullaby}).
+Two participants managed to replicate part A, part B was replicated by three participants, and one participant replicated both parts.
+The replication rate of each rhythmic pattern was measured separately.
+\Cref{tab:neutral_rhythm_key} summarizes the occurrences of the rhythmic patterns (R1--R4, corresponding to the rhythmic patterns in bars 5, 9, 15, and 16 in \cref{snippet:uni-lullaby}, respectively) in the original and replicated versions.
+The proportion of each pattern within a part was generally preserved in the participants' performances, with the expected occasional confusions between R2 and R3 in part A due to their difference only in the last third beat that may be interpreted as a stylistic choice.
+It is also evident that R1 and R4 were replicated more accurately.
+An explanation for that is their their simplicity compared to R2 and R3 and that they appear at the beginning and end of every phrase, making them easier to remember.
+They contain fewer tones (and thus intervals) than R2 and R3.
+%
 \begin{snippet}[t]
 %	\centering
 	\begin{minipage}{.41\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{deviation_example_1}
-		\label{fig:deviation_example_1}
 	\end{minipage}%
 	\hfill
 	\begin{minipage}{.49\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{deviation_example_2}
-		\label{fig:deviation_example_2}
 	\end{minipage}%
 	\caption[Examples of tonal and rhythmic deviations]
 		{Examples of tonal (top staff) and rhythmic (bottom staff) deviations in bar 10 (left score) and bars 15-16 (right score) of the universal lullaby.
 		Smaller, stemless notes mark the correct notes where deviation occurred.
 		Crossed-head notes mark those that deviate from the correct rhythmic pattern.}
+	\label{snippet:deviation_examples}
 	\addcontentsline{lof}{section}{Snippet \thesnippet: Examples of tonal and rhythmic deviations}
 \end{snippet}
 %
-\begin{snippet}[t]
+\begin{snippet}[H]
 	\centering
 	\includegraphics[width=0.65\linewidth]{deviation_example_2_mixed}
 	\caption[Average tonal and rhythmic deviations]
@@ -481,13 +480,6 @@ Its purpose was to let the mental representation of the production fade, so that
 To boost this process, the participants played a game with strong visual aspects and with non-verbal sounds only.
 Conversing with the participant was avoided as much possible as possible in order to prevent from other verbal input to influence their mental representations.
 The participants' performance in the game was not recorded and did not influence the next parts in any way.
-
-A program developed specifically for the purpose of this experiment was used for its execution.
-It included functionalities tailored for this experiment and a \ac{gui} the experimenter could use during the and between the phases to quickly record participants' performance and prepare the next phase.
-These include setting up the participants' audio streams (e.g., playback and recording volumes), extracting the appropriate stimuli from the database, semi-randomizing the stimuli into balanced groups, logging the times and participants' productions, and more.
-The experiment was carried out in a sound-proof booth located inside a recording studio.
-Seeing that the experiment dealt with the way people change their way of speaking based on speech of others, conversation with participants was kept to a minimum before the experiment and was avoided till the end of the experiment.
-%It goes without saying, however, that it was not realistic to try and control for any kind of conversation the participants might have had during the day prior to the experiment.
 %
 \begin{figure}[t]
 	\centering
@@ -499,6 +491,13 @@ Seeing that the experiment dealt with the way people change their way of speakin
 		Each participant listened to both male and female voices of one of the stimulus types natural, diphone, or \acs{hmm}.}
 	\label{fig:HCIConvFlow}
 \end{figure}
+%
+A program developed specifically for the purpose of this experiment was used for its execution.
+It included functionalities tailored for this experiment and a \ac{gui} the experimenter could use during the and between the phases to quickly record participants' performance and prepare the next phase.
+These include setting up the participants' audio streams (e.g., playback and recording volumes), extracting the appropriate stimuli from the database, semi-randomizing the stimuli into balanced groups, logging the times and participants' productions, and more.
+The experiment was carried out in a sound-proof booth located inside a recording studio.
+Seeing that the experiment dealt with the way people change their way of speaking based on speech of others, conversation with participants was kept to a minimum before the experiment and was avoided till the end of the experiment.
+%It goes without saying, however, that it was not realistic to try and control for any kind of conversation the participants might have had during the day prior to the experiment.
 
 \subsubsection{Stimuli and participants}
 \label{subsubsec:stimuli_participant_hci}
@@ -519,18 +518,7 @@ These three sets were stored in a database that was used in the shadowing phase 
 A more advanced technique, like the neural \ac{s2s} used in \cref{subsec:speech_manipulation}, was not selected due to its lack of direct control over specific segments and to avoid voices resembling natural too much natural voices.
 To better focus on segmental differences, suprasegmental properties in the synthetic stimuli were fixed to match those of the natural utterances.
 This was done separately for male and female voices with the respective human speakers.
-The \ac{f0} contour (and by extension also stresses) and segment lengths (and by extension also speech rate) of each sentence of the natural stimuli were imposed on the synthetic stimuli in both synthesis methods \citep[and see][]{Raveh2017ESSV}).
-With \ac{mbrola} this process is straightforward, as the duration and pitch values can be directly passed as input.
-For the \ac{hmm} synthesis, the process was more complex.
-To predict voiceness, the mel-generalized cepstra and band aperiodicity coefficients were first extracted from the spectrum of the output signal of the regular HTS process.
-Subsequently, A neural network with hidden layer of 128 neurons was used to predict the voicing property from the cepstra coefficients.
-Then, a voicing mask was applied on the imposed \ac{f0} contour to obtain the final \ac{f0} coefficients.
-Finally, All the coefficients were used to generate the output signal in a standard synthesis chain with a mel log spectrum approximation filter and the STRAIGHT vocoder \citep{Kawahara2006straight}.
-%The descriptive features and question sets used to build the decision tree followed the standard English set proposed in [17] with adapted part-of-speech tags and phonemes for German. 
-%These values were extracted from the annotations of the natural stimuli (see \citet{Gessinger2016PundP}):
-The segment lengths were directly taken from the annotations, and the \ac{f0} contours were acquired by first interpolating the contour of the natural stimuli and then record the \ac{f0} value at the beginning and at the middle of each segment.
-It goes without saying, however, that due to the limitations of the synthesis techniques, the generated contours were not always \emph{completely} identical to those of the corresponding natural stimuli, as shown in \cref{fig:momel-comparison}.
-Nevertheless, no substantial differences in overall sentence intonation or stress were introduced.
+The \ac{f0} contour (and by extension also stresses) and segment lengths (and by extension also speech rate) of each sentence of the natural stimuli were imposed on the synthetic stimuli in both synthesis methods \citep[and see][]{Raveh2017ESSV}.
 %
 \begin{figure}[t]
 	\centering
@@ -546,20 +534,19 @@ Nevertheless, no substantial differences in overall sentence intonation or stres
 		The scale to the left displays one octave around the median pitch of the signal.}
 	\label{fig:momel-comparison}
 \end{figure}
-
-56 native German speakers from ten difference states in Germany took part in the experiment.
-Three non-overlapping subgroups listened to the three stimulus sets.
-In a post-experiment questionnaire, \SI{80}{\percent} of the participants indicated that change the way they speak depending on their interlocutor, \SI{50}{\percent} believed they would converge to an interlocutor of the same dialectal background, and \SI{15}{\percent} claimed they would converge to an interlocutor from a different dialectal background.
-Each participant was presented with only one of the three stimulus type.
-\Cref{tab:participants_hci} shows a detailed overview on the participants.
-Importantly, the age of the human speakers that recorded the natural stimuli match the mean age all participants.
-As explained in \cref{subsubsec:procedure_hci}, the participants' preference for each of the target features was obtained in the baseline phase.
-These preferences are summarized in \cref{tab:preference_hci}.
-At the end of the experiment, the participants were asked which realization of each feature they believe to produce themselves and what they think of the other version of it.
-About \SI{75}{\percent} reported a positive attitude towards the version they \emph{do not} believe to produce themselves.
-Only a minority of participants showed a negative attitude towards the other variation.
-Based on the results (see \cref{subsec:results_hci}, it seems therefore plausible that a positive attitude towards the features entails a higher probability of converging to them.
 %
+With \ac{mbrola} this process is straightforward, as the duration and pitch values can be directly passed as input.
+For the \ac{hmm} synthesis, the process was more complex.
+To predict voiceness, the mel-generalized cepstra and band aperiodicity coefficients were first extracted from the spectrum of the output signal of the regular HTS process.
+Subsequently, A neural network with hidden layer of 128 neurons was used to predict the voicing property from the cepstra coefficients.
+Then, a voicing mask was applied on the imposed \ac{f0} contour to obtain the final \ac{f0} coefficients.
+Finally, All the coefficients were used to generate the output signal in a standard synthesis chain with a mel log spectrum approximation filter and the STRAIGHT vocoder \citep{Kawahara2006straight}.
+%The descriptive features and question sets used to build the decision tree followed the standard English set proposed in [17] with adapted part-of-speech tags and phonemes for German. 
+%These values were extracted from the annotations of the natural stimuli (see \citet{Gessinger2016PundP}):
+The segment lengths were directly taken from the annotations, and the \ac{f0} contours were acquired by first interpolating the contour of the natural stimuli and then record the \ac{f0} value at the beginning and at the middle of each segment.
+It goes without saying, however, that due to the limitations of the synthesis techniques, the generated contours were not always \emph{completely} identical to those of the corresponding natural stimuli, as shown in \cref{fig:momel-comparison}.
+Nevertheless, no substantial differences in overall sentence intonation or stress were introduced.
+
 \begin{table}[t]
 	\centering
 	\caption[Summary of participant in the \acs{hci} experiment]
@@ -580,6 +567,19 @@ Based on the results (see \cref{subsec:results_hci}, it seems therefore plausibl
 		\bottomrule
 	\end{tabulary}
 \end{table}
+%
+56 native German speakers from ten difference states in Germany took part in the experiment.
+Three non-overlapping subgroups listened to the three stimulus sets.
+In a post-experiment questionnaire, \SI{80}{\percent} of the participants indicated that change the way they speak depending on their interlocutor, \SI{50}{\percent} believed they would converge to an interlocutor of the same dialectal background, and \SI{15}{\percent} claimed they would converge to an interlocutor from a different dialectal background.
+Each participant was presented with only one of the three stimulus type.
+\Cref{tab:participants_hci} shows a detailed overview on the participants.
+Importantly, the age of the human speakers that recorded the natural stimuli match the mean age all participants.
+As explained in \cref{subsubsec:procedure_hci}, the participants' preference for each of the target features was obtained in the baseline phase.
+These preferences are summarized in \cref{tab:preference_hci}.
+At the end of the experiment, the participants were asked which realization of each feature they believe to produce themselves and what they think of the other version of it.
+About \SI{75}{\percent} reported a positive attitude towards the version they \emph{do not} believe to produce themselves.
+Only a minority of participants showed a negative attitude towards the other variation.
+Based on the results (see \cref{subsec:results_hci}, it seems therefore plausible that a positive attitude towards the features entails a higher probability of converging to them.
 %
 \begin{table}[t]
 	\centering
@@ -622,7 +622,8 @@ These distances were used to fit linear mixed-effects models with phase as fixed
 Models were fit for both preference groups compared by an ANOVA.
 The differences between baseline and shadow phases were found to be significant in the natural and \ac{hmm} groups, and between the baseline and post phases only in the natural group.
 \Cref{tab:lmm_ee_E} summarizes the results for this feature.
-\todo[inline]{write a few sentences about the too-similar vowel in the synthetic sets and refer to figure.}
+\Cref{fig:ee_E_space} provides additional insights regarding the perception of the vowel quality contrasts in the synthetic stimuli due to their realization in these sets.
+The influence of the production overlaps are discussed in \cref{sec:conclusion_shadowing}.
 %
 \begin{table}[t]
 	\centering 
