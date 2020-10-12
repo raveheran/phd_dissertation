@@ -173,28 +173,19 @@ All the participants reported that they know the Yakinton lullaby well enough to
 
 Since the participants aimed to produce specific musical notes (as opposed to non-specific absolute frequencies in speech production), tones were used for measuring pitch instead of raw Hertz values.
 For that, quarter tones (\acfp{qt}) were used instead of semitones to increase the tonal resolution, 
-This enables a more fine-grained analysis that can capture more subtle off-key singing and differentiate the performances better.
+Using \acp{qt} rather than traditional half-tones enables a more fine-grained analysis that can capture more subtle off-key singing and differentiate the performances better.
 %The performances were manually transcribed in Sibelius 6
 %\todo{version footnote}
 %and were verified using the corresponding MIDI output against the recordings.
 %
 \begin{figure}[t!]
 	\centering
-	\includegraphics[width=\linewidth]{violin_facet_dev}
-	\caption[Summary of within-participant interval deviation distribution]
-		{Comparison between the distribution of deviations from the correct intervals in baseline (red) and shadowing (blue) performances.
-		The numbers on the x-axis are the number of \acp{qt} above or below the correct interval.}
-	\label{fig:violin_facet_dev}
-	\todo[inline]{caption seems to be wrong. also, refer to this figure in text (was not in original paper)}
-	\todo[inline]{refer to this in text and explain what it shows}
-\end{figure}
-%
-\begin{figure}[t!]
-	\centering
 	\includegraphics[width=\linewidth]{barplot_QT_distances}
-	\caption[Distribution of interval deviations]
-	{Comparison between the distribution of deviations from the correct intervals in baseline (red) and shadowing (blue) performances.
-		The numbers on the x-axis are the number of \acp{qt} above or below the correct interval.}
+	\caption[Violin distributional comparison of participants' singing deviations in both phases]
+		{A comparison between each participant's distribution of deviations in both phases.
+		 The width of the violin shape indicates the counts of the \acsp{qt} deviations.
+		 The upper and lower hinges of the white boxes within the violin shapes show the first and third quartiles, with the thick black line marking the median value.
+		 The vertical line crossing the white box show the value range, excluding outliers.}
 	\label{fig:barplot_QT_distances}
 \end{figure}
 %
@@ -240,6 +231,18 @@ This adjustment of obviously wrong tones was apparently driven by the exposure t
 Other than these corrections, the deviation distributions shown in \cref{fig:barplot_QT_distances} are roughly symmetric and similar in both phases.
 Surprisingly, the baseline performances had more correct tones as a whole.
 It seems, therefore, that the reference version helped the participants to sing within a more accurate range of tones, but somewhat eroded their precision in some notes.
+To confirm that the changes were subtle and were ascribed mostly to larger deviation, a distributional comparison between the baseline and shadowing productions for each participant.
+These comparison are shown in \cref{fig:violin_facet_dev}.
+The very high statistical distribution similarity results tests confirm that all participants didn't substantially change their singing, but in most cases the deviation distribution in the shadowing phase was less scattered.
+%
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=\linewidth]{violin_facet_dev}
+	\caption[Summary of within-participant interval deviation distribution]
+		{Comparison between the distribution of deviations from the correct intervals in baseline (red) and shadowing (blue) performances.
+		The numbers on the x-axis are the number of \acp{qt} above or below the correct interval.}
+	\label{fig:violin_facet_dev}
+\end{figure}
 %
 \begin{figure}[t]
 	\centering
