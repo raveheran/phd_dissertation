@@ -496,7 +496,7 @@ These two steps grant the variational property to the generation process; a labe
 The drawn gradient value and the last system's gradient are used to determine the new gradient, from which the next system value can be calculated.
 Importantly, external policies can intervene in this step and modify this value to enforce the desired change of the system (see \cref{subsec:assign} for more motivation and examples).
 The yielded value is then added to the accumulated evidence, so that it can be taken into account in the next round.
-In parallel, it can also be sent to a component of a \ac{sds} (e.g., the \ac{tts} module, see \cref{subsubsec:dialogue_system,fig:adaptation_module_architecture}).
+In parallel, it can also be sent to a component of a \ac{sds} (e.g., the \ac{tts} module, see \cref{sec:architecture_sds,fig:adaptation_module_architecture}).
 
 \begin{figure}[t]
 	\centering
