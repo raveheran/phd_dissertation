@@ -218,9 +218,8 @@ A neighborhood diameter equal to the standard deviation of the time series was u
 	\begin{minipage}{.45\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{ami}
-		\caption
-		[Average mutual information of time series as function of lag]
-		{The average mutual information of the time series values as a function of the lags considered.
+		\caption[Average mutual information of time series as function of lag]
+			{The average mutual information of the time series values as a function of the lags considered.
 			The x-axis shows the considered lags and the y-axis the mutual information index (AMI) in bits.}
 		\label{fig:ami}
 	\end{minipage}%
@@ -228,9 +227,8 @@ A neighborhood diameter equal to the standard deviation of the time series was u
 	\begin{minipage}{.45\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{false_NN}
-		\caption
-		[Embedded dimensions optimization]
-		{False nearest neighbours percentage as a function of the number of embedded dimensions.
+		\caption[Embedded dimensions optimization]
+			{False nearest neighbours percentage as a function of the number of embedded dimensions.
 			The x-axis show the considered numbers of embedded dimensions and the y-axis the percentage of false nearest neighbours.}
 		\label{fig:false_nn}
 	\end{minipage}	
@@ -329,7 +327,7 @@ The slicing was done per turn, so that a slice contains only the speech of a sin
 Any remainder of a turn got a slice of its own.
 When a speaker is not speaking (e.g., during the turn of the other interlocutor), it is assumed that the last produced value is maintained until the speech is renewed and a new value can be measured.
 This way, no discontinuities are created and the same number of datapoints is extracted for both speakers, which creates a better temporal representation of the conversation.
-Feature extraction was done sequentially for all the conversations using Praat \citep{Boersma2001praat} scripts that extracted the \ac{f0} value from the middle of each slice and then post-processed the output to acquire cleaner measures.
+Feature extraction was done sequentially for all the conversations using Praat \citep{Boersma2018praat} scripts that extracted the \ac{f0} value from the middle of each slice and then post-processed the output to acquire cleaner measures.
 Afterward, the list of measures was turned into two equally long time series.
 First, the values for each speaker were separated into two lists.
 Subsequently, missing values, e.g., due to non-speech slice, were replaced by the most recent valid value of their respective speaker, as motivated above.
