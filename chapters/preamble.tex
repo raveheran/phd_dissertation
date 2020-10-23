@@ -259,7 +259,11 @@
 
 % cusotmize title pages of parts and chapters
 % -------------------------------------------
-\titleformat{\part}[display] % define display format for Part title pages (also required to gain control over those, e.g., page numbers)
+\titleformat{\part}[display]
+	{\vspace{-2cm}\Huge\bfseries\centering\sc} % layout and style
+	{\Roman{part}}{1.5cm} % numbering
+	{\rule{\textwidth}{4pt}\newline} % add line above title
+	[\rule{\textwidth}{4pt}] % add line below title
 {\normalfont\huge\bfseries\filcenter}{\partname\ \thepart}{22pt}{\Huge}
 \assignpagestyle{\part}{empty} % hide page number on part title pages
 \assignpagestyle{\chapter}{empty} % hide page number on chapter title pages
