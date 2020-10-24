@@ -8,7 +8,60 @@
 \section{Motivation and goals}
 \label{sec:motivation_and_goals}
 
-\section{Thesis outline}
+People tend to adopt certain behavioral patterns from one another while interacting.
+These may range from simple physical postures to language usage and even emotional reactions.
+The overarching term for this phenomenon is \emph{accommodation} and it is commonly occurring in \acl{hhi}.
+As explained by \acl{cat} from the 1970s, accommodation often has a social motive and it is used, even if unconsciously, to identify oneself with certain addressees or to trigger greater likability among a social group \citep{Giles2007CAT}.
+It is theorized that the intrinsic motivation for this mechanism is a decrease (or an increase) of the social distance between interlocutors and the improvement of the interaction's overall efficiency \citep{Gallois2015CAT}.
+Various empirical experiments have found accommodation effects in a variety of modalities, like facial expressions \citep{Kinsbourne2009embodied}, eye gaze \citep{Leong2017speaker}, lexical choices \citep{Brennan1996lexical}, and more.
+Changes in speech, and especially low-level phonetic ones, are sometimes more subtle and harder to spot, e.g., than a mimic of body posture or the repeated use of a specific word.
+Nevertheless, accommodation effects have been found in speech-related features, like speech rate \citep{Levitan2011measuring, Local2007phonetic} and pitch contour \citep{Babel2012role}.
+
+The automatic utilization of accommodation strategies by speakers makes it an integral part of human communication.
+However, in recent years, the every-day usage of voice-activated devices has been consistently increasing.
+This kind of interaction introduces new challenges and coerces humans to adjust their verbal communication to cope with the limited capabilities of computer-based interlocutors.
+While similar accommodation effects have also been found in \acl{hci} in different experimental settings \citep[e.g.,][]{Bell2003prosodic, Levitan2013entrainment, Parent2010lexical}, these were only remarkably limited on the non-human side.
+\todo{change this sentence to be clear that the humans accommodated, but the computer side was very limited at best}
+Such one-sided adaptation is incongruous with the mutual, dynamic exchanges occurring in \acl{hhi}.
+Expanding the effect to computer interlocutors to simulate the aforementioned conversational dynamics still poses a challenge.
+This challenge comprises both technical and modeling facets.
+The former deals with the ability of a system to detect phonetic changes in the human's speech and to manipulate the corresponding features in its output speech in real-time, while the latter refers to determining the relationship between a user's realizations and the way they influence the system's productions.
+Direct control over synthesized speech is challenging due to the limitations of current \acl{tts} synthesis methods, which almost exclusively use a trained model that cannot be modified on-the-fly.
+\todo{probably need to improve this statement}
+Even if such capabilities are achieved, accommodation models are required for establishing the way the system responds to users' speech variations.
+This involves some design decisions.
+For example, should the system try to simulate behaviors observed in \aclp{hhi} or simply follow the user's lead?
+Should the system initiate changes or only react to user variation?
+Could the course of the interaction be influenced by the way the system adapts towards the user?
+All these decisions are part of defining the dynamics between the human and computer interlocutors and may change depending on the specific application.
+
+Integration of accommodation capabilities can be especially beneficial for \aclp{sds}, as they are typically the core of verbal \acl{hci}.
+Like improvements in other aspects of \aclp{sds}, vocal accommodation capabilities will contribute to their enhancement toward more human-like conversational behavior \citep{Weise2017towards}.
+Considering the assumptions of \acl{cat}, interacting with a system that simulates behaviors familiar from \acl{hhi} should ease the process for the user and ultimately make it more efficient and fluent.
+Furthermore, with the usage growth of voice-activated devices like \aclp{pa}, accommodative speech would offer additional degrees of personalization for users.
+For instance, the speech of a \acl{pa} owned by one user might differ from that of another and could change when encountering a new user -- therefore reflecting the adjustments performed by humans.
+Furthermore, studying accommodation in \acl{hci} shed light on the way humans perceive non-human interlocutors in social contexts and whether they want to communicate with them in a similar manner as with other humans.
+\citet{Benus2018prosodic} show that a computer-based interlocutor gained more trust from human companions when it exhibited some level of vocal accommodation.
+
+This work investigates the building blocks on the way to achieving vocal accommodation in \acl{hci}.
+These include experiments for collecting evidence of accommodative behaviors in \acl{hhi} and \acl{hci}, approaches for modeling these behaviors in a computer-compatible fashion, methods for integrating accommodation models into real-time \acl{tts} synthesis, and implementation of a \acl{sds} that support vocal accommodation.
+Previous work has addressed these concepts, mostly independently of each other.
+\citet{Levitan2016implementing} introduce an approach for integrating prosodic-acoustic convergence into a conversational avatar, but without considering different types of accommodative behaviors.
+Similarly, \citet{Bevnuvs2014social} examines social aspects of entrainment in spoken interactions, but does not demonstrate how those can be harnessed to measure them and develop models.
+Obviously, the scope of each study cannot possibly cover all topics.
+However, in addition to the depth of each of these concepts, the connections between them for introducing a complete solution should be considered as well.
+For example, the manner in which the experimental findings are converted into a model defines the flexibility and degree of variation of the system.
+It is therefore important to jointly address both the theoretical and technical facets of the topic, as they can benefit each other.
+On the one hand, the technical capability to manipulate speech needs a modeled knowledge about the possible (and plausible) changes that might occur; and on the other hand, accumulating empirical data without showing how it models the phenomenon in question makes it highly challenging to demonstrate the essence of the captured evidence.
+
+Offering such a comprehensive overview of this multidisciplinary theme and presenting the individual topics in a wider context were the primary inspirations for this work.
+A further motivation was to suggest a more structural approach to accommodation description in computers, namely a hierarchy of accommodation levels.
+Each level builds on the previous one and progressively increases the complexity and variability of the accommodative behavior, from direct mirroring of users' productions to independent responses
+To that end, empirical data is required for observing a range of behaviors, and appropriate computational means need to be utilized to prevent too simple or unnecessarily complex behaviors.
+This distinguishment between different types of behavior has received little to no attention so far and can help to better define the desired behavior of a system, based on user's expectation and the target application.
+Lastly, an emphasis is put on the temporal aspect of conversation -- and by extension, of accommodation effects -- throughout the work, which is often neglected in studies, but provides important insights on the interactions' dynamics.
+
+\section{Outline}
 \label{sec:outline}
 
 This work deals with the intersection between two communicative phenomena, viz.\ \emph{phonetic accommodation} and \emph{\acl{hci}}.
