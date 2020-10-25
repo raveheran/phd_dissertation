@@ -3,7 +3,7 @@
 
 \lettrine{F}{or} a computer to express accommodative speech, a machine-understandable description of the process is required.
 This chapter introduces a model of the way accommodation occurs in human speech, represented as a pipeline.
-Its steps' order and logic are motivated by observed empirical data and aim to resemble the process occurs in humans.
+Its steps' order and logic are motivated by observed empirical data and aim to resemble the process that occurs in humans.
 The parameters used in the pipeline to shape vocal behaviors are explained as well.
 
 \pagebreak
@@ -16,9 +16,9 @@ Complementary to that, \cref{subsec:accommodation_levels} discusses ways to repr
 Since behavioral changes, as explained by \ac{cat} (see \cref{sec:communication_accommodation_theory}), happen naturally and often unconsciously in \ac{hhi}, it is not trivial to transfer them to computers, which need defined rules and numeric representation to process.
 These can be achieved by applying some measuring technique appropriate for each feature, like formant values for vowel quality or frequency for \ac{f0}.
 Creating rules for different behaviors, however, cannot be directly constructed, due to the nature of this intuitive phenomenon, but rather inferred from observed \ac{hhi} data.
-For example, The results of the study described in \cref{chap:shadowing_in_sung_music_and_human_computer_interaction} reveal a high degree of variation across participants.
+For example, the results of the study described in \cref{chap:shadowing_in_sung_music_and_human_computer_interaction} reveal a high degree of variation across participants.
 \todo{take a slides about individual differences to show some differences either here or at the mentioned section}
-While this is expected, further examination of these variations uncovers some general properties that can be taken as a ground for characterizing the different changes.
+While this is expected, further examination of these variations uncovers some general properties that can be taken as a basis for characterizing the different changes.
 The link between the measured raw values and systematic rules should be a machine-applicable equivalence of the accommodation process in humans.
 Such parallelisms would need to model, for instance, the way humans percept the accommodation-prone sounds, how they interact with previous instances and the current internal state of the sound in question, and the cognitive process of the phonetic changes.
 Therefore, such a model should include the perception of the phonetic features, representation of the state change of each feature in memory, and the realization of the changes during a conversation.
@@ -43,7 +43,7 @@ Note that although only speech-related features are discussed here, this pipelin
 In short, the proposed pipeline representation consists of the following five main steps, which are explained in detail in \crefrange{subsec:detect}{subsec:assign}:
 %
 \begin{itemize}[topsep=0cm, itemsep=-.1cm, wide=0cm, leftmargin=!, labelwidth=\widthof{\textbf{update}}]
-	\item[\textbf{detect}] hear and identify a feature that can be changed, corresponding to a human's ear's ability to notice such variations;
+	\item[\textbf{detect}] hear and identify a feature that can be changed, corresponding to a human ear's ability to notice such variations;
 	
 	\item[\textbf{filter}] decide whether the encountered feature's instance appears in a way that can trigger change, capturing the inherent detection of phonological context and rules in the language;
 	
@@ -70,7 +70,7 @@ For changes on any level to happen, some pre-defined feature that is prone to ch
 Moreover, for the changes to register as a variation of that feature, the realization produced by the speaker must be prominent and distinctive enough to be perceived by the listener.
 In the case of computers, this means a way to measure the difference between realizations and classify their distance from one another.
 This difference can be categorical or continual, depending on the feature.
-In addition, which features introduce meaningful difference is language- and culture-dependent, and might also differ based on the specific situation in which the interaction takes place.
+In addition, not only the features which introduce meaningful difference are language- and culture-dependent, they might also differ based on the specific situation in which the interaction takes place.
 For example, a segmental feature of a language where a phoneme can be realized in two alternative ways (as explained in \cref{subsubsec:target_features_HCIConv}) will probably be ignored by a speaker of a language where only one of these vowels exist in its repository.
 In this case, the two vowels will simply be mentally merged into one, not causing any difficulties with comprehension.
 Suprasegmental features, like \ac{f0} contour and \ac{ar}, occur globally across the speech signal and are more often cross-lingual.
@@ -79,7 +79,7 @@ Still, for a computer to be able to detect and track changes in those features, 
 \subsection{Filter}
 \label{subsec:filter}
 
-This step replaces the human internal, often unconscious, linguistic knowledge, and how it is used to decide which detected realizations are legitimate new instances that will be stored in memory.
+This step corresponds the human internal, often unconscious, linguistic knowledge, and how it is used to decide which detected realizations are legitimate new instances that will be stored in memory.
 The input to it is the list of detected realizations of the defined target phonemes and it outputs those realizations that should be stored as exemplars of their respective features.
 \Cref{subsubsec:filtering_exemplars} demonstrates how a filter is applied based on a phonological rule and a feature definition.
 
@@ -136,9 +136,9 @@ The input to it is the current state of a feature and it outputs a new value for
 
 The core of the accommodation process is the actual change in a feature's state.
 Many factors may influence this process, both internal and external to the speaker.
-The two main considerations in this step are one of each, namely the desired accommodation behavior and the exemplars collected from the user(s) speech input.
+The two main considerations in this step are one of each, namely the desired accommodation behavior and the exemplars collected from the user's speech input.
 The latter is covered by the \enquote{store} step, and the former is defined using adjustable parameters that correspond to accommodation properties in humans.
-For example, how prone is the speaker to be influenced by external others' speech and how easily should the change triggered.
+For example, how prone is the speaker to be influenced by external others' speech and how easily should the change be triggered.
 The sensitivity can be constant or vary based, e.g., on how close the speakers are to each other, to begin with.
 A trigger might be exemplar-based, i.e., after a certain number of new exemplars were added, or time-based, i.e., every time a certain amount of turns had passed.
 \Cref{tab:comp_model_parameters} provides more details about these parameters.
@@ -152,12 +152,12 @@ This computation can use simple mathematical operations (as demonstrated in \cre
 \label{subsec:assign}
 
 This step mediates between the new state of a feature to its use in the system's speech output.
-The input to it is the newly calculated state of a feature and it outputs a potentially altered of this state to be used by the \ac{tts} component.
+The input to it is the newly calculated state of a feature and it outputs a potentially altered version of this state to be used by the \ac{tts} component.
 
 This final step of the pipeline is responsible for assigning the features' representations to the speech production of the system, i.e., as an additional input to the \ac{tts} of the system.
 For a \ac{tts} module that can directly control the speech output (as part of the model itself or on the outputted waveform),
 \putref{refer to chapters with this is discusses when they exist}
-The additional information can be used to manipulate the target features in a way that expresses the accommodative behavior of the system.
+the additional information can be used to manipulate the target features in a way that expresses the accommodative behavior of the system.
 This closes a circle of feature pronounced by the user and detected by the \ac{asr} component and are now taken into account by the system when speaking back.
 Since that means the user will now hear some vocal characteristics that are based on their own speech, it is important to avoid a situation where the user feels imitated -- or even mocked - by the systems.
 To that end, this step introduces a limitation mechanism that limits the values given to the \ac{tts} component.
@@ -231,7 +231,7 @@ When set to 0, however, updates will only take place when explicitly requested, 
 This can be useful, for example, when all features are to be updated at the same time, regardless of how many exemplars have been accumulated for each feature.
 Increasing the update interval means that each update will be affected by a higher number of new exemplars, which, depending on the calculation method used (see below), might result in a smoother converging process.
 Additionally, a longer update interval also means that accommodation will generally take longer, since the model's features are not being updated as frequently.
-This is fitting systems with which the user is expected to have long interactions and/or many interactions over an extended period of time.
+This is fitting for systems with which the user is expected to have long interactions and/or many interactions over an extended period of time.
 
 Not only the frequency of updates plays a roll in the process, but also the manner in which the update is performed.
 This manner is determined by the \textit{calculation method}.
@@ -242,12 +242,12 @@ A different calculation method can be assigned to each feature, which can help t
 This can also be influenced by the setting the system is purposed for (experimental, exploratory, data collection, etc.)
 
 The \emph{target phoneme} has two purposes:
-First, it tells the \ac{asr} component which phoneme is associates with this phoneme, so that it is forwarded for further analysis.
+First, it tells the \ac{asr} component which phoneme is associated with this phoneme, so that it is forwarded for further analysis.
 Second, it is used in the \emph{phonetic context} parameter to filter instances of the phoneme that should not be associated with the feature.
-The context is a regular expression against which the phoneme sequence retrieved by the \ac{asr} is matched\footnote{This requires an \ac{asr} engine that returns such sequence in addition to textual output.
+The context is a regular expression against which the phoneme sequence retrieved by the \ac{asr} is matched\footnote{This requires an \ac{asr} engine that returns such a sequence in addition to textual output.
 It is therefore crucial that the phoneme symbol set used in the model and by the \ac{asr} is the same and unambiguous, specifically when used in a regular expression.
 This is the only part of the pipeline that is language-dependent (or rather symbol-dependent)
-Using non-ASCII symbol sets, like IPA, may solve many of these issues, but is not recommended since \ac{asr} engines rarely use those and also due to other technical reasons.}
+Using non-ASCII symbol sets, like IPA, may solve many of these issues, but is not recommended since \ac{asr} engines rarely use those and also due to other technical reasons.}.
 For suprasegmental features -- or any other feature that is not bound to a specific phoneme or context -- the target phoneme can remain empty and the phonetic context set to match any sequence.
 The second parameter used to put constrains on the detected phones is the \emph{allowed range}, which defines the acceptable value boundaries for the feature (min and max values per dimension).
 This parameter is important to obtain clean and sensible exemplars, as it introduces restrictions based on phonetic knowledge (e.g., reasonable \ac{f0} values for a human speaker), which at the same time also help to prevent \ac{asr} errors from meddling with the exemplars sent to the pool.
@@ -286,23 +286,23 @@ The model's parameters are summarized in \cref{tab:comp_model_parameters} (and c
 			
 			{\color{ForestGreen}\textbf{exemplar pool size}}
 			& maximum number of exemplars in memory at a time, oldest exemplar removed when full
-			& integer, $> 0$\\\addlinespace[0.2cm]
+			& positive integer\\\addlinespace[0.2cm]
 			
 			{\color{RoyalBlue}\textbf{update frequency}}
 			& how frequently a feature's value is recalculated, controlling the accommodation pace
-			& integer, $\geq 0$; 0 for manual update\\\addlinespace[0.2cm]
+			& non-negative integer; 0 for manual update\\\addlinespace[0.2cm]
 			
 			{\color{RoyalBlue}\textbf{calculation method}}*
 			& the manner in which the pool value is calculated based on the values and order of the exemplars in pool
-			& any $\mathbb{Q}^{n \times m} \longrightarrow \mathbb{Q}^{m}$ function; either implemented directly in code or sent to an external statistical model\\\addlinespace[0.2cm]
+			& any $\mathbb{R}^{n \times m} \longrightarrow \mathbb{R}^{m}$ function; either implemented directly in code or sent to an external statistical model\\\addlinespace[0.2cm]
 			
 			{\color{RoyalBlue}\textbf{convergence rate}}
 			& weight of the exemplar pool when updating the feature's state, controlling the impact of external input on the speaker's features states
-			& float, typically $> 0$ and $< 1$; 0 for ignoring pool; $> 1$ for over-weighting pool\\\addlinespace[0.2cm]
+			& typically $n \in (0, 1) \subset \mathbb{R}$; 0 for ignoring the pool ; $> 1$ for over-weighting the pool value\\\addlinespace[0.2cm]
 			
 			{\color{red}\textbf{convergence limit}}*
 			& the maximum degree of convergence allowed for the feature with respect to the input instances
-			& float, $> 0$ and $\leq 1$; 1 (\SI{100}{\percent}) for no limitation \\
+			&  $n \in (0, 1] \subset \mathbb{R}$; 1 (\SI{100}{\percent}) for no limitation \\
 			\bottomrule
 		\end{tabulary}
 		\flushleft{\footnotesize \emph{* denotes parameters that are defined individually for each feature}}
