@@ -6,3 +6,58 @@
 \acresetall
 
 this is general discussion
+
+
+
+
+
+\todo[inline]{a part about evaluating accommodation: people are usually not aware of accommodation happening, and if they do, they can't evaluate it in a consistent and reliable way, as it is not necessarily related to measurable features in the acoustic signal}
+
+\citet{Babel2012role} % she says that accommodation evaluation by humans is "holistic" and does not necessarily correlate with specific features in the signal
+
+
+\citet{Levitan2016implementing} % that's the paper about Levitan's system that entrains in a relatively simple matter. take this as as a baseline when talking about sophistication of system behavior
+
+\todo[inline]{somewhere say that temporal and mutual aspects are emphasized and are usually not in the focus of accommodation research}
+
+%%%%%%%%%%%%%%%%%%%%
+% taken from System chapter. use this after talking about what the system can do and maybe some limitations, then this is potential extensions / directions for improvement
+Future work will pursue two independent directions:
+regarding phonetic convergence, supporting more features will make the system more comprehensive and useful for studying a wider range of phenomena.
+Specifically, adding support for supra-segmental (i.e., prosodic) features will enable replication of experiments similar to, e.g., \citet{Levitan2014acoustic, Levitan2016implementing} in the same manner as in \cref{sec:showcase}.
+
+Regarding user acceptance, it would be interesting to examine whether users show any preference toward an \ac{sds} that converges to their speech on the phonetic level, and whether they would change their speaking style based on the system's output, forming an interaction with mutual and dynamic convergence.
+The first research question can be tested by comparing user interaction with a baseline system and one with convergence capabilities, and evaluating the users' performance and satisfaction.
+The second research question can be investigated by comparing the users' speech when interacting with either system configuration.
+Additionally, to test the system's influence on users' speech, the users can train with an intelligent \acf{call} or \acf{capt} system, which will change its learner model based on their input.
+Task completion rate, performance accuracy, and completion time metrics can be used to evaluate how helpful the system is.
+%%%%%%%%%%%%%%%%%%%%
+
+\todo[inline]{start with saying that accommodation in HCI is still a relatively new research area and there are no common methods for measuring and evaluating this. reasons -- maybe because there is no defined measuring unit, specifically when is comes to changes overtime and not only point vs. point. also, since there is no "correct" and "incorrect" answers, it is hard to compare against some gold standard and say whether results are good.}
+
+\todo[inline]{having common terminology can be a first step toward comparable and common research methods. part of this work is to define some of the terms used to describe the various types of accommodation that could occur and the relations between them (cref).}
+
+
+
+
+
+
+
+
+
+
+\todo[inline]{[1-2 introduction sentences saying that this thesis shows the connection between accommodation in humans, modeling, and technical aspects of accommodation and that they are all important for its understanding]. more often than not, the technical parts of HCI (e.g., ASR accuracy or TTS quality) are designed and developed separately from the user perspective. while this is understandable when the goal is purely the engineering improvements, this is problematic when addressing dialogue-related problems. [1 more connecting sentence]. Since accommodation in HCI involves both computers and humans, both these two sides of the same coin should be considered in the research and development of such systems. [1 more sentence that those need to work together]. In the case of accommodation, investigating effects in humans that are not relevant or cannot be implemented in computers doesn't contribute to the advancement toward accommodative HCI. Similarly, achieving technical goals that are not perceivable by humans or are not based on any human-centric modeling don't provide any added values as well. [give example of MFCC-matching accommodation (can find paper from Specom 2018?)]. [here continue a few more sentences about thinking about accommodation as one large process with several components in it (cref to roadmap figure) and say this encourage closer collaboration of researchers from human, dialogue, and technical areas]}
+
+
+
+
+
+
+
+\todo[inline]{[as a continuation to the technical challenges in modeling accommodation in computers]. not all accommodation capabilities are born equal. this work distinguishes between several \enquote{levels} accommodation capabilities in computers [cref], as demonstrated and discussed in chapters 7 and 8. this concept is not only motivated by the different layers of accommodative behaviors in humans, but also allows for more or less complex design depending in the target application. [2-3 sentences with examples from work and how they can be used and how it is parallel to human behaviors.]}
+
+
+
+
+
+\todo[inline]{[toward the end, when talking about potential future research directions]. As full, human-like accommodation capabilities still do not exist, it remains to be seen whether and how they will influence end users. First, like in the case of other human-inspired capabilities in computers, not all users might like such capability that makes computer behave more like humans. [a sentence saying that it might be very good but still flawed, leading to the negative effect known as the uncanny valley (reference).] Secondly, as in HHI, some speakers are naturally less sensitive to phonetic changes and might not notice such variations in computers if they produce them. While accommodation effect might still occur, this rises the questions whether this would improve user experience nonetheless and whether developers would want to invest in features that users might not even realize and appreciate. Somewhat ironically, this could only be tested once such systems exist. Finally, even when computers will have achieved advanced accommodation capabilities (vocal and otherwise), they might not be desired by users. Depending on the application and type of agent, people might not \emph{want} their computers to demonstrate such human-like behaviors, especially if they don't necessarily explicitly follow the user's preference. [2-3 more sentence about examples of when this could be indeed useful and desired, e.g., social chatbots or avatars that are designed to closely accompany a person for a long time.]}
