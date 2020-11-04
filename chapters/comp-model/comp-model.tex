@@ -71,7 +71,7 @@ This step stands for the human ability to identify phonemes in speech and analyz
 The input to this first step in the pipeline is the raw speech signal of the speaker and its output is a sequence of realizations that may contain phonetic changes.
 The \ac{asr} component of the system is responsible for detecting these realizations and their timestamps in the signal.
 With this information, various methods can be used to define and measure target features to take into consideration and pass forward.
-\Cref{subsubsec:detecting segment exemplars} shows an example of such a definition and how it is used in a \ac{sds}.
+\Cref{subsubsec:detecting_segment_exemplars} shows an example of such a definition and how it is used in a \ac{sds}.
 
 An interlocutor cannot accommodate to features that are not present in a speaker's speech.
 For changes on any level to happen, some pre-defined feature that is prone to change needs to be present and detected in the input speech stream.
@@ -243,7 +243,7 @@ For suprasegmental features -- or any other feature that is not bound to a speci
 The second parameter used to put constrains on the detected phones is the \emph{allowed range}, which defines the minimum and maximum acceptable values for the feature.
 This parameter is important to obtain clean and sensible exemplars, as it introduces restrictions based on phonetic knowledge (e.g., reasonable \ac{f0} values for a human speaker), which at the same time also help to prevent \ac{asr} errors from meddling with the exemplars sent to the pool.
 Since these values are feature-dependent, this parameter is set for each feature individually.
-%\Cref{subsubsec:detecting segment exemplars} shows an example of a feature definition.
+%\Cref{subsubsec:detecting_segment_exemplars} shows an example of a feature definition.
 %
 \begin{landscape}
 	\begin{table}[tb]
