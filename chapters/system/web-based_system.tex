@@ -293,17 +293,7 @@ To map these underlying values to a specific variant, the system associates a cl
 The values of the keys \texttt{minimum}, \texttt{maximum}, and \texttt{initial} stand for the first two formant frequencies.
 The \texttt{calculation} method for this feature is \emph{decaying average}, which is similar to the regular average but with each value contributing exponentially less to the final value, so that the last (newest) exemplar contributes the most.
 Adding such property to the measure gives more weight to new exemplars that were received chronologically closer to the current turn and thus makes the change more strongly influenced by the productions closer to the accommodation change.
-Using this measure comes to support the analogy of the exemplar pool to short-term memory, which remembers recent events better than older ones.
-Decaying average is defined here as
-%
-\begin{equation} 
-	\label{eq:decaying_average} 
-	\mu_n = \frac{1}{n}\sum_{i = 2}^{n}(\eta v_i + (1 - \eta )\mu_{i-1}), 
-\end{equation} 
-\eqname{Decaying average}
-%
-\noindent
-where $n$ is the number of exemplars in memory, $\eta$ is the decay rate (here, 0.5), $\mu_{i-1}$ is the accumulated decaying average from the previous exemplar, and $v_i$ is the value of the $i$-th exemplar. 
+Using this measure comes to support the analogy of the exemplar pool to short-term memory, which remembers recent events better than older ones (see \cref{eq:decaying_average}).
 
 Even though more aspects of it could be automated, the experimental procedure stayed as faithful as possible to the procedure of the original experiment.
 The domain file created for the showcase was designed to substitute the role of the experimenter in the shadowing phase (cf.\ \cref{fig:HCIConvFlow}), i.e., presenting -- and speaking -- the next stimulus to the participant.
