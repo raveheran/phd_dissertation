@@ -1,61 +1,61 @@
 Mit der zügig ansteigenden Anwendung von sprachaktivierten Geräten weltweit wird verbale Kommunikation mit Computern stetig häufiger.
-Obgleich gesprochene Sparche die vorwiegende natürliche Art und Weise menschliche Kommunikations ist, ist sie dennoch anspruchsvoll für Computer, und Benutzer waren daran gewöhnt worden, ihren Sprachstil Computern anzupassen.
-Solche Anpassungen kommen in meschlicher gesprochenen Sparche natürlicherweise und üblicherweise unbewusst während eines Gesprächs vor, um die soziale Distanz zwischen den Gesprächsteilnehmern zu kontrolieren und die Effizienz des Gesprächs zu verbessen.
-Dieses Phänomen wird Akkomodation gennant und es findet auf verschiedenen Modalitäten in meschlicher Kommunikation statt, wie z.B. Handzeichen, Gesichtsausdrücke, Gaze, lexikalische und grammatikalische Wahlmöglichkeiten, u.a.
+Obgleich gesprochene Sprache die vorwiegende natürliche Art und Weise von menschlicher Kommunikation ist, ist sie dennoch anspruchsvoll für Computer, und Benutzer waren daran gewöhnt worden, ihren Sprachstil Computern anzupassen.
+Solche Anpassungen kommen in menschlicher gesprochener Sprache natürlicherweise und üblicherweise unbewusst während eines Gesprächs vor, um die soziale Distanz zwischen den Gesprächsteilnehmern zu kontrollieren und die Effizienz des Gesprächs zu verbessen.
+Dieses Phänomen wird Akkomodation genannt und es findet auf verschiedenen Modalitäten in menschlicher Kommunikation statt, wie z.B. Handzeichen, Gesichtsausdrücke, Gaze, lexikalische und grammatikalische Wahlmöglichkeiten, u.a.
 Vokal Akkomodation beschäftigt sich mit Änderungen auf der phonetischen Ebene, die sich in segmentalen und suprasegmentalen Merkmalen ereignen.
-Eine abnehmende Differenz zwischen den Verwirklichungen dieser Merkmalen bei den Gesprächsteilnehmern läuft auf Konvergenz hinaus, wohingegen eine zunehmende Differenz ergibt Divergenz.
-Der Mangel bei Computern solcher gegenseitigen Anpassungen, die von menschen naturgemäß hergestellt werden, erstellt eine Lücke zwischen Mensch-Mensch und Mensch-Maschine Interaktionen.
+Eine abnehmende Differenz zwischen den Verwirklichungen dieser Merkmale bei den Gesprächsteilnehmern läuft auf Konvergenz hinaus, wohingegen eine zunehmende Differenz ergibt Divergenz.
+Der Mangel bei Computern solcher gegenseitigen Anpassungen, die von Menschen naturgemäß hergestellt werden, erstellt eine Lücke zwischen Mensch-Mensch und Mensch-Maschine Interaktionen.
 Darüber hinaus sprachaktivierte Systeme sprechen zurzeit gleich zu allen Benutzern, unbeschadet ihrer genauen Verwirklichungen oder ihres Sprachstils.
 Die Erkennung von phonetischen Abweichungen und die Erstellung von anpassungsfähiger Sprachausgabe würden die Personalisierung dieser Systeme verbessern und sollten letztendlich die insgesamte Benutzer-Erfahrung erhöhen.
-Daher kann die Erforschung dieser Aspeckte von Akkomodation helfen, Mensch-Maschine Interaktion besser zu verstehen und weiterzuentwickeln.
+Daher kann die Erforschung dieser Aspekte von Akkomodation helfen, Mensch-Maschine Interaktion besser zu verstehen und weiterzuentwickeln.
 
 Diese These bietet einen umfassenden Überblick über die Bausteine an, die für die Integration von Akkomodation Fähigkeiten in Sprachdialogsysteme erforderlich sind.
-Das beinhaltet Ausführung von Mensch-Mensch und Mensch-Maschine Interaktionen Experimenten um differenze der vokalen Verhaltensweisen zu untersuchen, Modellierungsansätze für die empirischen Ergebnisse, Methoden für phonetische Abweichungen in synthetischen Stimmen einzuführen, und einen Weg alle diese Komponenten in einem akkommodationsfähigen System zusammenzusetzen.
+Das beinhaltet Ausführung von Mensch-Mensch und Mensch-Maschine Interaktionen Experimenten um Differenzen der vokalen Verhaltensweisen zu untersuchen, Modellierungsansätze für die empirischen Ergebnisse, Methoden für phonetische Abweichungen in synthetischen Stimmen einzuführen, und einen Weg alle diese Komponenten in einem akkommodationsfähigen System zusammenzusetzen.
 Obwohl jede dieser Komponenten ist selbst eine breite Forschungsrichtung, sie hängen voneinander ab und sollten gemeinsam in Betracht gezogen werden.
-Das übergreifende Ziel dieser These ist daher nicht nur zu zeigen, wie jeder Aspeckt weiterentwickelt werden kann, sondern auch die Zusammenhänge zwischen denen zu demonstrieren und zu motivieren.
-Ein besonderer Schwerpunkt wird in der These auf die Bedeutung des zeitlichen Aspekts der Akkommodation gelegt.
+Das übergreifende Ziel dieser These ist daher nicht nur zu zeigen, wie jeder Aspekt weiterentwickelt werden kann, sondern auch die Zusammenhänge zwischen denen zu demonstrieren und zu motivieren.
+Ein besonderer Schwerpunkt wird in der These auf die Bedeutung des zeitlichen Aspekts der Akkomodation gelegt.
 Menschen ändern im Laufe eines Gesprächs ständig ihre Sprache.
 Daher sollten Akkommodationsprozesse als kontinuierliche, dynamische Phänomene behandelt werden.
 Das Messen von Unterschieden in einigen wenigen diskreten Punkten, z.B. am Beginn und am Ende einer Interaktion, kann viele Akkommodationsereignisse unentdeckt oder übermäßig geglättet lassen.
 
 Um die Hinführung vokaler Akkomodation in Computern zu rechtfertigen, es sollte zuerst bewiesen werden, dass Menschen überhaupt irgendwelchen Anpassungen beim Gespräch mit Computern vorzeigen, genauso wie mit anderen Menschen.
-Da es keine definitive Metrik für die Maßeinheit und Evaluation von den Menge und Qualität des Akkommodationsprozesses gibt, ist es besonders wichtig, die Produktionen von Menschen empirisch zu untersuchen, um sie als Referenz für mögliche Verhaltensweisen anzuwenden.
+Da es keine definitive Metrik für die Maßeinheit und Evaluation von der Menge und der Qualität des Akkommodationsprozesses gibt, ist es besonders wichtig, die Produktionen von Menschen empirisch zu untersuchen, um sie als Referenz für mögliche Verhaltensweisen anzuwenden.
 In dieser Arbeit schließt diese Untersuchung verschiede experimentelle Anordnungen ein, um einen besseren Überblick über Akkomodation Effekte zu erreichen.
-Erstens, Vokal Akkomodation wurde besichtigt wo sie natürlich statt findet, nämlich in spontanen Mensch-Mensch Unterhaltungen.
-Für diesen zweck wurde eine Sammlung von echten 
-Verkaufsgesprächen eingesammelt und analysiert, worin ein anderes HandelsvertreterIn-NeukundeIn Paar in jedem Gespräch teilgenommen hatte.
+Erstens, Vokal Akkomodation wurde besichtigt, wo sie natürlich stattfindet, nämlich in spontanen Mensch-Mensch Unterhaltungen.
+Für diesen Zweck wurde eine Sammlung von echten 
+Verkaufsgesprächen eingesammelt und analysiert, worin ein anderes Handelsvertreter-Neukunde Paar in jedem Gespräch teilgenommen hatte.
 Diese Gespräche gönnen einen Blick auf Akkomodationseffekte in spontanen authentischen Interaktionen mit dem Ziel ein Deal zu verhandeln auf der einen Seite, aber mit der Motivation jedes Sprecher die beste Bedingungen für sich selbst zu erlangen auf der anderen Seite.
 Die Konversationen wurde durch Kreuzkorrelation Zeitreihe Verfahren analysiert, um die dynamischen Änderungen im Zeitverlauf zu erfassen.
 Es wurde gefunden, dass erfolgreiche Konversationen durch mehrere Bewertungen von verfehlten unterscheidbar sind.
-Überdies wurden die Handelsvertreter als bessere Leiter von vokalen Änderungen befunden, d.h. die Neukunden eher dazu zu bringen, ihre Sprachstil zu verfolgen, als andersrum.
+Überdies wurden die Handelsvertreter als bessere Leiter von vokalen Änderungen befunden, d.h. die Neukunden eher dazu zu bringen, ihr Sprachstil zu verfolgen, als andersrum.
 Der Fakt, dass Akkomodation stärker bei trainierten Sprechern stattfindet, passt anekdotischen besten Praxen von Absatz Experten, die bisher nie wissenschaftlich nachgewiesen worden sind.
-Basierend auf diesen Ergebnissen kam die nächste Studie näher zum Enziel dieser Arbeit und untersuchte Akkomodationseffekte bei Mensch-Maschine Interaktionen.
+Basierend auf diesen Ergebnissen kam die nächste Studie näher zum Endziel dieser Arbeit und untersuchte Akkomodationseffekte bei Mensch-Maschine Interaktionen.
 Das wurde durch ein Shadowing Experiment getan, das ein kontrolliertes Umfeld für die Untersuchung phoneischer Abweichungen anbietet.
-Da Sprachdialogsysteme mit sochen Akkomodation Fähigkeiten noch nicht existieren, ein simuliertes System wurde benutzt, um diese Änderungen den Teilnehmnern einzubringen, die geglaubt haben, dass sie damit helfen, ein Sprachlernsystem zu testen.
-Nach der Bestimmung ihrer Preferenzen hinsichtlich drei segmentale Merkmale hörten die Teilnehmner entweder natürliche oder systhetische Stimmem von männliche und weibliche Sprechern zu, die die nicht bevorzugten Variation der obengenannten Merkmalen produzierten.
-Akkomodation fand in allen Fällen statt, obwohl die natürlichen Stimmen stärkere Effekte aus löste.
-Es kann jedoch gefolgert werden, dass Teilnehmer sich auch an den synthetischen Stimmen an paßten, was bedeutet, dass soziale Mechanismen bei Menschen auch beim Sprechen mit Computern angewendet werden.
+Da Sprachdialogsysteme mit solchen Akkomodation Fähigkeiten noch nicht existieren, ein simuliertes System wurde benutzt, um diese Änderungen den Teilnehmern einzubringen, die geglaubt haben, dass sie damit helfen, ein Sprachlernsystem zu testen.
+Nach der Bestimmung ihrer Präferenzen hinsichtlich drei segmentale Merkmale hörten die Teilnehmer entweder natürliche oder synthetische Stimmen von männliche und weibliche Sprechern zu, die die nicht bevorzugten Variation der obengenannten Merkmalen produzierten.
+Akkomodation fand in allen Fällen statt, obwohl die natürlichen Stimmen stärkere Effekte auslösten.
+Es kann jedoch gefolgert werden, dass Teilnehmer sich auch an den synthetischen Stimmen anpassten, was bedeutet, dass soziale Mechanismen bei Menschen auch beim Sprechen mit Computern angewendet werden.
 Das Shadowing Paradigma wurde auch verwendet, um zu testen, ob Akkomodation nur mit Sprache assoziiertes Phänomen sei oder fände es auch in anderen vokalen Produktionen statt.
 Hierzu wurde Akkomodation im Gesang von vertrauter und unbekannter Musik untersucht.
 Interessanterweise wurden in beiden Fällen Akkomodationseffekte gefunden, wenn auch auf unterschiedliche Weise.
 Wohingegen die Teilnehmer das vertraute Stück lediglich als Referenz für einen genaueren Gesang zu verwenden schienen, wurde das neuartige Stück zum Ziel einer vollständigen Nachbildung
-Ein Unterschied bestand z.B darin, dass im ersteren Fall hauptsächlich Tonhöhenkorrekturen eingeführt wurden, während im zweiten Fall auch Tonart und Rhythmusmuster übernommen wurden.
+Ein Unterschied bestand z.B. darin, dass im ersteren Fall hauptsächlich Tonhöhenkorrekturen eingeführt wurden, während im zweiten Fall auch Tonart und Rhythmusmuster übernommen wurden.
 Einige dieser Ergebnisse wurden erwartet und zeigen, dass die hervorstechenderen Merkmale von Menschen auch durch externen auditorischen Einfluss schwerer zu modifizieren sind.
-Zuletzt wurde ein Mehrparteienexperiment mit spontanen Mensch-Mensch-Computer Interaktionen durchgeführt, um Akkommodation in menschlich- und computergerichtet Sprache zu vergleichen.
+Zuletzt wurde ein Mehrparteienexperiment mit spontanen Mensch-Mensch-Computer Interaktionen durchgeführt, um Akkomodation in menschlich- und computergerichtet Sprache zu vergleichen.
 Die Teilnehmer lösten Aufgaben, für die sie sowohl mit einem Konföderierten als auch mit einem Agenten sprechen mussten.
 Dies ermöglicht einen direkten Vergleich ihrer Sprache basierend auf dem Adressaten innerhalb derselben Konversation, was bisher noch nicht geforscht worden ist.
-Die Ergebnisse zeigen, dass sich das vokales Verhalten einiger Teilnehmer im Gespräch mit dem Konföderierten und dem Agenten ähnlich änderte, während sich die Sprache anderer Teilnehmer nur mit dem Konföderierten variierte.
+Die Ergebnisse zeigen, dass sich das vokale Verhalten einiger Teilnehmer im Gespräch mit dem Konföderierten und dem Agenten ähnlich änderte, während sich die Sprache anderer Teilnehmer nur mit dem Konföderierten variierte.
 Weitere Analysen ergaben, dass der größte Faktor für diesen Unterschied die Reihenfolge war, in der die Teilnehmer mit den Gesprächspartnern sprachen.
 Anscheinend sahen die Teilnehmer, die zuerst mit dem Agenten allein sprachen, es eher als ein sozialer Akteur im Gespräch, während diejenigen, die erst mit dem Konföderierten interagierten, es eher als Mittel zur Erreichung eines Ziels betrachteten und sich deswegen anders damit verhielten.
 Im letzteren Fall waren die Variationen in Menschgerichter Sprache viel ausgeprägter.
 Unterschiede wurden auch zwischen den analysierten Merkmalen festgestellt, aber der Aufgabentyp hatte keinen Einfluss auf den Grad der Akkommodationseffekte.
-Die Ergebnisse dieser Experimente lassen den Schluss zu, dass bei Mensch-Computer Interaktionen Vokal Akkommodation auftritt, wenn auch häufig in geringerem Maße.
+Die Ergebnisse dieser Experimente lassen den Schluss zu, dass bei Mensch-Computer Interaktionen Vokal Akkomodation auftritt, wenn auch häufig in geringerem Maße.
 
 Mit der Frage, ob sich Menschen ihr Gespräch auch an Computern anpassen, wäre der nächste Schritt, das akkommodative Verhalten auf eine computergestützte Weise zu beschreiben.
 Hier werden zwei Ansätze vorgeschlagen: einer rechnerisch und einer statistisch.
-Das Ziel des Rechenmodells is den vermuteten kognitiven Prozess zu erfassen, der mit der Akkommodation beim Menschen verbunden ist.
+Das Ziel des Rechenmodells ist den vermuteten kognitiven Prozess zu erfassen, der mit der Akkomodation beim Menschen verbunden ist.
 Dies umfasst verschiedene Schritte, z.B. das Erkennen des Klangs des variablen Merkmals, das Hinzufügen von Instanzen davon zum mentalen Gedächtnis des Merkmals und das Bestimmen, wie stark sich das Merkmal ändert, wobei sowohl seine aktuelle Darstellung als auch der externe Eingabe berücksichtigt werden.
-Aufgrund seiner sequentiellen Natur wurde dieses Modell als eine Pipeline implementiert.
+Aufgrund seiner sequenziellen Natur wurde dieses Modell als eine Pipeline implementiert.
 Jeder der fünf Schritte der Pipeline entspricht einem bestimmten Teil des kognitiven Prozesses und kann einen oder mehrere Parameter zur Steuerung seiner Ausgabe aufweisen (z.B. die Größe des Gedächtnisses des Merkmals oder die Akkommodationsgeschwindigkeit).
 Mithilfe dieser Parameter können präzise akkommodative Verhaltensweisen zusammen mit Expertenwissen erstellt werden, um die ausgewählten Parameterwerte zu motivieren.
 Diese Vorteile machen diesen Ansatz zum Experimentieren mit vordefinierten, deterministischen Verhaltensweisen geeignet, bei denen jeder Schritt einzeln geändert werden kann.
@@ -63,10 +63,10 @@ Letztendlich macht dieser Ansatz ein System stimmlich auf die Spracheingabe von 
 Der zweite Ansatz gewährt weiterentwickelte Verhaltensweisen, indem verschiedene Kernverhalten definiert und nicht deterministische Variationen hinzugefügt werden.
 Dies ähnelt menschlichen Verhaltensmustern, da jede Person eine grundlegende Art von Akkommodationsverhalten hat, das sich je nach den spezifischen Umständen willkürlich ändern kann.
 Dieser Ansatz bietet eine datengesteuerte statistische Methode, um das Akkommodationsverhalten aus einer bestimmten Sammlung von Interaktionen zu extrahieren.
-Zunächst werden die Werte des Zielmerkmals jedes Sprechers in einer Interaktion in kontinuierliche interpolierte Linien umgewandelt, indem eine Probe aus der a posteriori Verteilung eines Guassian-Prozesses gezogen wird, der von den angegebenen Werten abhängig ist.
+Zunächst werden die Werte des Zielmerkmals jedes Sprechers in einer Interaktion in kontinuierliche interpolierte Linien umgewandelt, indem eine Probe aus der a posteriori Verteilung eines Gaussian-Prozesses gezogen wird, der von den angegebenen Werten abhängig ist.
 Dann werden die Gradienten dieser Linien, die die gegenseitigen Änderungsraten darstellen, verwendet, um diskrete Änderungsniveaus basierend auf ihren Verteilungen zu definieren.
 Schließlich wird jeder Ebene ein Symbol zugewiesen, das letztendlich eine Symbolsequenzdarstellung für jede Interaktion erstellt.
-Die Sequenzen sind geclustert, sodass jeder Cluster für eine Art von Verhalten steht.
+Die Sequenzen sind geclustert, sodass jedes Cluster für eine Art von Verhalten steht.
 Die Sequenzen eines Clusters können dann verwendet werden, um N-Gramm Wahrscheinlichkeiten zu berechnen, die die Erzeugung neuer Sequenzen des erfassten Verhaltens ermöglichen.
 Der spezifische Ausgabewert wird aus dem Bereich abgetastet, der dem erzeugten Symbol entspricht.
 Bei diesem Ansatz wird die Akkommodationsverhalten direkt aus Daten extrahiert, anstatt manuell erstellen zu werden.
@@ -84,7 +84,7 @@ Diese Methode eignet sich besser für kontinuierliche Merkmale wie Vokalqualitä
 Die zweite Methode zielt darauf ab, phonetische Variationen in den Trainingsdaten zu erfassen.
 Zu diesem Zweck wird im Gegensatz zu den regulären graphemischen Darstellungen ein Trainingskorpus mit phonemischen Darstellungen verwendet.
 Auf diese Weise kann das Modell direktere Beziehungen zwischen Phonemen und Klang anstelle von Oberflächenformen und Klang lernen, die je nach Sprache komplexer und von ihren umgebenden Buchstaben abhängen sein können.
-Die Zielvariationen selbst müssen nicht unbedingt explizit in den Trainingsdaten enthalten sein, solang die verschiedenen Klange natürlich immer unterscheidbar sind.
+Die Zielvariationen selbst müssen nicht unbedingt explizit in den Trainingsdaten enthalten sein, solang die verschiedenen Klänge natürlich immer unterscheidbar sind.
 In der Generierungsphase bestimmt der Zustand des aktuellen Zielmerkmals das Phonem, das zum Erzeugen des gewünschten Klangs verwendet werden sollte.
 Diese Methode eignet sich für kategoriale Änderungen, insbesondere für Kontraste, die sich natürlich in der Sprache unterscheiden.
 Obwohl beide Methoden eindeutig verschiedene Einschränkungen aufweisen, liefern sie einen Machbarkeitsnachweis für die Idee, dass Sprachdialogsysteme ihre Sprachausgabe in Echtzeit phonetisch anpassen können, ohne ihre Text-zu-Sprache Modelle wieder zu trainiert.
