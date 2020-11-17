@@ -7,6 +7,7 @@ This chapter presents a statistical approach that generates variational behavior
 
 \pagebreak
 
+\noindent
 The statistical approach presented in this chapter offers a different way to model and simulate accommodative behaviors.
 It determines the system's next output value based on probabilities calculated from a dataset, unlike the method introduced in \cref{chap:computational_model} where the output value is determined based on pre-defined parameters.
 While the latter achieves \emph{responsiveness} in a \ac{sds} per the definition in \cref{subsec:accommodation_levels}, the former grants \emph{profiles} and \emph{variability}.
@@ -23,8 +24,8 @@ This process is demonstrated by clustering speaker behaviors from a dataset to g
 \section{Time series representation with \aclp{gp}}
 \label{sec:time_series_analysis}
 
-The approach presented in this chapter capitalizes on the temporal aspect of spoken interaction, with emphasis on the evolution of mutual accommodation over the course of an interaction, which expands upon the temporal analyses performed in \cref{chap:conv_analysis,chap:speech_variations_in_hhci}.
-As in those chapters, features' values are chronologically sampled across equal time intervals, and can therefore be treated as a \emph{time series}.
+The approach presented in this chapter capitalizes on the temporal nature of spoken interaction, with emphasis on the evolution of mutual accommodation over the course of an interaction, which expands upon the temporal analyses performed in \cref{chap:conv_analysis,chap:speech_variations_in_hhci}.
+As in those chapters, features' values are chronologically sampled across equal time intervals, and are therefore treated as \emph{time series}.
 %Time series are used for both analysis and prediction in many fields, like anomaly detection, econometrics, seismology, geophysics, and more.
 By extension, accommodation can be viewed as time series ass well.
 This is motivated by the arguments explained in \cref{subsec:temporal_analysis}, vis.\ that representing mutual changes by merely a few points throughout an interaction or directly comparing its beginning state to its end state is not very informative and draws a rather simplistic picture (see \cref{subsec:limitations_of_did} and \cref{fig:accommodation_types} for details and examples).
@@ -60,14 +61,13 @@ The generation process presented here can be combined with the aforementioned co
 
 % \url{http://scikit-learn.org/stable/modules/gaussian_process.html}
 
-Kernels (also called \textit{covariance functions} in the context of \acp{gp}) are a key component in \acp{gp}, as they define the relationship between the observed values.
-In general, they define the similarity $k(x, x')$ between each pair of input points, so that $k(\cdot, \cdot)$ determines how similar the outputs $y_*$ and $y_*'$ will be. 
+Kernels (or \textit{covariance functions}) are a key component in \acp{gp}, as they define the similarity between the \acs{gp}'s random variables.
+They define the the covariance $k(x, x')$ between each pair of observed values $x$ and $x'$, so that $k(\cdot, \cdot)$ determines how similar the outputs $y_*$ and $y_*'$ will be. 
 Formally, a covariance function can be described as $\mathcal{K}(u, v) = \phi(u) \cdot \phi(v)$, where $\phi(\cdot)$ is a function that maps the input vectors into a transformed feature space.
 Which function to use is a key consideration when using \acp{gp}, as it determines the behavior of the sampled functions and the nature of the predictions it will be making.
 %Naturally, some assumptions and decisions regarding the data must be made when choosing a kernel.
-A kernel's parameters are optimized to achieve functions that better fit the data, and the consistency of the resulted functions is measured using log maximum likelihood.
-
-Since accommodation analyses usually refer to the \textit{difference} between values in different productions (as opposed to the values themselves), stationary kernels are more suitable for fitting \ac{gp} for them, as they are shaped by the distances between each pair of datapoints rather than their absolute values.
+A kernel's parameters are optimized to achieve functions that better fit the data.
+Since accommodation analyses deals with the \textit{difference} between production values (as opposed to the values themselves), stationary kernels are more suitable for fitting \ac{gp} for them, as they are shaped by the distances between each pair of datapoints rather than their absolute values.
 %That is, they fulfill $k(x_1, x_2) = k(x_1 - x_2)$.
 %This list only covers a small subset of common covariance functions.
 %Further kernels include the exp-sine squared, dot-product, linear, and more.
@@ -76,7 +76,7 @@ This is done either by multiplication or addition of these kernels.
 Multiplication-based kernels are maximized when all of its kernel factors yield high values, whereas
 addition-based kernels are maximized when any of their addend kernels yield a high value.
 %For example, multiplying a linear kernel by a periodic one will result in functions that are \textit{both} periodic \textit{and} with increasing amplitude as they move away from the origin.
-An additive kernel with constant, RBF, and noise terms is used here (see \crefrange{eq:constant_kernel}{eq:RBF_kernel} below).
+An additive kernel with constant, radial basis function (RBF), and noise terms is used here (see \crefrange{eq:constant_kernel}{eq:RBF_kernel} below).
 The RBF term determines the general shape of the curve (see example in \cref{fig:RBF_prior_posterior}), the constant term enables shifting of the curve if necessary, and the noise term adds degrees of freedom in case the curve cannot completely fit the input signal.
 
 The definitions of the individual kernels are as follows:
@@ -89,7 +89,7 @@ The definitions of the individual kernels are as follows:
 	%
 	\begin{equation}
 		\label{eq:constant_kernel}
-		k_{constant}(C, x, x') = C\forall x_1, x_2,
+		k_{constant}(\{C\}, x_1, x_2) = C\forall x_1, x_2,
 	\end{equation}
 	\eqname{Constant kernel}
 	%
@@ -103,7 +103,7 @@ The definitions of the individual kernels are as follows:
 	%
 	\begin{equation}
 		\label{eq:noise_kernel}
-		k_{noise}(\{noise\_level\}, x, x') =
+		k_{noise}(\{noise\_level\}, x_1, x_2) =
 		\begin{cases}
 		C_{noise\_level}, & if\quad x_1 = x_2\\
 		0, & otherwise,\\
@@ -114,7 +114,7 @@ The definitions of the individual kernels are as follows:
 	where $noise\_level$ equals to the variance of the noise found in the input signal.
 	
 	\item[Radial-basis function (RBF) kernel --]
-	also known as \emph{squared exponential kernel}, this kernel is a stationary kernel with one parameter, \emph{lengthscale} $l > 0$.
+	also known as \emph{squared exponential kernel}, this kernel is a stationary kernel with one parameter, \emph{lengthscale} $\ell > 0$.
 %	which can either be a scalar (isotropic variant of the kernel) or a vector with the same number of dimensions as the inputs x (anisotropic variant of the kernel).
 	This kernel typically results in generally smoothed functions, with the lengthscale being associated with the long-term smoothness and degree of variability on the time dimension.
 	The RBF kernel is defined as
@@ -145,8 +145,8 @@ The definitions of the individual kernels are as follows:
 \subsection[Data interpolation using kriging]{Data interpolation}
 \label{subsec:interploating_data_using_kriging}
 
-As also motivated in \cref{subsec:limitations_of_did,subsec:temporal_analysis}, artificially splitting interactions into a fixed, pre-determined number of parts to measure accommodation results in a limited view on the accommodation events.
-To avoid that, the mutual changes should be evaluated continuously throughout the interaction instead of by point-to-point comparisons, where the temporal gaps between datapoints might be greatly unbalanced.
+As also motivated in \cref{subsec:limitations_of_did,subsec:temporal_analysis}, artificially splitting interactions into a fixed, pre-determined number of parts to measure accommodation results in a limited view on the accommodation events due to sparsity of observation.
+To overcome that, the mutual changes should be evaluated continuously throughout the interaction instead of by point-to-point comparisons, where the temporal gaps between datapoints might be greatly unbalanced.
 This requires some interpolation method to achieve more general trends based on the observed productions.
 One way of achieving that is using some smoothing algorithms, like \ac{loess} in  \cref{fig:hds_dds_time}, which is adequate for gaining a smooth estimation of a speaker's overall performance.
 A similar approach is used in \citet{Galvez2020unifiying}, in which the average values obtained by \acl{tama} \citep[\acs{tama};][]{Kousidis2008towards, Kousidis2009monitoring} define the behaviors.
@@ -183,8 +183,8 @@ It is described by
 %
 where $\mu_{\vec{x}}$ is the mean feature value of a single speaker and $\Sigma_*$ is the fitted additive covariance function described in \cref{subsec:covariance_functions}.
 It is important to note that the mean is not zeroed (as often done in \ac{gp} regressions), to maintain the original input's mean for the subsequent steps.
-The kernel was initialized with the priors $C = 1$, $lengthscale = 1$, and no assumptions regarding the noise level $\xi$.
-The search boundaries for the RBF and noise components were $1 < lengthscale < 100$ and $\num{1e-4} < \xi < 10$, respectively, with a maximum of six optimization iterations.
+The kernel was initialized with the priors $C = 1$, $\ell = 1$, and no assumptions regarding the noise level $\xi$.
+The search boundaries for the RBF and noise components were $1 < \ell < 100$ and $\num{1e-4} < \xi < 10$, respectively, with a maximum of six optimization iterations.
 % the initial one plus five allowed restarts (n_restarts_optimizer parameter in code)
 % \xi is here the sign for noise
 The datapoints of the original series were grouped by the turn they belong to.
@@ -198,7 +198,7 @@ With the fitted kernel, a continuous prediction can be made for each speaker ove
 
 Once a regression line is drawn for each speaker from their respective distributions, the differences between the speakers' productions can be measured.
 Due to the high temporal resolution used here, more fine-grained degrees of change over time can be calculated.
-The differences are calculated by the subtracting the trapped areas between the two regression lines (see \cref{fig:gp_vacc})
+These differences are calculated by the subtracting the trapped areas between the two regression lines (see \cref{fig:gp_vacc})
 %
 \begin{equation}
 	f_{diff} \equiv\Delta\vec{x}_* =
@@ -206,6 +206,7 @@ The differences are calculated by the subtracting the trapped areas between the 
 	\int_{\vec{x}_i}^{\vec{x}_{j}}\mu_{f_*alexa}
 \end{equation}
 \eqname{Difference between speakers' \acs{gp} draws}
+\noindent
 %
 and the directional derivatives of the resulted delta line to measure the degree of change
 %
@@ -214,7 +215,7 @@ and the directional derivatives of the resulted delta line to measure the degree
 \end{equation}
 %
 along the delta line.
-\Cref{fig:diff_and_derivatives} demonstrates this on the same conversation from \cref{fig:gp_vacc} using the mean prediction of each speaker.
+\Cref{fig:diff_and_derivatives} illustrates these two measures on the same conversation from \cref{fig:gp_vacc} using the mean prediction of each speaker.
 %
 \begin{figure}[t]
 	\centering
@@ -250,13 +251,12 @@ The more categories this discrete scale offers, the more specific the behavior d
 \section{N-gram representation for accommodation sequences}
 \label{sec:accommodation_as_a_lm}
 
-In order to generate accommodation sequences, a model that can iteratively emit labels based on the label history is needed. 
-Predictions of any model based on Markov decision process \citep{Bellman1957markovian} depend only on the current state of the conversation.
-This neglects the temporal aspect of the conversation.
-One way to overcome this is to extend the transition function of a Markov-based model, so that the previous $n$ states are somehow incorporated into the action $a$ of $P_a(s, s')$.
-However, this violates the core idea of a Markov decision process and makes it more complicated to use.
-\todo{seb had a serious remark regarding this sentence}
-An n-gram model is proposed here, which incorporates a portion of a sequence's history (\emph{context}) into the decision making without losing the Markov property.
+In order to generate accommodation sequences, a model that can iteratively emit labels based on the label history is needed \citep[in contrast to, e.g., models with the Markov property, as in][]{Bellman1957markovian}. 
+%Predictions of any model based on Markov decision process  depend only on the current state of the conversation.
+%This neglects the temporal aspect of the conversation.
+%One way to overcome this is to extend the transition function of a Markov-based model, so that the previous $n$ states are somehow incorporated into the action $a$ of $P_a(s, s')$.
+%However, this violates the core idea of a Markov decision process and makes it more complicated to use.
+An n-gram model is proposed here, which incorporates a portion of a sequence's history (\emph{context}).
 The estimation of the element $e$ at position $i$ is calculated by the probability term $P(e_i \mid e_{i-n},\ \ldots\ , e_{i-1})$.
 N-gram models are traditionally used for describing sequences of linguistic units, like words in a language model \citep[e.g.,][]{Niesler1996variable}, and are used in applications with sequential nature, like machine translation \citep{Marino2006ngram} and proteins identification \citep{Xu2015identification}.
 The n-grams model here describes sequences of \emph{accommodation levels} in a conversation.
@@ -267,25 +267,6 @@ The resolution and variability of the model can be controlled by changing the n-
 \subsection{Dimensionality reduction and symbolic representation}
 \label{subsec:dim_reduction_and_symbolic_rep}
 
-The time series gradient extraction process described in \cref{subsec:measuring_changes} is greatly high dimensional, even for short interactions.
-While this representation is useful for gaining a fine-grained overview of the data, it is not practical for various analysis techniques that do not benefit from (or are not designed to handle) such high-dimensional data.
-For instance, clustering algorithms, which need to iteratively compare between all points in a collection, scale better with lower dimensionality.
-The dimensionality of the data in question here is reduced using \acl{paa} \citep[\acl{paa};][]{Keogh2001dimensionality}, which is a common dimensionality reduction technique for time series.
-\Cref{fig:paa} shows the output of \ac{paa} on the gradients of an interactions.
-Each element $\vec{x}_i$ of the reduced vector is calculated by
-%
-\begin{equation}
-	\label{eq:paa}
-	\vec{x}_i = \frac{N}{n} \sum_{j=\frac{n}{N}(i-1)+1}^{i(\frac{n}{N})} S_j,
-\end{equation}
-\eqname{\Acl{paa} dimensionality reduction}\noindent
-%
-where $n$ is the dimensionality of the original times series, $1 \leq N \leq n$ is the dimensionality of the output vector, and $S_j$ is the $j$\textsuperscript{th} element of the original time series.
-\Ac{paa} is suitable here, as the goal is to obtain vectors with fewer dimensions that still faithfully represent the data, and not, e.g., decompositions of the original data \citep[cf.\ method survey in][pp.~271-275]{Keogh2001dimensionality}.
-Since the goal here is to compare \emph{trends in change} within and across conversations rather than their absolute values, all gradient time series where z-normalized before applying the \ac{paa}.
-In the context of conversation analysis, the \ac{paa}'s dimensional cardinality determines the \enquote{zoom} level, i.e., how fine-grained the representation is (the more points the more in detail the time series is described).
-Ultimately, \ac{paa} provides \textbf{continuous numeric values} that represent the overall shape of the original time series.
-%
 \begin{figure}[t]
 	% 20171130A_Quiz_01 was used for these figures
 	\centering
@@ -308,6 +289,25 @@ Ultimately, \ac{paa} provides \textbf{continuous numeric values} that represent 
 		{\Ac{paa} and \ac{sax} for the time series representation of mutual change in a conversation.}
 	\label{fig:paa_and_sax}
 \end{figure}
+
+The time series gradient extraction process described in \cref{subsec:measuring_changes} is greatly high dimensional, even for short interactions.
+While this representation is useful for gaining a fine-grained overview of the data, it is not practical for various analysis techniques that do not benefit from (or are not designed to handle) such high-dimensional data.
+For instance, clustering algorithms, which need to iteratively compare between all points in a collection, scale better with lower dimensionality.
+The dimensionality of the data in question here is reduced using \acl{paa} \citep[\acl{paa};][]{Keogh2001dimensionality}, which is a common dimensionality reduction technique for time series.
+\Cref{fig:paa} shows the output of \ac{paa} on the gradients of an interactions.
+Each element $\vec{x}_i$ of the reduced vector is calculated by
+%
+\begin{equation}
+	\label{eq:paa}
+	\vec{x}_i = \frac{N}{n} \sum_{j=\frac{n}{N}(i-1)+1}^{i(\frac{n}{N})} S_j,
+\end{equation}
+\eqname{\Acl{paa} dimensionality reduction}\noindent
+%
+where $n$ is the dimensionality of the original times series, $1 \leq N \leq n$ is the dimensionality of the output vector, and $S_j$ is the $j$\textsuperscript{th} element of the original time series.
+\Ac{paa} is suitable here, as the goal is to obtain vectors with fewer dimensions that still faithfully represent the data, and not, e.g., decompositions of the original data \citep[cf.\ method survey in][pp.~271-275]{Keogh2001dimensionality}.
+Since the goal here is to compare \emph{trends in change} within and across conversations rather than their absolute values, all gradient time series where z-normalized before applying the \ac{paa}.
+In the context of conversation analysis, the \ac{paa}'s dimensional cardinality determines the \enquote{zoom} level, i.e., how fine-grained the representation is (the more points the more in detail the time series is described).
+Ultimately, \ac{paa} provides \textbf{continuous numeric values} that represent the overall shape of the original time series.
 
 \Ac{paa} is suitable for analyses of continuous numeric values.
 However, discrete values are required for symbolic n-gram sequences.
