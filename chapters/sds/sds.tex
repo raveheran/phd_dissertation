@@ -36,7 +36,7 @@ The \enquote{brain} at the core of the cycle decides what intent is most suitabl
 This may be done purely by learning from provided dialogue examples, with the help of external information or databases, based on hand-crafted rules, or some combination of those.
 This simplified flow assumes that the user and the system take turns alternately, one at a time.
 However, one interlocutor may of course needs multiple consecutive turns to convey the message due to length or no response from the other.
-Although each component is a whole research area by itself, there are numerous open-source implementations that help to quickly build a basic \ac{e2e} system and focus on a specific one.
+Although each component is a whole research area by itself, there are numerous open-source implementations that help to quickly build a basic fully functioning system and focus on a specific one.
 Brief overviews of these \ac{nlp} tasks are given in \crefrange{subsec:automatic_speech_recognition}{subsec:text-to-speech_synthesis}.
 Note that this is a basic typical architecture and each component may be extended or modified.
 Specifically, this architecture changes substantially in fully neural-based systems.
@@ -132,7 +132,7 @@ Nevertheless, there are examples of \acp{sds} that can adapt on various levels, 
 \label{subsubsec:tools_tts}
 
 Free \ac{tts} engines for training voices include Festival \citep{Black1997festival}, espeak \citep{Duddington2012espeak}, and MaryTTS \citep{Schroder2011open}.
-In addition to being used as \ac{e2e} \ac{tts} pipelines, these systems can also provide intermediate analysis outputs like phonetic transcriptions.
+In addition to being used as complete \ac{tts} pipelines, these systems can also provide intermediate analysis outputs like phonetic transcriptions.
 
 \section{Types of \aclp{sds}}
 \label{sec:types_of_sdss}
