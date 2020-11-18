@@ -192,7 +192,63 @@ For this to work, it is important that the features are sufficiently distinguish
 Several parameters are introduced into the pipeline described in \cref{sec:pipeline_representation} to grant degrees of freedom in shaping the accommodation behavior.
 These parameters link between the theoretical, schematic model and its integration into a \ac{sds}, as demonstrated in \cref{chap:convergence_module_for_sdss}.
 They are also the key to experimentation with different settings and scenarios for different applications.
-The model's parameters are summarized in \cref{tab:comp_model_parameters} \citep[and cf.\ ][]{Raveh2017Interspeech}.
+The model's parameters are summarized in \cref{tab:comp_model_parameters} \citep[and cf.][]{Raveh2017Interspeech}.
+
+\afterpage{%
+	\begin{landscape}
+		\begin{table}[t]
+			\centering
+			\vspace{1.5cm}
+			\caption[Summary of computational model's parameters]
+				{Computational model's parameters in their order of use.
+				The colors mark parameters associates with the
+				{\color{Violet}\textbf{detect}},
+				{\color{BurntOrange}\textbf{filter}},
+				{\color{ForestGreen}\textbf{store}},
+				{\color{RoyalBlue}\textbf{update}}, and
+				{\color{red}\textbf{assign}} steps.}
+			\label{tab:comp_model_parameters}
+			\begin{tabulary}{\linewidth}{lLL}
+				\toprule
+				\multicolumn{1}{c}{\textbf{Parameter}} & \multicolumn{1}{c}{\textbf{Description}} & \multicolumn{1}{c}{\textbf{Value}} \\
+				
+				{\color{Violet}\textbf{target phoneme}}*
+				& the phoneme that triggers the feature's pipeline
+				& a phoneme symbol\\\addlinespace[0.2cm]
+				
+				{\color{BurntOrange}\textbf{phonetic context}}*
+				& the environment in which the feature instance is accepted
+				& regex containing the of phoneme symbols containing target phoneme\\\addlinespace[0.2cm]
+				
+				{\color{BurntOrange}\textbf{allowed range}}*
+				& the value range(s) in which new instances are accepted
+				& two numeric values (min and max) per feature dimension\\\addlinespace[0.2cm]
+				
+				{\color{ForestGreen}\textbf{exemplar pool size}}
+				& maximum number of exemplars in memory at a time, oldest exemplar removed when full
+				& positive integer\\\addlinespace[0.2cm]
+				
+				{\color{RoyalBlue}\textbf{update frequency}}
+				& how frequently a feature's value is recalculated, controlling the accommodation pace
+				& non-negative integer; 0 for manual update\\\addlinespace[0.2cm]
+				
+				{\color{RoyalBlue}\textbf{calculation method}}*
+				& the manner in which the pool value is calculated based on the values and order of the exemplars in pool
+				& any $\mathbb{R}^{n \times m} \longrightarrow \mathbb{R}^{m}$ function; either implemented directly in code or sent to an external statistical model\\\addlinespace[0.2cm]
+				
+				{\color{RoyalBlue}\textbf{convergence rate}}
+				& weight of the exemplar pool when updating the feature's state, controlling the impact of external input on the speaker's features states
+				& real value; typically $n \in (0, 1) \subset \mathbb{R}$; 0 for ignoring the pool ; $> 1$ for over-weighting the pool value\\\addlinespace[0.2cm]
+				
+				{\color{red}\textbf{convergence limit}}*
+				& the maximum degree of convergence allowed for the feature with respect to the input instances
+				& real value; $n \in (0, 1] \subset \mathbb{R}$; 1 (\SI{100}{\percent}) for no limitation \\
+				\bottomrule
+			\end{tabulary}
+			\flushleft{\footnotesize \emph{* denotes parameters that are defined individually for each feature}}
+		\end{table}
+	\end{landscape}
+}
 
 As shown in \cref{sec:convergence_to_natural_and_synthetic_stimuli}, not all participants showed the same \emph{sensitivity} toward changes in the stimuli.
 Here, sensitivity refers to the degree of overall change toward external speech input.
@@ -244,56 +300,3 @@ The second parameter used to put constrains on the detected phones is the \emph{
 This parameter is important to obtain clean and sensible exemplars, as it introduces restrictions based on phonetic knowledge (e.g., reasonable \ac{f0} values for a human speaker), which at the same time also help to prevent \ac{asr} errors from meddling with the exemplars sent to the pool.
 Since these values are feature-dependent, this parameter is set for each feature individually.
 %\Cref{subsubsec:detecting_segment_exemplars} shows an example of a feature definition.
-%
-\begin{landscape}
-	\begin{table}[tb]
-		\centering
-		\caption[Summary of computational model's parameters]
-			{Computational model's parameters in their order of use.
-			The colors mark parameters associates with the
-			{\color{Violet}\textbf{detect}},
-			{\color{BurntOrange}\textbf{filter}},
-			{\color{ForestGreen}\textbf{store}},
-			{\color{RoyalBlue}\textbf{update}}, and
-			{\color{red}\textbf{assign}} steps.}
-		\label{tab:comp_model_parameters}
-		\begin{tabulary}{\linewidth}{lLL}
-			\toprule
-			\multicolumn{1}{c}{\textbf{Parameter}} & \multicolumn{1}{c}{\textbf{Description}} & \multicolumn{1}{c}{\textbf{Value}} \\
-			
-			{\color{Violet}\textbf{target phoneme}}*
-			& the phoneme that triggers the feature's pipeline
-			& a phoneme symbol\\\addlinespace[0.2cm]
-			
-			{\color{BurntOrange}\textbf{phonetic context}}*
-			& the environment in which the feature instance is accepted
-			& regex containing the of phoneme symbols containing target phoneme\\\addlinespace[0.2cm]
-			
-			{\color{BurntOrange}\textbf{allowed range}}*
-			& the value range(s) in which new instances are accepted
-			& two numeric values (min and max) per feature dimension\\\addlinespace[0.2cm]
-			
-			{\color{ForestGreen}\textbf{exemplar pool size}}
-			& maximum number of exemplars in memory at a time, oldest exemplar removed when full
-			& positive integer\\\addlinespace[0.2cm]
-			
-			{\color{RoyalBlue}\textbf{update frequency}}
-			& how frequently a feature's value is recalculated, controlling the accommodation pace
-			& non-negative integer; 0 for manual update\\\addlinespace[0.2cm]
-			
-			{\color{RoyalBlue}\textbf{calculation method}}*
-			& the manner in which the pool value is calculated based on the values and order of the exemplars in pool
-			& any $\mathbb{R}^{n \times m} \longrightarrow \mathbb{R}^{m}$ function; either implemented directly in code or sent to an external statistical model\\\addlinespace[0.2cm]
-			
-			{\color{RoyalBlue}\textbf{convergence rate}}
-			& weight of the exemplar pool when updating the feature's state, controlling the impact of external input on the speaker's features states
-			& real value; typically $n \in (0, 1) \subset \mathbb{R}$; 0 for ignoring the pool ; $> 1$ for over-weighting the pool value\\\addlinespace[0.2cm]
-			
-			{\color{red}\textbf{convergence limit}}*
-			& the maximum degree of convergence allowed for the feature with respect to the input instances
-			& real value; $n \in (0, 1] \subset \mathbb{R}$; 1 (\SI{100}{\percent}) for no limitation \\
-			\bottomrule
-		\end{tabulary}
-		\flushleft{\footnotesize \emph{* denotes parameters that are defined individually for each feature}}
-	\end{table}
-\end{landscape}

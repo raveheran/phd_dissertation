@@ -82,6 +82,21 @@ The \ac{nlu} and \ac{nlg} modules are built using an OpenDial's domain file, as 
 \subsection{\Acl{gui}}
 \label{subsec:graphical_user_interface}
 
+\afterpage{%
+	\begin{landscape}
+		\begin{figure}[t]
+			\centering
+			\vspace*{-4cm}
+			\hspace*{-4.7cm}
+			\includegraphics[width=1.65\textwidth]{gui}
+			\caption[Web system in-browser \acs{gui}]
+				{Screen shot of the system's \acl{gui}, with the chat area on the top left, the interaction area on the bottom left, the plot area on the top right, and the notification area on the bottom right.
+				In both the chat area and the plot area, the user is represented by the color blue and the system by orange.}
+			\label{fig:gui}
+		\end{figure}
+	\end{landscape}
+}
+
 The user interacts with the system via an in-browser \ac{gui} (see \cref{fig:gui}).
 At the top of the screen is a control bar, which offers the user overview and easy access to some main functions.
 On the left side of the bar, the user can view the list of the interaction's turn history and jump to any of them.
@@ -103,21 +118,7 @@ Each turn's utterance appears inside a chat bubble with different colors represe
 The bubbles always contain single utterances, even if the other interlocutor has not spoken between them.
 A turn can be replayed at any time using the Play button next to the turn number, corresponding to the turn order on the list accessible from the control bar.
 Besides utterance bubbles, the system can also display general-purpose messages in this area, which do not progress the dialogue flow and do count as system utterances.
-These messages can be used,
-%
-\begin{landscape}
-	\begin{figure}[t]
-		\centering
-		\vspace*{-2cm}
-		\hspace*{-2cm}
-		\includegraphics[width=1.6\textwidth]{gui}
-		\caption[Web system in-browser \acs{gui}]
-			{}
-		\label{fig:gui}
-	\end{figure}
-\end{landscape}
-\noindent
-for example, to give the user additional information or instructions regarding the interaction.
+These messages can be used, for example, to give the user additional information or instructions regarding the interaction.
 
 \subsubsection{Interaction area}
 \label{subsubsec:interaction_area}
@@ -235,7 +236,7 @@ The common representation also makes it easy to compare pre-recorded interaction
 The output of the accommodation model after each turn is handled differently in both paths as well.
 In online interactions, the output is sent on a turn-by-turn basis to both the web-based \ac{gui} for the different visualizations (as in \cref{fig:plot}) and back to the user for an auditory response.
 The offline path doesn't need to interact with a user, so the entire analysis is saved together, along with some additional analysis.
-This output can then be used for further statistical analysis and be visualized separately using other tools (as in \cref{fig:hds_dds_time_comparisons}).
+This output can then be used for further statistical analysis and be visualized separately using other tools (see examples in \cref{fig:hds_dds_time,fig:synchrony_switchboard}).
 For using the online mode, the system needs to run as a server and be accessed via a web browser.
 The offline mode can be used either directly from the command line or programmatically from another application.
 As explained in \cref{subsubsec:interaction_area}, pre-recorded files can also be used from the \ac{gui}.
@@ -362,7 +363,7 @@ Each turn's predictions dynamically added as interactive annotations to the visu
 \end{table}
 
 %%%%%%%%%%%%%
-% text from above. insert somewhere
+\todo[inline]{text from above. insert somewhere}
 The validation stays faithful to the original experiment in every possible aspect.
 Therefore, the training data used for each classifier contains only the productions of the corresponding target feature from a single stimulus set, since these are the productions to which the participants were exposed during the experiment.
 This provides relatively few -- but at the same time very precise -- datapoints for each classifier,
@@ -401,6 +402,7 @@ The value 0.3 provided the highest results.% and was therefore used through the 
 	\caption[Influence of difference convergence rates on the system's accommodation]
 		{Illustration of the effect of different convergence rates on the updates of the system's  realization of a two-dimensional feature (left) and a one-dimensional feature (right).}
 	\label{fig:validation_sensitivity}
+	\todo[inline]{this figure is not referred to anywhere}
 \end{figure}
 %
 After obtaining the preference of each participant, the degree of convergence was examined per utterance in the shadowing phase.

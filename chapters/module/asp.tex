@@ -312,7 +312,6 @@ The examples given here focus on segmental features, because real-time manipulat
 For segmental features, modifications are applied to specific sounds occurring within short timespans, as oppose to supra-segmental features where longer segments and even an entire utterance are influenced.
 The challenge is, therefore, to apply these modifications with smooth transition from and to the surrounding surrounding segments and without creating artifacts.
 
-\todo[inline]{if have time, also create an example of the first approach}
 The manipulation itself can be done either post-hoc on the audio signal itself or as part of the synthesis.
 The first approach relies on signal processing techniques that can be applied on the \ac{tts} output to achieve the desired modification.
 For this, the timespans of the target feature must be acquired from the \ac{tts} engine to detect the part in the signal that needs to be modified.
@@ -326,6 +325,24 @@ As with any learning task, it is not guaranteed that the model will correctly le
 On the other hand, if works property, this approach is more robust and should create fewer artifacts, because direct manipulation of the signal is avoided.
 However, direct manipulation might be more accurate and offer direct control over the change in the signal which might not be achieved using a pre-trained model.
 These trade-off are an important consideration when choosing an approach, which might depend on the requirements of the application in question.
+
+\afterpage{%
+	\begin{landscape}
+		\begin{figure}[t]
+			\centering
+			\vspace*{-3cm}
+			\hspace*{-4.7cm}
+			\includegraphics[width=1.6\textwidth]{ic_ik_manipulation_starred}
+			\caption[Oscillograms and spectrograms of categorical manipulation speech outputs]
+				{Oscillograms and spectrograms of the words \emph{\enquote{König}} (king) and \emph{\enquote{wichtig}} (important) pronounced originally with \textipa{[\c{c}]} (top), which were changed into \textipa{[k]} (bottom).
+				The modified segments are marked with a star above the phoneme symbol in the transcriptions, and it can be seen that no artifacts were introduced in any other segment.
+				The vertical lines show the phonemic segmentation
+				(note that the segments are not perfectly aligned in the two productions).
+				The x-axis shows the chronological phonetic transcription over time (\SI{2.34}{\second} in total) and the spectrograms' y-axes show the frequencies up to \SI{5000}{\hertz}.}
+		\label{fig:spectrogram_ic_ik}
+		\end{figure}
+	\end{landscape}
+}
 
 Both approaches were tested to realize accommodation changes.
 The first with the feature \textipa{[E:]} vs.\ \textipa{[e:]} which requires a manipulation in the vowel space continuum, and the second with the categorical feature \emph{\textipa{[\c{c}]} vs.\ \textipa{[k]}}.
@@ -345,19 +362,3 @@ This opens many possibilities, one of them is alternating between \textipa{[\c{c
 It is important to note that the other-category variant of a word was not included in any dictionary and was not seen by the model during training \citep[and see][for more details]{Raveh2021ICASSP}.
 \todo{remove ICASSP reference if it's not accepted}
 \Cref{fig:spectrogram_ic_ik} shows an example of an original sentence (pronounced with \textipa{[\c{c}]} sounds) and its manipulated form (with \textipa{[k]} sounds).
-%
-\begin{landscape}
-	\begin{figure}[t]
-		\centering
-		\vspace*{-2cm}
-		\hspace*{-3cm}
-		\includegraphics[width=1.5\textwidth]{ic_ik_manipulation_starred}
-		\caption[Oscillograms and spectrograms of categorical manipulation speech outputs]
-			{Oscillograms and spectrograms of the words \emph{\enquote{König}} (king) and \emph{\enquote{wichtig}} (important) pronounced originally with \textipa{[\c{c}]} (top), which were changed into \textipa{[k]} (bottom).
-			The modified segments are marked with a star above the phoneme symbol in the transcriptions, and it can be seen that no artifacts were introduced in any other segment.
-			The vertical lines show the phonemic segmentation.
-			(note that the segments are not perfectly aligned in the two productions).
-			The x-axis shows the chronological phonetic transcription over time (\SI{2.34}{\second} in total) and the spectrograms' y-axes show the frequencies up to \SI{5000}{\hertz}.}
-		\label{fig:spectrogram_ic_ik}
-	\end{figure}
-\end{landscape}
