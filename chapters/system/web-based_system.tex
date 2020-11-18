@@ -25,7 +25,7 @@ It holds the following key principles:
 	This allows experimenting with different scenarios and configurations and easily compare them in a controlled, reproducible environment.
 	
 	\item[Online scalability] --
-	the system can run in a web browser without any installations or additional files\footnote{some features need to be enabled in the browser, like JavaScript and microphone access.
+	the system can run in a web browser without any installations or additional files\footnote{Some features need to be enabled in the browser, like JavaScript and microphone access.
 	However, any modern browser should not have any problem supporting all the necessary requirements.
 	To increase performance, all speech analyses and processing are done on the server side.}.
 	Since the system itself runs on a single server, it is also possible to operate multiple instances, each with its own configurations and parameters.
@@ -416,7 +416,7 @@ The classifier was determined on the fly, so that the prediction for each uttera
 For validation purposes, the shadowing phase was treated as an annotation task of the realized variation in the participants' utterances.
 The three \enquote{annotators} are the stimuli themselves (\emph{Stim}), the online classification of the system's representation of the feature (\emph{Sys}), and additional labels from the training dataset used as references (\emph{Ref}).
 
-The Cohen's kappa ($\kappa$) values\footnote{calculated by the \texttt{kappa2} command of the \texttt{irr} R package v0.84, \url{https://cran.r-project.org/package=irr}} for \emph{Low} are expected to be lower, as a lower degree of convergence was found among these participants.
+The Cohen's kappa ($\kappa$) values\footnote{Calculated by the \texttt{kappa2} command of the \texttt{irr} R package v0.84, \url{https://cran.r-project.org/package=irr}} for \emph{Low} are expected to be lower, as a lower degree of convergence was found among these participants.
 %As \cref{tab:showcase_results} shows, convergence was found in \SI{48}{\percent} of the utterances for \emph{Sys-Stim} and \emph{Ref-Stim} but only in \SI{66}{\percent} for \emph{Ref-Sys}, which means that convergence was found in different instances.
 %\todo{not clear what the sentence above wants to say}
 \cref{tab:showcase_results} shows that \emph{Ref-Sys} has $\kappa = 0.2$ (fair agreement) for the \emph{Mid} group, but lower for the other two groups.
