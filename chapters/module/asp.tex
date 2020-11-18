@@ -354,7 +354,7 @@ Then, the first and second formants of the vowel target were changed separately 
 The changes were based on the respective means of the formants in the duration of the target vowel, while taking the overall contour into account.
 Finally, The original signal was used as the source and was filtered by the manipulated formant contours, resulting in a new speech signal that differs from the original only by the target vowel's segment.
 The second approach was done with neural synthesis using Tacotron\footnote{Tacotron2 architecture based on the implementation in the repository \url{https://github.com/NVIDIA/tacotron2}} \citep{Shen2018natural}, which is trained to generate spectral information directly from textual input, and the neural vocoder WaveGlow \citep{Prenger2019WaveGlow}.
-To capture the categorical allophonic variance, the system was trained on \emph{phonemic} input (as opposed to usual grapheme-based representations).
+To capture the categorical allophonic variance, the system was trained on \emph{phonemic} input (as opposed to usual grapheme-based representations), similarly to the training process in \citet{Fong2019comparison}
 For this, the neutral voice subset of the PAVOQUE dataset\footnote{\url{https://github.com/marytts/pavoque-data}} \citep{Steiner2013pavoque} was used, which comprises $\sim$\SI{5.8}{\hour} of speech.
 The phonetic transcriptions were done automatically based on the transcriptions provided with the dataset and were manually verified and corrected.
 After training, the model was able to generate synthesized speech based on an input of an arbitrary phoneme sequence.
