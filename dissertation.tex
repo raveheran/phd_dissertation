@@ -42,6 +42,10 @@
 % Bibliography
 % ------------
 
+% remove header and header line
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}
+
 \newrefcontext[sorting=nyt] % sort entries by (last) name
 \fixme{long URLs are not wrapped in bibliography}
 \printbibliography[heading=bibintoc, title={Bibliography}]
@@ -60,7 +64,7 @@
 \label{part:appendices}
 
 \include{chapters/appendices/stimulus_list}
-\include{chapters/appendices/music}
+\include{chapters/appendices/system_examples}
 
 % To-Do list
 % ----------
