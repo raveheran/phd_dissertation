@@ -7,7 +7,7 @@ A decrease in the difference between the speakers' feature realizations results 
 The lack of such mutual adjustments made naturally by humans in computers' speech creates a gap between human-human and human-computer interactions.
 Moreover, voice-activated systems currently speak in exactly the same manner to all users, regardless of their speech characteristics or realizations of specific features.
 Detecting phonetic variations and generating adaptive speech output would enhance user personalization, offer more human-like communication, and ultimately should improve the overall interaction experience.
-Thus, investigating these aspects of accommodation will help to understand and improving human-computer interaction
+Thus, investigating these aspects of accommodation will help to understand and improving human-computer interaction.
 
 This thesis provides a comprehensive overview of the required building blocks for a roadmap toward the integration of accommodation capabilities into spoken dialogue systems.
 These include conducting human-human and human-computer interaction experiments to examine the differences in vocal behaviors, approaches for modeling these empirical findings, methods for introducing phonetic variations in synthesized speech, and a way to combine all these components into an accommodative system.
@@ -69,7 +69,7 @@ Finally, each level is assigned a symbol, which ultimately creates a symbol sequ
 The sequences are clustered so that each cluster stands for a type of behavior.
 The sequences of a cluster can then be used to calculate n-gram probabilities that enable the generation of new sequences of the captured behavior.
 The specific output value is sampled from the range corresponding to the generated symbol.
-With this approach, accommodation behaviors are extracted directly from data, as opposed to manually craft them.
+With this approach, accommodation behaviors are extracted directly from data, as opposed to manually crafting them.
 However, it is harder to describe what exactly these behaviors represent and motivate the use of one of them over the other.
 To bridge this gap between these two approaches, it is also discussed how they can be combined to benefit from the advantages of both.
 Furthermore, to generate more structured behaviors, a hierarchy of accommodation complexity levels is suggested here, from a direct adoption of users' realizations, via specified responsiveness, and up to independent core behaviors with non-deterministic variational productions.
