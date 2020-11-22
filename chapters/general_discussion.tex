@@ -5,20 +5,53 @@
 
 \acresetall
 
-this is general discussion
+The gap between the measurable, objective methods to describe accommodation in experimental settings on the one hand and the free-form, subjective way it is used and perceived in everyday life on the other hand creates a great challenge in its research.
+Additional, the large role individual differences play in both the production and reception of accommodation effects makes it hard to evaluate it, as there are no \enquote{correct} and \enquote{incorrect} labels that can be assigned to speakers' production.
+Moreover, the same production may lead to one effect with a certain interlocutor and to a different effect with another -- and both will be natural and acceptable.
+This has to do with many social and cognitive factors, including the speakers' personality and sensibility behavioral changes.
+Some people don't notice accommodation occurring in a conversation, including in their own speech, whereas some are sensitive even to subtle changes in their conversational partner's behavior.
+Their reactions may also be due to certain characteristics that cannot be observed in the acoustic signal.
+This makes even humans unreliable for evaluating accommodation, as opposed to many language processing tasks where human performance is set as a gold standard (or at least a goal to aim for).
+As a result, each study needs to introduce (or re-introduce) the used methods, which makes it hard to compare different studies and approaches.
+This lack of common measuring units and evaluation metrics is a major shortcoming of this research field.
+The overarching terms \enquote{accommodation} holds various different effects with different natures in it.
+\cref{subsec:variation_types} offers definition for various terms based on their use in the literature.
+Having common terminology to describe them can be a step toward comparable common research methods and prevent confusions that stem for the use of different terms to describe the same effect or the same term to describe different effects. 
 
-overarching terms \enquote{accommodation}
+An investigation of accommodation effects in pre-defined successful and failed conversation was done in \cref{chap:conv_analysis}.
+Different effects were indeed found, especially with respect to the speaker who was leading the change.
+Finding that sales reps demonstrated more controlled and consistent triggering of convergence in the prospects speech matches the assumption many in that business hold.
+However, the results of this experiment cannot be interpreted as a causation and imply that they were more successful because of those convergence effects.
+Further experiments and comparisons with more reps are required for reaching this conclusion.
+
+It is important to note that it was possible to reach these findings because of the emphasis on looking at accommodation as a dynamic phenomenon that unfolds over time.
+Without this temporal aspect, only more shallow broad conclusion can be drawn.
+Measuring accommodation as the difference between values at a few points (e.g., the beginning and end of an interaction) is an over-simplification of the process.
+First, the length of the interaction is not considered, which would lead to similar conclusion for short and long interactions.
+Secondly, nuances in the mutual changes might be smoothed-out due to averages over long spans, as demonstrated in \cref{fig:accommodation_types} on page \pageref{fig:accommodation_types}.
+A high temporal resolution grants more fine-grained glance into patterns emerging in the data instead of in manually-picked datapoints.
+This approach is used, among others, in \cref{subsec:temporal_analysis}, in additional to distribution-based analyses, to obtain different points of view on the effects.
+The statistical model presented in \cref{chap:statistical_model} harnesses this idea by refraining from accurately defining behaviors and generating accommodative behaviors purely based on data, so that the temporal facets are implicitly included it.
+Combining this data-driven mechanism with the cognitive-oriented approach from \cref{chap:computational_model} adds human-centric motivation to the generated behavior.
+This fusion of computer-powered and human-motivated techniques has not been adequately explored so far, although it could offer more comprehensive and explainable process.
+
+To that end, one of the main goals of this thesis is to depict vocal accommodation as one comprehensive process that includes multiple related parts, from examining effects in \ac{hhi}, via approaches to model them for computers, and of course the technical aspects of integrating and simulating them in \acp{sds} (see \cref{fig:roadmap_adaptive_sds}).
+To get a better understanding of accommodation in \ac{hci}, it is important to see the connection between these parts and not investigate them in isolation from one another.
+More often than not, the technical side of spoken \ac{hci} (e.g., \ac{asr} accuracy or \ac{tts} quality) are designed and developed separately from the user perspective.
+While this is understandable when aiming purely at performance improvements, it is problematic when addressing dialogue-related problems.
+However, since accommodation in \ac{hci} involves both computers and humans, both sides should be considered in the research and development of such systems.
+Ultimately, they need to work together to achieve better communication, just like human interlocutors in \ac{hhi}.
+In the case of accommodation, investigating effects in humans that are not relevant or cannot be implemented in computers doesn't contribute to the advancement toward accommodative systems.
+Similarly, accomplishing technical goals that are not perceivable by humans or are not modeled in a human-centric fashion don't provide any added values as well.
+For instance, measuring convergence by the distance of \ac{mfcc} vectors \citep[as done by][]{Han2018you} might provide an interesting technical view on the matter, but since humans don't converge simply by sounding more alike, this is, doubtfully an efficient user-friendly way to implement accommodation in \acp{sds}.
+Viewing accommodation as an involved interdisciplinary research topic encourages collaboration of researchers studying linguistics, humanities subjects like sociology and psychology, conversation and user-experience designers, engineers, and anything between them.
 
 
-
-\todo[inline]{a part about evaluating accommodation: people are usually not aware of accommodation happening, and if they do, they can't evaluate it in a consistent and reliable way, as it is not necessarily related to measurable features in the acoustic signal}
 
 \citet{Babel2012role} % she says that accommodation evaluation by humans is "holistic" and does not necessarily correlate with specific features in the signal
 
 
 \citet{Levitan2016implementing} % that's the paper about Levitan's system that entrains in a relatively simple matter. take this as as a baseline when talking about sophistication of system behavior
-
-\todo[inline]{somewhere say that temporal and mutual aspects are emphasized and are usually not in the focus of accommodation research}
 
 %%%%%%%%%%%%%%%%%%%%
 % taken from System chapter. use this after talking about what the system can do and maybe some limitations, then this is potential extensions / directions for improvement
@@ -33,35 +66,13 @@ Additionally, to test the system's influence on users' speech, the users can tra
 Task completion rate, performance accuracy, and completion time metrics can be used to evaluate how helpful the system is.
 %%%%%%%%%%%%%%%%%%%%
 
-\todo[inline]{start with saying that accommodation in HCI is still a relatively new research area and there are no common methods for measuring and evaluating this. reasons -- maybe because there is no defined measuring unit, specifically when is comes to changes overtime and not only point vs. point. also, since there is no "correct" and "incorrect" answers, it is hard to compare against some gold standard and say whether results are good.}
-
-\todo[inline]{having common terminology can be a first step toward comparable and common research methods. part of this work is to define some of the terms used to describe the various types of accommodation that could occur and the relations between them (cref).}
 
 
-
-
-\todo[inline]{here do the connection that changes are something that can be better observed over time -- and then go into details why, say that it's one of the main points on this thesis and give examples how higher temporal resolution grants better look into the nature of changes and more interesting insights}
-
-
-
-
-
-
-One of the main goals of this thesis is to depict vocal accommodation as one comprehensive process that includes multiple related parts, from examining effects in \ac{hhi}, via approaches to model them for computers, and of course the technical aspects of integrating and simulating them in \acp{sds} (see \cref{fig:roadmap_adaptive_sds}).
-To get a better understanding of accommodation in \ac{hci}, it is important to see the connection between these parts and not investigate them in isolation from one another.
-More often than not, the technical side of spoken \ac{hci} (e.g., \ac{asr} accuracy or \ac{tts} quality) are designed and developed separately from the user perspective.
-While this is understandable when aiming purely at performance improvements, it is problematic when addressing dialogue-related problems.
-However, since accommodation in \ac{hci} involves both computers and humans, both sides should be considered in the research and development of such systems.
-Ultimately, they need to work together to achieve better communication, just like human interlocutors in \ac{hhi}.
-In the case of accommodation, investigating effects in humans that are not relevant or cannot be implemented in computers doesn't contribute to the advancement toward accommodative systems.
-Similarly, accomplishing technical goals that are not perceivable by humans or are not modeled in a human-centric fashion don't provide any added values as well.
-For instance, measuring convergence by the distance of \ac{mfcc} vectors \citep[as done by][]{Han2018you} might provide an interesting technical view on the matter, but since humans don't converge simply by sounding more alike, this is, doubtfully an efficient user-friendly way to implement accommodation in \acp{sds}.
-Viewing accommodation as an involved interdisciplinary research topic encourages collaboration of researchers studying linguistics, humanities subjects like sociology and psychology, conversation and user-experience designers, engineers, and anything between them.
 
 
 
 % as a continuation to the technical challenges in modeling accommodation in computers
-\todo{general sentence that there have been attempts to develop SDSes with accomm capabilities (with 1-2 refs) and say that those show different degrees of fidelity.}
+\todo[inline]{general sentence that there have been attempts to develop SDSes with accomm capabilities (with 1-2 refs) and say that those show different degrees of fidelity.}
 Although all these designs are described as accommodative systems, not all accommodation capabilities are born equal.
 This thesis distinguishes between several \enquote{levels of accommodation} in computers, as discussed in \cref{subsec:accommodation_levels}.
 Ranging from the mere ability to modify the system's speech ability to independently generating varying realizations of change, but also allows for customizable conversational design complexity depending on the target application.
@@ -75,15 +86,6 @@ Although it is providing mostly implicit, this kind of feedback encourages learn
 Still, this requires a different, more directed approach.
 Such approach is realized in this work via the pipeline presented in \cref{chap:computational_model}, which offers deterministic control over the system's responsiveness using several cognition-oriented parameters.
 Such differentiation between accommodative mindsets has not been addressed before and it suggests more ways to model and implement accommodation in \acp{sds} while keeping the specific goal and application in mind, e.g., chatbots with a free-form accommodation process in contrast to \acp{capt} systems with a more well-defined goal.
-
-
-
-
-
-
-
-
-
 
 
 
