@@ -1,0 +1,115 @@
+Heutzutage wird die verbale Interaktion mit Computern immer gebräuchlicher, was der rasant wachsenden Anzahl von sprachaktivierten Geräten weltweit geschuldet ist.
+Allerdings stellt die computerseitige Handhabung gesprochener Sprache weiterhin eine große Herausforderung dar, obwohl sie die bevorzugte Art zwischenmenschlicher Kommunikation repräsentiert.
+Dieser Umstand führt auch dazu, dass Benutzer ihren Sprachstil an das jeweilige Gerät anpassen, um diese Handhabung zu erleichtern.
+Solche Anpassungen kommen in menschlicher gesprochener Sprache auch in der zwischenmenschlichen Kommunikation vor.
+Üblicherweise ereignen sie sich unbewusst und auf natürliche Weise während eines Gesprächs, etwa um die soziale Distanz zwischen den Gesprächsteilnehmern zu kontrollieren oder um die Effizienz des Gesprächs zu verbessern.
+Dieses Phänomen wird als Akkommodation bezeichnet und findet auf verschiedene Weise während menschlicher Kommunikation statt.
+Sie äußert sich zum Beispiel in der Gestik, Mimik, Blickrichtung oder aber auch in der Wortwahl und dem verwendeten Satzbau.
+Vokal-Akkommodation beschäftigt sich mit derartigen Anpassungen auf phonetischer Ebene, die sich in segmentalen und suprasegmentalen Merkmalen zeigen.
+Werden Ausprägungen dieser Merkmale bei den Gesprächsteilnehmern im Laufe des Gesprächs ähnlicher, spricht man von Konvergenz, vergrößern sich allerdings die Unterschiede, so wird dies als Divergenz bezeichnet. 
+Dieser natürliche gegenseitige Anpassungsvorgang fehlt jedoch auf der Seite des Computers, was zu einer Lücke in der Mensch-Maschine-Interaktion führt.
+Darüber hinaus verwenden sprachaktivierte Systeme immer dieselbe Sprachausgabe und ignorieren folglich etwaige Unterschiede zum Sprachstil des momentanen Benutzers.
+Die Erkennung dieser phonetischen Abweichungen und die Erstellung von anpassungsfähiger Sprachausgabe würden zur Personalisierung dieser Systeme beitragen und könnten letztendlich die insgesamte Benutzererfahrung verbessern.
+Aus diesem Grund kann die Erforschung dieser Aspekte von Akkommodation helfen, Mensch-Maschine-Interaktion besser zu verstehen und weiterzuentwickeln.
+
+Die vorliegende Dissertation stellt einen umfassenden Überblick zu Bausteinen bereit, die nötig sind, um Akkommodationsfähigkeiten in Sprachdialogsysteme zu integrieren.
+In diesem Zusammenhang wurden auch interaktive Mensch-Mensch- und Mensch-Maschine-Experimente durchgeführt.
+In diesen Experimenten wurden Differenzen der vokalen Verhaltensweisen untersucht und Methoden erforscht, wie phonetische Abweichungen in synthetische Sprachausgabe integriert werden können.
+Um die erhaltenen Ergebnisse empirisch auswerten zu können, wurden hierbei auch verschiedene Modellierungsansätze erforscht.
+Fernerhin wurde der Frage nachgegangen, wie sich die betreffenden Komponenten kombinieren lassen, um ein Akkommodationssystem zu konstruieren.
+Jeder dieser Aspekte stellt für sich genommen bereits einen überaus breiten Forschungsbereich dar.
+Allerdings sind sie voneinander abhängig und sollten zusammen betrachtet werden.
+Aus diesem Grund liegt ein übergreifender Schwerpunkt dieser Dissertation darauf, nicht nur aufzuzeigen, wie sich diese Aspekte weiterentwickeln lassen, sondern auch zu motivieren, wie sie zusammenhängen.
+Ein weiterer Schwerpunkt dieser Arbeit befasst sich mit der zeitlichen Komponente des Akkommodationsprozesses, was auf der Beobachtung fußt, dass Menschen im Laufe eines Gesprächs ständig ihren Sprachstil ändern.
+Diese Beobachtung legt nahe, derartige Prozesse als kontinuierliche und dynamische Prozesse anzusehen.
+Fasst man jedoch diesen Prozess als diskret auf und betrachtet z.B. nur den Beginn und das Ende einer Interaktion, kann dies dazu führen, dass viele Akkommodationsereignisse unentdeckt bleiben oder übermäßig geglättet werden.
+
+Um die Entwicklung eines vokalen Akkommodationssystems zu rechtfertigen, muss zuerst bewiesen werden, dass Menschen bei der vokalen Interaktion mit einem Computer ein ähnliches Anpassungsverhalten zeigen wie bei der Interaktion mit einem Menschen.
+Da es keine eindeutig festgelegte Metrik für das Messen des Akkommodationsgrades und für die Evaluierung der Akkommodationsqualität gibt, ist es besonders wichtig, die Sprachproduktion von Menschen empirisch zu untersuchen, um sie als Referenz für mögliche Verhaltensweisen anzuwenden.
+In dieser Arbeit schließt diese Untersuchung verschiedene experimentelle Anordnungen ein, um einen besseren Überblick über Akkommodationseffekte zu erhalten.
+In einer ersten Studie wurde die vokale Akkommodation in einer Umgebung untersucht, in der sie natürlich vorkommt: in einem spontanen Mensch-Mensch Gespräch.
+Zu diesem Zweck wurde eine Sammlung von echten Verkaufsgesprächen gesammelt und analysiert, wobei in jedem dieser Gespräche ein anderes Handelsvertreter-Neukunde Paar teilgenommen hatte.
+Diese Gespräche verschaffen einen Einblick in Akkommodationseffekte während spontanen authentischen Interaktionen, wobei die Gesprächsteilnehmer zwei Ziele verfolgen:
+zum einen soll ein Geschäft verhandelt werden, zum anderen möchte aber jeder Teilnehmer für sich die besten Bedingungen aushandeln.
+Die Konversationen wurde durch das Kreuzkorrelation-Zeitreihen-Verfahren analysiert, um die dynamischen Änderungen im Zeitverlauf zu erfassen.
+Hierbei kam zum Vorschein, dass sich erfolgreiche Konversationen von fehlgeschlagenen Gesprächen deutlich unterscheiden lassen.
+Überdies wurde festgestellt, dass die Handelsvertreter die treibende Kraft von vokalen Änderungen sind, d.h. sie können die Neukunden eher dazu zu bringen, ihren Sprachstil anzupassen, als andersherum.
+Es wurde auch beobachtet, dass sie diese Akkommodation oft schon zu einem frühen Zeitpunkt auslösen, was besonders bei erfolgreichen Gesprächen beobachtet werden konnte.
+Dass diese Akkommodation stärker bei trainierten Sprechern ausgelöst wird, deckt sich mit den meist anekdotischen Empfehlungen von erfahrenen Handelsvertretern, die bisher nie wissenschaftlich nachgewiesen worden sind.
+Basierend auf diesen Ergebnissen beschäftigte sich die nächste Studie mehr mit dem Hauptziel dieser Arbeit und untersuchte Akkommodationseffekte bei Mensch-Maschine-Interaktionen.
+Diese Studie führte ein Shadowing-Experiment durch, das ein kontrolliertes Umfeld für die Untersuchung phonetischer Abweichungen anbietet.
+Da Sprachdialogsysteme mit solchen Akkommodationsfähigkeiten noch nicht existieren, wurde stattdessen ein simuliertes System eingesetzt, um diese Akkommodationsprozesse bei den Teilnehmern auszulösen, wobei diese im Glauben waren, ein Sprachlernsystem zu testen.
+Nach der Bestimmung ihrer Präferenzen hinsichtlich dreier segmentaler Merkmale hörten die Teilnehmer entweder natürlichen oder synthetischen Stimmen von männlichen und weiblichen Sprechern zu, die nicht die bevorzugten Variation der oben genannten Merkmale produzierten.
+Akkommodation fand in allen Fällen statt, obwohl die natürlichen Stimmen stärkere Effekte auslösten.
+Es kann jedoch gefolgert werden, dass Teilnehmer sich auch an den synthetischen Stimmen orientierten, was bedeutet, dass soziale Mechanismen bei Menschen auch beim Sprechen mit Computern angewendet werden.
+Das Shadowing-Paradigma wurde auch verwendet, um zu testen, ob Akkommodation ein nur mit Sprache assoziiertes Phänomen ist oder ob sie auch in anderen vokalen Aktivitäten stattfindet.
+Hierzu wurde Akkommodation im Gesang zu vertrauter und unbekannter Musik untersucht.
+Interessanterweise wurden in beiden Fällen Akkommodationseffekte gemessen, wenn auch nur auf unterschiedliche Weise.
+Wohingegen die Teilnehmer das vertraute Stück lediglich als Referenz für einen genaueren Gesang zu verwenden schienen, wurde das neuartige Stück zum Ziel einer vollständigen Nachbildung.
+Ein Unterschied bestand z.B. darin, dass im ersteren Fall hauptsächlich Tonhöhenkorrekturen durchgeführt wurden, während im zweiten Fall auch Tonart und Rhythmusmuster übernommen wurden.
+Einige dieser Ergebnisse wurden erwartet und zeigen, dass die hervorstechenderen Merkmale von Menschen auch durch externen auditorischen Einfluss schwerer zu modifizieren sind.
+Zuletzt wurde ein Mehrparteienexperiment mit spontanen Mensch-Mensch-Computer-Interaktionen durchgeführt, um Akkommodation in mensch- und computergerichteter Sprache zu vergleichen.
+Die Teilnehmer lösten Aufgaben, für die sie sowohl mit einem Konföderierten als auch mit einem Agenten sprechen mussten.
+Dies ermöglicht einen direkten Vergleich ihrer Sprache basierend auf dem Adressaten innerhalb derselben Konversation, was bisher noch nicht erforscht worden ist.
+Die Ergebnisse zeigen, dass sich das vokale Verhalten einiger Teilnehmer im Gespräch mit dem Konföderierten und dem Agenten ähnlich änderte, während die Sprache anderer Teilnehmer nur mit dem Konföderierten variierte.
+Weitere Analysen ergaben, dass der größte Faktor für diesen Unterschied die Reihenfolge war, in der die Teilnehmer mit den Gesprächspartnern sprachen.
+Anscheinend sahen die Teilnehmer, die zuerst mit dem Agenten allein sprachen, ihn eher als einen sozialen Akteur im Gespräch, während diejenigen, die erst mit dem Konföderierten interagierten, ihn eher als Mittel zur Erreichung eines Ziels betrachteten und sich deswegen anders verhielten.
+Im letzteren Fall waren die Variationen in der menschgerichteten Sprache viel ausgeprägter.
+Unterschiede wurden auch zwischen den analysierten Merkmalen festgestellt, aber der Aufgabentyp hatte keinen Einfluss auf den Grad der Akkommodationseffekte.
+Die Ergebnisse dieser Experimente lassen den Schluss zu, dass bei Mensch-Computer-Interaktionen vokale Akkommodation auftritt, wenn auch häufig in geringerem Maße.
+
+Da nun eine Bestätigung dafür vorliegt, dass Menschen auch bei der Interaktion mit Computern ein Akkommodationsverhalten aufzeigen, liegt der Schritt nahe, dieses Verhalten auf eine computergestützte Weise zu beschreiben.
+Hier werden zwei Ansätze vorgeschlagen: ein Ansatz basierend auf einem Rechenmodell und einer basierend auf einem statistischen Modell.
+Das Ziel des Rechenmodells ist es, den vermuteten kognitiven Prozess zu erfassen, der mit der Akkommodation beim Menschen verbunden ist.
+Dies umfasst verschiedene Schritte, z.B. das Erkennen des Klangs des variablen Merkmals, das Hinzufügen von Instanzen davon zum mentalen Gedächtnis des Merkmals und das Bestimmen, wie stark sich das Merkmal ändert, wobei sowohl seine aktuelle Darstellung als auch die externe Eingabe berücksichtigt werden.
+Aufgrund seiner sequenziellen Natur wurde dieses Modell als eine Pipeline implementiert.
+Jeder der fünf Schritte der Pipeline entspricht einem bestimmten Teil des kognitiven Prozesses und kann einen oder mehrere Parameter zur Steuerung seiner Ausgabe aufweisen (z.B. die Größe des Gedächtnisses des Merkmals oder die Akkommodationsgeschwindigkeit).
+Mit Hilfe dieser Parameter können präzise akkommodative Verhaltensweisen zusammen mit Expertenwissen erstellt werden, um die ausgewählten Parameterwerte zu motivieren.
+Durch diese Vorteile ist diesen Ansatz besonders zum Experimentieren mit vordefinierten, deterministischen Verhaltensweisen geeignet, bei denen jeder Schritt einzeln geändert werden kann.
+Letztendlich macht dieser Ansatz ein System stimmlich auf die Spracheingabe von Benutzern ansprechbar.
+Der zweite Ansatz gewährt weiterentwickelte Verhaltensweisen, indem verschiedene Kernverhalten definiert und nicht deterministische Variationen hinzugefügt werden.
+Dies ähnelt menschlichen Verhaltensmustern, da jede Person eine grundlegende Art von Akkommodationsverhalten hat, das sich je nach den spezifischen Umständen willkürlich ändern kann.
+Dieser Ansatz bietet eine datengesteuerte statistische Methode, um das Akkommodationsverhalten aus einer bestimmten Sammlung von Interaktionen zu extrahieren.
+Zunächst werden die Werte des Zielmerkmals jedes Sprechers in einer Interaktion in kontinuierliche interpolierte Linien umgewandelt, indem eine Probe aus der a posteriori Verteilung eines Gaußprozesses gezogen wird, der von den angegebenen Werten abhängig ist.
+Dann werden die Gradienten dieser Linien, die die gegenseitigen Änderungsraten darstellen, verwendet, um diskrete Änderungsniveaus basierend auf ihren Verteilungen zu definieren.
+Schließlich wird jeder Ebene ein Symbol zugewiesen, das letztendlich eine Symbolsequenzdarstellung für jede Interaktion darstellt.
+Die Sequenzen sind geclustert, sodass jeder Cluster für eine Art von Verhalten steht.
+Die Sequenzen eines Clusters können dann verwendet werden, um N-Gramm Wahrscheinlichkeiten zu berechnen, die die Erzeugung neuer Sequenzen des erfassten Verhaltens ermöglichen.
+Der spezifische Ausgabewert wird aus dem Bereich abgetastet, der dem erzeugten Symbol entspricht.
+Bei diesem Ansatz wird das Akkommodationsverhalten direkt aus Daten extrahiert, anstatt manuell erstellt zu werden.
+Es kann jedoch schwierig sein, zu beschreiben, was genau jedes Verhalten darstellt und die Verwendung eines von ihnen gegenüber dem anderen zu motivieren.
+Um diesen Spalt zwischen diesen beiden Ansätzen zu schließen, wird auch diskutiert, wie sie kombiniert werden könnten, um von den Vorteilen beider zu profitieren.
+Darüber hinaus, um strukturiertere Verhaltensweisen zu generieren, wird hier eine Hierarchie von Akkommodationskomplexitätsstufen vorgeschlagen, die von einer direkten Übernahme der Benutzerrealisierungen über eine bestimmte Änderungssensitivität und bis hin zu unabhängigen Kernverhalten mit nicht-deterministischen Variationsproduktionen reicht.
+
+Neben der Möglichkeit, Stimmänderungen zu verfolgen und darzustellen, benötigt ein akkommodatives System auch eine Text-zu-Sprache Komponente, die diese Änderungen in der Sprachausgabe des Systems realisieren kann.
+Sprachsynthesemodelle werden in der Regel einmal mit Daten mit bestimmten Merkmalen trainiert und ändern sich danach nicht mehr.
+Dies verhindert, dass solche Modelle Variationen in bestimmten Klängen und anderen phonetischen Merkmalen generieren können.
+Zwei Methoden zum direkten Ändern solcher Merkmale werden hier untersucht.
+Die erste basiert auf Signalverarbeitung, die auf das Ausgangssignal angewendet wird, nachdem es vom System erzeugt wurde.
+Die Verarbeitung erfolgt zwischen den Zeitstempeln der Zielmerkmale und verwendet vordefinierte Skripte, die das Signal modifizieren, um die gewünschten Werte zu erreichen.
+Diese Methode eignet sich besser für kontinuierliche Merkmale wie Vokalqualität, insbesondere bei subtilen Änderungen, die nicht unbedingt zu einer kategorialen Klangänderung führen.
+Die zweite Methode zielt darauf ab, phonetische Variationen in den Trainingsdaten zu erfassen.
+Zu diesem Zweck wird im Gegensatz zu den regulären graphemischen Darstellungen ein Trainingskorpus mit phonemischen Darstellungen verwendet.
+Auf diese Weise kann das Modell direktere Beziehungen zwischen Phonemen und Klang anstelle von Oberflächenformen und Klang erlernen, die je nach Sprache komplexer und von ihren umgebenden Buchstaben abhängen können.
+Die Zielvariationen selbst müssen nicht unbedingt explizit in den Trainingsdaten enthalten sein, solange die verschiedenen Klänge natürlich immer unterscheidbar sind.
+In der Generierungsphase bestimmt der Zustand des aktuellen Zielmerkmals das Phonem, das zum Erzeugen des gewünschten Klangs verwendet werden sollte.
+Diese Methode eignet sich für kategoriale Änderungen, insbesondere für Kontraste, die sich natürlich in der Sprache unterscheiden.
+Obwohl beide Methoden eindeutig verschiedene Einschränkungen aufweisen, liefern sie einen Machbarkeitsnachweis für die Idee, dass Sprachdialogsysteme ihre Sprachausgabe in Echtzeit phonetisch anpassen können, ohne ihre Text-zu-Sprache Modelle wieder zu trainieren.
+
+Um die Verhaltensdefinitionen und die Sprachmanipulation zu kombinieren, ist ein System erforderlich, das diese Elemente verbinden kann, um ein vollständiges akkommodationsfähiges System zu schaffen.
+Die hier vorgeschlagene Architektur erweitert den Standardfluss von Sprachdialogsystemen um ein zusätzliches Modul, das das transkribierte Sprachsignal von der Spracherkennungskomponente empfängt, ohne die Eingabe in die Sprachverständniskomponente zu beeinflussen.
+Während die Sprachverständniskomponente nur die Texttranskription verwendet, um die Absicht des Benutzers zu bestimmen, verarbeitet die hinzugefügte Komponente das Rohsignal zusammen mit seiner phonetischen Transkription.
+In dieser erweiterten Architektur wird das Akkommodationsmodell in dem hinzugefügten Modul aktiviert und die für die Sprachmanipulation erforderlichen Informationen werden an die Text-zu-Sprache Komponente gesendet.
+Die Text-zu-Sprache Komponente hat jetzt zwei Eingaben, nämlich den Inhalt der Systemantwort, der von der Sprachgenerierungskomponente stammt, und die Zustände der definierten Zielmerkmale von der hinzugefügten Komponente.
+Hier wird eine Implementierung eines webbasierten Systems mit dieser Architektur vorgestellt und dessen Funktionalitäten wurden durch ein Vorzeigeszenario demonstriert, indem es verwendet wird, um ein Shadowing-Experiment automatisch durchzuführen.
+Dies hat zwei Hauptvorteile:
+Erstens spart der Experimentator Zeit und vermeidet manuelle Annotationsfehler, da das System die phonetischen Variationen der Teilnehmer erkennt und automatisch die geeignete Variation für die Rückmeldung auswählt.
+Der Experimentator erhält außerdem automatisch zusätzliche Informationen wie genaue Zeitstempel der Äußerungen, Echtzeitvisualisierung der Produktionen der Gesprächspartner und die Möglichkeit, die Interaktion nach Abschluss des Experiments erneut abzuspielen und zu analysieren.
+Der zweite Vorteil ist Skalierbarkeit.
+Mehrere Instanzen des Systems können auf einem Server ausgeführt werden, auf die mehrere Clients gleichzeitig zugreifen können.
+Dies spart nicht nur Zeit und Logistik, um Teilnehmer in ein Labor zu bringen, sondern ermöglicht auch die kontrollierte und reproduzierbare Durchführung von Experimenten mit verschiedenen Konfigurationen (z.B. andere Parameterwerte oder Zielmerkmale).
+
+Dies schließt einen vollständigen Zyklus von der Untersuchung des menschlichen Verhaltens bis zur Integration der Akkommodationsfähigkeiten ab.
+Obwohl jeder Teil davon zweifellos weiter untersucht werden kann, liegt der Schwerpunkt hier darauf, wie sie voneinander abhängen und sich miteinander kombinieren lassen.
+Das Messen von Änderungsmerkmalen, ohne zu zeigen, wie sie modelliert werden können, oder das Erreichen einer flexiblen Sprachsynthese ohne Berücksichtigung der gewünschten endgültigen Ausgabe führt möglicherweise nicht zum endgültigen Ziel, Akkommodationsfähigkeiten in Computer zu integrieren.
+Indem diese Dissertation die Vokal-Akkommodation in der Mensch-Computer-Interaktion als einen einzigen großen Prozess betrachtet und nicht als eine Sammlung isolierter Unterprobleme, schafft sie ein Fundament für umfassendere und vollständigere Lösungen in der Zukunft.

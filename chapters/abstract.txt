@@ -1,107 +1,108 @@
 With the rapidly increasing usage of voice-activated devices worldwide, verbal communication with computers is steadily becoming more common.
-Although speech is the principal natural manner of human communication , it is still challenging for computers, and users had been growing accustomed to developing a computer-oriented speaking style.
-Such adjustments occur naturally, and typically unconsciously, in humans during an exchange to control the social distance between the interlocutors and improve the conversations's efficiency.
+Although speech is the principal natural manner of human communication, it is still challenging for computers, and users had been growing accustomed to adjusting their speaking style for computers.
+Such adjustments occur naturally, and typically unconsciously, in humans during an exchange to control the social distance between the interlocutors and improve the conversation's efficiency.
 This phenomenon is called accommodation and it occurs on various modalities in human communication, like hand gestures, facial expressions, eye gaze, lexical and grammatical choices, and others.
-Vocal accommodation deals with phonetic-level changes occuring in segmental and suprasegmental features.
+Vocal accommodation deals with phonetic-level changes occurring in segmental and suprasegmental features.
 A decrease in the difference between the speakers' feature realizations results in convergence, while an increasing distance leads to divergence.
-The lack of such mutual adjustments made naturally by humans in computers' speech create a gap between human-human and human-computer interactions.
-Moreover, voice-activated systems currently speak in exactly the same way to all users, regardless of their speech characteristics or realizations of specific features.
+The lack of such mutual adjustments made naturally by humans in computers' speech creates a gap between human-human and human-computer interactions.
+Moreover, voice-activated systems currently speak in exactly the same manner to all users, regardless of their speech characteristics or realizations of specific features.
 Detecting phonetic variations and generating adaptive speech output would enhance user personalization, offer more human-like communication, and ultimately should improve the overall interaction experience.
-Thus, investigating these aspects of accommodation will help understanding and improving human-computer interaction
+Thus, investigating these aspects of accommodation will help to understand and improving human-computer interaction.
 
-This thesis provides a comprehensive overview over the required building blocks for a roadmap toward integration of accommodation capabilities into spoken dialogue systems.
-These include conducting human-human and human-computer interaction experiments to examine the differences in vocal behaviors, approaches for modeling these empirical findings, methods for introducing phonetic variations in synthesized speech, and a way to combine all these components into a accommodative system.
+This thesis provides a comprehensive overview of the required building blocks for a roadmap toward the integration of accommodation capabilities into spoken dialogue systems.
+These include conducting human-human and human-computer interaction experiments to examine the differences in vocal behaviors, approaches for modeling these empirical findings, methods for introducing phonetic variations in synthesized speech, and a way to combine all these components into an accommodative system.
 While each component is a wide research field by itself, they depend on each other and hence should be jointly considered.
-The overarching goal is therefore not only to show how each of the aspect can be further developed, but also to demonstrate and motivate the connections between them.
+The overarching goal of this thesis is therefore not only to show how each of the aspects can be further developed, but also to demonstrate and motivate the connections between them.
+A special emphasis is put throughout the thesis on the importance of the temporal aspect of accommodation.
+Humans constantly change their speech over the course of a conversation.
+Therefore, accommodation processes should be treated as continuous, dynamic phenomena.
+Measuring differences in a few discrete points, e.g., beginning and end of an interaction, may leave many accommodation events undiscovered or overly smoothed.
 
-\todo[inline]{write about the emphasis on temporal aspects and accommodation levels}
-
-To justify the effort of introducing accommodation in computers, it should first be proven that human even show any phonetic adjuestment when talking to a computer as they do with a human being.
-As there is not definitve metric for measuring accommodation and evaluating its quality, it is important to empirically study humans productions to later use as references for possible behaviors.
-In this work, this investigation encapsules different configurations to achieve a better picture of accommodation effects.
-First, it was looking at vocal accommodation where in naturally occurs, namely spontanuous human-human conversations.
-For this purpose, a collection of real-world sales conversation, each with a different representative-prospect pair, was collected and analyzed.
-These conversation offer a glance into accommodation effects in authentic, unscripted interactions with the common goal of negotiating a deal on the one hand, but with a the individual facet of each side of trying to get the best terms on the other hand.
-The conversations were analyzed using cross correlation and time series techniques to capture the change dynamics over time.
+To justify the effort of introducing accommodation in computers, it should first be proven that humans even show any phonetic adjustments when talking to a computer as they do with a human being.
+As there is no definitive metric for measuring accommodation and evaluating its quality, it is important to empirically study humans productions to later use as references for possible behaviors.
+In this work, this investigation encapsulates different experimental configurations to achieve a better picture of accommodation effects.
+First, vocal accommodation was inspected where it naturally occurs, namely in spontaneous human-human conversations.
+For this purpose, a collection of real-world sales conversations, each with a different representative-prospect pair, was collected and analyzed.
+These conversations offer a glance into accommodation effects in authentic, unscripted interactions with the common goal of negotiating a deal on the one hand, but with the individual facet of each side of trying to get the best terms on the other hand.
+The conversations were analyzed using cross-correlation and time series techniques to capture the change dynamics over time.
 It was found that successful conversations are distinguishable from failed ones by multiple measures.
-Furthermore, sales representative proved to be better at leading the vocal changes, i.e., making the prospect follow their speech styles rather than the other way around.
-They also showed stronger tendency to take that lead at an earlier stage, all the more so in successful conversations.
-the fact that accommodation occurs more by trained speakers and improves their performances fits anacdotal best practices for sales representatives, which are now also proven scientifically.
-Following these results, the next experiment went closer to the final goal of this work and investigated vocal accommodation effects in human-computer interaction.
+Furthermore, the sales representative proved to be better at leading the vocal changes, i.e., making the prospect follow their speech styles rather than the other way around.
+They also showed a stronger tendency to take that lead at an earlier stage, all the more so in successful conversations.
+The fact that accommodation occurs more by trained speakers and improves their performances fits anecdotal best practices of sales experts, which are now also proven scientifically.
+Following these results, the next experiment came closer to the final goal of this work and investigated vocal accommodation effects in human-computer interaction.
 This was done via a shadowing experiment, which offers a controlled setting for examining phonetic variations.
-As spoken dialogue systems with such accommodation capabilities (like this work aims to achieve) do not exist yet, a simulated system was used to inroduce these changes to the participants, who believed they help testing a langauge learning tutoring system.
-After determining their preference with respect to three segmental phonetic features, participants were listening to either natural or synthesized voices of male and female speakers, which produced the participants' dispreferred variation of the aforementioned features.
-Effects were stronger with the natural voices, but with overall proprotion for all features.
-Nevertheless, it can be concluded that people were accommodating toward synthetic voices as well, which means that social mechanisms are applied in humans also when speaking with computer-based interlocutors.
-The shadowing paradigm was utilized to test whether accommodation is a phenomenon associated only with speech or with other vocal productions as well.
-To that end, accommodation in singing of familiar and novel music was examined.
+As spoken dialogue systems with such accommodation capabilities (like this work aims to achieve) do not exist yet, a simulated system was used to introduce these changes to the participants, who believed they help with the testing of a language learning tutoring system.
+After determining their preference concerning three segmental phonetic features, participants were listening to either natural or synthesized voices of male and female speakers, which produced the participants' dispreferred variation of the aforementioned features.
+Accommodation occurred in all cases, but the natural voices triggered stronger effects.
+Nevertheless, it can be concluded that participants were accommodating toward synthetic voices as well, which means that social mechanisms are applied in humans also when speaking with computer-based interlocutors.
+The shadowing paradigm was utilized also to test whether accommodation is a phenomenon associated only with speech or with other vocal productions as well.
+To that end, accommodation in the singing of familiar and novel music was examined.
 Interestingly, accommodation was found in both cases, though in different ways.
-While participats seemed to use the familiar piece merely as a reference for singing more accurately, the novel piece became the goal for complete repliacte.
-For example, one difference was that mostly pitch corrections were introduced for the in the former case, whilein the latter also key and rythmic patters were adopted.
+While participants seemed to use the familiar piece merely as a reference for singing more accurately, the novel piece became the goal for complete replicate.
+For example, one difference was that mostly pitch corrections were introduced in the former case, while in the latter also key and rhythmic patterns were adopted.
 Some of those findings were expected and they show that people's more salient features are also harder to modify using external auditory influence.
-Lastly, a multiparty experiment with spontanuous human-human-computer interactions was carried out to compare accommodation in human-directed and computer-directed speech.
-Participats solved tasks for which they needed to talk both with a confederate and with an agent.
-This allows direct comparison of their speech based on the addressee within the same conversation, which has not been done so far.
-Results show that some participats' vocal behavior changed similarly when talking to the confederate and the agent, while others' speech varied only with the confederate.
+Lastly, a multiparty experiment with spontaneous human-human-computer interactions was carried out to compare accommodation in human-directed and computer-directed speech.
+The participants solved tasks for which they needed to talk both with a confederate and with an agent.
+This allows a direct comparison of their speech based on the addressee within the same conversation, which has not been done so far.
+Results show that some participants' vocal behavior changed similarly when talking to the confederate and the agent, while others' speech varied only with the confederate.
 Further analysis found that the greatest factor for this difference was the order in which the participants talked with the interlocutors.
-Apparently, those who first talked to the agent alone saw it more as a social actor in the conversation, while those who interacted with it after talking to the confederate treated it more as a tool to achieve a goal, and thus also behaved differently with it.
-In the latter case, the variations in human-directed speech were much more prominent.
+Apparently, those who first talked to the agent alone saw it more as a social actor in the conversation, while those who interacted with it after talking to the confederate treated it more as a means to achieve a goal, and thus behaved differently with it.
+In the latter case, the variations in the human-directed speech were much more prominent.
 Differences were also found between the analyzed features, but the task type did not influence the degree of accommodation effects.
-The results of these experiments lead to the conclusion that vocal accommodation does occur in human-computer interactions, even if potentially for lesser degrees.
+The results of these experiments lead to the conclusion that vocal accommodation does occur in human-computer interactions, even if often to lesser degrees.
 
-With the question whether people accommodate to computer-based interlocutors as well answered, the next step would be to describe accommodative behaviors in a computer-proccesable way.
+With the question of whether people accommodate to computer-based interlocutors as well answered, the next step would be to describe accommodative behaviors in a computer-processable manner.
 Two approaches are proposed here: computational and statistical.
 The computational model aims to capture the presumed cognitive process associated with accommodation in humans.
-This comprises of various steps, such as detecting the variable feature's sound, adding instances of it to the mental memory of the feature's, and determining how much the sound will change while taking into account both its current representation and the external input.
+This comprises various steps, such as detecting the variable feature's sound, adding instances of it to the feature's mental memory, and determining how much the sound will change while taking into account both its current representation and the external input.
 Due to its sequential nature, this model was implemented as a pipeline.
-Each of the pipeline's five steps corresponds to a specific part of the cognitive process and can has one or more parameters to control its output (e.g., the size of the featuer's memory or the accommodation pace).
+Each of the pipeline's five steps corresponds to a specific part of the cognitive process and can have one or more parameters to control its output (e.g., the size of the feature's memory or the accommodation pace).
 Using these parameters, precise accommodative behaviors can be crafted while applying expert knowledge to motivate the chosen parameter values.
 These advantages make this approach suitable for experimentation with pre-defined, deterministic behaviors where each step can be changed individually.
-This approach makes a system vocally responsive to users' speech input.
+Ultimately, this approach makes a system vocally responsive to users' speech input.
 The second approach grants more evolved behaviors, by defining different core behaviors and adding non-deterministic variations on top of them.
-This resembles human behavioral patterns, as each person as a base way of accommodating (or not accommodating), which may arbitrarily change based on the specific circumstances.
-This approach offers a data-driven statistical way to extract accommodatin bheaviors from a given collection of interactions.
-First, the target feature's values of each speaker in an interaction are converted into continuous interpolated lines by drawing one sample from the posterior of a Guassian process conditioned on the given values.
-Then, the gradients of these lines, which represents rates of mutual change, are used to defined discrete levels of change based on their distribution.
-Finally, each levels is assigned a symbol, which ultimately create a symbol sequence representation for each interaction.
-The sequences are clustered, so that each cluster stands for a type of behavior.
-The sequences of a cluster can then be used to calcualte n-gram probabilities that enable generation of new sequences of the captured behavior.
+This resembles human behavioral patterns, as each person has a base way of accommodating (or not accommodating), which may arbitrarily change based on the specific circumstances.
+This approach offers a data-driven statistical way to extract accommodation behaviors from a given collection of interactions.
+First, the target feature's values of each speaker in an interaction are converted into continuous interpolated lines by drawing one sample from the posterior distribution of a Gaussian process conditioned on the given values.
+Then, the gradients of these lines, which represent rates of mutual change, are used to defined discrete levels of change based on their distribution.
+Finally, each level is assigned a symbol, which ultimately creates a symbol sequence representation for each interaction.
+The sequences are clustered so that each cluster stands for a type of behavior.
+The sequences of a cluster can then be used to calculate n-gram probabilities that enable the generation of new sequences of the captured behavior.
 The specific output value is sampled from the range corresponding to the generated symbol.
-With this approach, accommodation behaviors are extracted directly from data, as opposed to manually craft them.
+With this approach, accommodation behaviors are extracted directly from data, as opposed to manually crafting them.
 However, it is harder to describe what exactly these behaviors represent and motivate the use of one of them over the other.
-In addition to output examples of approaches, it is also explained how they can be combined to benefit from the advantages of both.
+To bridge this gap between these two approaches, it is also discussed how they can be combined to benefit from the advantages of both.
+Furthermore, to generate more structured behaviors, a hierarchy of accommodation complexity levels is suggested here, from a direct adoption of users' realizations, via specified responsiveness, and up to independent core behaviors with non-deterministic variational productions.
 
-Beside a way to track and represent vocal changes, a accommodative system also needs its text-to-speech component to be able to realize those changes in the system's speech output.
-Speech synthesis models are typically trained once on data with certain characteristic and do not change afterwards.
+Besides a way to track and represent vocal changes, an accommodative system also needs a text-to-speech component that is able to realize those changes in the system's speech output.
+Speech synthesis models are typically trained once on data with certain characteristics and do not change afterward.
 This prevents such models from introducing any variation in specific sounds and other phonetic features.
 Two methods for directly modifying such features are explored here.
-The first is based on signal processing that applied on the output signal after it was generated by the system.
-The processing is done between the timestamps of the target features and uses pre-defined script that modify the signal to achieve the desried values.
-This method is more stuitable for continuous features (e.g., vowel quality), especially in the case of subtle changes that do not necessarily lead to a categorical sound change.
-The second method is aims to capture phonetic variations in the training data.
-To that end, a training corpus with phonemic represntations is used, as opposed to the regular graphemic representations.
+The first is based on signal modifications applied to the output signal after it was generated by the system.
+The processing is done between the timestamps of the target features and uses pre-defined scripts that modify the signal to achieve the desired values.
+This method is more suitable for continuous features like vowel quality, especially in the case of subtle changes that do not necessarily lead to a categorical sound change.
+The second method aims to capture phonetic variations in the training data.
+To that end, a training corpus with phonemic representations is used, as opposed to the regular graphemic representations.
 This way, the model can learn more direct relations between phonemes and sound instead of surface forms and sound, which, depending on the language, might be more complex and depend on their surrounding letters.
 The target variations themselves don't necessarily need to be explicitly present in the training data, all time the different sounds are naturally distinguishable.
-In generation time, the current target feature's state  determines the phoneme to use for generating the desired sound.
-This method is suitable for categorical changes, espcially for constrast that naturally exist in the language.
-While both methods clearly have various limitations, they provide a proof of concept for the idea that spoken dialogue systems may phonetically adapt their speech output in real-time and without re-training their text-to-speech models.
+In generation time, the current target feature's state determines the phoneme to use for generating the desired sound.
+This method is suitable for categorical changes, especially for contrasts that naturally exist in the language.
+While both methods have certain limitations, they provide a proof of concept for the idea that spoken dialogue systems may phonetically adapt their speech output in real-time and without re-training their text-to-speech models.
 
-To combine the behavior definitions and the speech manipulation, a system is required, which can connect these elements to create a complete accommodation capability.
-The architecture suggested here extends the standard spoken dialogue system with an additional module.
-With this extended architecutre, the accommodation model is used in the added component and the speech manipulation is done in the text-to-speech component.
-This component receives the transcribed speech signal from the speech recognition component and sends its output to the the text-to-speech component.
-The input of the language understanding component is not influenced.
-While it only requires the textual transcription to determine the user's intention, the added component process the raw signal along with its phonetic transcription.
+To combine the behavior definitions and the speech manipulations, a system is required, which can connect these elements to create a complete accommodation capability.
+The architecture suggested here extends the standard spoken dialogue system with an additional module, which receives the transcribed speech signal from the speech recognition component without influencing the input to the language understanding component.
+While language the understanding component uses only textual transcription to determine the user's intention, the added component process the raw signal along with its phonetic transcription.
+In this extended architecture, the accommodation model is activated in the added module and the information required for speech manipulation is sent to the text-to-speech component.
 However, the text-to-speech component now has two inputs, viz. the content of the system's response coming from the language generation component and the states of the defined target features from the added component.
-A web-based system with this architecture was implemented, and its functionality is showcased by demonstrating how a shadowing experiment can be carried out automatically using it.
+An implementation of a web-based system with this architecture is introduced here, and its functionality is showcased by demonstrating how it can be used to conduct a shadowing experiment automatically.
 This has two main advantage:
-First, since the system recognizes the participants' phonetic variations and automatically selects the appropriate variation to use its response, the experimenter saves time and prevents manual annotation errors.
+First, since the system recognizes the participants' phonetic variations and automatically selects the appropriate variation to use in its response, the experimenter saves time and prevents manual annotation errors.
 The experimenter also automatically gains additional information, like exact timestamps of utterances, real-time visualization of the interlocutors' productions, and the possibility to replay and analyze the interaction after the experiment is finished.
-The second advantage is scaleability.
+The second advantage is scalability.
 Multiple instances of the system can run on a server and be accessed by multiple clients at the same time.
-This not only saves time and the logistics of bringing participants into a lab, but also allows running the experiment with different configurations (e.g., parameter values or target features) in a controlled and reproducible way.
+This not only saves time and the logistics of bringing participants into a lab, but also allows running the experiment with different configurations (e.g., other parameter values or target features) in a controlled and reproducible way.
 
-This complete a full cycle from examining human behaviors to integrating accommodation capabilities.
+This completes a full cycle from examining human behaviors to integrating accommodation capabilities.
 Though each part of it can undoubtedly be further investigated, the emphasis here is on how they depend and connect to each other.
-Measuring changes features without showing how they can be modelled or achieving flexible speech synthesis without considering the desired final output might not lead to the final goal of introducing accommodation capabilities into computers.
+Measuring changes features without showing how they can be modeled or achieving flexible speech synthesis without considering the desired final output might not lead to the final goal of introducing accommodation capabilities into computers.
 Treating accommodation in human-computer interaction as one large process rather than isolated sub-problems lays the ground for more comprehensive and complete solutions in the future.
