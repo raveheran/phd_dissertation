@@ -6,103 +6,72 @@
 \acresetall
 
 The gap between the measurable, objective methods to describe accommodation in experimental settings on the one hand and the free-form, subjective way it is used and perceived in everyday life on the other hand creates a great challenge in its research.
-Additional, the large role individual differences play in both the production and reception of accommodation effects makes it hard to evaluate it, as there are no \enquote{correct} and \enquote{incorrect} labels that can be assigned to speakers' production.
-Moreover, the same production may lead to one effect with a certain interlocutor and to a different effect with another -- and both will be natural and acceptable.
+Additionally, the large role individual differences play in both the production and reception of accommodation effects makes it hard to evaluate it, as there are no \enquote{correct} and \enquote{incorrect} labels that can be assigned to speakers' production.
+Moreover, the same production may lead to one effect with a certain interlocutor and a different effect with another -- and both will be natural and acceptable.
 This has to do with many social and cognitive factors, including the speakers' personality and sensibility behavioral changes.
 Some people don't notice accommodation occurring in a conversation, including in their own speech, whereas some are sensitive even to subtle changes in their conversational partner's behavior.
-Their reactions may also be due to certain characteristics that cannot be observed in the acoustic signal.
+Their reactions may also be \enquote{holistic} or due to certain characteristics that do not necessarily correlate to properties observed directly in the acoustic signal \citep{Babel2012role}.
 This makes even humans unreliable for evaluating accommodation, as opposed to many language processing tasks where human performance is set as a gold standard (or at least a goal to aim for).
 As a result, each study needs to introduce (or re-introduce) the used methods, which makes it hard to compare different studies and approaches.
 This lack of common measuring units and evaluation metrics is a major shortcoming of this research field.
-The overarching terms \enquote{accommodation} holds various different effects with different natures in it.
-\cref{subsec:variation_types} offers definition for various terms based on their use in the literature.
-Having common terminology to describe them can be a step toward comparable common research methods and prevent confusions that stem for the use of different terms to describe the same effect or the same term to describe different effects. 
+The overarching term \enquote{accommodation} holds various effects with different natures in it.
+\cref{subsec:variation_types} offers definitions for various terms based on their use in the literature.
+Having common terminology to describe them can be a step toward comparable common research methods and prevent confusions that stem from the use of different terms to describe the same effect or the same term to describe different effects. 
 
 An investigation of accommodation effects in pre-defined successful and failed conversation was done in \cref{chap:conv_analysis}.
 Different effects were indeed found, especially with respect to the speaker who was leading the change.
-Finding that sales reps demonstrated more controlled and consistent triggering of convergence in the prospects speech matches the assumption many in that business hold.
-However, the results of this experiment cannot be interpreted as a causation and imply that they were more successful because of those convergence effects.
+Finding that sales reps demonstrated more controlled and consistent triggering of convergence in the prospects' speech matches the assumption many in that business hold.
+However, the results of this experiment cannot be interpreted as causation and imply that they were more successful because of those convergence effects.
 Further experiments and comparisons with more reps are required for reaching this conclusion.
 
 It is important to note that it was possible to reach these findings because of the emphasis on looking at accommodation as a dynamic phenomenon that unfolds over time.
 Without this temporal aspect, only more shallow broad conclusion can be drawn.
 Measuring accommodation as the difference between values at a few points (e.g., the beginning and end of an interaction) is an over-simplification of the process.
-First, the length of the interaction is not considered, which would lead to similar conclusion for short and long interactions.
+First, the length of the interaction is not considered, which would lead to a similar conclusion for short and long interactions.
 Secondly, nuances in the mutual changes might be smoothed-out due to averages over long spans, as demonstrated in \cref{fig:accommodation_types} on page \pageref{fig:accommodation_types}.
-A high temporal resolution grants more fine-grained glance into patterns emerging in the data instead of in manually-picked datapoints.
-This approach is used, among others, in \cref{subsec:temporal_analysis}, in additional to distribution-based analyses, to obtain different points of view on the effects.
-The statistical model presented in \cref{chap:statistical_model} harnesses this idea by refraining from accurately defining behaviors and generating accommodative behaviors purely based on data, so that the temporal facets are implicitly included it.
+A high temporal resolution grants a more fine-grained glance into patterns emerging in the data instead of in manually-picked datapoints.
+This approach is used, among others, in \cref{subsec:temporal_analysis}, in addition to distribution-based analyses, to obtain different points of view on the effects.
+The statistical model presented in \cref{chap:statistical_model} harnesses this idea by refraining from accurately defining behaviors and generating accommodative behaviors purely based on data, so that the temporal facets are implicitly included in it.
 Combining this data-driven mechanism with the cognitive-oriented approach from \cref{chap:computational_model} adds human-centric motivation to the generated behavior.
-This fusion of computer-powered and human-motivated techniques has not been adequately explored so far, although it could offer more comprehensive and explainable process.
+This fusion of computer-powered and human-motivated techniques has not been adequately explored so far, although it could offer a more comprehensive and explainable process.
 
-To that end, one of the main goals of this thesis is to depict vocal accommodation as one comprehensive process that includes multiple related parts, from examining effects in \ac{hhi}, via approaches to model them for computers, and of course the technical aspects of integrating and simulating them in \acp{sds} (see \cref{fig:roadmap_adaptive_sds}).
+To that end, one of the main goals of this thesis is to depict vocal accommodation as one comprehensive process that includes multiple related parts (see \cref{fig:roadmap_adaptive_sds}), from examining effects in \ac{hhi}, via approaches to model them for computers, and of course the technical aspects of integrating and simulating them in \acp{sds}.
 To get a better understanding of accommodation in \ac{hci}, it is important to see the connection between these parts and not investigate them in isolation from one another.
 More often than not, the technical side of spoken \ac{hci} (e.g., \ac{asr} accuracy or \ac{tts} quality) are designed and developed separately from the user perspective.
 While this is understandable when aiming purely at performance improvements, it is problematic when addressing dialogue-related problems.
 However, since accommodation in \ac{hci} involves both computers and humans, both sides should be considered in the research and development of such systems.
 Ultimately, they need to work together to achieve better communication, just like human interlocutors in \ac{hhi}.
 In the case of accommodation, investigating effects in humans that are not relevant or cannot be implemented in computers doesn't contribute to the advancement toward accommodative systems.
-Similarly, accomplishing technical goals that are not perceivable by humans or are not modeled in a human-centric fashion don't provide any added values as well.
+Similarly, accomplishing technical goals that are not perceivable by humans or are not modeled in a human-centric fashion doesn't provide any added values as well.
 For instance, measuring convergence by the distance of \ac{mfcc} vectors \citep[as done by][]{Han2018you} might provide an interesting technical view on the matter, but since humans don't converge simply by sounding more alike, this is, doubtfully an efficient user-friendly way to implement accommodation in \acp{sds}.
 Viewing accommodation as an involved interdisciplinary research topic encourages collaboration of researchers studying linguistics, humanities subjects like sociology and psychology, conversation and user-experience designers, engineers, and anything between them.
 
-
-
-\citet{Babel2012role} % she says that accommodation evaluation by humans is "holistic" and does not necessarily correlate with specific features in the signal
-
-
-\citet{Levitan2016implementing} % that's the paper about Levitan's system that entrains in a relatively simple matter. take this as as a baseline when talking about sophistication of system behavior
-
-%%%%%%%%%%%%%%%%%%%%
-% taken from System chapter. use this after talking about what the system can do and maybe some limitations, then this is potential extensions / directions for improvement
-Future work will pursue two independent directions:
-regarding phonetic convergence, supporting more features will make the system more comprehensive and useful for studying a wider range of phenomena.
-Specifically, adding support for supra-segmental (i.e., prosodic) features will enable replication of experiments similar to, e.g., \citet{Levitan2014acoustic, Levitan2016implementing} in the same manner as in \cref{sec:showcase}.
-
-Regarding user acceptance, it would be interesting to examine whether users show any preference toward an \ac{sds} that converges to their speech on the phonetic level, and whether they would change their speaking style based on the system's output, forming an interaction with mutual and dynamic convergence.
-The first research question can be tested by comparing user interaction with a baseline system and one with convergence capabilities, and evaluating the users' performance and satisfaction.
-The second research question can be investigated by comparing the users' speech when interacting with either system configuration.
-Additionally, to test the system's influence on users' speech, the users can train with an intelligent \acf{call} or \acf{capt} system, which will change its learner model based on their input.
-Task completion rate, performance accuracy, and completion time metrics can be used to evaluate how helpful the system is.
-%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-
-% as a continuation to the technical challenges in modeling accommodation in computers
-\todo[inline]{general sentence that there have been attempts to develop SDSes with accomm capabilities (with 1-2 refs) and say that those show different degrees of fidelity.}
-Although all these designs are described as accommodative systems, not all accommodation capabilities are born equal.
+Systems with accommodative capabilities have been developed but showed varying degrees of fidelity.
+Although they are all described as accommodative systems \citep[like the one introduced by][]{Levitan2016implementing}, not all accommodation capabilities are born equal.
 This thesis distinguishes between several \enquote{levels of accommodation} in computers, as discussed in \cref{subsec:accommodation_levels}.
 Ranging from the mere ability to modify the system's speech ability to independently generating varying realizations of change, but also allows for customizable conversational design complexity depending on the target application.
 This concept is motivated by the parallelism to the assorted layers of accommodative behaviors in humans.
-For example, in normal, everyday conversation, people speak spontaneously, and therefore their speech will change freely based on their personality, personal preference etc.
+For example, in normal, everyday conversation, people speak spontaneously, and therefore their speech will change freely based on their personality, personal preference, etc.
 This means that no specific behavior is consciously targeted here and the changes will be arbitrarily varied around this general behavior.
-In computers, this is the paralleled to the variational generation around a \enquote{base} behavior of the system shown in \cref{chap:statistical_model}, which, in turn, is extracted from different human productions.
+In computers, this is paralleled to the variational generation around a \enquote{base} behavior of the system shown in \cref{chap:statistical_model}, which, in turn, is extracted from different human productions.
 However, in other, more controlled situations, different accommodation strategies might be more effective.
 Teachers use entrainment as a means for giving auditory feedback to language learners, by triggering an artificially strong effect to \enquote{draw} the student into a more correct articulation form, e.g., of a specific sound or intonation pattern.
 Although it is providing mostly implicit, this kind of feedback encourages learning from fluent, conversational responses.
-Still, this requires a different, more directed approach.
-Such approach is realized in this work via the pipeline presented in \cref{chap:computational_model}, which offers deterministic control over the system's responsiveness using several cognition-oriented parameters.
+Still, this requires a different, more guided approach.
+Such an approach is realized in this work via the pipeline presented in \cref{chap:computational_model}, which offers deterministic control over the system's responsiveness using several cognition-oriented parameters.
 Such differentiation between accommodative mindsets has not been addressed before and it suggests more ways to model and implement accommodation in \acp{sds} while keeping the specific goal and application in mind, e.g., chatbots with a free-form accommodation process in contrast to \acp{capt} systems with a more well-defined goal.
+The system introduced in \cref{chap:web-based_responsive_spoken_dialogue_system} offer a way to experiment with different configurations to achieve the desired behavior on the computer's side.
+This system can be extended, e.g., by developing more sophisticated accommodation models or supporting additional phonetic features
+These could be used, for instance, to replicate and automate more experiments (as done in \cref{sec:showcase}) to accelerate and improve the data collection used for accommodation studies and offer better accommodation capabilities in computers.
 
-
-
-
-
-
-
-% toward the end, when talking about potential future research directions
-Since computers are yet to possess full, human-level accommodation capabilities, it remains to be seen whether and how they will influence end users once they do.
-First, like in the case of other human-inspired features like high-quality text generation and speech output, not all users might fancy such a capability that makes computers behave and perform more similar to humans.
-A main reason for that the realistic yet imperfect attempt to adopt human behaviors often leads to the \emph{uncanny valley} effect \citep{Mori1970uncanny} and at some point makes users eerily uncomfortable \citep[cf.\ Figure 1 in][]{Macdorman2006subjective}.
+Since computers are yet to possess full, human-level accommodation capabilities, it remains to be seen whether and how they will influence end-users once they do.
+First, like in the case of other human-inspired features like high-quality text generation and speech output, not all users might fancy such a capability that makes computers behave and perform more similarly to humans.
+One main reason for that the realistic yet imperfect attempt to adopt human behaviors often leads to the \emph{uncanny valley} effect \citep{Mori1970uncanny} and at some point makes users eerily uncomfortable \citep[cf.\ Figure 1 in][]{Macdorman2006subjective}.
 Secondly, as in \ac{hhi}, some speakers are naturally less sensitive to phonetic changes and might not notice such variations in computers.
-While accommodation effect might still occur in that case, this rises the questions whether this would improve user experience nonetheless and whether developers would want to invest in features that users might not even acknowledge and appreciate.
+While accommodation effects might still occur in that case, this raises the question of  whether this would improve user experience nonetheless and whether developers would want to invest in features that users might not even acknowledge and appreciate.
 Finally, even when computers will have reached advanced accommodation capabilities (vocal and otherwise), they might not be accepted by users.
 Depending on the application and the agent type, people might not \emph{want} their computers to demonstrate such human-like behaviors, especially if they don't necessarily explicitly follow the user's preference.
 However, they might be useful and desirable in situations where the agent is designed to socially accompany a person for a long time.
-For instance, assistant social robots or therapeutic virtual humans that can simulate realistic \ac{hhi} may achieve better rapport with their users, as the target is a closer long-term social relationship rather than the completion of isolated mundane tasks.
-Somewhat ironically, this could only be comprehensively tested once such systems exist.
-
-\todo[inline]{finish with a general sentence ending with the word "future"}
+For instance, assistant social robots or therapeutic virtual humans that can realistic simulate \ac{hhi} may achieve better rapport with their users, as the target is a closer long-term social relationship rather than the completion of isolated mundane tasks.
+Such tests will help reinforce \ac{hci} paradigms like \ac{casa}.
+Somewhat ironically, this could only be thoroughly tested once such systems exist sometime in the future.
