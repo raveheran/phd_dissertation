@@ -226,7 +226,7 @@ Nowadays, chatbots have already been used in various domains, such as education 
 
 Embodied agents (sometimes also \emph{interface agents}) are communicative systems with some visual form.
 Though the embodiment may be graphical only (see \cref{subsec:virtual_humans}, this term usually refers to systems that interact and communicate with the environment through some physical shape.
-For social robots, this shape is normally human-like and may include a full-body representation (like the NAO robot \citep{Singh2016nao}) or only a face (like Furhat \citep{AlMoubayed2012furhat}).
+For social robots, this shape is normally human-like and may include a full-body representation, like the NAO robot \citep{Singh2016nao} or only a face, like social robot Furhat \citep{AlMoubayed2012furhat}.
 Social robots gather information in different modalities, like eye gaze and hand gestures, and may even generate some limited behavior in these modalities, but ultimately their primary means of communication is almost always speech.
 Accommodation towards embodied interlocutors is especially interesting, as it is closest to face-to-face \ac{hhi}.
 Vocal accommodation has been found in human-robot interaction, e.g., by \citet{Ibrahim2019fundamental}.
@@ -353,7 +353,7 @@ Completing the cycle, these representations can then be used as additional input
 This process is individual for each speaker (see \cref{fig:static_vs_adaptive_speech_output}) and may occur over long periods or multiple interactions, depending on the desired degree and characteristics of accommodation.
 Furthermore, this process may involve other components of the \ac{sds} as well (cf.\ \cref{fig:sds_architecture}).
 For instance, the Dialogue Manager might consider changes in the user's speech when making decisions, e.g., based on apparent mood and calmness.
-The \ac{nlg} component could make alterations to its output to better fit the vocal changes of the system and the user's dynamic state, such as shortening sentences and omit additional information if phonetic indicators of hurry or urgency (like those shown by \citet{Edworthy2003acoustic}) are detected in the speech input.
+The \ac{nlg} component could make alterations to its output to better fit the vocal changes of the system and the user's dynamic state, such as shortening sentences and omit additional information if phonetic indicators of hurry or urgency \citep[like those shown by][]{Edworthy2003acoustic} are detected in the speech input.
 
 \subsection{Accommodation levels -- terminology}
 \label{subsec:accommodation_levels}
@@ -392,7 +392,7 @@ These terms seek to distinguish between the different capabilities that can be i
 	A responsive system can, for instance, detect some target features in the user's speech input and, after comparing them to the system's representation of these features, guide the \ac{tts} on how to update them (typically, to make them more similar to the user's input).
 	This requires a computational model that performs these steps (cf.\ \cref{chap:computational_model}).
 	Yet this model would not have an independently defined behavior and it could only directly become more similar (or dissimilar) to the user in some fashion.
-	Such models can be designed to imitate the user's immediate output from previous turns (like in \citet{Levitan2016implementing}) or to gradually match it based on some parameters like sensitivity and interaction's history (as demonstrated in \citet{Raveh2017Interspeech}).
+	Such models can be designed to imitate the user's immediate output from previous turns \citep[like in][]{Levitan2016implementing} or to gradually match it based on some parameters like sensitivity and interaction's history \citep[as demonstrated in][]{Raveh2017Interspeech}.
 	This property represents the idea that humans change their speech (and behavior in general) when interacting with other people, which is a key aspect of the \ac{cat} \citep[][and see \cref{sec:communication_accommodation_theory}]{Giles1991CAT}.
 	
 	\item[Characterized (Profiled)] -- the system's voice has its own base behavior.\\
