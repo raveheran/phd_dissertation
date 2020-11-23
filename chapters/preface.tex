@@ -86,22 +86,12 @@
 % list of formulae
 \newpage
 \addcontentsline{toc}{chapter}{List of Formulae and Algorithms}
+\vspace*{-3cm}
 \listofmyequations
 
-% list of acronyms
-\newpage
-\fixme{some abbreviations page numbers of mentioned are not in order or repeated}
-%\acresetall % reset in order not to include mentiones in non-content pages
-\section*{List of Acronyms}
-\addcontentsline{toc}{chapter}{List of Acronyms}
-\vspace*{0.2cm}
-\begin{multicols}{2}
-	\printacronyms
-\end{multicols}
-\clearpage
-
 % notation
-\section*{Notation}
+\newpage
+{\Large \textbf{Notation}}\\[.3cm]
 \addcontentsline{toc}{chapter}{Notation}
 \begin{tabularx}{\linewidth}{l@{\quad}X}
 	$p(x \mid y,\ z)$ & conditional probability of $x$ given the context ${y, z}$\\
@@ -113,7 +103,7 @@
 	$X \sim \mathcal{N}(\mu,\,\sigma^{2})$	&	random variable $X$ has a normal distribution with mean $\mu$ and variance $\sigma^{2}$ \\
 	$\int_{i}^{j}f(x)$ & integral over the function $f(x)$ between the points $i$ and $j$, representing the conceptual area under the curve of the function.\\
 	$k\left( \theta, x, x' \right)$ & covariance function (kernel) $k$ between all possible input pairs using hyperparameter vector $\theta$. Can be shorted-noted as $\mathcal{K}$. $x$ and $x'$ are two data vectors. \\
-	$\Sigma(\vec{x})$	&	covariance matrix (e.g., of a Gaussian process) given by $\Sigma_{i,j} = k(x_i, x_j)$, where k is a positive definite kernel function \\
+	$\Sigma(\vec{x})$	&	covariance matrix (e.g., of a \acl{gp}) given by $\Sigma_{i,j} = k(x_i, x_j)$, where k is a positive definite kernel function \\
 	$p\left( f \left( \vec{x} \right) \right) \sim \mathcal{GP}\left( m(\vec{x}), \Sigma(\vec{x}) \right)$	&	probability of values of function $f$ over vector $x$ is specified by a Gaussian process with mean function $m$ and covariance function $K$ \\
 	$f(X)$	&	a vector of function values, whose $i$th element is given by $f(x_i)$ \\
 	$x_*$	&	a not-yet-observed outcome value; similarly, $f_*$ collectively denotes all non-observed outcome values of a function, and $\Sigma_*$ the covariance values of non-observed values \\
@@ -121,6 +111,15 @@
 	$\vcenter{\hbox{\includegraphics[height=15pt]{qt_c-cih}}}$	& a note raised by one \acl{qt}\\
 	$\vcenter{\hbox{\includegraphics[height=15pt]{qt_c-cisih}}}$	& a note raised by three \aclp{qt}\\
 \end{tabularx}
+
+% list of acronyms
+\newpage
+\acbarrier % don't consider page numbers of abbreviations mentioned till here (to avoid non-content page numbers)
+{\Huge \textbf{List of Acronyms}}\\[.3cm]
+\addcontentsline{toc}{chapter}{List of Acronyms}
+\begin{multicols}{2}
+	\printacronyms
+\end{multicols}
 
 % set pages header and footers (moved from preamble because only need headers from here on (and better be after all lists etc.))
 %-----------------------------

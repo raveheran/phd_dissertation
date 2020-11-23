@@ -359,7 +359,7 @@ For simplicity, it is assumed that the time series lengths are equal, so that $N
 		\label{eq:rr}
 		RR = \frac{1}{N^2} \sum_{i=1}^{N_i} \sum_{j=1}^{N_j} R_{i,j}.
 	\end{equation}
-	\eqname{-- 4.4.5 \ac{crqa}-based measures: RR, DET, L, maxL, and ENTR}
+	\eqname{-- 4.4.5 \acs{crqa}-based measures: RR, DET, L, maxL, and ENTR}
 	%
 	This number corresponds to the amount of colored points in the recurrence plot.
 	The lengths $N_i$ and $N_j$ of the time series are often -- but not necessarily -- equal
@@ -441,8 +441,9 @@ The significant difference in the NRLINE measure stands in line with the finding
 The same tests were performed based on the leading speaker in each conversation (bottom part of \cref{tab:crqa_results}), but no significant differences were found for this criterion.
 
 \begin{table}[t]
-	\caption{P-values of the two-sample Wilcoxon test comparing the \ac{crqa} output values based on call success/fail and leading speaker along with their respective mean values.
-	Significant values based on the adjusted p-value threshold are in bold.}
+	\caption[P-values of the comparison between \acs{crqa} measures in sucess and failed calls]
+		{P-values of the two-sample Wilcoxon test comparing the \ac{crqa} output values based on call success/fail and leading speaker along with their respective mean values.
+		Significant values based on the adjusted p-value threshold are in bold.}
 	\label{tab:crqa_results}
 	\begin{tabularx}{\linewidth}{X
 								 S
@@ -482,7 +483,7 @@ It is also evident that when the reps were leading, they consistently did so at 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{boxplot_ccf}
-	\caption[Comparison between sales reps' and prospects' leading-taking times for successful and failed calls.]
+	\caption[Representatives' and prospects' lead-taking times in successful and failed calls]
 		{Comparison between the time of the call in which the maximal \acl{cc} occurs.
 		The x-axis groups the calls based on the speaker role, and the fill color further separates between successful and failed calls.
 		The y-axis shows the conversation timeline in percent (\SI{50}{\percent} marks the middle of the conversation).

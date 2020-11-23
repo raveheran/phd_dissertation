@@ -303,7 +303,17 @@
 
 % acronym managment
 % -----------------
-\acsetup{only-used=false, list-name=List of Acronyms, page-style=plain, pages=all, list-style=description, list-heading=none} % list-heading=section*
+\acsetup{
+	only-used=true,
+	list-name=List of Acronyms,
+	page-style=plain,
+	pages=all, % print page numbers where acronyms are used
+	list-style=description,
+	barriers/use=true, % use barrier markers (do separate acronym lists)
+	list/local=true, % only considered acronyms within current barrier when printing acronym lists
+	list-heading=none % heading type (def: list-heading=section*)
+}
+
 \DeclareAcronym{ae}		{short=AE,		long=account executive,								long-plural=s, short-plural=s}
 \DeclareAcronym{ai}		{short=AI,		long=artificial intelligence,						long-plural=s, short-plural=s}
 \DeclareAcronym{ar}		{short=AR,		long=articulation rate,								long-plural=s, short-plural=s}
