@@ -23,8 +23,8 @@ Supporting that, \citet{Orlob2018nine} found that star reps\footnote{Sales repre
 The specific criteria typically include a wide range of behavioral and business metrics, but those are defined internally per company and do not have a common absolute definition.} are able to make prospects increase their speaking rate to match theirs, bringing the two sides closer with respect to this speech property.
 However, the scientific analysis is far from their everyday work, and such phenomena are passed on as general tips and are not taught or explained in detail to the \acp{ae}.
 \Ac{c-iq} systems aim to bridge over this gap and connect the scientific side of sales to the field to help reps to improve their performance using measured, interpretable methods.
-
-\todo[inline]{1-2 sentences explaining why then accommodation can contribute here}
+Being part of verbal interaction, vocal accommodation is a facet that can shed light on certain processes occurring during a sales call.
+Indeed, this phenomenon has been given attention in analyses and evaluations of \acp{ae}.
 It was found, for example, that distinguished sales reps let the prospects talk more and keep certain parts of the calls shorter than low-performing reps \citep{Orlob2017winning}.
 
 \Acf{f0} can be interpreted and explained by people with no phonetic training, like \acp{ae}.
@@ -185,8 +185,6 @@ In sum, \ac{crqa} can be used to objectively quantify and describe accommodation
 		Diagonal lines above the \acl{los} (\acs{los}; the central diagonal line) indicate that the speaker on the y-axis leads the x-axis, and vice versa for lines below the \ac{los}.
 		The blank area between timestamps 220 and 330 of the x-axis point to a portion of the call where the speakers were more distant from each other.}
 	\label{fig:crqa_plot}
-	\todo[inline]{consider taking another plot with more clear effects -- or no plot at all?}
-	\todo[inline]{make the plot square, to make it clearer that the times have the same length}
 \end{figure}
 
 \subsection{Recurrence detection}
@@ -237,6 +235,27 @@ This ability to not only detect latent accommodation but also determine its init
 	Distances between the datapoints are measured in the embedded space defined by embedding dimensions, using the same unit used for measuring the values of the time series.
 \end{enumerate}
 %
+\begin{figure}
+	\centering
+	\begin{minipage}{.45\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{ami}
+		\caption[Average mutual information of time series as function of lag]
+			{The average mutual information of the time series values as a function of the lags considered.
+			The x-axis shows the considered lags and the y-axis the mutual information index (AMI) in bits.}
+		\label{fig:ami}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}{.45\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{false_NN}
+		\caption[Embedded dimensions optimization]
+			{False nearest neighbors percentage as a function of the number of embedded dimensions.
+			The x-axis show the considered numbers of embedded dimensions and the y-axis the percentage of false nearest neighbors.}
+		\label{fig:false_nn}
+	\end{minipage}	
+\end{figure}
+%
 These parameters are a key aspect in \ac{crqa}, and how they are set is decisive for its outcome.
 However, although some best-practice guidelines exist, like those suggested by \citet{Coco2014crqa-r}, there is nevertheless no standard way for optimizing these parameters and their determination depend on the nature and characteristics of the data.
 An optimization method similar to the one presented by \citet{Marwan2007recurrence} was utilized here.
@@ -258,34 +277,6 @@ The delay parameter was subsequently determined by finding the lag value $\tau$ 
 \end{equation}
 \eqname{Optimization of delay parameter}\noindent
 %
-The lag with the \emph{lowest} average mutual information was selected, regardless of whether and when the values started to level off.
-This provides a delay that is not too short to miss the mutual differences, but also not too long to lose the dependency between the time series.
-The number of embedding dimensions was obtained using false nearest neighbors \citep{Kennel1992determining}.
-This algorithm determines the minimum embedding dimension necessary to reconstruct the state space of a dynamical system with time delay embedding, as explained by \citet{Abarbanel1993local}.
-A neighborhood diameter equal to the standard deviation of the time series was used, and a limit of 20 embedding dimensions (which was never reached) was set.
-\Cref{fig:ami,fig:false_nn} show examples of mutual information and false nearest neighbors optimizations using the data used for the study presented here.
-%
-\begin{figure}
-	\centering
-	\begin{minipage}{.45\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{ami}
-		\caption[Average mutual information of time series as function of lag]
-			{The average mutual information of the time series values as a function of the lags considered.
-			The x-axis shows the considered lags and the y-axis the mutual information index (AMI) in bits.}
-		\label{fig:ami}
-	\end{minipage}%
-	\hfill
-	\begin{minipage}{.45\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{false_NN}
-		\caption[Embedded dimensions optimization]
-			{False nearest neighbours percentage as a function of the number of embedded dimensions.
-			The x-axis show the considered numbers of embedded dimensions and the y-axis the percentage of false nearest neighbours.}
-		\label{fig:false_nn}
-	\end{minipage}	
-	\todo[inline]{make text and lines/bars bigger}
-\end{figure}
 %
 \addtocounter{equation}{1}
 \begin{algorithm}[t]
@@ -293,8 +284,8 @@ A neighborhood diameter equal to the standard deviation of the time series was u
 	\label{alg:radius_opt}
 	\algorithmcaption
 		{\emph{The higher $n$ is (\cref{line:num_cand}), the higher the chance of a \ac{rr} close to the defined \emph{desired RR}.Also note that since \ac{rr} represents percentage of values in the recurrence plot, 100 is its highest possible value.
-		Therefore, and since the radii in $R$ are traversed in increasing order, the search stops if this value is achieved(\cref{line:break_at_rr_100}).
-		As explained in the text, in the presented studies $n = 20$ and $desiredRR = 10$ (see \citet{Coco2014crqa-r}).}}
+		Therefore, and since the radii in $R$ are traversed in increasing order, the search stops if this value is achieved (\cref{line:break_at_rr_100}).
+		As explained in the text, in the presented studies $n = 20$ and $desiredRR = 10$ \citep[see][]{Coco2014crqa-r}.}}
 	\DontPrintSemicolon
 	\SetKwInOut{Input}{Inputs}
 	\SetKwInOut{Output}{Output}
@@ -321,8 +312,13 @@ A neighborhood diameter equal to the standard deviation of the time series was u
 \end{algorithm}
 \eqname{Radius optimization algorithm for \acs{crqa}}
 \footnotetext{As calculated by the \ac{crqa} package for R \citep{Coco2014crqa-r} with the additional arguments (unlisted in the algorithm itself) \emph{rescale=0, normalize=0, minvertline=length(ts1) / 100, mindiagline=length(ts1) / 100,} and \emph{tw=0}.}
-\todo{make sure algorithm block is on same page with its footnote and that the foot note is not cut into the next page}
 %
+The lag with the \emph{lowest} average mutual information was selected, regardless of whether and when the values started to level off.
+This provides a delay that is not too short to miss the mutual differences, but also not too long to lose the dependency between the time series.
+The number of embedding dimensions was obtained using false nearest neighbors \citep{Kennel1992determining}.
+This algorithm determines the minimum embedding dimension necessary to reconstruct the state space of a dynamical system with time delay embedding, as explained by \citet{Abarbanel1993local}.
+A neighborhood diameter equal to the standard deviation of the time series was used, and a limit of 20 embedding dimensions (which was never reached) was set.
+\Cref{fig:ami,fig:false_nn} show examples of mutual information and false nearest neighbors optimizations using the data used for the study presented here.
 Following that, the radius was calculated in two steps (\cref{alg:radius_opt}).
 First, the goal \ac{rr} and a list of potential radii were initialized.
 Here, the goal \ac{rr} was set to \SI{10}{\percent}, which is considerably higher than in similar studies, e.g., \SIrange{2}{5}{\percent} in \citet{Coco2014crqa-r}.
@@ -541,7 +537,6 @@ No significant influences of interactivity on call outcomes were found, and only
 		The additional horizontal lines mark the \SI{25}{\percent}, \SI{50}{\percent}, and \SI{75}{\percent} quartiles of the data.
 		The asterisks above the shapes denote the significance levels of the comparisons between the main groups (successful vs.\ failed) and the subgroups (* $p < 0.05$, *** $p < 0.001$, **** $p < 0.0001$).}
 	\label{fig:speech-balance_success_violin}
-	\todo[inline]{could be easier to read if the inner boxplots had white fill and the quartile lines would be different color or a bit thicker}
 \end{figure}
 
 \section{Conclusion}
