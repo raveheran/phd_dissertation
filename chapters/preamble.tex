@@ -411,33 +411,36 @@
 % --------------------------------------------
 \newcommand \CoverPageImage[1]{%
     \AddToShipoutPictureBG*{\AtPageLowerLeft{%
-            \includegraphics[width=0.95\paperwidth]{#1}}}}
+            \hspace{0.8cm}\includegraphics[width=0.95\paperwidth]{#1}}}}
 
 % Cover Page
 % ----------
 \title{\vspace{-3.2cm}
-	   \texttt{Ph.D.\ Dissertation}\\
+	   \hspace{1.5cm}\texttt{Ph.D.\ Dissertation}\\
 	   \rule{\linewidth}{0.5mm}\\
-       \textsc{\Huge Vocal Accommodation in\\
+       \textsc{\Huge
+       			Vocal Accommodation in\\
        			Human-Computer Interaction:\\
        			Modeling and Integration into\\[.4cm]
        			Spoken Dialogue Systems}
-       \rule{\linewidth}{0.5mm}\\[0.3cm]
+       \rule{\linewidth}{0.5mm}\\[1.0cm]
 }
 \author{
 	{\LARGE \textbf{Eran Raveh}}\\[1cm]
-	{\Large Universität des Saarlandes}\\[1.3cm]
+	{\Large Universität des Saarlandes}\\[1.2cm]
 	{\Large \textit{Submitted in partial fulfillment}}\\
 	{\Large \textit{of the requirements for the degree of}}\\[.4cm]
 	{\Large \textit{\textbf{Doctor of Philosophy in}}}\\
 	{\Large \textit{\textbf{Language Science and Technology}}}\\[1.85cm]
-	\begin{tabular}{ll}
-	   		\textbf{Supervisors}: 	& Prof.\ Bernd Möbius\\
-	   					 			& Dr.\ Ingmar Steiner\\
+	\hspace{-1cm}
+	\begin{tabular}{*{5}{l}}
+	   		\textbf{Supervisors:}	& Prof.\ Dr.\ Bernd Möbius	& & \textbf{Reviewers:}	& Prof.\ Dr.\ Bernd Möbius\\
+	   					 		 	& Dr.\ Ingmar Steiner	& & 					 	& Prof.\ Dr.-Ing.\ Sebastian Möller\\
 	\end{tabular}
 }
 \vspace{1cm}
 %\date{\today} % normal date
-\date{\monthyeardate\today}
+%\date{\monthyeardate\today}
+\date{}
 %\titlepic{\includegraphics[scale=0.7]{Figures/logo_ekut.png}}
 \CoverPageImage{uds_logo_trans.png}
