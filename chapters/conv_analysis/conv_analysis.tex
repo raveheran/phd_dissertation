@@ -463,12 +463,12 @@ The same tests were performed based on the leading speaker in each conversation 
 	\end{tabularx}
 \end{table}
 
-To shed more light on the leading role, \acl{cc} was used to determine which interlocutor led the change in behavior.
-\Acl{cc} finds the degree to which two time series are synchronized with different lag values..
+To shed more light on the leading role, cross-correlation was used to determine which interlocutor led the change in behavior.
+Cross-correlation finds the degree to which two time series are synchronized with different lag values..
 The correlation between the time series was calculated for each lag, and the value that made the series maximally correlated was selected.
 A positive value suggests that the first time series needs to be shifted forward to achieve maximal correlation and vice versa.
-In the context of accommodation, this \acl{cc} indicates indicates which speaker was leading the change.
-The \acl{cc} function was not limited to a specific range of shifts, so that all possible lags were considered.
+In the context of accommodation, this cross-correlation indicates indicates which speaker was leading the change.
+The cross-correlation function was not limited to a specific range of shifts, so that all possible lags were considered.
 The lag associated with the maximal correlation was used to determine the leader.
 Since the calls in the collections used here are from the same domain, it is also interesting to examine at which point of the conversation the maximal correlation occurs.
 \cref{fig:barplot_conv_leaders} shows the time, in percent, in which the maximal correlation occurred for \acp{ae} and prospects in successful and failed calls.
@@ -480,7 +480,7 @@ It is also evident that when the reps were leading, they consistently did so at 
 	\centering
 	\includegraphics[width=\linewidth]{boxplot_ccf}
 	\caption[Representatives' and prospects' lead-taking times in successful and failed calls]
-		{Comparison between the time of the call in which the maximal \acl{cc} occurs.
+		{Comparison between the time of the call in which the maximal cross-correlation occurs.
 		The x-axis groups the calls based on the speaker role, and the fill color further separates between successful and failed calls.
 		The y-axis shows the conversation timeline in percent (\SI{50}{\percent} marks the middle of the conversation).
 		The horizontal lines in the boxes represent the median
@@ -551,7 +551,7 @@ This includes unconsciously showing assimilation towards the prospect and over-e
 However, these often achieve the opposite effect and are therefore discouraged in the sales industry.
 Another possible explanation is that reps give up the lead when a call is on the verge of failing and instead let the prospects lead to give them a better feeling.
 This, too, is a known effect in the sales business.
-On the other hand, utilizing \acl{cc} lags proved to be useful for differentiating between the leader in the calls.
+On the other hand, utilizing cross-correlation lags proved to be useful for differentiating between the leader in the calls.
 When \acfp{ae} lead, they tend to do so at an earlier stage than prospects, especially in successful calls.
 
 All these suggests that \acp{ae} do not necessarily always lead the conversation, but know how and when to exploit this technique, consciously or not, to improve their stance in calls.
@@ -570,7 +570,7 @@ However, despite anecdotal recommendations and recommended best practices, it ca
 % Conclusion
 %We have presented a study that examines phonetic accommodation in real-world sales calls.
 %The focus was on mutual proximity of \acl{f0} between salespersons and prospects to find both how close they are to each other in general across the call, and how quickly changes in proximity occur and by whom they are initiated.
-%This was done by \acf{crqa} and \aclp{cc}, which together provide various measures regarding recurrence between the speakers and who leads the other in terms of \acl{f0} changes.
+%This was done by \acf{crqa} and cross-correlations, which together provide various measures regarding recurrence between the speakers and who leads the other in terms of \acl{f0} changes.
 %A corpus of 708 calls was used for the analyses, which makes it possible to find more global, consistent effects that are not influenced by the design of a specific experimental setting.
 %The results show significant differences in some of the values between successful and failed calls, and significant differences between the leading behavior of salespersons and prospects.
 %These findings encourage further investigations, like looking for other predictors of successful calls and examining the influence of additional features and factors on the success of calls.
