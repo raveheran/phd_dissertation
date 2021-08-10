@@ -282,7 +282,7 @@
 \makeatletter
 \def\myaddcontentsline#1#2#3{%
   \addtocontents{#1}{\protect\contentsline{#2}{#3}{Sec \thesection\ p.\ \thepage}{}}}
-\newcommand{\@todonotes@addElementToListOfTodos}{%
+\renewcommand{\@todonotes@addElementToListOfTodos}{%
     \if@todonotes@colorinlistoftodos%
         \myaddcontentsline{tdo}{todo}{{%
             \colorbox{\@todonotes@currentbackgroundcolor}%
