@@ -1,7 +1,7 @@
 \chapter[Accommodation Module for Spoken Dialogue Systems]{Accommodation Module for\\Spoken Dialogue Systems}
 \label{chap:convergence_module_for_sdss}
 
-\lettrine{P}{roducing} accommodative speech output in \aclp{sds} requires additional functionality that extracts speech properties from the user's input to consider when generating the system's output.
+\lettrine{P}{roducing} accommodative speech output in \aclp{sds} requires additional functionality for extracting speech properties from the user's input to consider when generating the system's output.
 This chapter introduces a module for \acs{sds} that adds such functionality to support vocal accommodation.
 The implementation and integration details as well as a demonstration of manipulating the system's output using this module are presented and discussed.
 
@@ -261,27 +261,27 @@ Ultimately, the final updated value for the feature is determined as follows:
 %
 It is important to mention that this limitation is not artificially added here, but is was also observed in the data of the empirical experiments in  \cref{chap:conv_analysis,chap:shadowing_in_sung_music_and_human_computer_interaction,chap:speech_variations_in_hhci}, where humans typically accommodated only up to a certain limit.
 
-\subsection{Combining the computational and statistical models}
+\subsection{Combining the computational and the statistical models}
 \label{subsec:comb_comp_stat_models}
 
 The pipeline implementation in \cref{subsec:computational_model} offers basis for accommodation capabilities based on the computational model presented in \cref{chap:computational_model}.
 The advantage of this realization is the ability to directly control the manner in which the accommodation occurs.
 This not only allows to craft and experiment with well-defined behaviors, but also to utilize expert knowledge or findings from empirical data.
 For example, external knowledge regarding the typical values of features and the places they occur can be applied in the filter step to exclude instances that do not match these criteria.
-Moreover, the calculations and the update and limit steps can be designed to approximate specific patterns observed in experimental data.
+Moreover, the calculations of the update and limit steps can be designed to approximate specific patterns observed in experimental data.
 This way, a system's behavior can be precise and well-defined, with the trade-off of being repetitive and predictive.
-While this alone already grants \emph{responsive} behavior, it lacks the \emph{profiled} and \emph{variational} behaviors described in \cref{subsec:accommodation_levels}.
+While this alone already grants a \emph{responsive} behavior, it lacks the \emph{profiled} and \emph{variational} behaviors described in \cref{subsec:accommodation_levels}.
 These drawbacks are addressed by the statistical model presented in \cref{chap:statistical_model}, which offers more dynamic output based on a core behavior extracted from given data.
 The advantages of this data-driven approach is the simulation of human behaviors directly from data, which is more authentic and saves the time of fine-tuning their manual crafting.
 The risk is the usage of unfiltered raw data, which may result in problematic clustering and by extension unstable or noisy output.
 
 To benefit from the merits of both models, they can be used together.
 The input of the statistical model is an input value from the user and its output is a value to use as output for the system.
-This corresponds to the roles of the store and update steps of the pipeline (although the store step could still be used nonetheless).
+This corresponds to the roles of the store and update steps of the pipeline (although the store step could still be utilized nonetheless).
 Therefore, The statistical model can replace these steps and will be triggered only when an instance as passed the filtering step, which would reduce the influence of noise in the data.
 Although the output of the statistical model should already account for the overall degree of accommodation, the limit step can be optionally kept to monitor that no unreasonable values are generated.
-This way, the pipeline structure is kept with all its advantages, but its final output is not limited to some specific deterministic behavior.
-Combining the computational and statistical models grants the system the benefits of both and gives experimenters more degrees of freedom when creating different scenarios and applications.
+This way, the pipeline structure is kept with all its advantages, but its final output is not limited to a specific deterministic behavior.
+Combining the computational and statistical models grants the system the benefits of both and gives experimenters more degrees of freedom for creating different scenarios and applications.
 
 \section{Integration}
 \label{sec:integration}
@@ -294,7 +294,7 @@ This module relies on input from the \ac{asr} module and its output is consumed 
 Therefore, it is inserted as a new, direct link between these two components, in addition to their connections to the \ac{nlu} and from the \ac{nlg} modules, respectively.
 This \acf{asp} module can be used for any purpose that requires the speech signal and not only its transcription.
 %Since the speech signal is discarded after the \ac{asr} module finishes its processing, not speech-related analysis can be sent as input to the other modules.
-Here, this information is leveraged for accommodation by the \ac{tts} module, but other speech analyses could be useful also for the \ac{dm} or \ac{nlg} modules, e.g., when matching the system's response to the user's mood based on voice characteristics \citep{Braun2016assessing, Rothkrantz2004voice}.
+Here, this information is leveraged for accommodation by the \ac{tts} module, but other speech analyses could be useful also for the \ac{dm} or \ac{nlg} modules, e.g., when matching the system's response to the user's mood based on voice characteristics \citep[see][]{Braun2016assessing, Rothkrantz2004voice}.
 %
 \begin{figure}[t]
 	\centering
@@ -312,7 +312,7 @@ Although the \ac{asp} module is not responsible for the synthesis of the system'
 This is especially important since the synthesis, along with the required changes for expressing accommodation, need to be applied \emph{in real-time} and cannot be learned offline prior to an interaction.
 The examples given here focus on segmental features, because real-time manipulation techniques for them are less common than for supra-segmental features like \ac{f0} and \ac{ar}.
 For segmental features, modifications are applied to specific sounds occurring within short timespans, as oppose to supra-segmental features where longer segments and even an entire utterance are influenced.
-The challenge is, therefore, to apply these modifications with smooth transition from and to the surrounding surrounding segments and without creating artifacts.
+The challenge is, therefore, to apply these modifications with smooth transition from and to the surrounding segments and without creating artifacts.
 
 The manipulation itself can be done either post-hoc on the audio signal itself or as part of the synthesis.
 The first approach relies on signal processing techniques that can be applied on the \ac{tts} output to achieve the desired modification.
@@ -354,12 +354,11 @@ One value was extracted per formant every \SI{6}{\milli\second} with linear inte
 Then, the first and second formants of the vowel target were changed separately using overlap-add \citep{Hamon1989diphone}.
 The changes were based on the respective means of the formants in the duration of the target vowel, while taking the overall contour into account.
 Finally, The original signal was used as the source and was filtered by the manipulated formant contours, resulting in a new speech signal that differs from the original only by the target vowel's segment.
-The second approach was done with neural synthesis using Tacotron\footnote{Tacotron2 architecture based on the implementation in the repository \url{https://github.com/NVIDIA/tacotron2}} \citep{Shen2018natural}, which is trained to generate spectral information directly from textual input, and the neural vocoder WaveGlow \citep{Prenger2019WaveGlow}.
+The second approach was done with neural synthesis using Tacotron\footnote{Tacotron2 architecture based on the implementation on \url{https://github.com/NVIDIA/tacotron2}} \citep{Shen2018natural}, which is trained to generate spectral information directly from textual input, and the neural vocoder WaveGlow \citep{Prenger2019WaveGlow}.
 To capture the categorical allophonic variance, the system was trained on \emph{phonemic} input (as opposed to usual grapheme-based representations), similarly to the training process in \citet{Fong2019comparison}
 For this, the neutral voice subset of the PAVOQUE dataset\footnote{\url{https://github.com/marytts/pavoque-data}} \citep{Steiner2013pavoque} was used, which comprises $\sim$\SI{5.8}{\hour} of speech.
 The phonetic transcriptions were done automatically based on the transcriptions provided with the dataset and were manually verified and corrected.
 After training, the model was able to generate synthesized speech based on an input of an arbitrary phoneme sequence.
 This opens many possibilities, one of them is alternating between \textipa{[\c{c}]} and \textipa{[k]} to express the variation of this feature.
-It is important to note that the other-category variant of a word was not included in any dictionary and was not seen by the model during training \citep[and see][for more details]{Raveh2021ICASSP}.
-\todo{remove ICASSP reference if it's not accepted}
+It is important to note that the other-category variant of a word was not included in any dictionary and was not seen by the model during training.
 \Cref{fig:spectrogram_ic_ik} shows an example of an original sentence (pronounced with \textipa{[\c{c}]} sounds) and its manipulated form (with \textipa{[k]} sounds).
