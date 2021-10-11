@@ -2,7 +2,7 @@
 \label{chap:web-based_responsive_spoken_dialogue_system}
 
 \lettrine{W}{ith} the ability to simulate accommodation, a complete accommodative \acl{sds} is introduced in this chapter.
-Its architecture and various customization possibilities are explained.
+Its architecture and various customization possibilities are motivated and explained.
 The vocal changes are illustrated using dynamic visualizations in the system's \acl{gui}.
 A replication of the \acl{hci} experiment is showcased to exhibit the system's capabilities and demonstrate its advantages.
 
@@ -74,7 +74,7 @@ The main components of the system are the \ac{sds} with the accommodation module
 \subsection{Dialogue system}
 \label{subsec:dialogue_system}
 
-The core of the system is the dialogue system component (see green block in \cref{fig:web-based_architecture}), which controls the flow of the interaction, processes users' inputs, and generates the system's responses.
+The core of the system is the dialogue system component (green block in \cref{fig:web-based_architecture}), which controls the flow of the interaction, processes users' inputs, and generates the system's responses.
 It uses the extended architecture presented in \cref{subsec:extended_sds}, which consists of traditional \ac{sds} components such as \ac{nlu} and a \ac{dm}, but also contains the \ac{asp} module that adds accommodation support \citep{Raveh2017SemDial}.
 The implementation of this module in the system is as described in \cref{fig:adaptation_module_architecture}.
 While the \ac{nlu} component uses merely the transcription provided by the \ac{asr}, the \ac{asp} module analyzes the speech signal itself.
@@ -138,7 +138,7 @@ This can be useful for quickly going through specific parts of an experiment (li
 
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=\linewidth]{plot_area}
+	\includegraphics[width=0.85\linewidth]{plot_area}
 	\caption[Real-time dynamic visualization of phonetic changes]
 		{The plot area showing the states of the feature \textipa{[E:]}~vs.~\textipa{[e:]} during an interaction.
 		The system's (orange, bottom right) gradually adapts to the user's (blue, upper left) detected realizations.
@@ -151,7 +151,7 @@ Visualizations of the tracked features' changes over the course of the interacti
 Each feature is visualized separately, and new datapoints are dynamically added whenever applicable.
 \Cref{fig:plot} shows an example of such a plot with several accumulated datapoints.
 The type of a feature's plot can be defined based on its characteristics, e.g., bars for one-dimensional features and lined scatter plots for two-dimensional features.
-These plots are generated using the Plotly library\footnote{\url{https://plot.ly}}, which provides some interactive functionalities.
+These plots are generated using Plotly\footnote{\url{https://plot.ly}}, which provides some interactive functionalities.
 Hovering over a datapoint in the plot reveals additional information, such as the turn in which it was added, or the realized variant of the feature produced in that turn, as predicted by its classifier (see \cref{subsec:classifiers_training}).
 
 \subsubsection{Notification area}
@@ -222,7 +222,7 @@ MaryTTS \citep{LeMaguer2017uprooted, Schroeder2003mary} was used as the \ac{tts}
 
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=0.85\linewidth]{online_offline_small}
+	\includegraphics[width=0.7\linewidth]{online_offline_small}
 	\caption[Online and offline modes of the responsive \acl{sds}]
 		{Online (orange) and offline (blue) modes of the system.}
 	\label{fig:online_offline_modes}
@@ -280,17 +280,20 @@ The definition of the \textipa{[E:]}~vs.~\textipa{[e:]} features was as follows:
 %	\item[sensitivity] 0.3
 %\end{description}
 %
-\begin{Verbatim}[tabsize=4, commandchars=\\\{\}]
-	- \textbf{`e\_E\_vowel'}:
-			\textbf{phoneme}: EHH
-			\textbf{context}: '.* EHH .*'
-			\textbf{initial}: 450 2100
-			\textbf{minimum}: 300 1500
-			\textbf{maximum}: 750 2900
-			\textbf{measure}: formants
-			\textbf{calculation}: decaying average
-			\textbf{sensitivity}: 0.3
-\end{Verbatim}
+{
+	\small
+	\begin{Verbatim}[tabsize=4, commandchars=\\\{\}]
+		- \textbf{`e\_E\_vowel'}:
+				\textbf{phoneme}: EHH
+				\textbf{context}: '.* EHH .*'
+				\textbf{initial}: 450 2100
+				\textbf{minimum}: 300 1500
+				\textbf{maximum}: 750 2900
+				\textbf{measure}: formants
+				\textbf{calculation}: decaying average
+				\textbf{sensitivity}: 0.3
+	\end{Verbatim}
+}
 %
 %The value of the key \emph{measure} is \enquote{formants}, which means that this feature is evaluated by the segment's formant values (as specified in the corresponding signal processing script).
 %The values of the \emph{minimum} and \emph{maximum} keys stand for the acceptable value range for this feature.
@@ -334,14 +337,14 @@ Although it should be assumed that the user indeed repeats the presented utteran
 	\caption[Example sentence for selected phonetic features]
 		{Examples of stimuli containing the target features.
 		 Each sentence contains only one feature.
-		 A list with all target and filler stimuli can be found in \cref{app:shadow_experiment_stimul} }
+		 A list with all target and filler stimuli can be found in \cref{app:shadow_experiment_stimul}.}
 	\label{tab:target_features}
 \end{table}
 
 \subsection{Classifiers training}
 \label{subsec:classifiers_training}
 
-As mentioned above, a classifier can be defined for each tracked feature to let the system determine to which realization category each encountered belongs.
+As mentioned above, a classifier can be defined for each tracked feature to let the system determine to which realization category each encountered exemplar belongs.
 This automates the annotation otherwise done manually by the experimenter during or after the experiment.
 In the original shadowing experiment, this includes both the determination of the participants' preferred variation in the baseline phase and the annotation of the participants' realizations in the shadowing phase.
 To that end, the associated classifier provides real-time classifications for both the user's and the system's realizations of that feature.
@@ -349,7 +352,7 @@ This not only saves time, but also helps to prevent inconsistencies that on-the-
 With this information available, more meaningful insights can be gained into the variation dynamics over the course of the interaction.
 In other applications, like \acp{capt}, this information may be taken into account when deciding on the system's next turn.
 The classifiers for the replicated experiment were trained on datasets corresponding to the target features' ranges.
-The \textipa{@}-length classifier trained to classify segments shorter and longer than \SI{30}{\milli\second}, and the \textipa{e:/E:} classifier was trained on F1 and F2 values of these vowels produced by female speakers (since for the replication a female participant was chosen as well as a female voice for the system).
+The \textipa{@}-length classifier trained to classify segments shorter and longer than \SI{30}{\milli\second}, and the \textipa{[e:]}/\textipa{[E:]} classifier was trained on F1 and F2 values of these vowels produced by female speakers (since for the replication a female participant was chosen as well as a female voice for the system).
 While training prior to the interactions is generally sufficient, online fine-tuning is also possible to update a feature's classifier whenever requested by the user, e.g., every time the accommodation model is updated.
 
 Here, a \ac{smo} \citep{Platt1999fast, Platt1998sequential} implementation of the \ac{svm} classifier \citep{Vapnik1998support, Joachims2005support} was used, as the two-way categories of these features are expected to be linearly separable.
@@ -412,9 +415,9 @@ See \cref{fig:validation_sensitivity} for visualized examples of the convergence
 %
 After obtaining the preference of each participant, the degree of convergence was examined per utterance in the shadowing phase.
 The participants were grouped based on their convergence behavior in the original experiment:
-One group of participants showed low to no tendency to converge (converged in \SI{\le 10}{\percent} of their utterances),
+One group of participants showed low to no tendency to converge (converged in $\le$\SI{10}{\percent} of their utterances),
 the second had varying degrees of convergence (\SIrange{10}{90}{\percent}),
-and the third group of participants who were very sensitive to the stimuli (\SI{\ge 90}{\percent}).
+and the third group of participants who were very sensitive to the stimuli ($\ge$\SI{90}{\percent}).
 This grouping enables analyses based on collective vocal behaviors instead of individual differences.
 The groups were labeled \emph{Low} (\SI{23}{\percent} of participants), \emph{Mid} (\SI{50}{\percent}), and \emph{High} (\SI{27}{\percent}), respectively.
 For validation purposes, the shadowing phase was treated as an annotation task of the realized variation in the participants' utterances, where a correct annotation (system produces same variation as the participant) indicates convergence.
@@ -441,10 +444,10 @@ These results show that the online predictions made by the system presented here
 	\label{tab:showcase_results}
 	\begin{tabularx}{\linewidth}{X
 								 *{3}{S[table-format=2.0]}
-								 @{\hskip 1.4cm}
-								 *{3}{S[table-format=1.2, table-space-text-pre={$-$}, table-space-text-post={\,***}]}}
+								 @{\hskip 0.9cm}
+								 *{3}{S[table-format=1.2, table-comparator=tru, table-space-text-pre={$-$}, table-space-text-post={\,***}]}}
 		\toprule
-		\multirow{2}{*}{Group} &
+		\multirow{2}{*}{} &
 		\multicolumn{3}{c}{Convergence cases (\si{\percent})} &
 		\multicolumn{3}{c}{Cohen's Kappa ($\kappa$)}\\[0.2cm]
 		&

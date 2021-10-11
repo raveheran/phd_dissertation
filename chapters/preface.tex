@@ -2,21 +2,42 @@
 
 % *** Dedication ***
 % ==================
-%\vspace*{9cm}
-%\begin{center}
-%        \textit{dedication text here}
-%\end{center}
-%\newpage
+\mbox{} % force creation of a page so that there is something to create a new page from
+\newpage
+\vspace*{4cm}
+\begin{flushright}
+        \textit{\large To my family\\and all who taught and supported me}
+\end{flushright}
+\newpage
 
 % *** Acknowledgments ***
 % =======================
-%\vspace*{3cm}
-%\begin{center}
-%    {\calligra \Huge \textbf{Acknowledgments}}\\[0.3cm]
-%    \Large
-%    % Acknowledgments and thanks here (names in bold)
-%\end{center}
-%\newpage
+\begin{center}
+    {\calligra \fontsize{40}{50}\selectfont \textbf{Acknowledgments}}\\[1.7cm]
+    \Large
+	First and foremost, I would like to thank \textbf{Dr.\ Ingmar Steiner} -- for believing in me and giving me this non-trivial chance; for guiding me through the less known aspects of research work; and for teaching and demonstrating high standards of work ethic and the means to achieve it.\\[0.8cm]
+	
+	Many thanks to \textbf{ Prof.\ Dr.\ Bernd Möbius}, for accompanying me through the convoluted paths of academia, and giving his support all the way to the finish line.\\[0.8cm]
+	
+	I would like to express my appreciation to \textbf{Prof.\ Dr.-Ing.\ Sebastian Möller} for his help and feedback that were always quick, precise, and friendly.\\[0.8cm]
+	
+	To \textbf{Iona Gessinger}, who walked this path together with me from start to finish.
+	We made it!\\[2cm]
+	
+	\vspace*{2cm}
+	
+	Big thanks to \textbf{Dr.\ Alexander Hewer} and \textbf{Dr.\ Sébastien Le Maguer} for their punctilious feedback and invaluable proofreading.\\[0.8cm]
+	
+	My sincere thanks and gratitude to \textbf{Prof.\ Dr.\ Christopher Culy} for believing in my capabilities early on and helping me to pursue further opportunities, and for caring about me and my work also after our period working together.\\[0.8cm]
+	
+	I would like to thank \textbf{Dr.\ Peter Cahill} and \textbf{Dr.-Ing. Christian Dittmar} for exposing me to the vast world of speech processing and giving me the opportunities to be part of their work and learn from their extensive knowledge and experience.\\[0.8cm]
+	
+	To \textbf{Prof.\ Dr.\ Detmar Meurers}, who introduced me to the field of computational linguistics in a fascinating and supportive manner.\\[0.8cm]
+	
+	Finally, to all fellow Ph.D.\ students, fellow event organizers, colleagues, collaborators, and interesting people I met in conference and workshops around the world.
+	It would not have been the same without you.\\[0.8cm]
+\end{center}
+\newpage
 
 % *** Foreword ***
 % ===============
@@ -31,8 +52,10 @@
     \vspace*{\textheight}
     \columnbreak
     \vspace*{3cm}
-    \Large{\textit{Hiermit versichere ich, dass ich die vorgelegte Arbeit selbstst{\"a}ndig und nur mit den angegebenen Quellen und Hilfsmitteln einschließlich des WWW und anderer elektronischer Quellen angefertigt habe.
-            Alle Stellen der Arbeit, die ich anderen Werken dem Wortlaut oder dem Sinne nach entnommen habe, sind kenntlich gemacht.}}
+   	\selectlanguage{ngerman}
+	    \Large{\textit{Hiermit versichere ich, dass ich die vorgelegte Arbeit selbstst{\"a}ndig und nur mit den angegebenen Quellen und Hilfsmitteln einschließlich des WWW und anderer elektronischer Quellen angefertigt habe.
+        Alle Stellen der Arbeit, die ich anderen Werken dem Wortlaut oder dem Sinne nach entnommen habe, sind kenntlich gemacht.}}
+    \selectlanguage{english}
     \vspace{0.55cm}
     \begin{flushright}
 %       {\stonefont Eran Raveh}
@@ -40,7 +63,6 @@
     \end{flushright}
 \end{multicols}
 \clearpage
-%\cleardoublepage
 
 \pagestyle{fancyplain}
 \fancyhead{} % no header (for now)
@@ -61,9 +83,9 @@
 \begin{center}
 	\textit{\textbf{\Huge Zusammenfassung (Deutsch)}}\\[1cm]
 \end{center}
-\foreignlanguage{german}{
+	\selectlanguage{ngerman}
 	\input{chapters/zusammenfassung.txt}
-}
+	\selectlanguage{english}
 \cleardoublepage
 
 % table of contents
@@ -76,15 +98,15 @@
 {\addtocontents{toc}{~\hfill\textbf{Page}\par}
     {\large{} \tableofcontents \normalsize{}}}
 
-% list of figures
-\newpage
-\addcontentsline{toc}{chapter}{\listfigurename}
-\listoffigures
-
 % list of tables
 \newpage
 \addcontentsline{toc}{chapter}{\listtablename}
 \listoftables
+
+% list of figures
+\newpage
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
 
 % list of formulae
 \newpage

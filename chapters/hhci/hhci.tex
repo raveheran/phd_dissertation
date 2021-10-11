@@ -1,8 +1,8 @@
-\chapter{Accommodation in Multiparty Interaction with an Agent}
+\chapter{Accommodation in Multiparty Interactions with an Agent}
 \label{chap:speech_variations_in_hhci}
 
 \lettrine{M}{ore} dynamic vocal behaviors can be established in interactions with multiple interlocutors.
-This is not only due to the additional possible connections between them, but also because of other factors that might influence them, like the order of speech or the role of each speaker.
+This is not only due to the additional possible connections between them, but also because of other factors, like order of speech or the role of each speaker.
 A \acl{hhci} study is presented in this chapter, where the effects of different aspects and conditions on vocal accommodation are investigated.
 
 \pagebreak
@@ -19,7 +19,7 @@ The question arises, therefore, whether different speech patterns and characteri
 %It has been demonstrated that humans may change their speech behavior when interacting with computer-based systems.
 %In various \ac{hci} experiments, participants have been found to speak differently to computers and change their speech during the interaction \citep[e.g.,][]{Branigan2010linguistic}.
 The vast majority of experimental work done in the field of vocal accommodation deals with the smallest social interactions, namely dyadic conversations.
-Those can be dyads of two human speakers in \ac{hhi}, or a human and some computer-based agent in \ac{hci}.
+Those can be dyads of two human speakers in \ac{hhi}, or a human and a computer-based agent in \ac{hci}.
 Vocal accommodation in these types of interactions is explored in \cref{chap:shadowing_in_sung_music_and_human_computer_interaction,chap:conv_analysis}.
 However, social interactions may also consist of three or more participants.
 This is true for both \ac{hhi} and \ac{hci}, but also for interactions with mixed human and computer-based interlocutors and specifically multiple humans talking with a single device.
@@ -29,7 +29,7 @@ Their popularity -- and sometimes necessity -- increase alongside the rise in us
 It is important, therefore, to understand whether convergence, divergence, and other effects (like those described in \cref{subsec:variation_types}) may occur not only in \acp{hci}, but in \acfp{hhci} as well.
 Various \ac{hci} experiments have shown that participants speak differently to computers and change their speech behavior during the interaction \citep[e.g.,][]{Branigan2010linguistic}.
 Some works also compared the reaction of participants to different configurations of the computer-based interlocutor \citep[e.g.,][]{Levitan2016implementing}.
-Yet, none of those has performed a comparison between human-directed and computer-directed speech within a single multiparty interaction.
+Yet, none of the above has performed a comparison between human-directed and computer-directed speech within a single multiparty interaction.
 Moreover, only the influence of the system's speech output on the user speech is typically examined in accommodation experiments, but not the influence of another human interlocutor.
 
 Empirical work on multiparty \ac{hci} includes experiment where participants interact with different types of agents, like social robots \citep{Foster2012two, Ibrahim2019fundamental} and human avatars in immersive virtual worlds \citep{Traum2002embodied}.
@@ -49,8 +49,8 @@ This chapter presents a study that examines interaction-level vocal accommodatio
 In this paradigm, two human speakers work collaboratively with an agent to complete tasks while only one of them can talk directly to the agent.
 More details about the dataset and the tasks are given in \cref{sec:vacc}.
 Investigating such a scenario contributes to the understanding of both the role of an agent in interactions with multiple humans and the influence of another human in a \ac{hhci}.
-These two aspects are examined in the two \emph{components} of the study:
-The \emph{addressee} component focuses on the differences between the participant's addressed interlocutor within a conversation \citep[][see]{Raveh2019ESSV}, and the \emph{crowd} component spotlights the influence of an additional human interlocutor on the participant's speech toward the agent \citep[see][]{Raveh2019InterspeechAlexa}.
+These two aspects are examined in the two components of the study:
+The \emph{addressee} component focuses on the differences between the participant's addressed interlocutor within a conversation \citep[see][]{Raveh2019ESSV}, and the \emph{crowd} component spotlights the influence of an additional human interlocutor on the participant's speech toward the agent \citep[see][]{Raveh2019InterspeechAlexa}.
 The question tackled by the second component is whether and to what extent speaking to a second human interlocutor in the same interaction as the agent influences the accommodation toward it, i.e., whether users speak differently towards a \ac{va} when another human participates in the interaction.
 to that end, the distributional and temporal analyses performed in \cref{sec:analysis_hhci} are based on the participants' \emph{speech directions}, i.e., \acf{hds} and \acf{dds}, as illustrated in \cref{fig:condition_comparison_addressee,fig:condition_comparison_crowd}.
 
@@ -152,7 +152,7 @@ The permutations of the tasks, conditions, and their order were balanced.
 
 Each utterance in an interaction was annotated with its speaker, context, and textual transcription.
 The speaker of each utterance could be the participant, Alexa, or the confederate.
-Cross-talk was rare, as the participants typically waited till the confederate or Alexa finished talking (except for when they tried to interrupt Alexa mid-utterance if the response was unquestionably wrong or irrelevant due to recognition error).
+Cross-talk was rare, as the participants typically waited till the confederate or Alexa finished talking (except for when they tried to interrupt Alexa mid-utterance if the response was unquestionably wrong or irrelevant due to a recognition error).
 The context marks the utterance's interaction type, like \ac{hds}, \ac{dds}, cross-talk, off-talk, laughter, and more.
 To deal with clearer data, only \ac{hds} and \ac{dds} contexts were used for analysis, which, together, constituted over \SI{90}{\percent} of the interactions' recording time.
 Transcriptions were obtained using the Google Cloud Speech API automatic speech recognition service and were subsequently manually verified and corrected.
@@ -240,7 +240,7 @@ The second examines time-based, continuous changes in the similarity between the
 \subsection{Distributional analysis}
 \label{subsec:distributional_analysis}
 
-\begin{table}[b]
+\begin{table}[t]
 	\centering
 	\caption[Percentage of significantly different interaction pairs in crowd component]
 		{Percentages of interactions in which the distributional difference of each feature was significant}
@@ -264,7 +264,7 @@ The contrast between \ac{hds} and \ac{dds} is observable within the participant'
 To detect these differences, the distribution of their respective values in the solo and confederate conditions in each interaction pair were compared.
 This was done by using the two-sample Wilcoxon test \citep{Wilcoxon1945individual}, with $\alpha = 0.05$ with the null hypothesis that similar distributions of the target feature were used in both conditions.
 A significant result of the test means that the participant produced the respective feature differently when interacting with Alexa alone compared to when the confederate participated as well.
-\cref{tab:results_hhci_addressee} shows the percentage of interaction pairs, in which the null hypothesis was rejected, i.e., that the feature was utilized differently by the participant in each condition.
+\cref{tab:results_hhci_addressee} shows the percentage of interaction pairs in which the null hypothesis was rejected, i.e., that the feature was utilized differently by the participant in each condition.
 
 \begin{figure}
 	\centering
@@ -272,7 +272,7 @@ A significant result of the test means that the participant produced the respect
 	\includegraphics[width=.9\linewidth]{20171127C_Calendar_02_pitch_dist_cut}
 	\vspace{0.3cm}
 	\caption[Interactions with significant and insignificant \acs{f0} distribution]
-		{Examples of \ac{f0} distributions in \ac{hds} and \ac{dds} with a \emph{significant} difference (top; quiz task of participant 20171127A; p~$\ll$~0.0001,~$\alpha=0.05$) and \emph{insignificant} difference (bottom; calendar task of participant 20171127C; p~=~0.71,~$\alpha=0.05$).
+		{Examples of \ac{f0} distributions in \ac{hds} and \ac{dds} with a \emph{significant} difference (top; quiz task of participant 20171127A; p~$\ll$~0.0001,~$\alpha=0.05$) and an \emph{insignificant} difference (bottom; calendar task of participant 20171127C; p~=~0.71,~$\alpha=0.05$).
 		The colors represent distributions of the participant (blue), Alexa (red), and the confederate (green).
 		The line style differentiates between \ac{hds} (dashed line) and \ac{dds} (solid line).}
 	\label{fig:hds_dds_dist}
@@ -297,10 +297,10 @@ Unlike \ac{f0}, absolute intensity values may not be as meaningful due to the de
 This means that the absolute values of the participant's intensity in \ac{hds} and \ac{dds} can be compared directly, but only relatively against Alexa's and the confederate's.
 Therefore, the differences of this feature as shown in \cref{fig:hds_dds_violin} should only be compared between the participant's both speech direction within an interaction.
 These differences between the participants' \ac{hds} and \ac{dds} were significant in \SI{89}{\percent} of the cases.
-In general, participants tended to speak to Alexa with a louder voice than to the confederate, although their distance from the participants was the same.
+In general, participants tended to speak to Alexa with a louder voice than to the confederate, although their distance from either was the same.
 The differences between \ac{ar} distributions in \ac{hds} and \ac{dds} were significant in \SI{13}{\percent} of the cases.
 This shows that the participants largely spoke with the confederate at the same speed as with Alexa.
-Interestingly, the \ac{ar} was temporarily considerably lower when the participants tried to improve intelligibility, especially if the system's output indicated that it did not correctly understood the participant's utterance due to a recognition error.
+Interestingly, the \ac{ar} was temporarily considerably lower when the participants tried to improve intelligibility, especially if the system's output indicated that it did not correctly understand the participant's utterance due to a recognition error.
 %
 \begin{table}
 	\centering
@@ -479,7 +479,7 @@ As a social, mutual process, accommodation is more likely to be stronger if both
 In this study, the process can only be mutual in \ac{hds}, where another human is involved.
 Nevertheless, accommodation indeed occurred in \ac{dds} as well, both with and without the presence of the confederate.
 Secondly, due to this spontaneous nature of accommodation in \ac{hhi}, the participants might have automatically spoken more dynamically toward the confederate, due to the inherently expected dynamic variations is in human interlocutor.
-Finally, \acp{va} (and voice-activated devices as a whole) are, in for the most part, still not performing well enough for people to speak to them as fluently and naturally as with humans.
+Finally, \acp{va} (and voice-activated devices as a whole) are, for the most part, still not performing well enough for people to speak to them as fluently and naturally as with humans.
 This results in a different manner of talking to machines.
 For example, users are more likely to articulate whole sentences, typically without reformulating, when requested to repeat their utterance by the device, whereas human interlocutors are capable of requesting and conveying corrections with shorter segments using intonation and other means.
 Furthermore, although generally more seldom vary, users tend to reduce their \ac{ar} when repeating their utterances to the device, or when trying to be more clear.
@@ -492,7 +492,7 @@ This happened despite Alexa not varying her \ac{f0} beyond the sentence-level in
 A similar effect was found for intensity.
 Since the device and the confederate were squally distanced from the participants, there was no apparent reason for the participants to speak more loudly with either interlocutor.
 Therefore, an explanation of the tendency to speak more loudly to the device may come from the intuition that a computer-based system has a harder time understanding human speech and therefore needs a clearer signal (also using lower \ac{ar}, as explained above).
-This stands in line with the interpretation that humans sometimes treat voice-activated devices as humans who need a hyper-articulated speech signal to understand, like toddlers or language learners\footnote{In a sense, this analogy is correct, as the devices -- or rather their \ac{asr} components -- indeed learn to process speech signals.
+This stands in line with the interpretation that humans sometimes treat voice-activated devices as humans who need a hyper-articulated speech signal to understand, like toddlers or language learners\footnote{In a sense, this analogy is correct, as the devices -- and specifically their \ac{asr} components -- indeed learn to process speech signals.
 Despite that, this process is different than the way babies acquire spoken language, and therefore such projection on the speech style does not help the device improving its understanding of the user.
 Moreover, slower or disfluent speech may actually hinder the systems' understanding, as they are typically not trained on this kind of speech.}.
 Another explanation may be the illusion that Alexa feels more distant than the human interlocutor because she is not an embodied agent \citep[cf.][and see \cref{sec:types_of_sdss} for further details]{Staum2010virtually, Gijssels2016speech}.
@@ -507,10 +507,10 @@ This supports the hypothesis that extra slow speech would only be used when nece
 Once the misunderstanding was resolved, participants' went back to their original \ac{ar}.
 These local changes may suggest that changes in \ac{ar} are done more consciously than in other phonetic features.
 
-The results presented in \cref{tab:results_hhci_addressee,tab:signif_conditions} show that for all three features
+The results presented in \cref{tab:results_hhci_addressee,tab:signif_conditions} show for all three features
 \begin{enumerate*}[(a)]
-	\item the distributions differed more when the participants first interacted with the device alone, and
-	\item more convergence was aggregated in the task that was performed first.
+	\item that the distributions differed more when the participants first interacted with the device alone, and
+	\item that more convergence was aggregated in the task that was performed first.
 \end{enumerate*}
 This demonstrates the influences of the \texttt{order} factor.
 Furthermore, the factors \texttt{sex} and \texttt{task} indicate that female participants showed a slightly higher amount of convergence in total than male participants, and that the performed task did not play role the increase or decrease of convergence.
